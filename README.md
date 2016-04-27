@@ -1,4 +1,4 @@
 # SwiftyHue
-## Philips Hue SDK written in swift
+Philips Hue SDK written in swift
 
 Work in progress...
