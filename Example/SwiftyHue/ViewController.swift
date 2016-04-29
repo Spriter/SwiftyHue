@@ -24,14 +24,32 @@ class ViewController: UIViewController {
         var lightState = LightState()
         lightState.on = true
 
-        BridgeSendAPI.updateLightStateForId("324325675tzgztztut1234434334", withLightState: lightState) { (errors) in
-            print(errors)
-        }
+//        BridgeSendAPI.updateLightStateForId("324325675tzgztztut1234434334", withLightState: lightState) { (errors) in
+//            print(errors)
+//        }
         
 //        BridgeSendAPI.setLightStateForGroupWithId("huuuuuuu1", withLightState: lightState) { (errors) in
 //            
 //            print(errors)
 //        }
+        
+//        BridgeSendAPI.createGroupWithName("TestRoom", andType: GroupType.LightGroup, inlcudeLightIds: ["1","2"]) { (errors) in
+//            
+//            print(errors)
+//        }
+
+//        BridgeSendAPI.removeGroupWithId("11") { (errors) in
+//            
+//            print(errors)
+//        }
+        
+        BridgeSendAPI.updateGroupWithId("11", newName: "TestRoom234", newLightIdentifiers: nil) { (errors) in
+            
+            print(errors)
+        }
+
+        
+        TestRequester.sharedInstance.requestGroups()
         
         //TestRequester.sharedInstance.requestLights()
         //TestRequester.sharedInstance.getConfig()

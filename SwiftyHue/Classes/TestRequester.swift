@@ -135,7 +135,11 @@ public class TestRequester {
             if let resultValueJSON = response.result.value as? JSON {
 
                 let groupsDict = Group.dictionaryFromResourcesJSON(resultValueJSON)
-                print(groupsDict)
+            
+                for group in groupsDict {
+                    
+                    print("\(group.0) \(group.1.name)")
+                }
             }
         }
     }
