@@ -11,81 +11,121 @@ import Gloss
 
 public class BridgeResourcesCache {
     
-    static var sharedInstance = BridgeResourcesCache();
-    
-    let lights = [Light]();
-    let groups = [Group]();
-    let schedules = [AnyObject]();
-    let scenes = [PartialScene]();
-    let sensors = [AnyObject]();
-    let rules = [AnyObject]();
+    public let lights: [String: Light];
+    public let groups: [String: Group];
+    public let schedules: [String: AnyObject];
+    public let scenes: [String: PartialScene];
+    public let sensors: [String: AnyObject];
+    public let rules: [String: AnyObject];
     
     var bridgeConfiguration: BridgeConfiguration?;
     
-    private init() {
+    public init() {
+
+        lights = [String: Light]();
+        groups = [String: Group]();
+        schedules = [String: AnyObject]();
+        scenes = [String: PartialScene]();
+        sensors = [String: AnyObject]();
+        rules = [String: AnyObject]();
         
+    };
+    
+    public init(lights: [String: Light], groups: [String: Group], schedules: [String: AnyObject], scenes: [String: PartialScene], sensors: [String: AnyObject], rules: [String: AnyObject]) {
+      
+        self.lights = lights;
+        self.groups = groups;
+        self.schedules = schedules;
+        self.scenes = scenes;
+        self.sensors = sensors;
+        self.rules = rules;
     };
     
 }
 
-class BridgeResourcesCacheManager {
+public class BridgeResourcesCacheManager {
  
-    var bridgeResourcesCache = BridgeResourcesCache.sharedInstance
-    var lastProcessedJSONs = [BridgeResourceType: NSMutableDictionary]()
+    public static var sharedInstance = BridgeResourcesCacheManager();
     
+    var lights = [String: Light]();
+    var groups = [String: Group]();
+    var schedules = [String: AnyObject]();
+    var scenes = [String: PartialScene]();
+    var sensors = [String: AnyObject]();
+    var rules = [String: AnyObject]();
+    
+    var bridgeConfiguration: BridgeConfiguration?;
+
     init() {
-        readCacheFromDisk()
+        self.internCache = BridgeResourcesCache()
     }
     
-    private func readCacheFromDisk() {
+    private func updateInternCache() {
+    
+        self.internCache = BridgeResourcesCache(lights: lights, groups: groups, schedules: schedules, scenes: scenes, sensors: sensors, rules: rules)
+    }
+    
+    var internCache: BridgeResourcesCache;
+    
+    public var cache: BridgeResourcesCache {
         
-        let resourceTypes: [BridgeResourceType] = [.Lights, .Groups, .Scenes, .Sensors, .Rules, .Config, .Schedules]
+        return internCache;
+    }
+    
+    func storeInObjectsCache(bridgeResourcesJSON:[BridgeResourceType: NSDictionary]) {
         
-        for resourceType in resourceTypes {
+        for (key, value) in bridgeResourcesJSON {
             
-            if let resourcesJSON = self.readFromDisk(resourceType) {
-                
-                lastProcessedJSONs[resourceType] = resourcesJSON;
-                storeInObjectsCache(resourcesJSON as! JSON, resourceType: resourceType)
-            }
+            store(value as! JSON, resourceType: key)
         }
+        
+        // Update Intern Cache
+        updateInternCache()
     }
     
     func storeInObjectsCache(json: JSON, resourceType: BridgeResourceType) {
         
         // convert to swift objects
+        store(json, resourceType: resourceType)
+
+        
+        // Update Intern Cache
+        updateInternCache()
+        
+        // Notify
+        notifyAboutChangesForResourceType(resourceType)
     }
     
-    func processJSON(json: NSMutableDictionary, resourceType: BridgeResourceType) {
+    func store(json: JSON, resourceType: BridgeResourceType) {
         
-        if let resultValueJSON = json as? NSMutableDictionary {
+        switch resourceType {
             
-            if self.lastProcessedJSONs[resourceType] != resultValueJSON {
-                
-                let notification = HeartbeatNotification(resourceType: resourceType)!
-                NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
-                print("Changes for \(resourceType.rawValue)")
-                
-                self.lastProcessedJSONs[resourceType] = resultValueJSON
-                self.writeToDisk(resultValueJSON, resourceType: resourceType)
-            }
+        case .Lights:
+            self.lights = Light.dictionaryFromResourcesJSON(json)
+            break;
+        case .Groups:
+            self.groups = Group.dictionaryFromResourcesJSON(json)
+            break;
+        case .Scenes:
+            self.scenes = PartialScene.dictionaryFromResourcesJSON(json)
+            break;
+        case .Config:
+            break;
+        case .Schedules:
+            break;
+        case .Sensors:
+            break;
+        case .Rules:
+            break;
         }
     }
     
-    func writeToDisk(lastJSON: NSMutableDictionary, resourceType: BridgeResourceType) {
+    func notifyAboutChangesForResourceType(resourceType: BridgeResourceType) {
         
-        NSUserDefaults.standardUserDefaults().setObject(lastJSON, forKey: userDefaultsKeyForResourceType(resourceType))
+        let notification = HeartbeatNotification(resourceType: resourceType)!
+        NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
     }
     
-    func readFromDisk(resourceType: BridgeResourceType) -> NSMutableDictionary? {
-        
-        return NSUserDefaults.standardUserDefaults().valueForKey(userDefaultsKeyForResourceType(resourceType)) as? NSMutableDictionary
-    }
-    
-    func userDefaultsKeyForResourceType(resourceType: BridgeResourceType) -> String {
-        
-        return resourceType.rawValue + "Cache"
-    }
     
 }
 //public class BridgeResourcesCacheReader {

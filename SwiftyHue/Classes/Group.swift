@@ -21,7 +21,7 @@ public enum RoomClass: String {
 
 public class Group: BridgeResourceDictGenerator, BridgeResource {
 
-    public typealias BridgeResourceType = Group;
+    public typealias AssociatedBridgeResourceType = Group;
 
     public var identifier: String
     public var name: String

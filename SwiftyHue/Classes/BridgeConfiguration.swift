@@ -11,7 +11,7 @@ import Gloss
 
 public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     
-    public typealias BridgeResourceType = BridgeConfiguration;
+    public typealias AssociatedBridgeResourceType = BridgeConfiguration;
     
     public let identifier: String
     

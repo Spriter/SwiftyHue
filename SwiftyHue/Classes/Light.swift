@@ -11,7 +11,7 @@ import Gloss
 
 public class Light: BridgeResource, BridgeResourceDictGenerator {
 
-    public typealias BridgeResourceType = Light
+    public typealias AssociatedBridgeResourceType = Light
     
     public let identifier: String
     public let name: String

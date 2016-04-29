@@ -20,24 +20,24 @@ public protocol BridgeResource: Decodable, Encodable {
  */
 public protocol BridgeResourceDictGenerator {
     
-    associatedtype BridgeResourceType: BridgeResource
+    associatedtype AssociatedBridgeResourceType: BridgeResource
     
-    static func dictionaryFromResourcesJSON(json: JSON) -> [String: BridgeResourceType]
+    static func dictionaryFromResourcesJSON(json: JSON) -> [String: AssociatedBridgeResourceType]
 }
 
 public extension BridgeResourceDictGenerator {
     
-    public static func dictionaryFromResourcesJSON(json: JSON) -> [String: BridgeResourceType] {
+    public static func dictionaryFromResourcesJSON(json: JSON) -> [String: AssociatedBridgeResourceType] {
         
-        var dict = [String: BridgeResourceType]();
+        var dict = [String: AssociatedBridgeResourceType]();
 
         for (key, value) in json {
 
-            var groupJSON = value as! JSON
-            groupJSON["id"] = key
+            var resourceJSON = value as! JSON
+            resourceJSON["id"] = key
 
-            if let group = BridgeResourceType(json: groupJSON) {
-                dict[key as! String] = group;
+            if let resource = AssociatedBridgeResourceType(json: resourceJSON) {
+                dict[key as! String] = resource;
             }
         }
         

@@ -33,7 +33,7 @@ import Gloss
 
 public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
     
-    public typealias BridgeResourceType = PartialScene
+    public typealias AssociatedBridgeResourceType = PartialScene
     
     public let identifier: String
     public let name: String

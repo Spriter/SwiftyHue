@@ -30,7 +30,7 @@ public class BeatManager {
     private var bridgeIp = "192.168.0.10"
     
     var localHeartbeatTimers = [BridgeResourceType: NSTimer]()
-    var bridgeResourcesCacheManager = BridgeResourcesCacheManager();
+    var beatProcessor = BeatProcessor();
 
     public init() {
 
@@ -63,9 +63,9 @@ public class BeatManager {
         Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/\(resourceType.rawValue.lowercaseString)", parameters: nil)
             .responseJSON { response in
                 
-                if let resultValueJSON = response.result.value as? NSMutableDictionary {
+                if let resultValueJSON = response.result.value as? JSON {
                     
-                    self.bridgeResourcesCacheManager.processJSON(resultValueJSON, resourceType: resourceType)
+                    self.beatProcessor.processJSON(resultValueJSON, resourceType: resourceType)
                 }
         }
     

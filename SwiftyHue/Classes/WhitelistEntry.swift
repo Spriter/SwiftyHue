@@ -11,7 +11,7 @@ import Gloss
 
 public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
     
-    public typealias BridgeResourceType = WhitelistEntry
+    public typealias AssociatedBridgeResourceType = WhitelistEntry
     
     public let identifier: String
     
