@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         
         //TestRequester.sharedInstance.requestLights()
         //TestRequester.sharedInstance.getConfig()
-        TestRequester.sharedInstance.requestBridgeConfiguration()
+        TestRequester.sharedInstance.requestError()
         
     }
 

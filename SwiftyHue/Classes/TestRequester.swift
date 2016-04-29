@@ -177,6 +177,18 @@ public class TestRequester {
         }
     }
     
+    public func requestError() {
+        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/giveMeAError", parameters: nil)
+            .responseJSON { response in
+                
+                if let resultValueJSON = response.result.value as? [JSON] {
+                    
+                    let errors = [Error].fromJSONArray(resultValueJSON)
+                    print(errors)
+                }
+        }
+    }
+    
     class func convert(resourcesDict: NSMutableDictionary) -> [JSON] {
         
         if let JSON = resourcesDict as? NSMutableDictionary {
