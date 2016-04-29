@@ -146,8 +146,8 @@ public class TestRequester {
                 
             if let resultValueJSON = response.result.value as? JSON {
                 
-                let groupsDict = PartialScene.dictionaryFromResourcesJSON(resultValueJSON)
-                print(groupsDict)
+                let scenesDict = PartialScene.dictionaryFromResourcesJSON(resultValueJSON)
+                print(scenesDict)
             }
         }
     }
