@@ -37,56 +37,63 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
     
     public let identifier: String
     public let name: String
-    public let lightIdentifiers: [String]?
-    public let owner: String?
-    public let recycle: Bool?
-    public let locked: Bool?
-    public let appdata: AppData?
+    public let lightIdentifiers: [String]
+    public let owner: String
+    public let recycle: Bool
+    public let locked: Bool
+    public let appdata: AppData
     public let picture: String?
-    public let lastupdated: Double?
-    public let version: Int?
+    public let lastupdated: NSDate?
+    public let version: Int
     
     public required init?(json: JSON) {
         
+        
+
         guard let identifier: String = "id" <~~ json,
-              let name: String = "name" <~~ json
+            let name: String = "name" <~~ json,
+            let lightIdentifiers: [String] = "lights" <~~ json,
+            let owner: String = "owner" <~~ json,
+            let recycle: Bool = "recycle" <~~ json,
+            let locked: Bool = "locked" <~~ json,
+            let appdata: AppData = "appdata" <~~ json,
+            let version: Int = "version" <~~ json
+        
             else { return nil }
         
         self.identifier = identifier
         self.name = name
+        self.lightIdentifiers = lightIdentifiers
+        self.owner = owner
+        self.recycle = recycle
+        self.locked = locked
+        self.appdata = appdata
+        self.version = version
         
-        lightIdentifiers = "lights" <~~ json
-        owner = "owner" <~~ json
-        recycle = "recycle" <~~ json
-        locked = "locked" <~~ json
-        appdata = "appdata" <~~ json
+        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        
         picture = "picture" <~~ json
-        lastupdated = "lastupdated" <~~ json
-        version = "version" <~~ json
-        
+        lastupdated = Decoder.decodeDate("lastupdated", dateFormatter:dateFormatter)(json)
     }
     
     public func toJSON() -> JSON? {
         
-//        var supersJSON = super.toJSON()
-//        
-//        var json = jsonify([
-//            "lights" ~~> self.lightIdentifiers,
-//            "owner" ~~> self.owner,
-//            "recycle" ~~> self.recycle,
-//            "locked" ~~> self.locked,
-//            "appdata" ~~> self.appdata,
-//            "picture" ~~> self.picture,
-//            "lastupdated" ~~> self.lastupdated,
-//            "version" ~~> self.version
-//            ])
-//        
-//        if (json != nil && supersJSON != nil) {
-//            
-//            json!.add(supersJSON!)
-//        }
+        let dateFormatter = NSDateFormatter.hueApiDateFormatter
         
-        return nil
+        var json = jsonify([
+            "identifier" ~~> self.identifier,
+            "name" ~~> self.name,
+            "lights" ~~> self.lightIdentifiers,
+            "owner" ~~> self.owner,
+            "recycle" ~~> self.recycle,
+            "locked" ~~> self.locked,
+            "appdata" ~~> self.appdata,
+            "picture" ~~> self.picture,
+            "lastupdated" ~~> Encoder.encodeDate("lastupdated", dateFormatter: dateFormatter)(self.lastupdated),
+            "version" ~~> self.version
+            ])
+        
+        return json
     }
     
 }
