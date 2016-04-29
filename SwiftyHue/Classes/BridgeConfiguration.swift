@@ -28,7 +28,10 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     /**
      The unique bridge id. This is currently generated from the bridge Ethernet mac address.
      */
-    public let bridgeid: String?
+    public var bridgeid: String? {
+        
+        return identifier
+    }
     
     /**
      MAC address of the bridge.
@@ -145,7 +148,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         let dateFormatter = NSDateFormatter.hueApiDateFormatter
         
    
-        guard let identifier: String = "id" <~~ json,
+        guard let identifier: String = "bridgeid" <~~ json,
             let name: String = "name" <~~ json
             else { return nil }
         
@@ -153,7 +156,6 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         self.name = name
         
         zigbeechannel = "zigbeechannel" <~~ json
-        bridgeid = "bridgeid" <~~ json
         mac = "mac" <~~ json
         dhcp = "dhcp" <~~ json
         ipaddress = "ipaddress" <~~ json
