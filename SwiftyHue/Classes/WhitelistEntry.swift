@@ -36,21 +36,32 @@ public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
     
     public init?(json: JSON) {
         
+        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        
         guard let identifier: String = "id" <~~ json,
-            let name: String = "name" <~~ json
+            let name: String = "name" <~~ json,
+            let lastUseDate: NSDate = Decoder.decodeDate("last use date", dateFormatter:dateFormatter)(json),
+            let createDate: NSDate = Decoder.decodeDate("create date", dateFormatter: dateFormatter)(json)
             else { return nil }
         
         self.identifier = identifier
         self.name = name
-        
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
-        
-        lastUseDate = Decoder.decodeDate("last use date", dateFormatter:dateFormatter)(json)
-        createDate = Decoder.decodeDate("create date", dateFormatter: dateFormatter)(json)
+        self.lastUseDate = lastUseDate
+        self.createDate = createDate
         
     }
     
     public func toJSON() -> JSON? {
-        return [:]
+        
+        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        
+        var json = jsonify([
+            "id" ~~> self.identifier,
+            "name" ~~> self.name,
+            Encoder.encodeDate("last use date", dateFormatter: dateFormatter)(self.lastUseDate),
+            Encoder.encodeDate("create date", dateFormatter: dateFormatter)(self.createDate)
+            ])
+        
+        return json
     }
 }
