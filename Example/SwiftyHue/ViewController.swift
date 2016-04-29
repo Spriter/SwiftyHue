@@ -43,18 +43,28 @@ class ViewController: UIViewController {
 //            print(errors)
 //        }
         
-        BridgeSendAPI.updateGroupWithId("11", newName: "TestRoom234", newLightIdentifiers: nil) { (errors) in
-            
-            print(errors)
-        }
+//        BridgeSendAPI.updateGroupWithId("11", newName: "TestRoom234", newLightIdentifiers: nil) { (errors) in
+//            
+//            print(errors)
+//        }
 
         
-        TestRequester.sharedInstance.requestGroups()
+        //TestRequester.sharedInstance.requestScenes()
+        
+        //TestRequester.sharedInstance.requestGroups()
+        
+//        BridgeSendAPI.createSceneWithName("MeineTestScene", inlcudeLightIds: ["1"]) { (errors) in
+//            
+//            print(errors)
+//        }
         
         //TestRequester.sharedInstance.requestLights()
         //TestRequester.sharedInstance.getConfig()
         //TestRequester.sharedInstance.requestError()
         
+//        BridgeSendAPI.activateSceneWithIdentifier("14530729836055") { (errors) in
+//            print(errors)
+//        }
     }
     
     public func lightChanged() {

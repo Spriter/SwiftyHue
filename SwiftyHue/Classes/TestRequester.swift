@@ -152,6 +152,10 @@ public class TestRequester {
                 
                 let scenesDict = PartialScene.dictionaryFromResourcesJSON(resultValueJSON)
                 print(scenesDict)
+                for scene in scenesDict {
+                    
+                    print("\(scene.0) \(scene.1.name)")
+                }
             }
         }
     }

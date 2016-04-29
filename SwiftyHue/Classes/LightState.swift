@@ -46,6 +46,10 @@ public struct LightState: Decodable, Encodable {
      */
     public var ct: Int?;
     
+    /**
+    The scene identifier if the scene you wish to recall.
+     */
+    public var sceneIdentifier: String?
     
     public var alert: String?;
     public var effect: String?;
@@ -68,6 +72,7 @@ public struct LightState: Decodable, Encodable {
         self.effect = "effect" <~~ json
         self.colormode = "colormode" <~~ json
         self.reachable = "reachable" <~~ json
+        self.sceneIdentifier = "scene" <~~ json
     }
     
     public func toJSON() -> JSON? {
@@ -82,7 +87,8 @@ public struct LightState: Decodable, Encodable {
             "alert" ~~> self.alert,
             "effect" ~~> self.effect,
             "colormode" ~~> self.colormode,
-            "reachable" ~~> self.reachable
+            "reachable" ~~> self.reachable,
+            "scene" ~~> self.sceneIdentifier
     
         ])
     }

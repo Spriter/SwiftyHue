@@ -41,22 +41,19 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
     public let owner: String
     public let recycle: Bool
     public let locked: Bool
-    public let appdata: AppData
+    public let appdata: AppData?
     public let picture: String?
     public let lastupdated: NSDate?
     public let version: Int
     
     public required init?(json: JSON) {
         
-        
-
         guard let identifier: String = "id" <~~ json,
             let name: String = "name" <~~ json,
             let lightIdentifiers: [String] = "lights" <~~ json,
             let owner: String = "owner" <~~ json,
             let recycle: Bool = "recycle" <~~ json,
             let locked: Bool = "locked" <~~ json,
-            let appdata: AppData = "appdata" <~~ json,
             let version: Int = "version" <~~ json
         
             else { return nil }
@@ -67,11 +64,11 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
         self.owner = owner
         self.recycle = recycle
         self.locked = locked
-        self.appdata = appdata
         self.version = version
         
         let dateFormatter = NSDateFormatter.hueApiDateFormatter
         
+        self.appdata = "appdata" <~~ json
         picture = "picture" <~~ json
         lastupdated = Decoder.decodeDate("lastupdated", dateFormatter:dateFormatter)(json)
     }
