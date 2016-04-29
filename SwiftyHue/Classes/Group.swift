@@ -29,7 +29,7 @@ public class Group: BridgeResourceDictGenerator, BridgeResource {
     /**
         The light state of one of the lamps in the group.
      */
-    public let action: LightState?;
+    public let action: LightState;
     
     /**
         The IDs of the lights that are in the group.
@@ -39,7 +39,7 @@ public class Group: BridgeResourceDictGenerator, BridgeResource {
     /**
         As of 1.4. If not provided upon creation "LightGroup" is used. Can be "LightGroup", "Room" or either "Luminaire" or "LightSource" if a Multisource Luminaire is present in the system.
      */
-    public let type: GroupType?
+    public let type: GroupType
     
     /**
         As of 1.4. Uniquely identifies the hardware model of the luminaire. Only present for automatically created Luminaires.
@@ -54,46 +54,43 @@ public class Group: BridgeResourceDictGenerator, BridgeResource {
     /**
         As of 1.11. Category of Room types. Default is: Other.
      */
-    public let roomClass: RoomClass?
+    public let roomClass: RoomClass
     
     public required init?(json: JSON) {
         
         guard let identifier: String = "id" <~~ json,
-              let name: String = "name" <~~ json
+            let name: String = "name" <~~ json,
+            let action: LightState = "action" <~~ json,
+            let type: GroupType = "type" <~~ json,
+            let roomClass: RoomClass = RoomClass(rawValue: ("class" <~~ json) ?? "Other")
+        
             else { return nil }
         
         self.identifier = identifier
         self.name = name
+        self.action = action
+        self.type = type
+        self.roomClass = roomClass
         
-        action = "action" <~~ json
-        lightIdentifiers = "lights" <~~ json
-        type = "type" <~~ json
-        modelid = "modelid" <~~ json
         uniqueid = "uniqueid" <~~ json
-        roomClass = RoomClass(rawValue: ("class" <~~ json) ?? "Other")
-        
-        //super.init(json: json)
+        modelid = "modelid" <~~ json
+        lightIdentifiers = "lights" <~~ json
     }
     
     public func toJSON() -> JSON? {
-//   
-//        var supersJSON = super.toJSON()
-//        
-//        var json = jsonify([
-//            "action" ~~> self.identifier,
-//            "lights" ~~> self.lightIdentifiers,
-//            "type" ~~> self.type,
-//            "modelid" ~~> self.modelid,
-//            "uniqueid" ~~> self.uniqueid,
-//            "class" ~~> self.roomClass?.rawValue
-//            ])
-//        
-//        if (json != nil && supersJSON != nil) {
-//            
-//            json!.add(supersJSON!)
-//        }
+   
+        var json = jsonify([
+            "id" ~~> self.identifier,
+            "name" ~~> self.name,
+            "action" ~~> self.action,
+            "lights" ~~> self.lightIdentifiers,
+            "type" ~~> self.type,
+            "modelid" ~~> self.modelid,
+            "uniqueid" ~~> self.uniqueid,
+            "class" ~~> self.roomClass.rawValue
+            ])
         
-        return nil
+        return json
     }
 
 }

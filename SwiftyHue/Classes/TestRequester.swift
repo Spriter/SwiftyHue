@@ -171,8 +171,8 @@ public class TestRequester {
                 
             if let resultValueJSON = response.result.value as? JSON {
                 
-                let groupsDict = Light.dictionaryFromResourcesJSON(resultValueJSON)
-                print(groupsDict)
+                let lightsDict = Light.dictionaryFromResourcesJSON(resultValueJSON)
+                print(lightsDict)
             }
         }
     }
