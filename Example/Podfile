@@ -1,0 +1,14 @@
+use_frameworks!
+
+target 'SwiftyHue_Example', :exclusive => true do
+  pod 'SwiftyHue', :path => '../'
+end
+
+target 'SwiftyHue_Tests', :exclusive => true do
+  pod 'SwiftyHue', :path => '../'
+
+  pod 'Quick', '~> 0.8'
+  pod 'Nimble', '~> 3.0'
+  pod 'FBSnapshotTestCase'
+  pod 'Nimble-Snapshots'
+end
