@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         
         //TestRequester.sharedInstance.requestScenes()
         
-        //TestRequester.sharedInstance.requestGroups()
+        TestRequester.sharedInstance.requestGroups()
         
 //        BridgeSendAPI.createSceneWithName("MeineTestScene", inlcudeLightIds: ["1"]) { (errors) in
 //            
@@ -65,6 +65,11 @@ class ViewController: UIViewController {
 //        BridgeSendAPI.activateSceneWithIdentifier("14530729836055") { (errors) in
 //            print(errors)
 //        }
+        
+        BridgeSendAPI.activateSceneWithIdentifier("14530729836055", inGroupWithIdentifier: "2") { (errors) in
+            
+            print(errors)
+        }
     }
     
     public func lightChanged() {

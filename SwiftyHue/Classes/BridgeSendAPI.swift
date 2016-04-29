@@ -22,12 +22,20 @@ public struct BridgeSendAPI {
     
     public static func activateSceneWithIdentifier(identifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
         
-        var lightState = LightState()
-        lightState.sceneIdentifier = identifier;
-        
-        let parameters = lightState.toJSON()!
+        let parameters = ["scene": identifier]
         
         Alamofire.request(.PUT, "http://\(bridgeIp)/api/\(bridgeAcc)/groups/0/action", parameters: parameters, encoding: .JSON)
+            .responseJSON { response in
+                
+                completionHandler(errors: self.errorsFromResponse(response))
+        }
+    }
+    
+    public static func activateSceneWithIdentifier(identifier: String, inGroupWithIdentifier groupIdentifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
+        
+        let parameters = ["scene": identifier]
+        
+        Alamofire.request(.PUT, "http://\(bridgeIp)/api/\(bridgeAcc)/groups/\(groupIdentifier)/action", parameters: parameters, encoding: .JSON)
             .responseJSON { response in
                 
                 completionHandler(errors: self.errorsFromResponse(response))

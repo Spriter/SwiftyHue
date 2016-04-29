@@ -45,12 +45,6 @@ public struct LightState: Decodable, Encodable {
      Explanation: http://en.wikipedia.org/wiki/Mired
      */
     public var ct: Int?;
-    
-    /**
-    The scene identifier if the scene you wish to recall.
-     */
-    public var sceneIdentifier: String?
-    
     public var alert: String?;
     public var effect: String?;
     public var colormode: String?;
@@ -72,7 +66,6 @@ public struct LightState: Decodable, Encodable {
         self.effect = "effect" <~~ json
         self.colormode = "colormode" <~~ json
         self.reachable = "reachable" <~~ json
-        self.sceneIdentifier = "scene" <~~ json
     }
     
     public func toJSON() -> JSON? {
@@ -88,7 +81,6 @@ public struct LightState: Decodable, Encodable {
             "effect" ~~> self.effect,
             "colormode" ~~> self.colormode,
             "reachable" ~~> self.reachable,
-            "scene" ~~> self.sceneIdentifier
     
         ])
     }
