@@ -9,11 +9,15 @@
 import UIKit
 import SwiftyHue
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, BridgeFinderDelegate {
+    private let bridgeFinder = BridgeFinder()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        bridgeFinder.delegate = self
+        bridgeFinder.start()
+
         var beatManager = BeatManager()
         beatManager.setLocalHeartbeatInterval(3, forResourceType: .Lights)
         beatManager.setLocalHeartbeatInterval(3, forResourceType: .Groups)
@@ -82,6 +86,12 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - BridgeFinderDelegate
+
+    func bridgeFinder(finder: BridgeFinder, didFinishWithResult bridges: [HueBridge]) {
+        print(bridges)
     }
 
 }
