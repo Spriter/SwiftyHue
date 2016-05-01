@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Scanner {
+protocol Scanner {
     weak var delegate: ScannerDelegate? { get set }
 
     init(delegate: ScannerDelegate?)

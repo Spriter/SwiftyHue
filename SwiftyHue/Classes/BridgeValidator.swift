@@ -10,12 +10,8 @@
 
 import Foundation
 
-public class BridgeValidator {
-    public init() {
-        
-    }
-
-    public func validate(ip: String, success: (bridge: HueBridge) -> Void, failure: (error: NSError) -> Void) {
+class BridgeValidator {
+    func validate(ip: String, success: (bridge: HueBridge) -> Void, failure: (error: NSError) -> Void) {
         let request = createRequest(ip)
         startRequest(request, success: success, failure: failure)
     }

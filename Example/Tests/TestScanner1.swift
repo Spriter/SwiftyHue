@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwiftyHue
+@testable import SwiftyHue
 
 class TestScanner1: NSObject, Scanner {
     weak var delegate: ScannerDelegate?

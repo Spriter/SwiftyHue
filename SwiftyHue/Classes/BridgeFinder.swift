@@ -17,7 +17,11 @@ public class BridgeFinder: NSObject, ScannerDelegate {
     private let validator: BridgeValidator
     public weak var delegate: BridgeFinderDelegate?
 
-    public init(validator: BridgeValidator = BridgeValidator(), scannerClasses: [Scanner.Type] = [SSDPScanner.self, NUPNPScanner.self]) {
+    public override convenience init() {
+        self.init(validator: BridgeValidator(), scannerClasses: [SSDPScanner.self, NUPNPScanner.self])
+    }
+
+    init(validator: BridgeValidator, scannerClasses: [Scanner.Type]) {
         self.validator = validator
         // we are using pop to get the last scanner from the array, so we need to reverse it
         self.allScannerClasses = scannerClasses.reverse()
@@ -73,7 +77,7 @@ public class BridgeFinder: NSObject, ScannerDelegate {
 
     // MARK: - ScannerDelegate
 
-    public func scanner(scanner: Scanner, didFinishWithResults ips: [String]) {
+    func scanner(scanner: Scanner, didFinishWithResults ips: [String]) {
         validateBridges(ips)
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class BridgeResultParser: NSObject, NSXMLParserDelegate {
+class BridgeResultParser: NSObject, NSXMLParserDelegate {
     private let parser: NSXMLParser
     private var element: String = ""
     private var bridge: HueBridge?
@@ -29,13 +29,13 @@ public class BridgeResultParser: NSObject, NSXMLParserDelegate {
     private var width: String = ""
     private var iconName: String = ""
 
-    public init(xmlData: NSData) {
+    init(xmlData: NSData) {
         parser = NSXMLParser(data: xmlData)
         super.init()
         parser.delegate = self
     }
 
-    public func parse(success: (bridge: HueBridge) -> Void, failure: (error: NSError) -> Void) {
+    func parse(success: (bridge: HueBridge) -> Void, failure: (error: NSError) -> Void) {
         self.successBlock = success
         self.failureBlock = failure
 

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwiftyHue
+@testable import SwiftyHue
 
 class TestBadValidator: BridgeValidator {
     var calledForIps = [String]()

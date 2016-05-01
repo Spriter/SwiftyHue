@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import SwiftyHue
+@testable import SwiftyHue
 
 class BridgeFinderConsumer: BridgeFinderDelegate {
     var resultBridges: [HueBridge]?

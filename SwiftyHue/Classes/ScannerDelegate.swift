@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol ScannerDelegate: class {
+protocol ScannerDelegate: class {
     func scanner(scanner: Scanner, didFinishWithResults ips: [String])
 }

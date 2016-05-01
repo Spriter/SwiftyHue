@@ -8,7 +8,7 @@
 
 import XCTest
 import Foundation
-import SwiftyHue
+@testable import SwiftyHue
 
 class BridgeFinderTests: XCTestCase {
     
