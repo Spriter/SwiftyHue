@@ -41,9 +41,9 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
     public let owner: String
     public let recycle: Bool
     public let locked: Bool
-    public let appdata: AppData?
+    public let appData: AppData?
     public let picture: String?
-    public let lastupdated: NSDate?
+    public let lastUpdated: NSDate?
     public let version: Int
     
     public required init?(json: JSON) {
@@ -68,9 +68,9 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
         
         let dateFormatter = NSDateFormatter.hueApiDateFormatter
         
-        self.appdata = "appdata" <~~ json
+        self.appData = "appdata" <~~ json
         picture = "picture" <~~ json
-        lastupdated = Decoder.decodeDate("lastupdated", dateFormatter:dateFormatter)(json)
+        lastUpdated = Decoder.decodeDate("lastupdated", dateFormatter:dateFormatter)(json)
     }
     
     public func toJSON() -> JSON? {
@@ -84,9 +84,9 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
             "owner" ~~> self.owner,
             "recycle" ~~> self.recycle,
             "locked" ~~> self.locked,
-            "appdata" ~~> self.appdata,
+            "appdata" ~~> self.appData,
             "picture" ~~> self.picture,
-            "lastupdated" ~~> Encoder.encodeDate("lastupdated", dateFormatter: dateFormatter)(self.lastupdated),
+            "lastupdated" ~~> Encoder.encodeDate("lastupdated", dateFormatter: dateFormatter)(self.lastUpdated),
             "version" ~~> self.version
             ])
         

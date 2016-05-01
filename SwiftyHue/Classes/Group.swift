@@ -44,12 +44,12 @@ public class Group: BridgeResourceDictGenerator, BridgeResource {
     /**
         As of 1.4. Uniquely identifies the hardware model of the luminaire. Only present for automatically created Luminaires.
      */
-    public let modelid: String?
+    public let modelId: String?
     
     /**
         As of 1.9. Unique Id in AA:BB:CC:DD format for Luminaire groups or AA:BB:CC:DD-XX format for Lightsource groups, where XX is the lightsource position.
      */
-    public let uniqueid: String?
+    public let uniqueId: String?
     
     /**
         As of 1.11. Category of Room types. Default is: Other.
@@ -72,8 +72,8 @@ public class Group: BridgeResourceDictGenerator, BridgeResource {
         self.type = type
         self.roomClass = roomClass
         
-        uniqueid = "uniqueid" <~~ json
-        modelid = "modelid" <~~ json
+        uniqueId = "uniqueid" <~~ json
+        modelId = "modelid" <~~ json
         lightIdentifiers = "lights" <~~ json
     }
     
@@ -85,8 +85,8 @@ public class Group: BridgeResourceDictGenerator, BridgeResource {
             "action" ~~> self.action,
             "lights" ~~> self.lightIdentifiers,
             "type" ~~> self.type,
-            "modelid" ~~> self.modelid,
-            "uniqueid" ~~> self.uniqueid,
+            "modelid" ~~> self.modelId,
+            "uniqueid" ~~> self.uniqueId,
             "class" ~~> self.roomClass.rawValue
             ])
         

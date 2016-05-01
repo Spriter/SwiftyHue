@@ -20,7 +20,7 @@ public struct BridgeSendAPI {
     
     // MARK: Scenes
     
-    public static func activateSceneWithIdentifier(identifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
+    public static func recallSceneWithIdentifier(identifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
         
         let parameters = ["scene": identifier]
         
@@ -31,7 +31,7 @@ public struct BridgeSendAPI {
         }
     }
     
-    public static func activateSceneWithIdentifier(identifier: String, inGroupWithIdentifier groupIdentifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
+    public static func recallSceneWithIdentifier(identifier: String, inGroupWithIdentifier groupIdentifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
         
         let parameters = ["scene": identifier]
         
