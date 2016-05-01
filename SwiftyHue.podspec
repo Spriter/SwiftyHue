@@ -20,15 +20,16 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
                        DESC
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/SwiftyHue"
+  s.homepage         = "https://github.com/Spriter/SwiftyHue"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Marcel Dittmann" => "marceldittmann@gmx.de" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/SwiftyHue.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
+  s.pod_target_xcconfig = { 'ENABLE_TESTABILITY[config=Debug]' => 'YES' }
   s.source_files = 'SwiftyHue/Classes/**/*'
   s.resource_bundles = {
     'SwiftyHue' => ['SwiftyHue/Assets/*.png']
@@ -39,4 +40,5 @@ Pod::Spec.new do |s|
   # s.dependency 'AFNetworking', '~> 2.3'
   s.dependency 'Alamofire', '~> 3.3'
   s.dependency 'Gloss', '~> 0.7'
+  s.dependency 'CocoaAsyncSocket', '~> 7.4.3'
 end

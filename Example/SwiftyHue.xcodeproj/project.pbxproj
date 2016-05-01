@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		183A12A790A92BAFB98F4299 /* Pods_SwiftyHue_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88227B7DB45A68E9F20D0DD0 /* Pods_SwiftyHue_Example.framework */; };
 		1FB64FFF1CCA2DE300968182 /* Tests2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB64FFD1CCA2DAC00968182 /* Tests2.swift */; };
+		291046081CD6079F002C5CF7 /* TestScanner1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291046031CD6079F002C5CF7 /* TestScanner1.swift */; };
+		291046091CD6079F002C5CF7 /* TestScanner2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291046041CD6079F002C5CF7 /* TestScanner2.swift */; };
+		2910460A1CD6079F002C5CF7 /* TestBadValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291046051CD6079F002C5CF7 /* TestBadValidator.swift */; };
+		2910460B1CD6079F002C5CF7 /* TestGoodValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291046061CD6079F002C5CF7 /* TestGoodValidator.swift */; };
+		2910460C1CD6079F002C5CF7 /* BridgeFinderConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291046071CD6079F002C5CF7 /* BridgeFinderConsumer.swift */; };
+		291046101CD607B6002C5CF7 /* bridge_response.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2910460E1CD607B6002C5CF7 /* bridge_response.xml */; };
+		291046111CD607B6002C5CF7 /* BridgeResultParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2910460F1CD607B6002C5CF7 /* BridgeResultParserTests.swift */; };
+		291046131CD607BF002C5CF7 /* BridgeFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291046121CD607BF002C5CF7 /* BridgeFinderTests.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -32,6 +40,14 @@
 		068CADE3E0F6A8C7F0048DE3 /* Pods-SwiftyHue_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyHue_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyHue_Example/Pods-SwiftyHue_Example.release.xcconfig"; sourceTree = "<group>"; };
 		1737F3EBABECF9D0D0C7FB49 /* Pods-SwiftyHue_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyHue_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyHue_Tests/Pods-SwiftyHue_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1FB64FFD1CCA2DAC00968182 /* Tests2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests2.swift; sourceTree = "<group>"; };
+		291046031CD6079F002C5CF7 /* TestScanner1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScanner1.swift; sourceTree = "<group>"; };
+		291046041CD6079F002C5CF7 /* TestScanner2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScanner2.swift; sourceTree = "<group>"; };
+		291046051CD6079F002C5CF7 /* TestBadValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestBadValidator.swift; sourceTree = "<group>"; };
+		291046061CD6079F002C5CF7 /* TestGoodValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestGoodValidator.swift; sourceTree = "<group>"; };
+		291046071CD6079F002C5CF7 /* BridgeFinderConsumer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeFinderConsumer.swift; sourceTree = "<group>"; };
+		2910460E1CD607B6002C5CF7 /* bridge_response.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = bridge_response.xml; sourceTree = "<group>"; };
+		2910460F1CD607B6002C5CF7 /* BridgeResultParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeResultParserTests.swift; sourceTree = "<group>"; };
+		291046121CD607BF002C5CF7 /* BridgeFinderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeFinderTests.swift; sourceTree = "<group>"; };
 		416463D424B8084281EB40A8 /* Pods_SwiftyHue_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyHue_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* SwiftyHue_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyHue_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,6 +87,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		291046001CD6077C002C5CF7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				291046011CD60784002C5CF7 /* BridgeFinder */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		291046011CD60784002C5CF7 /* BridgeFinder */ = {
+			isa = PBXGroup;
+			children = (
+				291046021CD6078E002C5CF7 /* Mocks */,
+				2910460D1CD607AE002C5CF7 /* Validator */,
+				291046121CD607BF002C5CF7 /* BridgeFinderTests.swift */,
+			);
+			name = BridgeFinder;
+			sourceTree = "<group>";
+		};
+		291046021CD6078E002C5CF7 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				291046031CD6079F002C5CF7 /* TestScanner1.swift */,
+				291046041CD6079F002C5CF7 /* TestScanner2.swift */,
+				291046051CD6079F002C5CF7 /* TestBadValidator.swift */,
+				291046061CD6079F002C5CF7 /* TestGoodValidator.swift */,
+				291046071CD6079F002C5CF7 /* BridgeFinderConsumer.swift */,
+			);
+			name = Mocks;
+			sourceTree = "<group>";
+		};
+		2910460D1CD607AE002C5CF7 /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				2910460E1CD607B6002C5CF7 /* bridge_response.xml */,
+				2910460F1CD607B6002C5CF7 /* BridgeResultParserTests.swift */,
+			);
+			name = Validator;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +172,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				291046001CD6077C002C5CF7 /* Services */,
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				1FB64FFD1CCA2DAC00968182 /* Tests2.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
@@ -259,6 +315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				291046101CD607B6002C5CF7 /* bridge_response.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +429,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FB64FFF1CCA2DE300968182 /* Tests2.swift in Sources */,
+				291046131CD607BF002C5CF7 /* BridgeFinderTests.swift in Sources */,
+				2910460A1CD6079F002C5CF7 /* TestBadValidator.swift in Sources */,
+				291046091CD6079F002C5CF7 /* TestScanner2.swift in Sources */,
+				291046081CD6079F002C5CF7 /* TestScanner1.swift in Sources */,
+				291046111CD607B6002C5CF7 /* BridgeResultParserTests.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				2910460C1CD6079F002C5CF7 /* BridgeFinderConsumer.swift in Sources */,
+				2910460B1CD6079F002C5CF7 /* TestGoodValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
