@@ -29,6 +29,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.0'
 
+  s.pod_target_xcconfig = { 'ENABLE_TESTABILITY[config=Debug]' => 'YES' }
   s.source_files = 'SwiftyHue/Classes/**/*'
   s.resource_bundles = {
     'SwiftyHue' => ['SwiftyHue/Assets/*.png']
