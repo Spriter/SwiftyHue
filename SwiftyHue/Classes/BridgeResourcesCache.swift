@@ -9,6 +9,16 @@
 import Foundation
 import Gloss
 
+public enum ResourceCacheUpdateNotification: String {
+    
+    case LightsUpdated, GroupsUpdated, ScenesUpdated, SensorsUpdated, RulesUpdated, ConfigUpdated, SchedulesUpdated
+    
+    init?(resourceType: BridgeResourceType) {
+        
+        self.init(rawValue: resourceType.rawValue + "Updated")
+    }
+}
+
 public class BridgeResourcesCache {
     
     public let lights: [String: Light];
@@ -122,7 +132,7 @@ public class BridgeResourcesCacheManager {
     
     func notifyAboutChangesForResourceType(resourceType: BridgeResourceType) {
         
-        let notification = HeartbeatNotification(resourceType: resourceType)!
+        let notification = ResourceCacheUpdateNotification(resourceType: resourceType)!
         NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
     }
     
