@@ -9,8 +9,8 @@
 import Foundation
 import Gloss
 
-public enum RuleConditionOperator {
-    case EQ, GT, LT, DX
+public enum RuleConditionOperator: String {
+    case EQ = "eq", GT = "gt", LT = "lt", DX = "dx"
 }
 
 public class RuleCondition: Decodable  {

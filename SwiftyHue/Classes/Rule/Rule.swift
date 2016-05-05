@@ -16,7 +16,7 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
     public let identifier: String
     public let name: String
     public let lasttriggered: NSDate?
-    public let creationtime: NSDate
+    public let created: NSDate
     public let timestriggered: Int
     public let owner: String
     public let status: String
@@ -29,7 +29,7 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
         
         guard let identifier: String = "id" <~~ json,
             let name: String = "name" <~~ json,
-            let creationtime: NSDate = Decoder.decodeDate("creationtime", dateFormatter:dateFormatter)(json),
+            let created: NSDate = Decoder.decodeDate("created", dateFormatter:dateFormatter)(json),
             let timestriggered: Int = "timestriggered" <~~ json,
             let owner: String = "owner" <~~ json,
             let status: String = "status" <~~ json,
@@ -40,7 +40,7 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
         
         self.identifier = identifier
         self.name = name
-        self.creationtime = creationtime
+        self.created = created
         self.lasttriggered = Decoder.decodeDate("lasttriggered", dateFormatter:dateFormatter)(json)
         self.timestriggered = timestriggered
         self.owner = owner
@@ -56,7 +56,7 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
         let json = jsonify([
             "id" ~~> self.identifier,
             "name" ~~> self.name,
-            "creationtime" ~~> Encoder.encodeDate("creationtime", dateFormatter: dateFormatter)(self.creationtime),
+            "created" ~~> Encoder.encodeDate("created", dateFormatter: dateFormatter)(self.created),
             "lasttriggered" ~~> Encoder.encodeDate("lasttriggered", dateFormatter: dateFormatter)(self.lasttriggered),
             "timestriggered" ~~> self.timestriggered,
             "owner" ~~> self.owner,

@@ -23,7 +23,7 @@ class ViewController: UIViewController, BridgeFinderDelegate {
         beatManager.setLocalHeartbeatInterval(3, forResourceType: .Groups)
         beatManager.startHeartbeat()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.lightChanged), name: HeartbeatNotification.GroupsUpdated.rawValue, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.lightChanged), name: HeartbeatNotification.GroupsUpdated.rawValue, object: nil)
         
         var lightState = LightState()
         lightState.on = true
@@ -55,7 +55,7 @@ class ViewController: UIViewController, BridgeFinderDelegate {
         
         //TestRequester.sharedInstance.requestScenes()
         
-        TestRequester.sharedInstance.requestGroups()
+        TestRequester.sharedInstance.requestRules()
         
 //        BridgeSendAPI.createSceneWithName("MeineTestScene", inlcudeLightIds: ["1"]) { (errors) in
 //            
