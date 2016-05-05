@@ -1,15 +1,15 @@
 //
-//  RuleAction.swift
+//  ScheduleCommand.swift
 //  Pods
 //
-//  Created by Jerome Schmitz on 01.05.16.
+//  Created by Jerome Schmitz on 05.05.16.
 //
 //
 
 import Foundation
 import Gloss
 
-public class RuleAction: Decodable  {
+public class ScheduleCommand: Decodable  {
     
     public let address: String
     public let method: String

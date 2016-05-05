@@ -14,8 +14,8 @@ public class TestRequester {
     
     private var bridgeAcc = "hkoPdsoXKRVsbI6wcPWdcu4ud0jnIEhfoP4GftxY";
     private var bridgeIp = "192.168.0.10"
-//    private var bridgeAcc = "52a1a8b66269b2c737449fd64e91f19c";
-//    private var bridgeIp = "192.168.1.2"
+    //private var bridgeAcc = "52a1a8b66269b2c737449fd64e91f19c";
+    //private var bridgeIp = "192.168.1.2"
     
     public static var sharedInstance = TestRequester()
     
@@ -189,6 +189,22 @@ public class TestRequester {
                     for rule in sensorDict {
                         
                         print("\(rule.0) \(rule.1.name)")
+                    }
+                }
+        }
+    }
+    
+    public func requestSchedules() {
+        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/schedules", parameters: nil)
+            .responseJSON { response in
+                
+                if let resultValueJSON = response.result.value as? JSON {
+                    
+                    let schedulesDict = Schedule.dictionaryFromResourcesJSON(resultValueJSON)
+                    print(schedulesDict)
+                    for schedule in schedulesDict {
+                        
+                        print("\(schedule.0) \(schedule.1.name)")
                     }
                 }
         }
