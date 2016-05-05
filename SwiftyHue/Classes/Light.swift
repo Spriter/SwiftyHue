@@ -17,11 +17,11 @@ public class Light: BridgeResource, BridgeResourceDictGenerator {
     public let name: String
     public let state: LightState
     public let type: String
-    public let modelid: String
-    public let uniqueid: String
-    public let manufacturername: String
-    public let luminaireuniqueid: String?
-    public let swversion: String
+    public let modelId: String
+    public let uniqueId: String
+    public let manufacturerName: String
+    public let luminaireUniqueId: String?
+    public let swVersion: String
     public let pointsymbol: String?
     
     public required init?(json: JSON) {
@@ -41,12 +41,12 @@ public class Light: BridgeResource, BridgeResourceDictGenerator {
         self.name = name
         self.state = state
         self.type = type
-        self.modelid = modelid
-        self.uniqueid = uniqueid
-        self.manufacturername = manufacturername
-        self.swversion = swversion
+        self.modelId = modelid
+        self.uniqueId = uniqueid
+        self.manufacturerName = manufacturername
+        self.swVersion = swversion
         
-        luminaireuniqueid = "luminaireuniqueid" <~~ json
+        luminaireUniqueId = "luminaireuniqueid" <~~ json
         pointsymbol = "pointsymbol" <~~ json
         
     }
@@ -58,10 +58,10 @@ public class Light: BridgeResource, BridgeResourceDictGenerator {
             "name" ~~> self.name,
             "state" ~~> self.state,
             "type" ~~> self.type,
-            "modelid" ~~> self.modelid,
-            "uniqueid" ~~> self.uniqueid,
-            "manufacturername" ~~> self.manufacturername,
-            "swversion" ~~> self.swversion
+            "modelid" ~~> self.modelId,
+            "uniqueid" ~~> self.uniqueId,
+            "manufacturername" ~~> self.manufacturerName,
+            "swversion" ~~> self.swVersion
             ])
         
         return json

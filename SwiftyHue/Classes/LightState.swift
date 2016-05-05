@@ -21,7 +21,7 @@ public struct LightState: Decodable, Encodable {
      The brightness to set the light to.
      Range: 0 (lowest brightness, but not off) to 254 (highest brightness).
      */
-    public var bri: Int?;
+    public var brightness: Int?;
     
     /**
      The hue to set the light to, representing a color.
@@ -34,7 +34,7 @@ public struct LightState: Decodable, Encodable {
      The saturation to set the light to.
      Range: 0 (least saturated, white) - 254 (most saturated, vivid).
      */
-    public var sat: Int?;
+    public var saturation: Int?;
         
     public var xy: [Float]?;
     
@@ -57,9 +57,9 @@ public struct LightState: Decodable, Encodable {
     public init?(json: JSON) {
     
         self.on = "on" <~~ json
-        self.bri = "bri" <~~ json
+        self.brightness = "bri" <~~ json
         self.hue = "hue" <~~ json
-        self.sat = "sat" <~~ json
+        self.saturation = "sat" <~~ json
         self.xy = "xy" <~~ json
         self.ct = "ct" <~~ json
         self.alert = "alert" <~~ json
@@ -72,9 +72,9 @@ public struct LightState: Decodable, Encodable {
   
         return jsonify([
             "on" ~~> self.on,
-            "bri" ~~> self.bri,
+            "bri" ~~> self.brightness,
             "hue" ~~> self.hue,
-            "sat" ~~> self.sat,
+            "sat" ~~> self.saturation,
             "xy" ~~> self.xy,
             "ct" ~~> self.ct,
             "alert" ~~> self.alert,

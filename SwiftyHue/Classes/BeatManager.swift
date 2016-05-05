@@ -10,14 +10,9 @@ import Foundation
 import Gloss
 import Alamofire
 
-public enum HeartbeatNotification: String {
+public enum BridgeConnectionStatusNotification: String {
     
-    case LightsUpdated, GroupsUpdated, ScenesUpdated, SensorsUpdated, RulesUpdated, ConfigUpdated, SchedulesUpdated
-    
-    init?(resourceType: BridgeResourceType) {
-        
-        self.init(rawValue: resourceType.rawValue + "Updated")
-    }
+    case localConnection, notAuthenticated, nolocalConnection
 }
 
 public enum BridgeResourceType: String {
@@ -30,6 +25,8 @@ public class BeatManager {
     private var bridgeIp = "192.168.0.10"
     
     var localHeartbeatTimers = [BridgeResourceType: NSTimer]()
+    var localHeartbeatTimerIntervals = [BridgeResourceType: NSTimeInterval]()
+    
     var beatProcessor = BeatProcessor();
 
     public init() {
@@ -38,7 +35,7 @@ public class BeatManager {
     
     public func setLocalHeartbeatInterval(interval: NSTimeInterval, forResourceType resourceType: BridgeResourceType) {
         
-        localHeartbeatTimers[resourceType] = NSTimer(timeInterval: interval, target: self, selector: #selector(BeatManager.timerAction), userInfo: resourceType.rawValue, repeats: true);
+        localHeartbeatTimerIntervals[resourceType] = interval
     }
     
     public func removeLocalHeartbeatInterval(interval: Float, forResourceType resourceType: BridgeResourceType) {
@@ -51,8 +48,25 @@ public class BeatManager {
     
     public func startHeartbeat() {
        
-        for timer in localHeartbeatTimers.values {
+        for (resourceType, timerInterval) in localHeartbeatTimerIntervals {
+            
+            // Create Timer
+            let timer = NSTimer(timeInterval: timerInterval, target: self, selector: #selector(BeatManager.timerAction), userInfo: resourceType.rawValue, repeats: true);
+            
+            // Store timer
+            localHeartbeatTimers[resourceType] = timer;
+            
+            // Add Timer to RunLoop
             NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
+        }
+    }
+    
+    public func stopHeartbeat() {
+        
+        for (resourceType, timer) in localHeartbeatTimers {
+            
+            timer.invalidate()
+            localHeartbeatTimers.removeValueForKey(resourceType)
         }
     }
     
@@ -63,9 +77,16 @@ public class BeatManager {
         Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/\(resourceType.rawValue.lowercaseString)", parameters: nil)
             .responseJSON { response in
                 
-                if let resultValueJSON = response.result.value as? JSON {
+                switch response.result {
+                case .Success:
                     
-                    self.beatProcessor.processJSON(resultValueJSON, resourceType: resourceType)
+                    if let resultValueJSON = response.result.value as? JSON {
+                        
+                        self.beatProcessor.processJSON(resultValueJSON, resourceType: resourceType)
+                    }
+                    
+                case .Failure(let error):
+                    NSNotificationCenter.defaultCenter().postNotificationName(BridgeConnectionStatusNotification.nolocalConnection.rawValue, object: nil)
                 }
         }
     

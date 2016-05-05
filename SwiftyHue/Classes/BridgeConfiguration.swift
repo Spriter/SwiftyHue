@@ -23,12 +23,12 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     /**
      The current wireless frequency channel used by the bridge. It can take values of 11, 15, 20,25 or 0 if undefined (factory new).
      */
-    public let zigbeechannel: Int
+    public let zigbeeChannel: Int
     
     /**
      The unique bridge id. This is currently generated from the bridge Ethernet mac address.
      */
-    public var bridgeid: String {
+    public var bridgeId: String {
         
         return identifier
     }
@@ -86,22 +86,22 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     /**
      This parameter uniquely identifies the hardware model of the bridge (BSB001, BSB002).
      */
-    public let modelid: String
+    public let modelId: String
     
     /**
      Software version of the bridge.
      */
-    public let swversion: String
+    public let swVersion: String
     
     /**
      The version of the hue API in the format <major>.<minor>.<patch>, for example 1.2.1
     */
-    public let apiversion: String
+    public let apiVersion: String
     
     /**
      Contains information related to software updates.
      */
-    public let swupdate: SoftwareUpdateStatus
+    public let swUpdate: SoftwareUpdateStatus
     
     /**
      Indicates whether the link button has been pressed within the last 30 seconds.
@@ -111,17 +111,17 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     /**
      This indicates whether the bridge is registered to synchronize data with a portal account.
      */
-    public let portalservices: Bool
+    public let portalServices: Bool
     
     /**
      portalconnection
      */
-    public let portalconnection: String
+    public let portalConnection: String
     
     /**
      portalstate
      */
-    public let portalstate: PortalState
+    public let portalState: PortalState
     
     /**
      Indicates if bridge settings are factory new.
@@ -131,7 +131,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     /**
      If a bridge backup file has been restored on this bridge from a bridge with a different bridgeid, it will indicate that bridge id, otherwise it will be null.
      */
-    public let replacesbridgeid: String
+    public let replacesBridgeId: String
     
     /**
      backup
@@ -149,7 +149,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         
         guard let identifier: String = "bridgeid" <~~ json,
             let name: String = "name" <~~ json,
-            let zigbeechannel: Int = "zigbeechannel" <~~ json,
+            let zigbeeChannel: Int = "zigbeechannel" <~~ json,
             let mac: String = "mac" <~~ json,
             let dhcp: Bool = "dhcp" <~~ json,
             let ipaddress: String = "ipaddress" <~~ json,
@@ -176,7 +176,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         
         self.identifier = identifier
         self.name = name
-        self.zigbeechannel = zigbeechannel
+        self.zigbeeChannel = zigbeeChannel
         self.mac = mac
         self.dhcp = dhcp
         self.ipaddress = ipaddress
@@ -187,16 +187,16 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         self.UTC = UTC
         self.localtime = localtime
         self.timezone = timezone
-        self.modelid = modelid
-        self.swversion = swversion
-        self.apiversion = apiversion
-        self.swupdate = swupdate
+        self.modelId = modelid
+        self.swVersion = swversion
+        self.apiVersion = apiversion
+        self.swUpdate = swupdate
         self.linkbutton = linkbutton
-        self.portalservices = portalservices
-        self.portalconnection = portalconnection
-        self.portalstate = portalstate
+        self.portalServices = portalservices
+        self.portalConnection = portalconnection
+        self.portalState = portalstate
         self.factorynew = factorynew
-        self.replacesbridgeid = replacesbridgeid
+        self.replacesBridgeId = replacesbridgeid
         self.backup = backup
          
         guard let whitelistJSON = json["whitelist"] as? JSON else { return nil }
@@ -209,7 +209,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         var json = jsonify([
             "id" ~~> self.identifier,
             "name" ~~> self.name,
-            "zigbeechannel" ~~> self.zigbeechannel,
+            "zigbeechannel" ~~> self.zigbeeChannel,
             "mac" ~~> self.mac,
             "dhcp" ~~> self.dhcp,
             "ipaddress" ~~> self.ipaddress,
@@ -219,16 +219,16 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
             "proxyport" ~~> self.proxyport,
             "UTC" ~~> self.UTC,
             "timezone" ~~> self.timezone,
-            "modelid" ~~> self.modelid,
-            "swversion" ~~> self.swversion,
-            "apiversion" ~~> self.apiversion,
-            "swupdate" ~~> self.swupdate,
+            "modelid" ~~> self.modelId,
+            "swversion" ~~> self.swVersion,
+            "apiversion" ~~> self.apiVersion,
+            "swupdate" ~~> self.swUpdate,
             "linkbutton" ~~> self.linkbutton,
-            "portalservices" ~~> self.portalservices,
-            "portalconnection" ~~> self.portalconnection,
-            "portalstate" ~~> self.portalstate,
+            "portalservices" ~~> self.portalServices,
+            "portalconnection" ~~> self.portalConnection,
+            "portalstate" ~~> self.portalState,
             "factorynew" ~~> self.factorynew,
-            "replacesbridgeid" ~~> self.replacesbridgeid,
+            "replacesbridgeid" ~~> self.replacesBridgeId,
             "backup" ~~> self.backup,
             "whitelist" ~~> self.whitelist,
             ])

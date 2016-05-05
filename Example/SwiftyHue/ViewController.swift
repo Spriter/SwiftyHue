@@ -70,7 +70,7 @@ class ViewController: UIViewController, BridgeFinderDelegate {
 //            print(errors)
 //        }
         
-        BridgeSendAPI.activateSceneWithIdentifier("14530729836055", inGroupWithIdentifier: "2") { (errors) in
+        BridgeSendAPI.recallSceneWithIdentifier("14530729836055", inGroupWithIdentifier: "2") { (errors) in
             
             print(errors)
         }
