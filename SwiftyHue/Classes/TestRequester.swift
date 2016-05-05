@@ -14,6 +14,8 @@ public class TestRequester {
     
     private var bridgeAcc = "hkoPdsoXKRVsbI6wcPWdcu4ud0jnIEhfoP4GftxY";
     private var bridgeIp = "192.168.0.10"
+//    private var bridgeAcc = "52a1a8b66269b2c737449fd64e91f19c";
+//    private var bridgeIp = "192.168.1.2"
     
     public static var sharedInstance = TestRequester()
     
@@ -148,15 +150,47 @@ public class TestRequester {
         Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/scenes", parameters: nil)
             .responseJSON { response in
                 
-            if let resultValueJSON = response.result.value as? JSON {
-                
-                let scenesDict = PartialScene.dictionaryFromResourcesJSON(resultValueJSON)
-                print(scenesDict)
-                for scene in scenesDict {
+                if let resultValueJSON = response.result.value as? JSON {
                     
-                    print("\(scene.0) \(scene.1.name)")
+                    let scenesDict = PartialScene.dictionaryFromResourcesJSON(resultValueJSON)
+                    print(scenesDict)
+                    for scene in scenesDict {
+                        
+                        print("\(scene.0) \(scene.1.name)")
+                    }
                 }
-            }
+        }
+    }
+    
+    public func requestRules() {
+        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/rules", parameters: nil)
+            .responseJSON { response in
+                
+                if let resultValueJSON = response.result.value as? JSON {
+                    
+                    let rulesDict = Rule.dictionaryFromResourcesJSON(resultValueJSON)
+                    print(rulesDict)
+                    for rule in rulesDict {
+                        
+                        print("\(rule.0) \(rule.1.name)")
+                    }
+                }
+        }
+    }
+    
+    public func requestSensors() {
+        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/sensors", parameters: nil)
+            .responseJSON { response in
+                
+                if let resultValueJSON = response.result.value as? JSON {
+                    
+                    let sensorDict = Sensor.dictionaryFromResourcesJSON(resultValueJSON)
+                    print(sensorDict)
+                    for rule in sensorDict {
+                        
+                        print("\(rule.0) \(rule.1.name)")
+                    }
+                }
         }
     }
     

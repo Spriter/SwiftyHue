@@ -55,7 +55,7 @@ class ViewController: UIViewController, BridgeFinderDelegate {
         
         //TestRequester.sharedInstance.requestScenes()
         
-        TestRequester.sharedInstance.requestRules()
+        TestRequester.sharedInstance.requestSensors()
         
 //        BridgeSendAPI.createSceneWithName("MeineTestScene", inlcudeLightIds: ["1"]) { (errors) in
 //            

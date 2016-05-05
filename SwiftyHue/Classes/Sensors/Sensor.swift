@@ -9,6 +9,10 @@
 import Foundation
 import Gloss
 
+public enum SensorType: String {
+    case ZGPSwitch, ZLLSwitch, ClipSwitch = "Clip Switch", CLIPOpenClose, CLIPPresence, CLIPTemperature, CLIPHumidity, Daylight, CLIPGenericFlag, CLIPGenericStatus
+}
+
 public class Sensor: BridgeResource, BridgeResourceDictGenerator {
 
     public typealias AssociatedBridgeResourceType = Sensor
@@ -17,7 +21,7 @@ public class Sensor: BridgeResource, BridgeResourceDictGenerator {
     public let name: String
     public let state: SensorState
     public let config: SensorConfig
-    public let type: String
+    public let type: SensorType
     public let modelId: String
     public let manufacturerName: String
     public let swVersion: String
@@ -30,7 +34,7 @@ public class Sensor: BridgeResource, BridgeResourceDictGenerator {
             let name: String = "name" <~~ json,
             let state: SensorState = "state" <~~ json,
             let config: SensorConfig = "config" <~~ json,
-            let type: String = "type" <~~ json,
+            let type: SensorType = "type" <~~ json,
             let modelId: String = "modelid" <~~ json,
             let manufacturerName: String = "manufacturername" <~~ json,
             let swVersion: String = "swversion" <~~ json

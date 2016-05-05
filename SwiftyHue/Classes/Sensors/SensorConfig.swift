@@ -19,22 +19,19 @@ public enum SensorAlertMode {
 public class SensorConfig: Decodable {
 
     public let on: Bool
-    public let reachable: Bool
-    public let battery: Int8
-    public let url: String
+    public let reachable: Bool?
+    public let battery: Int8?
+    public let url: String?
     
     required public init?(json: JSON) {
         
-        guard let on: Bool = "on" <~~ json,
-            let reachable: Bool = "reachable" <~~ json,
-            let battery: Int8 = "battery" <~~ json,
-            let url: String = "url" <~~ json
+        guard let on: Bool = "on" <~~ json
             
             else { return nil }
         
         self.on = on
-        self.reachable = reachable
-        self.battery = battery
-        self.url = url
+        self.reachable = "reachable" <~~ json
+        self.battery = "battery" <~~ json
+        self.url = "url" <~~ json
     }
 }
