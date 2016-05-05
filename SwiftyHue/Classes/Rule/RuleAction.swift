@@ -30,7 +30,7 @@ public class RuleAction: Decodable  {
     
     public func toJSON() -> JSON? {
         
-        var json = jsonify([
+        let json = jsonify([
             "address" ~~> self.address,
             "method" ~~> self.method,
             "body" ~~> self.body

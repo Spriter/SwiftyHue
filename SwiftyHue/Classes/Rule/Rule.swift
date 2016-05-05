@@ -53,7 +53,7 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
         
         let dateFormatter = NSDateFormatter.hueApiDateFormatter
         
-        var json = jsonify([
+        let json = jsonify([
             "id" ~~> self.identifier,
             "name" ~~> self.name,
             "creationtime" ~~> Encoder.encodeDate("creationtime", dateFormatter: dateFormatter)(self.creationtime),
