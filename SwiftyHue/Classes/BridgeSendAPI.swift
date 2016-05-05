@@ -49,15 +49,9 @@ public struct BridgeSendAPI {
         
         var parameters: [String: AnyObject] = ["name": name, "lights": lightIds, "recycle": recycle];
         
-        if let transitionTime = transitionTime {
-            parameters["transitiontime"] = transitionTime
-        }
-        if let picture = picture {
-            parameters["picture"] = picture
-        }
-        if let appData = appData {
-            parameters["appdata"] = appData.toJSON()
-        }
+        parameters["transitiontime"] = transitionTime
+        parameters["picture"] = picture
+        parameters["appdata"] = appData?.toJSON()
         
         Alamofire.request(.POST, "http://\(bridgeIp)/api/\(bridgeAcc)/scenes", parameters: parameters, encoding: .JSON)
             .responseJSON { response in
@@ -112,12 +106,8 @@ public struct BridgeSendAPI {
         
         var parameters = [String: AnyObject]()
         
-        if let name = newName {
-            parameters["name"] = name;
-        }
-        if let lightIdentifiers = newLightIdentifiers {
-            parameters["lights"] = lightIdentifiers;
-        }
+        parameters["name"] = newName;
+        parameters["lights"] = newLightIdentifiers;
         
         Alamofire.request(.PUT, "http://\(bridgeIp)/api/\(bridgeAcc)/groups/\(identifier)", parameters: parameters, encoding: .JSON)
             .responseJSON { response in
@@ -133,15 +123,9 @@ public struct BridgeSendAPI {
         
         var parameters = [String: AnyObject]()
         
-        if let name = newName {
-            parameters["name"] = name;
-        }
-        if let roomClass = newRoomClass {
-            parameters["class"] = roomClass.rawValue;
-        }
-        if let lightIdentifiers = newLightIdentifiers {
-            parameters["lights"] = lightIdentifiers;
-        }
+        parameters["name"] = newName;
+        parameters["class"] = newRoomClass?.rawValue;
+        parameters["lights"] = newLightIdentifiers;
         
         Alamofire.request(.PUT, "http://\(bridgeIp)/api/\(bridgeAcc)/groups/\(identifier)", parameters: parameters, encoding: .JSON)
             .responseJSON { response in
