@@ -11,11 +11,11 @@ import Gloss
 
 public class GenericStatusState: SensorState {
 
-    public let status: Bool
+    public let status: Int
     
     required public init?(json: JSON) {
         
-        guard let status: Bool = "status" <~~ json
+        guard let status: Int = "status" <~~ json
             
             else { return nil }
         
