@@ -21,16 +21,15 @@ public enum BridgeResourceType: String {
 
 public class BeatManager {
     
-    private var bridgeAcc = "hkoPdsoXKRVsbI6wcPWdcu4ud0jnIEhfoP4GftxY";
-    private var bridgeIp = "192.168.0.10"
+    private let bridgeAccesssConfig: BridgeAccesssConfig;
     
     var localHeartbeatTimers = [BridgeResourceType: NSTimer]()
     var localHeartbeatTimerIntervals = [BridgeResourceType: NSTimeInterval]()
     
     var beatProcessor = BeatProcessor();
 
-    public init() {
-
+    public init(bridgeAccesssConfig: BridgeAccesssConfig) {
+        self.bridgeAccesssConfig = bridgeAccesssConfig
     }
     
     public func setLocalHeartbeatInterval(interval: NSTimeInterval, forResourceType resourceType: BridgeResourceType) {
@@ -74,7 +73,7 @@ public class BeatManager {
         
         let resourceType: BridgeResourceType = BridgeResourceType(rawValue: timer.userInfo! as! String)!
         
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/\(resourceType.rawValue.lowercaseString)", parameters: nil)
+        Alamofire.request(.GET, "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercaseString)", parameters: nil)
             .responseJSON { response in
                 
                 switch response.result {

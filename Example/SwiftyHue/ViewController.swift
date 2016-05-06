@@ -12,14 +12,17 @@ import SwiftyHue
 class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     private let bridgeFinder = BridgeFinder()
     private var bridgeAuthenticator: BridgeAuthenticator?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let bridgeAccesssConfig = BridgeAccesssConfig(bridgeId: "yourBridgeId", ipAddress: "Bridge IP", username: "username")
+        
         // Do any additional setup after loading the view, typically from a nib.
-        bridgeFinder.delegate = self
-        bridgeFinder.start()
+//        bridgeFinder.delegate = self
+//        bridgeFinder.start()
 
-        var beatManager = BeatManager()
+        var beatManager = BeatManager(bridgeAccesssConfig: bridgeAccesssConfig)
         beatManager.setLocalHeartbeatInterval(3, forResourceType: .Lights)
         beatManager.setLocalHeartbeatInterval(3, forResourceType: .Groups)
         beatManager.startHeartbeat()
@@ -71,10 +74,10 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
 //            print(errors)
 //        }
         
-        BridgeSendAPI.recallSceneWithIdentifier("14530729836055", inGroupWithIdentifier: "2") { (errors) in
-            
-            print(errors)
-        }
+//        BridgeSendAPI.recallSceneWithIdentifier("14530729836055", inGroupWithIdentifier: "2") { (errors) in
+//            
+//            print(errors)
+//        }
     }
     
     public func lightChanged() {
