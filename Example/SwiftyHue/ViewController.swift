@@ -9,8 +9,9 @@
 import UIKit
 import SwiftyHue
 
-class ViewController: UIViewController, BridgeFinderDelegate {
+class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     private let bridgeFinder = BridgeFinder()
+    private var bridgeAuthenticator: BridgeAuthenticator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +93,31 @@ class ViewController: UIViewController, BridgeFinderDelegate {
 
     func bridgeFinder(finder: BridgeFinder, didFinishWithResult bridges: [HueBridge]) {
         print(bridges)
+        guard let bridge = bridges.first else {
+            return
+        }
+
+        bridgeAuthenticator = BridgeAuthenticator(bridge: bridge, uniqueIdentifier: "example#simulator")
+        bridgeAuthenticator!.delegate = self
+        bridgeAuthenticator!.start()
     }
 
+    // MARK: - BridgeAuthenticatorDelegate
+
+    func bridgeAuthenticatorDidTimeout(authenticator: BridgeAuthenticator) {
+        print("Timeout")
+    }
+
+    func bridgeAuthenticator(authenticator: BridgeAuthenticator, didFailWithError error: NSError) {
+        print("Error while authenticating: \(error)")
+    }
+
+    func bridgeAuthenticatorRequiresLinkButtonPress(authenticator: BridgeAuthenticator) {
+        print("Press link button")
+    }
+
+    func bridgeAuthenticator(authenticator: BridgeAuthenticator, didFinishAuthentication username: String) {
+        print("Authenticated, hello \(username)")
+    }
 }
 

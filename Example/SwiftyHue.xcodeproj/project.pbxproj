@@ -17,6 +17,8 @@
 		291046101CD607B6002C5CF7 /* bridge_response.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2910460E1CD607B6002C5CF7 /* bridge_response.xml */; };
 		291046111CD607B6002C5CF7 /* BridgeResultParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2910460F1CD607B6002C5CF7 /* BridgeResultParserTests.swift */; };
 		291046131CD607BF002C5CF7 /* BridgeFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291046121CD607BF002C5CF7 /* BridgeFinderTests.swift */; };
+		29C04DA51CDBCC4200B97AC0 /* BridgeAuthenticatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C04DA41CDBCC4200B97AC0 /* BridgeAuthenticatorTests.swift */; };
+		29C04DA81CDC79A100B97AC0 /* BridgeAuthenticatorConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C04DA71CDC79A100B97AC0 /* BridgeAuthenticatorConsumer.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -48,6 +50,8 @@
 		2910460E1CD607B6002C5CF7 /* bridge_response.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = bridge_response.xml; sourceTree = "<group>"; };
 		2910460F1CD607B6002C5CF7 /* BridgeResultParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeResultParserTests.swift; sourceTree = "<group>"; };
 		291046121CD607BF002C5CF7 /* BridgeFinderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeFinderTests.swift; sourceTree = "<group>"; };
+		29C04DA41CDBCC4200B97AC0 /* BridgeAuthenticatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAuthenticatorTests.swift; sourceTree = "<group>"; };
+		29C04DA71CDC79A100B97AC0 /* BridgeAuthenticatorConsumer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAuthenticatorConsumer.swift; sourceTree = "<group>"; };
 		416463D424B8084281EB40A8 /* Pods_SwiftyHue_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyHue_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* SwiftyHue_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyHue_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 		291046001CD6077C002C5CF7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				29C04DA31CDBCC3500B97AC0 /* BridgeAuthenticator */,
 				291046011CD60784002C5CF7 /* BridgeFinder */,
 			);
 			name = Services;
@@ -124,6 +129,23 @@
 				2910460F1CD607B6002C5CF7 /* BridgeResultParserTests.swift */,
 			);
 			name = Validator;
+			sourceTree = "<group>";
+		};
+		29C04DA31CDBCC3500B97AC0 /* BridgeAuthenticator */ = {
+			isa = PBXGroup;
+			children = (
+				29C04DA61CDC798E00B97AC0 /* Mocks */,
+				29C04DA41CDBCC4200B97AC0 /* BridgeAuthenticatorTests.swift */,
+			);
+			name = BridgeAuthenticator;
+			sourceTree = "<group>";
+		};
+		29C04DA61CDC798E00B97AC0 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				29C04DA71CDC79A100B97AC0 /* BridgeAuthenticatorConsumer.swift */,
+			);
+			name = Mocks;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -434,8 +456,10 @@
 				291046091CD6079F002C5CF7 /* TestScanner2.swift in Sources */,
 				291046081CD6079F002C5CF7 /* TestScanner1.swift in Sources */,
 				291046111CD607B6002C5CF7 /* BridgeResultParserTests.swift in Sources */,
+				29C04DA81CDC79A100B97AC0 /* BridgeAuthenticatorConsumer.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 				2910460C1CD6079F002C5CF7 /* BridgeFinderConsumer.swift in Sources */,
+				29C04DA51CDBCC4200B97AC0 /* BridgeAuthenticatorTests.swift in Sources */,
 				2910460B1CD6079F002C5CF7 /* TestGoodValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

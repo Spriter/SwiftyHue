@@ -11,4 +11,5 @@ target 'SwiftyHue_Tests', :exclusive => true do
   pod 'Nimble', '~> 3.0'
   pod 'FBSnapshotTestCase'
   pod 'Nimble-Snapshots'
+  pod 'Nocilla', '~> 0.10.0'
 end
