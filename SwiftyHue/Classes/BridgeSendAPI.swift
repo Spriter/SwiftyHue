@@ -156,7 +156,7 @@ public struct BridgeSendAPI {
         }
     }
     
-    // MARK: Roules
+    // MARK: Rules
     
     public static func createRuleWithName(name: String, andConditions conditions: [RuleCondition], andActions actions: [RuleAction], completionHandler: BridgeSendErrorArrayCompletionHandler) {
         
