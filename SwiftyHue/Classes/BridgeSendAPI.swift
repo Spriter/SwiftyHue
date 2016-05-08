@@ -196,6 +196,45 @@ public struct BridgeSendAPI {
                 completionHandler(errors: self.errorsFromResponse(response))
         }
     }
+    
+    // MARK: Schedules
+    
+    public static func createScheduleWithName(name: String, andCommand command: ScheduleCommand, completionHandler: BridgeSendErrorArrayCompletionHandler) {
+        
+        var parameters = [String: AnyObject]()
+        
+        parameters["name"] = name;
+        parameters["command"] = command.toJSON();
+        
+        Alamofire.request(.POST, "http://\(bridgeIp)/api/\(bridgeAcc)/schedules", parameters: parameters, encoding: .JSON)
+            .responseJSON { response in
+                
+                completionHandler(errors: self.errorsFromResponse(response))
+        }
+    }
+    
+    public static func updateScheduleWithId(identifier: String, newName: String, newCommand: ScheduleCommand, completionHandler: BridgeSendErrorArrayCompletionHandler) {
+        
+        var parameters = [String: AnyObject]()
+        
+        parameters["name"] = newName;
+        parameters["command"] = newCommand.toJSON();
+        
+        Alamofire.request(.PUT, "http://\(bridgeIp)/api/\(bridgeAcc)/schedules/\(identifier)", parameters: parameters, encoding: .JSON)
+            .responseJSON { response in
+                
+                completionHandler(errors: self.errorsFromResponse(response))
+        }
+    }
+    
+    public static func removeScheduleWithId(identifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
+        
+        Alamofire.request(.DELETE, "http://\(bridgeIp)/api/\(bridgeAcc)/schedules/\(identifier)", encoding: .JSON)
+            .responseJSON { response in
+                
+                completionHandler(errors: self.errorsFromResponse(response))
+        }
+    }
 
     // MARK: Helpers
     
