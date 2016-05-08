@@ -13,7 +13,7 @@ public enum RuleConditionOperator: String {
     case EQ = "eq", GT = "gt", LT = "lt", DX = "dx"
 }
 
-public class RuleCondition: Decodable  {
+public class RuleCondition: Decodable, Encodable  {
     
     public let address: String
     public let conditionOperator: RuleConditionOperator

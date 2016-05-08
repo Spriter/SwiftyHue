@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public class RuleAction: Decodable  {
+public class RuleAction: Decodable, Encodable {
     
     public let address: String
     public let method: String

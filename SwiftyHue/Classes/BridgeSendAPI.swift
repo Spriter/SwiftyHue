@@ -14,6 +14,8 @@ public struct BridgeSendAPI {
   
     static private var bridgeAcc = "hkoPdsoXKRVsbI6wcPWdcu4ud0jnIEhfoP4GftxY";
     static private var bridgeIp = "192.168.0.10"
+    //static private var bridgeAcc = "52a1a8b66269b2c737449fd64e91f19c";
+    //static private var bridgeIp = "192.168.1.2"
     
     public typealias BridgeSendErrorArrayCompletionHandler = (errors: [Error]?) -> Void
 //    public typealias PHBridgeSendDictionaryCompletionHandler = (dictionary: [String: AnyObject], errors: [Error]?) -> Void
@@ -148,6 +150,47 @@ public struct BridgeSendAPI {
         let parameters = lightState.toJSON()!
         
         Alamofire.request(.PUT, "http://\(bridgeIp)/api/\(bridgeAcc)/groups/\(identifier)/action", parameters: parameters, encoding: .JSON)
+            .responseJSON { response in
+                
+                completionHandler(errors: self.errorsFromResponse(response))
+        }
+    }
+    
+    // MARK: Roules
+    
+    public static func createRuleWithName(name: String, andConditions conditions: [RuleCondition], andActions actions: [RuleAction], completionHandler: BridgeSendErrorArrayCompletionHandler) {
+        
+        var parameters = [String: AnyObject]()
+        
+        parameters["name"] = name;
+        parameters["conditions"] = conditions.toJSONArray();
+        parameters["actions"] = actions.toJSONArray();
+        
+        Alamofire.request(.POST, "http://\(bridgeIp)/api/\(bridgeAcc)/rules", parameters: parameters, encoding: .JSON)
+            .responseJSON { response in
+                
+                completionHandler(errors: self.errorsFromResponse(response))
+        }
+    }
+    
+    public static func updateRuleWithId(identifier: String, newName: String, newConditions: [RuleCondition]?, newActions: [RuleAction]?, completionHandler: BridgeSendErrorArrayCompletionHandler) {
+        
+        var parameters = [String: AnyObject]()
+        
+        parameters["name"] = newName;
+        parameters["conditions"] = newConditions?.toJSONArray();
+        parameters["actions"] = newActions?.toJSONArray();
+        
+        Alamofire.request(.PUT, "http://\(bridgeIp)/api/\(bridgeAcc)/rules/\(identifier)", parameters: parameters, encoding: .JSON)
+            .responseJSON { response in
+                
+                completionHandler(errors: self.errorsFromResponse(response))
+        }
+    }
+    
+    public static func removeRuleWithId(identifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
+        
+        Alamofire.request(.DELETE, "http://\(bridgeIp)/api/\(bridgeAcc)/rules/\(identifier)", encoding: .JSON)
             .responseJSON { response in
                 
                 completionHandler(errors: self.errorsFromResponse(response))
