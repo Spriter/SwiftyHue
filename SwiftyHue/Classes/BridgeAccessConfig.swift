@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import Gloss
 
-public struct BridgeAccesssConfig {
+public struct BridgeAccesssConfig: Encodable, Decodable {
     
-    let bridgeId: String;
-    let ipAddress: String;
-    let username: String;
+    public let bridgeId: String;
+    public let ipAddress: String;
+    public let username: String;
     
     public init(bridgeId: String, ipAddress: String, username: String) {
     
@@ -20,5 +21,30 @@ public struct BridgeAccesssConfig {
         self.ipAddress = ipAddress;
         self.username = username;
         
+    }
+    
+    public init?(json: JSON) {
+        
+        guard let bridgeId: String = "id" <~~ json,
+            let ipAddress: String = "ipaddress" <~~ json,
+            let username: String = "username" <~~ json
+            
+            else { return nil }
+        
+        self.bridgeId = bridgeId
+        self.ipAddress = ipAddress
+        self.username = username
+        
+    }
+    
+    public func toJSON() -> JSON? {
+        
+        var json = jsonify([
+            "id" ~~> self.bridgeId,
+            "ipaddress" ~~> self.ipAddress,
+            "username" ~~> self.username
+            ])
+        
+        return json
     }
 }
