@@ -8,6 +8,14 @@
 
 import Foundation
 
+/// Protocol for handling BridgeFinder results
 public protocol BridgeFinderDelegate: class {
+    /**
+     Search for HueBridges finished.
+     
+     - Parameters:
+        - finder: The BridgeFinder
+        - bridges: An array containing all found bridges. If none was found the array will be empty.
+    */
     func bridgeFinder(finder: BridgeFinder, didFinishWithResult bridges: [HueBridge])
 }

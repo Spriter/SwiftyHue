@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/Spriter/SwiftyHue"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
-  s.author           = { "Marcel Dittmann" => "marceldittmann@gmx.de" }
+  s.authors          = { "Marcel Dittmann" => "marceldittmann@gmx.de", "Jerome Schmitz" => "jerome.schmitz@gmx.net", "Nils Lattek" => "nilslattek@gmail.com" }
   s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 

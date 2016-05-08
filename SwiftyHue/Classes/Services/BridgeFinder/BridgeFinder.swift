@@ -8,7 +8,7 @@
 
 import Foundation
 
-
+/// Use this class to find HueBridges on the current network.
 public class BridgeFinder: NSObject, ScannerDelegate {
     private var foundBridges = [HueBridge]()
     private let allScannerClasses: [Scanner.Type]
@@ -28,6 +28,7 @@ public class BridgeFinder: NSObject, ScannerDelegate {
         super.init()
     }
 
+    /// Start scanning, make sure to assign a delegate to get notified about the results.
     public func start() {
         remainingScannerClasses = allScannerClasses
         startNextScanner()
