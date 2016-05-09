@@ -13,6 +13,7 @@
 		1F7407831CDF8F7700857A98 /* UITableViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7407821CDF8F7700857A98 /* UITableViewController+Extensions.swift */; };
 		1F7407851CDF963400857A98 /* BridgePushLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7407841CDF963400857A98 /* BridgePushLinkViewController.swift */; };
 		1F7407871CDF97FE00857A98 /* BridgeAccessConfigPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7407861CDF97FE00857A98 /* BridgeAccessConfigPresentationViewController.swift */; };
+		1F7407891CE06A7D00857A98 /* BridgeResourceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7407881CE06A7D00857A98 /* BridgeResourceTableViewController.swift */; };
 		1FB64FFF1CCA2DE300968182 /* Tests2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB64FFD1CCA2DAC00968182 /* Tests2.swift */; };
 		291046081CD6079F002C5CF7 /* TestScanner1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291046031CD6079F002C5CF7 /* TestScanner1.swift */; };
 		291046091CD6079F002C5CF7 /* TestScanner2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291046041CD6079F002C5CF7 /* TestScanner2.swift */; };
@@ -51,6 +52,7 @@
 		1F7407821CDF8F7700857A98 /* UITableViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewController+Extensions.swift"; sourceTree = "<group>"; };
 		1F7407841CDF963400857A98 /* BridgePushLinkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgePushLinkViewController.swift; sourceTree = "<group>"; };
 		1F7407861CDF97FE00857A98 /* BridgeAccessConfigPresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAccessConfigPresentationViewController.swift; sourceTree = "<group>"; };
+		1F7407881CE06A7D00857A98 /* BridgeResourceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeResourceTableViewController.swift; sourceTree = "<group>"; };
 		1FB64FFD1CCA2DAC00968182 /* Tests2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests2.swift; sourceTree = "<group>"; };
 		291046031CD6079F002C5CF7 /* TestScanner1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScanner1.swift; sourceTree = "<group>"; };
 		291046041CD6079F002C5CF7 /* TestScanner2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScanner2.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				1F7407881CE06A7D00857A98 /* BridgeResourceTableViewController.swift */,
 				1F0A64E71CDF8E4100DE637F /* CreateBridgeAccess */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -470,6 +473,7 @@
 				1F0A64E61CDF8E3C00DE637F /* BridgeSelectionTableViewController.swift in Sources */,
 				1F0A64E41CDF8E1100DE637F /* CreateBridgeAccessController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				1F7407891CE06A7D00857A98 /* BridgeResourceTableViewController.swift in Sources */,
 				1F7407871CDF97FE00857A98 /* BridgeAccessConfigPresentationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

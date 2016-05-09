@@ -23,10 +23,10 @@ public class BridgeResourcesCache {
     
     public let lights: [String: Light];
     public let groups: [String: Group];
-    public let schedules: [String: AnyObject];
+    public let schedules: [String: Schedule];
     public let scenes: [String: PartialScene];
-    public let sensors: [String: AnyObject];
-    public let rules: [String: AnyObject];
+    public let sensors: [String: Sensor];
+    public let rules: [String: Rule];
     
     var bridgeConfiguration: BridgeConfiguration?;
     
@@ -34,14 +34,14 @@ public class BridgeResourcesCache {
 
         lights = [String: Light]();
         groups = [String: Group]();
-        schedules = [String: AnyObject]();
+        schedules = [String: Schedule]();
         scenes = [String: PartialScene]();
-        sensors = [String: AnyObject]();
-        rules = [String: AnyObject]();
+        sensors = [String: Sensor]();
+        rules = [String: Rule]();
         
     };
     
-    public init(lights: [String: Light], groups: [String: Group], schedules: [String: AnyObject], scenes: [String: PartialScene], sensors: [String: AnyObject], rules: [String: AnyObject]) {
+    public init(lights: [String: Light], groups: [String: Group], schedules: [String: Schedule], scenes: [String: PartialScene], sensors: [String: Sensor], rules: [String: Rule]) {
       
         self.lights = lights;
         self.groups = groups;
@@ -59,10 +59,10 @@ public class BridgeResourcesCacheManager {
     
     var lights = [String: Light]();
     var groups = [String: Group]();
-    var schedules = [String: AnyObject]();
+    var schedules = [String: Schedule]();
     var scenes = [String: PartialScene]();
-    var sensors = [String: AnyObject]();
-    var rules = [String: AnyObject]();
+    var sensors = [String: Sensor]();
+    var rules = [String: Rule]();
     
     var bridgeConfiguration: BridgeConfiguration?;
 

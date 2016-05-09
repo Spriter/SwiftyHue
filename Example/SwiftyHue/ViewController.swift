@@ -44,6 +44,24 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let destController = segue.destinationViewController as! BridgeResourceTableViewController
+        
+        if segue.identifier == "LightsSegue" {
+            
+            destController.resourceTypeToDisplay = .Lights
+            
+        } else if segue.identifier == "GroupsSegue" {
+            
+            destController.resourceTypeToDisplay = .Groups
+            
+        } else if segue.identifier == "ScenesSegue" {
+            
+            destController.resourceTypeToDisplay = .Scenes
+        }
+    }
 
 }
 
