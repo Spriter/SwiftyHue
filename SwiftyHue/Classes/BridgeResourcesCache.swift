@@ -122,11 +122,11 @@ public class BridgeResourcesCacheManager {
         case .Config:
             break;
         case .Schedules:
-            break;
+            self.schedules = Schedule.dictionaryFromResourcesJSON(json)
         case .Sensors:
-            break;
+            self.sensors = Sensor.dictionaryFromResourcesJSON(json)
         case .Rules:
-            break;
+            self.rules = Rule.dictionaryFromResourcesJSON(json)
         }
     }
     

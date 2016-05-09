@@ -60,6 +60,18 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
         } else if segue.identifier == "ScenesSegue" {
             
             destController.resourceTypeToDisplay = .Scenes
+            
+        } else if segue.identifier == "SensorsSegue" {
+            
+            destController.resourceTypeToDisplay = .Sensors
+            
+        } else if segue.identifier == "SchedulesSegue" {
+            
+            destController.resourceTypeToDisplay = .Schedules
+            
+        } else if segue.identifier == "RulesSegue" {
+            
+            destController.resourceTypeToDisplay = .Rules
         }
     }
 
@@ -113,6 +125,9 @@ extension ViewController {
         var beatManager = BeatManager(bridgeAccesssConfig: bridgeAccessConfig)
         beatManager.setLocalHeartbeatInterval(3, forResourceType: .Lights)
         beatManager.setLocalHeartbeatInterval(3, forResourceType: .Groups)
+        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Rules)
+        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Schedules)
+        
         beatManager.startHeartbeat()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.lightChanged), name: ResourceCacheUpdateNotification.GroupsUpdated.rawValue, object: nil)
