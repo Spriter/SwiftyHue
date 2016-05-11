@@ -37,7 +37,9 @@ public class BridgeFinder: NSObject, ScannerDelegate {
     private func startNextScanner() {
         guard let scannerClass = remainingScannerClasses.popLast() else {
             // all scanners finished, no bridges found
-            delegate?.bridgeFinder(self, didFinishWithResult: foundBridges)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.delegate?.bridgeFinder(self, didFinishWithResult: self.foundBridges)
+            }
             return
         }
 
@@ -72,7 +74,9 @@ public class BridgeFinder: NSObject, ScannerDelegate {
             // no bridges found, continue with next scanner
             startNextScanner()
         } else {
-            delegate?.bridgeFinder(self, didFinishWithResult: foundBridges)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.delegate?.bridgeFinder(self, didFinishWithResult: self.foundBridges)
+            }
         }
     }
 

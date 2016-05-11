@@ -59,7 +59,9 @@ public class BridgeAuthenticator {
 
     private func startNextRequest(ip: String, uniqueIdentifier: String) {
         if abs(authenticationStartedAt!.timeIntervalSinceNow) > timeout {
-            self.delegate?.bridgeAuthenticatorDidTimeout(self)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.delegate?.bridgeAuthenticatorDidTimeout(self)
+            }
             return
         }
 
@@ -71,7 +73,9 @@ public class BridgeAuthenticator {
         if let error = self.parseError(error, data: data) {
             if error.code == 101 && !didInformDelegateAboutLinkButton {
                 // user needs to press the link button
-                self.delegate?.bridgeAuthenticatorRequiresLinkButtonPress(self)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.delegate?.bridgeAuthenticatorRequiresLinkButtonPress(self)
+                }
                 didInformDelegateAboutLinkButton = true
                 self.startNextRequest(self.ip, uniqueIdentifier: self.uniqueIdentifier)
             } else if error.code == 101 {
@@ -79,7 +83,9 @@ public class BridgeAuthenticator {
                 self.startNextRequest(self.ip, uniqueIdentifier: self.uniqueIdentifier)
             } else {
                 // unknown error
-                self.delegate?.bridgeAuthenticator(self, didFailWithError: error)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.delegate?.bridgeAuthenticator(self, didFailWithError: error)
+                }
             }
 
             return
@@ -115,12 +121,16 @@ public class BridgeAuthenticator {
         
         guard let json = result as? [ [String: [String: AnyObject]] ] else {
             let error = NSError(domain: "BridgeAuthenticator", code: 404, userInfo: [NSLocalizedDescriptionKey: "Could not authenticate user (parse error)"])
-            self.delegate?.bridgeAuthenticator(self, didFailWithError: error)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.delegate?.bridgeAuthenticator(self, didFailWithError: error)
+            }
             return
         }
 
         let username = json[0]["success"]!["username"] as! String
 
-        self.delegate?.bridgeAuthenticator(self, didFinishAuthentication: username)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.delegate?.bridgeAuthenticator(self, didFinishAuthentication: username)
+        }
     }
 }

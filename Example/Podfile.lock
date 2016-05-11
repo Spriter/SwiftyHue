@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.3.1)
+  - Alamofire (3.4.0)
   - CocoaAsyncSocket (7.4.3):
     - CocoaAsyncSocket/All (= 7.4.3)
   - CocoaAsyncSocket/All (7.4.3):
@@ -38,7 +38,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
   FBSnapshotTestCase: 366ecd378511d7716c79991cd8067d1eed23578d
   Gloss: c97a95d6279821f35fa0138700bce0391bce87c1
@@ -46,6 +46,6 @@ SPEC CHECKSUMS:
   Nimble-Snapshots: 2da4d2ec829b458d6886c06812c52493fce284c9
   Nocilla: ae0a2b05f3087b473624ac2b25903695df51246a
   Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
-  SwiftyHue: 519c8611c75b7d6f91f4f31504091b9d5bf22275
+  SwiftyHue: 880aef5c73dad0f90c9c06888c687e74b1d45c13
 
 COCOAPODS: 0.39.0
