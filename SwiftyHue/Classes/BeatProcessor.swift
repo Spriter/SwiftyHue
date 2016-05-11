@@ -15,6 +15,7 @@ class BeatProcessor {
     var lastProcessedJSONs = [BridgeResourceType: NSDictionary]()
     
     init() {
+        
         readCacheFromDisk()
         bridgeResourceCacheManager.storeInObjectsCache(lastProcessedJSONs)
     }
@@ -32,12 +33,23 @@ class BeatProcessor {
     
     func writeToDisk(lastJSON: JSON, resourceType: BridgeResourceType) {
         
-        NSUserDefaults.standardUserDefaults().setObject(lastJSON, forKey: userDefaultsKeyForResourceType(resourceType))
+        let encodedJSON = NSKeyedArchiver.archivedDataWithRootObject(lastJSON)
+        
+        NSUserDefaults.standardUserDefaults().setObject(encodedJSON, forKey: userDefaultsKeyForResourceType(resourceType))
+    
     }
     
-    func readFromDisk(resourceType: BridgeResourceType) -> NSMutableDictionary? {
+    func readFromDisk(resourceType: BridgeResourceType) -> JSON? {
         
-        return NSUserDefaults.standardUserDefaults().valueForKey(userDefaultsKeyForResourceType(resourceType)) as? NSMutableDictionary
+        let encodedJSON = NSUserDefaults.standardUserDefaults().valueForKey(userDefaultsKeyForResourceType(resourceType)) as? NSData
+        
+        var json: JSON?
+        if let encodedJSON = encodedJSON {
+            
+            json = NSKeyedUnarchiver.unarchiveObjectWithData(encodedJSON) as? JSON
+        }
+        
+        return json
     }
     
     func userDefaultsKeyForResourceType(resourceType: BridgeResourceType) -> String {
@@ -55,7 +67,6 @@ class BeatProcessor {
                 
                 lastProcessedJSONs[resourceType] = resourcesJSON;
                
-                //storeInObjectsCache(resourcesJSON as! JSON, resourceType: resourceType)
             }
         }
     }

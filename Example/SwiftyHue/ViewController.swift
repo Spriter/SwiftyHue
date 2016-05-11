@@ -126,7 +126,9 @@ extension ViewController {
         beatManager.setLocalHeartbeatInterval(3, forResourceType: .Lights)
         beatManager.setLocalHeartbeatInterval(3, forResourceType: .Groups)
         beatManager.setLocalHeartbeatInterval(3, forResourceType: .Rules)
+        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Scenes)
         beatManager.setLocalHeartbeatInterval(3, forResourceType: .Schedules)
+        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Sensors)
         
         beatManager.startHeartbeat()
         
