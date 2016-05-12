@@ -1,15 +1,13 @@
 use_frameworks!
 
-target 'SwiftyHue_Example', :exclusive => true do
-  pod 'SwiftyHue', :path => '../'
-end
-
-target 'SwiftyHue_Tests', :exclusive => true do
+target 'SwiftyHue_Example' do
   pod 'SwiftyHue', :path => '../'
 
-  pod 'Quick', '~> 0.8'
-  pod 'Nimble', '~> 3.0'
-  pod 'FBSnapshotTestCase'
-  pod 'Nimble-Snapshots'
-  pod 'Nocilla', '~> 0.10.0'
+  target 'SwiftyHue_Tests' do
+    inherit! :search_paths
+
+    pod 'Quick', '~> 0.8'
+    pod 'Nimble', '~> 3.0'
+    pod 'Nocilla', '~> 0.10.0'
+  end
 end
