@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 #   * Try to keep it short, snappy and to the point.
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
-  s.description      = "SwiftyHue SDK for Philips Hue."
+  s.description      = "Philips Hue SDK written in swift. Work in progress."
 
   s.homepage         = "https://github.com/Spriter/SwiftyHue.git"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
