@@ -183,6 +183,17 @@ extension ViewController {
         //
         //            print(errors)
         //        }
+        
+        //        let xy = Utilities.calculateXY(UIColor.greenColor(), forModel: "LST001")
+        //        
+        //        var lightState = LightState()
+        //        lightState.on = true
+        //        lightState.xy = [Float(xy.x), Float(xy.y)]
+        //        lightState.brightness = 254
+        //        
+        //        BridgeSendAPI.updateLightStateForId("6", withLightState: lightState) { (errors) in
+        //            print(errors)
+        //        }
     }
     
     public func lightChanged() {
