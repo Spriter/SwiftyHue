@@ -253,7 +253,6 @@ public struct Utilities {
                                 "LCT002" /* Hue BR30 */,
                                 "LCT003" /* Hue GU10 */]
         
-        // Gamut C
         let gamutC: [String] = ["LLC020" /* Hue Go */,
                                 "LST002" /* Hue LightStrips Plus */]
         
