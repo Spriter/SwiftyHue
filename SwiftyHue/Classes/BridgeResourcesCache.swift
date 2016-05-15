@@ -27,8 +27,7 @@ public class BridgeResourcesCache {
     public let scenes: [String: PartialScene];
     public let sensors: [String: Sensor];
     public let rules: [String: Rule];
-    
-    var bridgeConfiguration: BridgeConfiguration?;
+    public let bridgeConfiguration: BridgeConfiguration?;
     
     public init() {
 
@@ -38,10 +37,11 @@ public class BridgeResourcesCache {
         scenes = [String: PartialScene]();
         sensors = [String: Sensor]();
         rules = [String: Rule]();
+        bridgeConfiguration = nil
         
     };
     
-    public init(lights: [String: Light], groups: [String: Group], schedules: [String: Schedule], scenes: [String: PartialScene], sensors: [String: Sensor], rules: [String: Rule]) {
+    public init(lights: [String: Light], groups: [String: Group], schedules: [String: Schedule], scenes: [String: PartialScene], sensors: [String: Sensor], rules: [String: Rule], bridgeConfiguration: BridgeConfiguration?) {
       
         self.lights = lights;
         self.groups = groups;
@@ -49,6 +49,7 @@ public class BridgeResourcesCache {
         self.scenes = scenes;
         self.sensors = sensors;
         self.rules = rules;
+        self.bridgeConfiguration = bridgeConfiguration
     };
     
 }
@@ -63,7 +64,6 @@ public class BridgeResourcesCacheManager {
     var scenes = [String: PartialScene]();
     var sensors = [String: Sensor]();
     var rules = [String: Rule]();
-    
     var bridgeConfiguration: BridgeConfiguration?;
 
     init() {
@@ -72,7 +72,7 @@ public class BridgeResourcesCacheManager {
     
     private func updateInternCache() {
     
-        self.internCache = BridgeResourcesCache(lights: lights, groups: groups, schedules: schedules, scenes: scenes, sensors: sensors, rules: rules)
+        self.internCache = BridgeResourcesCache(lights: lights, groups: groups, schedules: schedules, scenes: scenes, sensors: sensors, rules: rules, bridgeConfiguration: bridgeConfiguration)
     }
     
     var internCache: BridgeResourcesCache;
@@ -98,7 +98,6 @@ public class BridgeResourcesCacheManager {
         // convert to swift objects
         store(json, resourceType: resourceType)
 
-        
         // Update Intern Cache
         updateInternCache()
         
@@ -106,21 +105,18 @@ public class BridgeResourcesCacheManager {
         notifyAboutChangesForResourceType(resourceType)
     }
     
-    func store(json: JSON, resourceType: BridgeResourceType) {
+    private func store(json: JSON, resourceType: BridgeResourceType) {
         
         switch resourceType {
             
         case .Lights:
             self.lights = Light.dictionaryFromResourcesJSON(json)
-            break;
         case .Groups:
             self.groups = Group.dictionaryFromResourcesJSON(json)
-            break;
         case .Scenes:
             self.scenes = PartialScene.dictionaryFromResourcesJSON(json)
-            break;
         case .Config:
-            break;
+            self.bridgeConfiguration = BridgeConfiguration(json: json)
         case .Schedules:
             self.schedules = Schedule.dictionaryFromResourcesJSON(json)
         case .Sensors:

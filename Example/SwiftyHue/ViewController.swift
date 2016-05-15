@@ -120,6 +120,8 @@ extension ViewController {
         
         //        let bridgeAccesssConfig = BridgeAccesssConfig(bridgeId: "yourBridgeId", ipAddress: "Bridge IP", username: "username")
         
+    
+        
         var bridgeAccessConfig = self.readBridgeAccessConfig()!
         
         var beatManager = BeatManager(bridgeAccesssConfig: bridgeAccessConfig)
@@ -129,9 +131,10 @@ extension ViewController {
         beatManager.setLocalHeartbeatInterval(3, forResourceType: .Scenes)
         beatManager.setLocalHeartbeatInterval(3, forResourceType: .Schedules)
         beatManager.setLocalHeartbeatInterval(3, forResourceType: .Sensors)
+        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Config)
         
         beatManager.startHeartbeat()
-        
+                
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.lightChanged), name: ResourceCacheUpdateNotification.GroupsUpdated.rawValue, object: nil)
         
         //        var lightState = LightState()
