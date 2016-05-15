@@ -21,7 +21,7 @@ public class ScheduleCommand: Decodable  {
             let method: String = "method" <~~ json,
             let body: JSON = "body" <~~ json
             
-            else { return nil }
+            else { Log.error("Can't create ScheduleCommand"); return nil }
         
         self.address = address
         self.method = method
