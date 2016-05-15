@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "SwiftyHue"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "Philips Hue SDK written in swift."
 
 # This description is used to generate tags and improve search results.
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.authors          = { "Marcel Dittmann" => "marceldittmann@gmx.de", "Jerome Schmitz" => "jerome.schmitz@gmx.net", "Nils Lattek" => "nilslattek@gmail.com" }
-  s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag => "v0.1.0" }
+  s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag => "v0.1.1" }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
@@ -39,4 +39,6 @@ Pod::Spec.new do |s|
   s.dependency 'Alamofire', '~> 3.4.0'
   s.dependency 'Gloss', '~> 0.7'
   s.dependency 'CocoaAsyncSocket', '~> 7.4.3'
+  s.dependency 'Log', '~> 0.5'
+
 end

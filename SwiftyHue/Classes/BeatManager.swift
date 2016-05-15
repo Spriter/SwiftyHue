@@ -72,7 +72,7 @@ public class BeatManager {
     @objc func timerAction(timer: NSTimer) {
         
         let resourceType: BridgeResourceType = BridgeResourceType(rawValue: timer.userInfo! as! String)!
-        
+            
         Alamofire.request(.GET, "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercaseString)", parameters: nil)
             .responseJSON { response in
                 

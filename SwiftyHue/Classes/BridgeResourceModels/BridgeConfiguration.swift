@@ -171,7 +171,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
             let factorynew: Bool = "factorynew" <~~ json,
             let backup: Backup = "backup" <~~ json
         
-            else { return nil }
+            else { Log.error("Can't create BridgeConfiguration from JSON:\n \(json)"); return nil }
         
         self.identifier = identifier
         self.name = name
