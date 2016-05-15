@@ -39,4 +39,6 @@ Pod::Spec.new do |s|
   s.dependency 'Alamofire', '~> 3.4.0'
   s.dependency 'Gloss', '~> 0.7'
   s.dependency 'CocoaAsyncSocket', '~> 7.4.3'
+  s.dependency 'Log', '~> 0.5'
+
 end
