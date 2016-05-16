@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public class SensorState: Decodable {
+public class SensorState: Decodable, Encodable {
     
     public let lastUpdated: NSDate?
     
@@ -18,5 +18,16 @@ public class SensorState: Decodable {
         let dateFormatter = NSDateFormatter.hueApiDateFormatter
         
         self.lastUpdated = Decoder.decodeDate("lastupdated", dateFormatter:dateFormatter)(json)
+    }
+    
+    public func toJSON() -> JSON? {
+        
+        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        
+        var json = jsonify([
+            "lastupdated" ~~> self.lastUpdated
+            ])
+        
+        return json
     }
 }

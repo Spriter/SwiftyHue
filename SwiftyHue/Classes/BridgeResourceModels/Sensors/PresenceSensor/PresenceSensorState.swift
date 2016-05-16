@@ -23,4 +23,17 @@ public class PresenceSensorState: SensorState {
         
         super.init(json: json)
     }
+    
+    public override func toJSON() -> JSON? {
+        
+        if var superJson = super.toJSON() {
+            var json = jsonify([
+                "presence" ~~> self.presence
+                ])
+            superJson.unionInPlace(json!)
+            return superJson
+        }
+        
+        return nil
+    }
 }

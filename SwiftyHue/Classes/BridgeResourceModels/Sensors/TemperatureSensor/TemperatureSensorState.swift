@@ -23,4 +23,17 @@ public class TemperatureSensorState: SensorState {
         
         super.init(json: json)
     }
+    
+    public override func toJSON() -> JSON? {
+        
+        if var superJson = super.toJSON() {
+            var json = jsonify([
+                "temperature" ~~> self.temperature
+                ])
+            superJson.unionInPlace(json!)
+            return superJson
+        }
+        
+        return nil
+    }
 }

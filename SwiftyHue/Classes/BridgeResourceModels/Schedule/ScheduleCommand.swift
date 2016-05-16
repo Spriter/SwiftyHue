@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public class ScheduleCommand: Decodable  {
+public class ScheduleCommand: Decodable, Encodable {
     
     public let address: String
     public let method: String
