@@ -23,4 +23,17 @@ public class GenericFlagSensorState: SensorState {
         
         super.init(json: json)
     }
+    
+    public override func toJSON() -> JSON? {
+        
+        if var superJson = super.toJSON() {
+            var json = jsonify([
+                "flag" ~~> self.flag
+                ])
+            superJson.unionInPlace(json!)
+            return superJson
+        }
+        
+        return nil
+    }
 }

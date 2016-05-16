@@ -16,7 +16,7 @@ public enum SensorAlertMode {
         LSelect // Select alert (30 seconds of indication cycles) is active
 }
 
-public class SensorConfig: Decodable {
+public class SensorConfig: Decodable, Encodable {
 
     public let on: Bool
     public let reachable: Bool?
@@ -33,5 +33,19 @@ public class SensorConfig: Decodable {
         self.reachable = "reachable" <~~ json
         self.battery = "battery" <~~ json
         self.url = "url" <~~ json
+    }
+    
+    public func toJSON() -> JSON? {
+        
+        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        
+        var json = jsonify([
+            "on" ~~> self.on,
+            "reachable" ~~> self.reachable,
+            "battery" ~~> self.battery,
+            "url" ~~> self.url,
+            ])
+        
+        return json
     }
 }

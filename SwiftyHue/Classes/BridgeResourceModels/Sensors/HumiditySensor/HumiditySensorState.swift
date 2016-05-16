@@ -23,4 +23,17 @@ public class HumiditySensorState: SensorState {
         
         super.init(json: json)
     }
+    
+    public override func toJSON() -> JSON? {
+        
+        if var superJson = super.toJSON() {
+            var json = jsonify([
+                "humidity" ~~> self.humidity
+                ])
+            superJson.unionInPlace(json!)
+            return superJson
+        }
+        
+        return nil
+    }
 }

@@ -23,4 +23,17 @@ public class GenericStatusState: SensorState {
         
         super.init(json: json)
     }
+    
+    public override func toJSON() -> JSON? {
+        
+        if var superJson = super.toJSON() {
+            var json = jsonify([
+                "status" ~~> self.status
+                ])
+            superJson.unionInPlace(json!)
+            return superJson
+        }
+        
+        return nil
+    }
 }

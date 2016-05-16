@@ -32,4 +32,21 @@ public class DaylightSensorConfig: SensorConfig {
         
         super.init(json: json)
     }
+    
+    
+    public override func toJSON() -> JSON? {
+        
+        if var superJson = super.toJSON() {
+            var json = jsonify([
+                "long" ~~> self.long,
+                "lat" ~~> self.lat,
+                "sunriseOffset" ~~> self.sunriseOffset,
+                "sunsetOffset" ~~> self.sunsetOffset
+                ])
+            superJson.unionInPlace(json!)
+            return superJson
+        }
+        
+        return nil
+    }
 }
