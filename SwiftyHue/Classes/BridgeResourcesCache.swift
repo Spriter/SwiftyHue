@@ -103,14 +103,12 @@ public class BridgeResourcesCache: Encodable, Decodable {
             BridgeResourceType.Scenes.rawValue ~~> self._scenes,
             BridgeResourceType.Sensors.rawValue ~~> self._sensors,
             BridgeResourceType.Rules.rawValue ~~> self._rules,
-            BridgeResourceType.Config.rawValue ~~> self._bridgeConfiguration,
+            BridgeResourceType.Config.rawValue ~~> self._bridgeConfiguration
             ])
         
         return json
         
     }
-    
-    
     
     public func convertBridgeResourceDictToJSONDict(dictToConvert: [String: BridgeResource]) -> [String: JSON] {
         
