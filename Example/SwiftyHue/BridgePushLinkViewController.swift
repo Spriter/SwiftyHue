@@ -29,7 +29,7 @@ class BridgePushLinkViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        bridgeAuthenticator = BridgeAuthenticator(bridge: bridge, uniqueIdentifier: "swiftyhue#device")
+        bridgeAuthenticator = BridgeAuthenticator(bridge: bridge, uniqueIdentifier: "swiftyhue#\(UIDevice.currentDevice().name)")
         bridgeAuthenticator.delegate = self;
         bridgeAuthenticator.start()
     }
