@@ -9,7 +9,9 @@
 import Foundation
 import Gloss
 
-public class BridgeResourcesCache {
+public class BridgeResourcesCache: Encodable, Decodable {
+    
+    // MARK: Public Interface
     
     public var lights: [String: Light] {
         return _lights
@@ -33,6 +35,8 @@ public class BridgeResourcesCache {
         return _bridgeConfiguration
     };
     
+    // MARK: Private Properties
+    
     private var _lights: [String: Light];
     private var _groups: [String: Group];
     private var _schedules: [String: Schedule];
@@ -41,8 +45,10 @@ public class BridgeResourcesCache {
     private var _rules: [String: Rule];
     private var _bridgeConfiguration: BridgeConfiguration?;
     
+    // MARK: Init
+    
     public init() {
-
+      
         _lights = [String: Light]();
         _groups = [String: Group]();
         _schedules = [String: Schedule]();
@@ -63,6 +69,61 @@ public class BridgeResourcesCache {
         self._rules = rules;
         self._bridgeConfiguration = bridgeConfiguration
     };
+    
+    required public convenience init?(json: JSON) {
+        
+        self.init()
+        
+        guard let lightsDict: [String: Light] = BridgeResourceType.Lights.rawValue <~~ json,
+            groupsDict: [String: Group] = BridgeResourceType.Groups.rawValue <~~ json,
+            schedulesDict: [String: Schedule] = BridgeResourceType.Schedules.rawValue <~~ json,
+            scenesDict: [String: PartialScene] = BridgeResourceType.Scenes.rawValue <~~ json,
+            sensorsDict: [String: Sensor] = BridgeResourceType.Sensors.rawValue <~~ json,
+            rulesDict: [String: Rule] = BridgeResourceType.Rules.rawValue <~~ json
+            
+            else { return nil }
+        
+        self._lights = lightsDict
+        self._groups = groupsDict
+        self._schedules = schedulesDict
+        self._scenes = scenesDict
+        self._sensors = sensorsDict
+        self._rules = rulesDict
+        
+        _bridgeConfiguration = BridgeResourceType.Config.rawValue <~~ json
+        
+    }
+    
+    public func toJSON() -> JSON? {
+        
+        var json = jsonify([
+            BridgeResourceType.Lights.rawValue ~~> self._lights,
+            BridgeResourceType.Groups.rawValue ~~> self._groups,
+            BridgeResourceType.Schedules.rawValue ~~> self._schedules,
+            BridgeResourceType.Scenes.rawValue ~~> self._scenes,
+            BridgeResourceType.Sensors.rawValue ~~> self._sensors,
+            BridgeResourceType.Rules.rawValue ~~> self._rules,
+            BridgeResourceType.Config.rawValue ~~> self._bridgeConfiguration,
+            ])
+        
+        return json
+        
+    }
+    
+    
+    
+    public func convertBridgeResourceDictToJSONDict(dictToConvert: [String: BridgeResource]) -> [String: JSON] {
+        
+        var dict: [String: JSON] = [:]
+        for (key, bridgeResource) in dictToConvert {
+            dict[key] = bridgeResource.toJSON()!
+        }
+        
+        return dict
+        
+    }
+    
+    // MARK: Set
     
     internal func setLights(lights: [String: Light]) {
         self._lights = lights
@@ -91,4 +152,62 @@ public class BridgeResourcesCache {
     internal func setBridgeConfiguration(bridgeConfiguration: BridgeConfiguration) {
         self._bridgeConfiguration = bridgeConfiguration
     }
+    
+    // MARK: Update
+    
+    internal func updateLight(light: Light) {
+        
+        _lights[light.identifier] = light
+    }
+    internal func updateGroup(group: Group) {
+        
+        _groups[group.identifier] = group
+    }
+    internal func updateSchedule(schedule: Schedule) {
+        
+        _schedules[schedule.identifier] = schedule
+    }
+    internal func updateScene(scene: PartialScene) {
+        
+        _scenes[scene.identifier] = scene
+    }
+    internal func updateSensor(sensor: Sensor) {
+        
+        _sensors[sensor.identifier] = sensor
+    }
+    internal func updateRule(rule: Rule) {
+        
+        _rules[rule.identifier] = rule
+    }
+    internal func updateBridgeConfiguration(bridgeConfiguration: BridgeConfiguration) {
+        
+        _bridgeConfiguration = bridgeConfiguration
+    }
 }
+
+
+//    public func toJSON() -> JSON? {
+//
+//        var dict: [String: JSON] = [:]
+//
+//        var lightsJSONDict: [String: JSON] = convertBridgeResourceDictToJSONDict(self._lights)
+//        var groupsJSONDict: [String: JSON] = convertBridgeResourceDictToJSONDict(self._groups)
+//        var schedulesJSONDict: [String: JSON] = convertBridgeResourceDictToJSONDict(self._schedules)
+//        var scenesJSONDict: [String: JSON] = convertBridgeResourceDictToJSONDict(self._scenes)
+//        var sensorsJSONDict: [String: JSON] = convertBridgeResourceDictToJSONDict(self._sensors)
+//        var rulesJSONDict: [String: JSON] = convertBridgeResourceDictToJSONDict(self._rules)
+//
+//        dict[BridgeResourceType.Lights.rawValue] = lightsJSONDict;
+//        dict[BridgeResourceType.Groups.rawValue] = groupsJSONDict;
+//        dict[BridgeResourceType.Schedules.rawValue] = schedulesJSONDict;
+//        dict[BridgeResourceType.Scenes.rawValue] = scenesJSONDict;
+//        dict[BridgeResourceType.Sensors.rawValue] = sensorsJSONDict;
+//        dict[BridgeResourceType.Rules.rawValue] = rulesJSONDict;
+//
+//        var bridgeConfigJSON = self.bridgeConfiguration?.toJSON()
+//        if let bridgeConfigJSON = bridgeConfigJSON {
+//            dict[BridgeResourceType.Config.rawValue] = bridgeConfigJSON
+//        }
+//
+//        return dict
+//    }

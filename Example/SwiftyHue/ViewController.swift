@@ -123,6 +123,12 @@ extension ViewController {
         let bridgeAccessConfig = self.readBridgeAccessConfig()!
         swiftyHue.setBridgeAccessConfig(bridgeAccessConfig)
         swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Lights)
+        swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Groups)
+       swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Rules)
+        swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Scenes)
+        swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Schedules)
+        swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Sensors)
+        swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Config)
         swiftyHue.startHeartbeat();
         
 //        var lightState = LightState()

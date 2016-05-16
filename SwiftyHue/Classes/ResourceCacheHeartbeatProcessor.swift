@@ -28,125 +28,163 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
     
     unowned var delegate: ResourceCacheHeartbeatProcessorDelegate
     
-    var lastProcessedJSONs = [BridgeResourceType: NSDictionary]()
-    
     init(delegate: ResourceCacheHeartbeatProcessorDelegate) {
         
         self.delegate = delegate
-        
         self.resourceCache = BridgeResourcesCache()
         
-        readCacheFromDisk()
+        self.readCacheFromDisk()
         
-        storeInObjectsCache(lastProcessedJSONs)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ResourceCacheHeartbeatProcessor.handleApplicationWillTerminateNotification), name: UIApplicationWillTerminateNotification, object: nil)
 
+    }
+    
+    @objc func handleApplicationWillTerminateNotification() {
+     
+        Log.trace("writeCacheToDisk because Application will terminate")
+        self.writeCacheToDisk()
     }
     
     func processJSON(json: JSON, forResourceType resourceType: BridgeResourceType) {
         
-        if self.lastProcessedJSONs[resourceType] != json {
-              
-            self.lastProcessedJSONs[resourceType] = json
-            self.writeToDisk(json, resourceType: resourceType)
+        // Convert To Native Object
+        
+        if resourceType == .Config {
+        
+            let nativeObject = convertToNativeObject(json, resourceType: resourceType)
             
-            storeInObjectsCache(json, resourceType: resourceType)
+            // Store in Cache
+            storeNativeObjectInCache(nativeObject, resourceType: resourceType)
+    
+        } else {
+            
+            let nativeObjectDict = convertToNativeObjectDict(json, resourceType: resourceType)
+            
+            // Store in Cache
+            storeNativeObjectDictInCache(nativeObjectDict, resourceType: resourceType)
         }
         
-    }
-    
-    func writeToDisk(lastJSON: JSON, resourceType: BridgeResourceType) {
-        
-        let encodedJSON = NSKeyedArchiver.archivedDataWithRootObject(lastJSON)
-        
-        NSUserDefaults.standardUserDefaults().setObject(encodedJSON, forKey: userDefaultsKeyForResourceType(resourceType))
-    
-    }
-    
-    func readFromDisk(resourceType: BridgeResourceType) -> JSON? {
-        
-        let encodedJSON = NSUserDefaults.standardUserDefaults().valueForKey(userDefaultsKeyForResourceType(resourceType)) as? NSData
-        
-        var json: JSON?
-        if let encodedJSON = encodedJSON {
-            
-            json = NSKeyedUnarchiver.unarchiveObjectWithData(encodedJSON) as? JSON
-        }
-        
-        return json
-    }
-    
-    func userDefaultsKeyForResourceType(resourceType: BridgeResourceType) -> String {
-        
-        return resourceType.rawValue + "Cache"
-    }
-    
-    private func readCacheFromDisk() {
-        
-        let resourceTypes: [BridgeResourceType] = [.Lights, .Groups, .Scenes, .Sensors, .Rules, .Config, .Schedules]
-        
-        for resourceType in resourceTypes {
-            
-            if let resourcesJSON = self.readFromDisk(resourceType) {
-                
-                lastProcessedJSONs[resourceType] = resourcesJSON;
-               
-            }
-        }
-    }
+        // Tell Delegate about update
+        self.delegate.resourceCacheUpdated(resourceCache)
 
-    // MARK Nativ Stuff
+    }
     
-    var resourceCache: BridgeResourcesCache;
-    
-    func storeInObjectsCache(bridgeResourcesJSON:[BridgeResourceType: NSDictionary]) {
+    func storeNativeObjectInCache(bridgeResource: BridgeResource, resourceType: BridgeResourceType) {
         
-        for (key, value) in bridgeResourcesJSON {
-            
-            store(value as! JSON, resourceType: key)
+        switch resourceType {
+            case .Lights:
+                break;
+            case .Groups:
+                 break;
+            case .Scenes:
+                 break;
+            case .Config:
+                self.resourceCache.setBridgeConfiguration(bridgeResource as! BridgeConfiguration)
+            case .Schedules:
+                 break;
+            case .Sensors:
+                 break;
+            case .Rules:
+                 break;
         }
-        
-        // Tell Delegate about update
-        delegate.resourceCacheUpdated(resourceCache)
     }
     
-    func storeInObjectsCache(json: JSON, resourceType: BridgeResourceType) {
+    func storeNativeObjectDictInCache(dict: NSDictionary, resourceType: BridgeResourceType) {
         
-        // convert to swift objects
-        store(json, resourceType: resourceType)
-        
-        // Tell Delegate about update
-        delegate.resourceCacheUpdated(resourceCache)
-        
-        // Notify
-        notifyAboutChangesForResourceType(resourceType)
+        switch resourceType {
+            case .Lights:
+                self.resourceCache.setLights(dict as! [String: Light])
+            case .Groups:
+                self.resourceCache.setGroups(dict as! [String: Group])
+            case .Scenes:
+                self.resourceCache.setScenes(dict as! [String: PartialScene])
+            case .Config:
+                break;
+            case .Schedules:
+                self.resourceCache.setSchedules(dict as! [String: Schedule])
+            case .Sensors:
+                self.resourceCache.setSensors(dict as! [String: Sensor])
+            case .Rules:
+                self.resourceCache.setRules(dict as! [String: Rule])
+        }
     }
     
-    private func store(json: JSON, resourceType: BridgeResourceType) {
+    func convertToNativeObjectDict(json: JSON, resourceType: BridgeResourceType) -> NSDictionary {
+        
+        //Log.debug("convertToNativeObjectDict", json)
         
         switch resourceType {
             
         case .Lights:
-            self.resourceCache.setLights(Light.dictionaryFromResourcesJSON(json))
+            return Light.dictionaryFromResourcesJSON(json)
         case .Groups:
-            self.resourceCache.setGroups(Group.dictionaryFromResourcesJSON(json))
+            return Group.dictionaryFromResourcesJSON(json)
         case .Scenes:
-            self.resourceCache.setScenes(PartialScene.dictionaryFromResourcesJSON(json))
+            return PartialScene.dictionaryFromResourcesJSON(json)
         case .Config:
-            self.resourceCache.setBridgeConfiguration(BridgeConfiguration(json: json)!)
+            break;
         case .Schedules:
-            self.resourceCache.setSchedules(Schedule.dictionaryFromResourcesJSON(json))
+            return Schedule.dictionaryFromResourcesJSON(json)
         case .Sensors:
-            self.resourceCache.setSensors(Sensor.dictionaryFromResourcesJSON(json))
+            return Sensor.dictionaryFromResourcesJSON(json)
         case .Rules:
-            self.resourceCache.setRules(Rule.dictionaryFromResourcesJSON(json))
+            return Rule.dictionaryFromResourcesJSON(json)
+        }
+        
+        return [:]
+    }
+    
+    func convertToNativeObject(json: JSON, resourceType: BridgeResourceType) -> BridgeResource {
+        
+        switch resourceType {
+            
+        case .Lights:
+            return Light(json: json)!
+        case .Groups:
+            return Group(json: json)!
+        case .Scenes:
+            return PartialScene(json: json)!
+        case .Config:
+           return BridgeConfiguration(json: json)!
+        case .Schedules:
+            return Schedule(json: json)!
+        case .Sensors:
+            return Sensor(json: json)!
+        case .Rules:
+            return Rule(json: json)!
         }
     }
+    
+    private func writeCacheToDisk() {
+        
+        var encodedJSON = NSKeyedArchiver.archivedDataWithRootObject(self.resourceCache.toJSON()!)
+
+        NSUserDefaults.standardUserDefaults().setObject(encodedJSON, forKey: "Cache")
+
+    }
+    
+    private func readCacheFromDisk() {
+        
+        let encodedJSON = NSUserDefaults.standardUserDefaults().valueForKey("Cache") as? NSData
+        
+        if let encodedJSON = encodedJSON {
+          
+            Log.trace("readCacheFromDisk")
+            
+            let json = NSKeyedUnarchiver.unarchiveObjectWithData(encodedJSON) as! JSON
+            
+            let resourceCache = BridgeResourcesCache(json: json)!
+            
+            // Tell Delegate about update
+            delegate.resourceCacheUpdated(resourceCache)
+        }
+    }
+    
+    var resourceCache: BridgeResourcesCache;
     
     func notifyAboutChangesForResourceType(resourceType: BridgeResourceType) {
         
         let notification = ResourceCacheUpdateNotification(resourceType: resourceType)!
         NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
     }
-        
-        
 }
