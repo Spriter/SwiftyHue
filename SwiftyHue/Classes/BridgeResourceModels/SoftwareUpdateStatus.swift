@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public enum UpdateState {
+public enum UpdateState: Int {
     
     case NoUpdate, Downloading, ReadyForInstall, Installed
 }
