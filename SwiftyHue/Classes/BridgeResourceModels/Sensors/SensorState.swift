@@ -25,7 +25,7 @@ public class SensorState: Decodable, Encodable {
         let dateFormatter = NSDateFormatter.hueApiDateFormatter
         
         var json = jsonify([
-            "lastupdated" ~~> self.lastUpdated
+            "lastupdated" ~~> Encoder.encodeDate("lastupdated", dateFormatter: dateFormatter)(self.lastUpdated)
             ])
         
         return json
