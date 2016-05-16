@@ -14,7 +14,7 @@ public enum UpdateState: Int {
     case NoUpdate, Downloading, ReadyForInstall, Installed
 }
 
-public struct SoftwareUpdateStatus: Decodable {
+public struct SoftwareUpdateStatus: Decodable, Encodable {
     
     public let updatestate: UpdateState?
     
@@ -53,5 +53,19 @@ public struct SoftwareUpdateStatus: Decodable {
         text = "text" <~~ json
         notify = "notify" <~~ json
         
+    }
+    
+    public func toJSON() -> JSON? {
+        
+        var json = jsonify([
+            "updatestate" ~~> self.updatestate,
+            "checkforupdate" ~~> self.checkforupdate,
+            "devicetypes" ~~> self.devicetypes,
+            "url" ~~> self.url,
+            "text" ~~> self.text,
+            "notify" ~~> self.notify
+            ])
+        
+        return json
     }
 }

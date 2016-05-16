@@ -19,7 +19,7 @@ public enum BackupError: Int {
     case None, ExportFailed, ImportFailed
 }
 
-public struct Backup: Decodable {
+public struct Backup: Decodable, Encodable {
     
     public let status: BackupStatus?
     public let errorcode: BackupError?
@@ -29,5 +29,15 @@ public struct Backup: Decodable {
         status = "status" <~~ json
         errorcode = "errorcode" <~~ json
         
+    }
+    
+    public func toJSON() -> JSON? {
+        
+        var json = jsonify([
+            "status" ~~> self.status,
+            "errorcode" ~~> self.errorcode
+            ])
+        
+        return json
     }
 }

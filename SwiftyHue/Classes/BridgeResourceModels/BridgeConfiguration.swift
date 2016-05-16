@@ -76,7 +76,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     /**
      The local time of the bridge.
      */
-    public let localtime: NSDate
+    public let localtime: String
     
     /**
      Timezone of the bridge as OlsenIDs, like "Europe/Amsterdam" or "none" when not configured.
@@ -158,7 +158,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
             let proxyaddress: String = "proxyaddress" <~~ json,
             let proxyport: Int = "proxyport" <~~ json,
             let UTC: String = "UTC" <~~ json,
-            let localtime: NSDate = Decoder.decodeDate("localtime", dateFormatter:dateFormatter)(json),
+            let localtime: String = "localtime" <~~ json,
             let timezone: String = "timezone" <~~ json,
             let modelid: String = "modelid" <~~ json,
             let swversion: String = "swversion" <~~ json,
@@ -205,8 +205,10 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     
     public func toJSON() -> JSON? {
         
+        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        
         var json = jsonify([
-            "id" ~~> self.identifier,
+            "bridgeid" ~~> self.identifier,
             "name" ~~> self.name,
             "zigbeechannel" ~~> self.zigbeeChannel,
             "mac" ~~> self.mac,
@@ -217,6 +219,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
             "proxyaddress" ~~> self.proxyaddress,
             "proxyport" ~~> self.proxyport,
             "UTC" ~~> self.UTC,
+            "localtime" ~~> self.localtime,
             "timezone" ~~> self.timezone,
             "modelid" ~~> self.modelId,
             "swversion" ~~> self.swVersion,

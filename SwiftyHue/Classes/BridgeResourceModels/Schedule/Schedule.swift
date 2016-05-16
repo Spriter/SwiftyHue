@@ -47,7 +47,7 @@ public class Schedule: BridgeResource, BridgeResourceDictGenerator {
         let json = jsonify([
             "id" ~~> self.identifier,
             "name" ~~> self.name,
-            "scheduleDescription" ~~> self.scheduleDescription,
+            "description" ~~> self.scheduleDescription,
             "command" ~~> self.command,
             "localtime" ~~> self.localtime,
             "status" ~~> self.status,

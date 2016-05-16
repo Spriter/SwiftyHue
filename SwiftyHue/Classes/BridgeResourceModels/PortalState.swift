@@ -14,7 +14,7 @@ public enum PortalStateCommunication: String {
     case connected, connecting, disconnected, unknown
 }
 
-public struct PortalState: Decodable {
+public struct PortalState: Decodable, Encodable {
     
     /**
      The bridge is signed on the portal
@@ -43,5 +43,17 @@ public struct PortalState: Decodable {
         outgoing = "outgoing" <~~ json
         communication = "communication" <~~ json
         
+    }
+    
+    public func toJSON() -> JSON? {
+        
+        var json = jsonify([
+            "signedon" ~~> self.signedon,
+            "incoming" ~~> self.incoming,
+            "outgoing" ~~> self.outgoing,
+            "communication" ~~> self.communication
+            ])
+        
+        return json
     }
 }

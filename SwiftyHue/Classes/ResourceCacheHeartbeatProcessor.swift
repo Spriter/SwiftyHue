@@ -159,13 +159,13 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         
         var encodedJSON = NSKeyedArchiver.archivedDataWithRootObject(self.resourceCache.toJSON()!)
 
-        NSUserDefaults.standardUserDefaults().setObject(encodedJSON, forKey: "Cache")
+        NSUserDefaults.standardUserDefaults().setObject(encodedJSON, forKey: "CacheX")
 
     }
     
     private func readCacheFromDisk() {
         
-        let encodedJSON = NSUserDefaults.standardUserDefaults().valueForKey("Cache") as? NSData
+        let encodedJSON = NSUserDefaults.standardUserDefaults().valueForKey("CacheX") as? NSData
         
         if let encodedJSON = encodedJSON {
           

@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public struct SoftwareUpdateStatusDeviceTypes: Decodable {
+public struct SoftwareUpdateStatusDeviceTypes: Decodable, Encodable {
     
     /**
      Flag for when bridge update is avaliable
@@ -32,5 +32,16 @@ public struct SoftwareUpdateStatusDeviceTypes: Decodable {
         lights = "lights" <~~ json
         sensors = "sensors" <~~ json
         
+    }
+    
+    public func toJSON() -> JSON? {
+        
+        var json = jsonify([
+            "bridge" ~~> self.bridge,
+            "lights" ~~> self.lights,
+            "sensors" ~~> self.sensors,
+            ])
+        
+        return json
     }
 }
