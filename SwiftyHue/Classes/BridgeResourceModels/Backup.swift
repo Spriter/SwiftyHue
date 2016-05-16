@@ -14,7 +14,7 @@ public enum BackupStatus: String {
     case idle, startmigration, fileready_disabled, prepare_restore, restoring
 }
 
-public enum BackupError {
+public enum BackupError: Int {
     
     case None, ExportFailed, ImportFailed
 }

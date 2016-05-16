@@ -131,7 +131,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     /**
      If a bridge backup file has been restored on this bridge from a bridge with a different bridgeid, it will indicate that bridge id, otherwise it will be null.
      */
-    public let replacesBridgeId: String
+    public let replacesBridgeId: String?
     
     /**
      backup
@@ -169,7 +169,6 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
             let portalconnection: String = "portalconnection" <~~ json,
             let portalstate: PortalState = "portalstate" <~~ json,
             let factorynew: Bool = "factorynew" <~~ json,
-            let replacesbridgeid: String = "replacesbridgeid" <~~ json,
             let backup: Backup = "backup" <~~ json
         
             else { Log.error("Can't create BridgeConfiguration from JSON:\n \(json)"); return nil }
@@ -196,7 +195,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         self.portalConnection = portalconnection
         self.portalState = portalstate
         self.factorynew = factorynew
-        self.replacesBridgeId = replacesbridgeid
+        self.replacesBridgeId = "replacesbridgeid" <~~ json
         self.backup = backup
          
         guard let whitelistJSON = json["whitelist"] as? JSON else { return nil }
