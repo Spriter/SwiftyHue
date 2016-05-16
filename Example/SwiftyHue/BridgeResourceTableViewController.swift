@@ -22,47 +22,50 @@ class BridgeResourceTableViewController: UITableViewController {
     
     func updateResources() {
         
-        switch (resourceTypeToDisplay) {
+        if let resourceCache = swiftyHue.resourceCache {
             
-        case .Lights:
-          
-            for light in BridgeResourcesCacheManager.sharedInstance.cache.lights.values {
-                bridgeResources.append(light)
+            switch (resourceTypeToDisplay) {
+                
+            case .Lights:
+              
+                for light in resourceCache.lights.values {
+                    bridgeResources.append(light)
+                }
+                
+            case .Groups:
+                
+                for group in resourceCache.groups.values {
+                    bridgeResources.append(group)
+                }
+                
+            case .Scenes:
+                
+                for scene in resourceCache.scenes.values {
+                    bridgeResources.append(scene)
+                }
+                
+            case .Rules:
+                
+                for rule in resourceCache.rules.values {
+                    bridgeResources.append(rule)
+                }
+                
+            case .Schedules:
+                
+                for schedule in resourceCache.schedules.values {
+                    bridgeResources.append(schedule)
+                }
+                
+            case .Sensors:
+                
+                for sensor in resourceCache.sensors.values {
+                    bridgeResources.append(sensor)
+                }
+                
+            case .Config:
+                break;
+            
             }
-            
-        case .Groups:
-            
-            for group in BridgeResourcesCacheManager.sharedInstance.cache.groups.values {
-                bridgeResources.append(group)
-            }
-            
-        case .Scenes:
-            
-            for scene in BridgeResourcesCacheManager.sharedInstance.cache.scenes.values {
-                bridgeResources.append(scene)
-            }
-            
-        case .Rules:
-            
-            for rule in BridgeResourcesCacheManager.sharedInstance.cache.rules.values {
-                bridgeResources.append(rule)
-            }
-            
-        case .Schedules:
-            
-            for schedule in BridgeResourcesCacheManager.sharedInstance.cache.schedules.values {
-                bridgeResources.append(schedule)
-            }
-            
-        case .Sensors:
-            
-            for sensor in BridgeResourcesCacheManager.sharedInstance.cache.sensors.values {
-                bridgeResources.append(sensor)
-            }
-            
-        case .Config:
-            break;
-            
         }
     }
     

@@ -11,14 +11,14 @@ import SwiftyHue
 
 public protocol CreateBridgeAccessControllerDelegate: class {
     
-    func bridgeAccessCreated(bridgeAccessConfig: BridgeAccesssConfig)
+    func bridgeAccessCreated(bridgeAccessConfig: BridgeAccessConfig)
 }
 
 public class CreateBridgeAccessController: UINavigationController {
 
     public weak var bridgeAccessCreationDelegate: CreateBridgeAccessControllerDelegate?
     
-    func bridgeAccessCreated(bridgeAccessConfig: BridgeAccesssConfig) {
+    func bridgeAccessCreated(bridgeAccessConfig: BridgeAccessConfig) {
         
         self.dismissViewControllerAnimated(true, completion: nil)
         bridgeAccessCreationDelegate?.bridgeAccessCreated(bridgeAccessConfig)

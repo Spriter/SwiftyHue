@@ -11,7 +11,7 @@ import SwiftyHue
 
 class BridgeAccessConfigPresentationViewController: UIViewController {
 
-    var bridgeAccesssConfig: BridgeAccesssConfig!
+    var bridgeAccesssConfig: BridgeAccessConfig!
     
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var bridgeIdLabel: UILabel!

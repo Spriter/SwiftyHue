@@ -10,6 +10,8 @@ import UIKit
 import SwiftyHue
 import Gloss
 
+var swiftyHue: SwiftyHue = SwiftyHue();
+
 class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     
     private let bridgeAccessConfigUserDefaultsKey = "BridgeAccessConfig"
@@ -81,24 +83,24 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
 
 extension ViewController {
     
-    func readBridgeAccessConfig() -> BridgeAccesssConfig? {
+    func readBridgeAccessConfig() -> BridgeAccessConfig? {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let bridgeAccessConfigJSON = userDefaults.objectForKey(bridgeAccessConfigUserDefaultsKey) as? JSON
         
-        var bridgeAccessConfig: BridgeAccesssConfig?
+        var bridgeAccessConfig: BridgeAccessConfig?
         if let bridgeAccessConfigJSON = bridgeAccessConfigJSON {
             
-            bridgeAccessConfig = BridgeAccesssConfig(json: bridgeAccessConfigJSON)
+            bridgeAccessConfig = BridgeAccessConfig(json: bridgeAccessConfigJSON)
         }
         
         return bridgeAccessConfig
     }
     
-    func writeBridgeAccessConfig(bridgeAccesssConfig: BridgeAccesssConfig) {
+    func writeBridgeAccessConfig(bridgeAccessConfig: BridgeAccessConfig) {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        let bridgeAccessConfigJSON = bridgeAccesssConfig.toJSON()
+        let bridgeAccessConfigJSON = bridgeAccessConfig.toJSON()
         userDefaults.setObject(bridgeAccessConfigJSON, forKey: bridgeAccessConfigUserDefaultsKey)
     }
 }
@@ -107,7 +109,7 @@ extension ViewController {
 
 extension ViewController: CreateBridgeAccessControllerDelegate {
     
-    func bridgeAccessCreated(bridgeAccessConfig: BridgeAccesssConfig) {
+    func bridgeAccessCreated(bridgeAccessConfig: BridgeAccessConfig) {
         
         writeBridgeAccessConfig(bridgeAccessConfig)
     }
@@ -118,24 +120,30 @@ extension ViewController {
     
     func runTestCode() {
         
-        //        let bridgeAccesssConfig = BridgeAccesssConfig(bridgeId: "yourBridgeId", ipAddress: "Bridge IP", username: "username")
+        let bridgeAccessConfig = self.readBridgeAccessConfig()!
+        swiftyHue.setBridgeAccessConfig(bridgeAccessConfig)
+        swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Lights)
+        swiftyHue.startHeartbeat();
         
-    
+//        var lightState = LightState()
+//        lightState.on = false;
+//        swiftyHue.bridgeSendAPI.setLightStateForGroupWithId("1", withLightState: lightState) { (errors) in
+//            
+//            print(errors)
+//        }
         
-        var bridgeAccessConfig = self.readBridgeAccessConfig()!
-        
-        var beatManager = BeatManager(bridgeAccesssConfig: bridgeAccessConfig)
-        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Lights)
-        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Groups)
-        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Rules)
-        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Scenes)
-        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Schedules)
-        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Sensors)
-        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Config)
-        
-        beatManager.startHeartbeat()
-                
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.lightChanged), name: ResourceCacheUpdateNotification.GroupsUpdated.rawValue, object: nil)
+        //        var beatManager = BeatManager(bridgeAccessConfig: bridgeAccessConfig)
+//        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Lights)
+//        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Groups)
+//        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Rules)
+//        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Scenes)
+//        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Schedules)
+//        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Sensors)
+//        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Config)
+//        
+//        beatManager.startHeartbeat()
+//                
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.lightChanged), name: ResourceCacheUpdateNotification.LightsUpdated.rawValue, object: nil)
         
         //        var lightState = LightState()
         //        lightState.on = true
@@ -201,9 +209,11 @@ extension ViewController {
     
     public func lightChanged() {
         
-        var cache = BridgeResourcesCacheManager.sharedInstance.cache
-        var light = cache.groups["1"]!
-        print(light.name)
+        print("Changed")
+        
+//        var cache = BridgeResourcesCacheManager.sharedInstance.cache
+//        var light = cache.groups["1"]!
+//        print(light.name)
     }
     
     // MARK: - BridgeFinderDelegate

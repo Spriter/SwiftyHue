@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public struct BridgeAccesssConfig: Encodable, Decodable {
+public struct BridgeAccessConfig: Encodable, Decodable {
     
     public let bridgeId: String;
     public let ipAddress: String;

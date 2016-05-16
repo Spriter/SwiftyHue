@@ -29,6 +29,15 @@ public class Error: NSError, Decodable {
         super.init(domain: address, code: type, userInfo: ["description": errorDescription])
     }
     
+    public init(address: String, errorDescription: String, type: Int) {
+        
+        self.type = type
+        self.address = address
+        self.errorDescription = errorDescription
+        
+        super.init(domain: address, code: type, userInfo: ["description": errorDescription])
+    }
+    
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

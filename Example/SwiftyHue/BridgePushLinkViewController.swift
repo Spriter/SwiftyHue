@@ -13,7 +13,7 @@ class BridgePushLinkViewController: UIViewController {
 
     var bridge: HueBridge!;
     var bridgeAuthenticator: BridgeAuthenticator!
-    var bridgeAccessConfig: BridgeAccesssConfig!
+    var bridgeAccessConfig: BridgeAccessConfig!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +57,7 @@ extension BridgePushLinkViewController: BridgeAuthenticatorDelegate {
     
     func bridgeAuthenticator(authenticator: BridgeAuthenticator, didFinishAuthentication username: String) {
         
-        self.bridgeAccessConfig = BridgeAccesssConfig(bridgeId: "BridgeId", ipAddress: bridge.ip, username: username)
+        self.bridgeAccessConfig = BridgeAccessConfig(bridgeId: "BridgeId", ipAddress: bridge.ip, username: username)
         
         self.performSegueWithIdentifier("BridgeAccessConfigPresentationViewControllerSegue", sender: self)
     }
