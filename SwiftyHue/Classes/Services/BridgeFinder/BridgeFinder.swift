@@ -43,6 +43,7 @@ public class BridgeFinder: NSObject, ScannerDelegate {
             return
         }
 
+        Log.trace("Scanner started: \(scannerClass)")
         currentScanner = scannerClass.init(delegate: self)
         currentScanner?.start()
     }
@@ -83,6 +84,7 @@ public class BridgeFinder: NSObject, ScannerDelegate {
     // MARK: - ScannerDelegate
 
     func scanner(scanner: Scanner, didFinishWithResults ips: [String]) {
+        Log.trace("Scanner finished: \(scanner) with result count: \(ips.count)")
         validateBridges(ips)
     }
 }
