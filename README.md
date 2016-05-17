@@ -16,6 +16,7 @@ To integrate SwiftyHue into your Xcode project using CocoaPods, specify it in yo
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.0'
 use_frameworks!
+
 pod 'SwiftyHue', '~> 0.1.2'
 ```
 
@@ -24,6 +25,10 @@ Then, run the following command:
 ```bash
 $ pod install
 ```
+
+## Usage
+
+Coming soon ...
 
 ## Generate documentation
 
