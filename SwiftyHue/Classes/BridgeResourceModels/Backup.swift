@@ -41,3 +41,13 @@ public struct Backup: Decodable, Encodable {
         return json
     }
 }
+extension Backup: Hashable {
+    
+    public var hashValue: Int {
+        
+        return 1
+    }
+}
+public func ==(lhs: Backup, rhs: Backup) -> Bool {
+    return lhs.status == rhs.status && lhs.errorcode == rhs.errorcode
+}

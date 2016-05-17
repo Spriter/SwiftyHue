@@ -94,3 +94,24 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
     }
     
 }
+
+extension PartialScene: Hashable {
+    
+    public var hashValue: Int {
+        
+        return Int(identifier)!
+    }
+}
+
+public func ==(lhs: PartialScene, rhs: PartialScene) -> Bool {
+    return lhs.identifier == rhs.identifier &&
+        lhs.name == rhs.name &&
+        (lhs.lightIdentifiers ?? []) == (rhs.lightIdentifiers ?? []) &&
+        lhs.owner == rhs.owner &&
+        lhs.recycle == rhs.recycle &&
+        lhs.locked == rhs.locked &&
+        lhs.appData == rhs.appData &&
+        lhs.picture == rhs.picture &&
+        lhs.lastUpdated == rhs.lastUpdated &&
+        lhs.version == rhs.version
+}

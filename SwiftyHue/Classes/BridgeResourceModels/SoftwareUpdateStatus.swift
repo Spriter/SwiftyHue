@@ -69,3 +69,20 @@ public struct SoftwareUpdateStatus: Decodable, Encodable {
         return json
     }
 }
+
+extension SoftwareUpdateStatus: Hashable {
+    
+    public var hashValue: Int {
+        
+        return 1
+    }
+}
+
+public func ==(lhs: SoftwareUpdateStatus, rhs: SoftwareUpdateStatus) -> Bool {
+    return lhs.updatestate == rhs.updatestate &&
+        lhs.checkforupdate == rhs.checkforupdate &&
+        lhs.devicetypes == rhs.devicetypes &&
+        lhs.url == rhs.url &&
+        lhs.text == rhs.text &&
+        lhs.notify == rhs.notify
+}

@@ -65,3 +65,18 @@ public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
         return json
     }
 }
+
+extension WhitelistEntry: Hashable {
+    
+    public var hashValue: Int {
+        
+        return Int(identifier)!
+    }
+}
+
+public func ==(lhs: WhitelistEntry, rhs: WhitelistEntry) -> Bool {
+    return lhs.identifier == rhs.identifier &&
+        lhs.name == rhs.identifier &&
+        lhs.lastUseDate == rhs.lastUseDate &&
+        lhs.createDate == rhs.createDate
+}

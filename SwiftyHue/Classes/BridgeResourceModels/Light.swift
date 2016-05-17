@@ -10,7 +10,7 @@ import Foundation
 import Gloss
 
 public class Light: BridgeResource, BridgeResourceDictGenerator {
-
+    
     public typealias AssociatedBridgeResourceType = Light
     
     public let identifier: String
@@ -61,9 +61,33 @@ public class Light: BridgeResource, BridgeResourceDictGenerator {
             "modelid" ~~> self.modelId,
             "uniqueid" ~~> self.uniqueId,
             "manufacturername" ~~> self.manufacturerName,
-            "swversion" ~~> self.swVersion
+            "luminaireuniqueid" ~~> self.luminaireUniqueId,
+            "swversion" ~~> self.swVersion,
+            "pointsymbol" ~~> self.pointsymbol
             ])
         
         return json
     }
+}
+
+extension Light: Hashable {
+    
+    public var hashValue: Int {
+        
+        return Int(self.identifier)!
+    }
+}
+
+public func ==(lhs: Light, rhs: Light) -> Bool {
+    
+    return lhs.identifier == rhs.identifier &&
+        lhs.name == rhs.name &&
+        lhs.state == rhs.state &&
+        lhs.type == rhs.type &&
+        lhs.modelId == rhs.modelId &&
+        lhs.uniqueId == rhs.uniqueId &&
+        lhs.manufacturerName == rhs.manufacturerName &&
+        lhs.luminaireUniqueId == rhs.luminaireUniqueId &&
+        lhs.swVersion == rhs.swVersion &&
+        lhs.pointsymbol == rhs.pointsymbol
 }

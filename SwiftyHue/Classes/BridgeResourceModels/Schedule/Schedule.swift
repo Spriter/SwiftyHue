@@ -9,7 +9,15 @@
 import Foundation
 import Gloss
 
+public func ==(lhs: Schedule, rhs: Schedule) -> Bool {
+    return lhs.identifier == rhs.identifier
+}
+
 public class Schedule: BridgeResource, BridgeResourceDictGenerator {
+    
+    public var hashValue: Int {
+        return 1
+    }
     
     public typealias AssociatedBridgeResourceType = Schedule
     

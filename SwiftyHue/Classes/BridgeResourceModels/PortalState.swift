@@ -57,3 +57,18 @@ public struct PortalState: Decodable, Encodable {
         return json
     }
 }
+
+extension PortalState: Hashable {
+    
+    public var hashValue: Int {
+        
+        return 1
+    }
+}
+
+public func ==(lhs: PortalState, rhs: PortalState) -> Bool {
+    return lhs.signedon == rhs.signedon &&
+        lhs.incoming == rhs.incoming &&
+        lhs.outgoing == rhs.outgoing &&
+        lhs.communication == rhs.communication
+}

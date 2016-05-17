@@ -45,3 +45,17 @@ public struct SoftwareUpdateStatusDeviceTypes: Decodable, Encodable {
         return json
     }
 }
+
+extension SoftwareUpdateStatusDeviceTypes: Hashable {
+    
+    public var hashValue: Int {
+        
+        return 1
+    }
+}
+
+public func ==(lhs: SoftwareUpdateStatusDeviceTypes, rhs: SoftwareUpdateStatusDeviceTypes) -> Bool {
+    return (lhs.bridge ?? false) == (rhs.bridge ?? false) &&
+        (lhs.lights ?? []) == (rhs.lights ?? []) &&
+        (lhs.sensors ?? []) == (rhs.sensors ?? [])
+}

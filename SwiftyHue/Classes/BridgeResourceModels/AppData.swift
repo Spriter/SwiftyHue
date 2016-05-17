@@ -39,3 +39,14 @@ public struct AppData: Decodable, Encodable {
         ])
     }
 }
+
+extension AppData: Hashable {
+    
+    public var hashValue: Int {
+        
+        return version
+    }
+}
+public func ==(lhs: AppData, rhs: AppData) -> Bool {
+    return lhs.version == rhs.version && lhs.data == rhs.data
+}

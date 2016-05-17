@@ -238,3 +238,38 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         return json
     }
 }
+
+extension BridgeConfiguration: Hashable {
+    
+    public var hashValue: Int {
+        
+        return Int(self.identifier)!
+    }
+}
+public func ==(lhs: BridgeConfiguration, rhs: BridgeConfiguration) -> Bool {
+    return lhs.identifier == rhs.identifier &&
+        lhs.name == rhs.name
+        lhs.zigbeeChannel == rhs.zigbeeChannel &&
+        lhs.mac == rhs.mac &&
+        lhs.dhcp == rhs.dhcp &&
+        lhs.ipaddress == rhs.ipaddress &&
+        lhs.netmask == rhs.netmask &&
+        lhs.gateway == rhs.gateway &&
+        lhs.proxyaddress == rhs.proxyaddress &&
+        lhs.proxyport == rhs.proxyport &&
+        lhs.UTC == rhs.UTC &&
+        lhs.localtime == rhs.localtime &&
+        lhs.timezone == rhs.timezone &&
+        lhs.modelId == rhs.modelId &&
+        lhs.swVersion == rhs.swVersion &&
+        lhs.apiVersion == rhs.apiVersion &&
+        lhs.swUpdate == rhs.swUpdate &&
+        lhs.linkbutton == rhs.linkbutton &&
+        lhs.portalServices == rhs.portalServices &&
+        lhs.portalConnection == rhs.portalConnection &&
+        lhs.portalState == rhs.portalState &&
+        lhs.factorynew == rhs.factorynew &&
+        lhs.replacesBridgeId == rhs.replacesBridgeId &&
+        lhs.backup == rhs.backup &&
+        lhs.whitelist == rhs.whitelist
+}

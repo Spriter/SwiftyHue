@@ -20,7 +20,7 @@ public enum RoomClass: String {
 }
 
 public class Group: BridgeResourceDictGenerator, BridgeResource {
-
+    
     public typealias AssociatedBridgeResourceType = Group;
 
     public var identifier: String
@@ -93,4 +93,23 @@ public class Group: BridgeResourceDictGenerator, BridgeResource {
         return json
     }
 
+}
+
+extension Group: Hashable {
+    
+    public var hashValue: Int {
+        
+        return Int(self.identifier)!
+    }
+}
+
+public func ==(lhs: Group, rhs: Group) -> Bool {
+    return lhs.identifier == rhs.identifier &&
+        lhs.name == rhs.identifier &&
+        lhs.action == rhs.action &&
+        (lhs.lightIdentifiers ?? []) == (rhs.lightIdentifiers ?? []) &&
+        lhs.type == rhs.type &&
+        lhs.modelId == rhs.modelId &&
+        lhs.uniqueId == rhs.uniqueId &&
+        lhs.roomClass == rhs.roomClass
 }

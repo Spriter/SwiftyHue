@@ -13,8 +13,16 @@ public enum SensorType: String {
     case ZGPSwitch, ZLLSwitch, ClipSwitch = "Clip Switch", CLIPOpenClose, CLIPPresence, CLIPTemperature, CLIPHumidity, Daylight, CLIPGenericFlag, CLIPGenericStatus
 }
 
+public func ==(lhs: Sensor, rhs: Sensor) -> Bool {
+    return lhs.identifier == rhs.identifier
+}
+
 public class Sensor: BridgeResource, BridgeResourceDictGenerator {
 
+    public var hashValue: Int {
+        return 1
+    }
+    
     public typealias AssociatedBridgeResourceType = Sensor
     
     public let identifier: String
