@@ -3,7 +3,29 @@ Philips Hue SDK written in swift
 
 Work in progress...
 
-# Generate documentation
+## Installation
+
+### CocoaPods
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+```bash
+$ gem install cocoapods
+```
+
+To integrate SwiftyHue into your Xcode project using CocoaPods, specify it in your `Podfile`:
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.0'
+use_frameworks!
+pod 'SwiftyHue', '~> 0.1.2'
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
+## Generate documentation
 
 Install jazzy:
 
