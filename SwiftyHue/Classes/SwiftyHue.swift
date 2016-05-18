@@ -40,6 +40,10 @@ public class SwiftyHue {
         heartbeatManager?.stopHeartbeat()
     }
     
+    public func enableLogging(enabled: Bool) {
+        Log.enabled = enabled
+    }
+    
     // MARK: Private
     private var bridgeAccessConfig: BridgeAccessConfig?;
     private var heartbeatManager: HeartbeatManager?;
