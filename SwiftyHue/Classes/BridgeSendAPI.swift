@@ -42,7 +42,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -60,7 +60,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -85,7 +85,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -105,7 +105,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -126,7 +126,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -145,7 +145,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -169,7 +169,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -194,7 +194,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -210,7 +210,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -228,7 +228,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -252,7 +252,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -274,7 +274,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -292,7 +292,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -315,7 +315,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -336,7 +336,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
     
@@ -352,7 +352,7 @@ public class BridgeSendAPI {
             
         } else {
             
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)])
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
     }
 

@@ -76,24 +76,74 @@ public class HeartbeatManager {
     @objc func timerAction(timer: NSTimer) {
         
         let resourceType: BridgeResourceType = BridgeResourceType(rawValue: timer.userInfo! as! String)!
-            
+        
+        Log.trace("Heartbeat Request", "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercaseString)")
+        
         Alamofire.request(.GET, "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercaseString)", parameters: nil)
             .responseJSON { response in
                 
                 switch response.result {
                 case .Success:
                     
-                    if let resultValueJSON = response.result.value as? JSON {
-                        
-                        for heartbeatProcessor in self.heartbeatProcessors {
-                            heartbeatProcessor.processJSON(resultValueJSON, forResourceType: resourceType)
-                        }
-                    }
+                    self.handleSuccessResponseResult(response.result, resourceType: resourceType)
                     
                 case .Failure(let error):
                     NSNotificationCenter.defaultCenter().postNotificationName(BridgeConnectionStatusNotification.nolocalConnection.rawValue, object: nil)
+                    
+                    Log.error(error)
                 }
         }
     
+    }
+    
+    // MARK: Timer Action Response Handling
+    
+    private func handleSuccessResponseResult(result: Result<AnyObject, NSError>, resourceType: BridgeResourceType) {
+        
+        Log.trace("Heartbeat Response for Resource Type: \(resourceType.rawValue.lowercaseString): ", result.value)
+        
+        if let resultValueJSON = result.value as? JSON {
+            
+            for heartbeatProcessor in self.heartbeatProcessors {
+                heartbeatProcessor.processJSON(resultValueJSON, forResourceType: resourceType)
+            }
+            
+        } else if let resultValueJSONArray = result.value as? [JSON] {
+            
+            self.handleErrors(resultValueJSONArray)
+        }
+    }
+    
+    private func handleErrors(jsonErrorArray: [JSON]) {
+        
+        for jsonError in jsonErrorArray {
+            
+            Log.info("Hearbeat received Error Result", (json: jsonError))
+            var error = Error(json: jsonError)
+            if let error = error {
+                self.notifyAboutError(error)
+            }
+        }
+    }
+    
+    // MARK: Notification
+    
+    private func notifyAboutError(error: Error) {
+        
+        var notification: BridgeConnectionStatusNotification?;
+        
+        switch(error.type) {
+            
+        case .unauthorizedUser:
+            notification = BridgeConnectionStatusNotification(rawValue: "notAuthenticated")
+        default:
+            break;
+        }
+        
+        if let notification = notification {
+            
+            Log.trace("Post Notification:", notification.rawValue)
+            NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
+        }
     }
 }
