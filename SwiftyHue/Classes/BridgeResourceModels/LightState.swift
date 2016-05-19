@@ -9,24 +9,7 @@
 import Foundation
 import Gloss
 
-public func ==(lhs: LightState, rhs: LightState) -> Bool {
-    return (lhs.on ?? false) == (rhs.on ?? false) &&
-        lhs.brightness == rhs.brightness &&
-        (lhs.hue ?? -1) == (rhs.hue ?? -1) &&
-        (lhs.saturation ?? -1) == (rhs.saturation ?? -1) &&
-        (lhs.xy ?? [-1, -1]) == (rhs.xy ?? [-1, -1]) &&
-        lhs.ct == rhs.ct &&
-        lhs.alert == rhs.alert &&
-        lhs.effect == rhs.effect &&
-        lhs.colormode == rhs.colormode &&
-        lhs.reachable == rhs.reachable
-}
-
 public struct LightState: Decodable, Encodable {
-    
-    public var hashValue: Int {
-        return (self.brightness ?? 0) + (self.hue ?? 0) + (self.saturation ?? 0)
-    }
     
     /**
      The on off status to set the light to.
@@ -101,4 +84,24 @@ public struct LightState: Decodable, Encodable {
     
         ])
     }
+}
+
+extension LightState: Hashable {
+    
+    public var hashValue: Int {
+        return (self.brightness ?? 0) + (self.hue ?? 0) + (self.saturation ?? 0)
+    }
+}
+
+public func ==(lhs: LightState, rhs: LightState) -> Bool {
+    return lhs.on == rhs.on &&
+        lhs.brightness == rhs.brightness &&
+        lhs.hue == rhs.hue &&
+        lhs.saturation == rhs.saturation &&
+        (lhs.xy ?? [-1, -1]) == (rhs.xy ?? [-1, -1]) &&
+        lhs.ct == rhs.ct &&
+        lhs.alert == rhs.alert &&
+        lhs.effect == rhs.effect &&
+        lhs.colormode == rhs.colormode &&
+        lhs.reachable == rhs.reachable
 }
