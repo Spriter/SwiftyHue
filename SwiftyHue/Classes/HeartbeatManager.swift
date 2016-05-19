@@ -31,8 +31,8 @@ public class HeartbeatManager {
     private var localHeartbeatTimerIntervals = [BridgeResourceType: NSTimeInterval]()
     private var heartbeatProcessors: [HeartbeatProcessor];
     
-    private var lastLocolConnectionNotificationPostTime: NSTimeInterval?
-    private var lastNoLocolConnectionNotificationPostTime: NSTimeInterval?
+    private var lastLocalConnectionNotificationPostTime: NSTimeInterval?
+    private var lastNoLocalConnectionNotificationPostTime: NSTimeInterval?
 
     public init(bridgeAccesssConfig: BridgeAccessConfig, heartbeatProcessors: [HeartbeatProcessor]) {
         self.bridgeAccesssConfig = bridgeAccesssConfig
@@ -134,25 +134,25 @@ public class HeartbeatManager {
     
     private func notifyAboutLocalConnection() {
         
-        if lastLocolConnectionNotificationPostTime == nil || NSDate().timeIntervalSince1970 - lastLocolConnectionNotificationPostTime! > 10 {
+        if lastLocalConnectionNotificationPostTime == nil || NSDate().timeIntervalSince1970 - lastLocalConnectionNotificationPostTime! > 10 {
             
             let notification = BridgeHeartbeatConnectionStatusNotification(rawValue: "localConnection")!
             Log.info("Post Notification:", notification.rawValue)
             NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
             
-            self.lastLocolConnectionNotificationPostTime = NSDate().timeIntervalSince1970;
+            self.lastLocalConnectionNotificationPostTime = NSDate().timeIntervalSince1970;
         }
     }
     
     private func notifyAboutNoLocalConnection() {
         
-        if lastNoLocolConnectionNotificationPostTime == nil || NSDate().timeIntervalSince1970 - lastNoLocolConnectionNotificationPostTime! > 10 {
+        if lastNoLocalConnectionNotificationPostTime == nil || NSDate().timeIntervalSince1970 - lastNoLocalConnectionNotificationPostTime! > 10 {
             
             let notification = BridgeHeartbeatConnectionStatusNotification(rawValue: "nolocalConnection")!
             Log.info("Post Notification:", notification.rawValue)
             NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
             
-            self.lastLocolConnectionNotificationPostTime = NSDate().timeIntervalSince1970;
+            self.lastLocalConnectionNotificationPostTime = NSDate().timeIntervalSince1970;
         }
     }
     
