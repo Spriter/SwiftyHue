@@ -37,3 +37,8 @@ public class PresenceSensorState: SensorState {
         return nil
     }
 }
+
+public func ==(lhs: PresenceSensorState, rhs: PresenceSensorState) -> Bool {
+    return lhs.lastUpdated == rhs.lastUpdated &&
+        lhs.presence == rhs.presence
+}

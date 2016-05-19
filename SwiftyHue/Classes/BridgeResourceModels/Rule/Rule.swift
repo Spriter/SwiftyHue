@@ -9,15 +9,7 @@
 import Foundation
 import Gloss
 
-public func ==(lhs: Rule, rhs: Rule) -> Bool {
-    return lhs.identifier == rhs.identifier
-}
-
 public class Rule: BridgeResource, BridgeResourceDictGenerator {
-    
-    public var hashValue: Int {
-        return 1
-    }
     
     public typealias AssociatedBridgeResourceType = Rule
     
@@ -75,4 +67,24 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
         
         return json
     }
+}
+
+extension Rule: Hashable {
+    
+    public var hashValue: Int {
+        
+        return Int(self.identifier)!
+    }
+}
+
+public func ==(lhs: Rule, rhs: Rule) -> Bool {
+    return lhs.identifier == rhs.identifier &&
+        lhs.name  == rhs.name &&
+        lhs.created  == rhs.created &&
+        lhs.lasttriggered == rhs.lasttriggered &&
+        lhs.timestriggered  == rhs.timestriggered &&
+        lhs.owner  == rhs.owner &&
+        lhs.status  == rhs.status &&
+        lhs.conditions  == rhs.conditions &&
+        lhs.actions  == rhs.actions
 }

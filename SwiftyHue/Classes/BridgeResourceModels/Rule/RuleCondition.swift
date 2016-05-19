@@ -43,3 +43,17 @@ public class RuleCondition: Decodable, Encodable  {
         return json
     }
 }
+
+extension RuleCondition: Hashable {
+    
+    public var hashValue: Int {
+        
+        return 1
+    }
+}
+
+public func ==(lhs: RuleCondition, rhs: RuleCondition) -> Bool {
+    return lhs.address == rhs.address &&
+        lhs.conditionOperator  == rhs.conditionOperator &&
+        lhs.value  == rhs.value
+}

@@ -37,3 +37,8 @@ public class OpenCloseSensorState: SensorState {
         return nil
     }
 }
+
+public func ==(lhs: OpenCloseSensorState, rhs: OpenCloseSensorState) -> Bool {
+    return lhs.lastUpdated == rhs.lastUpdated &&
+        lhs.open == rhs.open
+}

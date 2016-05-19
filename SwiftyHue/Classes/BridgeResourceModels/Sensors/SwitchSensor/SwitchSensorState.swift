@@ -15,3 +15,7 @@ public class SwitchSensorState: SensorState {
         super.init(json: json)
     }
 }
+
+public func ==(lhs: SwitchSensorState, rhs: SwitchSensorState) -> Bool {
+    return lhs.lastUpdated == rhs.lastUpdated
+}

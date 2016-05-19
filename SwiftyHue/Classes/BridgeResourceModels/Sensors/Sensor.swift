@@ -13,15 +13,7 @@ public enum SensorType: String {
     case ZGPSwitch, ZLLSwitch, ClipSwitch = "Clip Switch", CLIPOpenClose, CLIPPresence, CLIPTemperature, CLIPHumidity, Daylight, CLIPGenericFlag, CLIPGenericStatus
 }
 
-public func ==(lhs: Sensor, rhs: Sensor) -> Bool {
-    return lhs.identifier == rhs.identifier
-}
-
 public class Sensor: BridgeResource, BridgeResourceDictGenerator {
-
-    public var hashValue: Int {
-        return 1
-    }
     
     public typealias AssociatedBridgeResourceType = Sensor
     
@@ -76,4 +68,23 @@ public class Sensor: BridgeResource, BridgeResourceDictGenerator {
         
         return json
     }
+}
+
+extension Sensor: Hashable {
+    
+    public var hashValue: Int {
+        
+        return 1
+    }
+}
+
+public func ==(lhs: Sensor, rhs: Sensor) -> Bool {
+    return lhs.identifier == rhs.identifier &&
+        lhs.name == rhs.name &&
+        lhs.state == rhs.state &&
+        lhs.config == rhs.config &&
+        lhs.type == rhs.type &&
+        lhs.modelId == rhs.modelId &&
+        lhs.manufacturerName == rhs.manufacturerName &&
+        lhs.swVersion == rhs.swVersion
 }

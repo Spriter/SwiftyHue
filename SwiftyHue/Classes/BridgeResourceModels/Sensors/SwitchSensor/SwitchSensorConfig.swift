@@ -15,3 +15,10 @@ public class SwitchSensorConfig: SensorConfig {
         super.init(json: json)
     }
 }
+
+public func ==(lhs: SwitchSensorConfig, rhs: SwitchSensorConfig) -> Bool {
+    return lhs.on == rhs.on &&
+        lhs.reachable == rhs.reachable &&
+        lhs.battery == rhs.battery &&
+        lhs.url == rhs.url
+}

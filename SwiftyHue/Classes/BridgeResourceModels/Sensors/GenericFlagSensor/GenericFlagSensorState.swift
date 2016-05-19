@@ -37,3 +37,8 @@ public class GenericFlagSensorState: SensorState {
         return nil
     }
 }
+
+public func ==(lhs: GenericFlagSensorState, rhs: GenericFlagSensorState) -> Bool {
+    return lhs.lastUpdated == rhs.lastUpdated &&
+        lhs.flag == rhs.flag
+}

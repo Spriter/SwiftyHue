@@ -50,3 +50,14 @@ public class DaylightSensorConfig: SensorConfig {
         return nil
     }
 }
+
+public func ==(lhs: DaylightSensorConfig, rhs: DaylightSensorConfig) -> Bool {
+    return lhs.on == rhs.on &&
+        lhs.reachable == rhs.reachable &&
+        lhs.battery == rhs.battery &&
+        lhs.url == rhs.url &&
+        lhs.long == rhs.long &&
+        lhs.lat == rhs.lat &&
+        lhs.sunriseOffset == rhs.sunriseOffset &&
+        lhs.sunsetOffset == rhs.sunsetOffset
+}
