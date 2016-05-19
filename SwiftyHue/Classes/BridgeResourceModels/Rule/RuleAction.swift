@@ -13,7 +13,7 @@ public class RuleAction: Decodable, Encodable {
     
     public let address: String
     public let method: String
-    public let body: JSON
+    public let body: NSDictionary
     
     public required init?(json: JSON) {
         
@@ -38,4 +38,18 @@ public class RuleAction: Decodable, Encodable {
         
         return json
     }
+}
+
+extension RuleAction: Hashable {
+    
+    public var hashValue: Int {
+        
+        return 1
+    }
+}
+
+public func ==(lhs: RuleAction, rhs: RuleAction) -> Bool {
+    return lhs.address == rhs.address &&
+            lhs.method  == rhs.method &&
+            lhs.body  == rhs.body
 }

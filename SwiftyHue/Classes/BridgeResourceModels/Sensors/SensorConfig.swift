@@ -49,3 +49,18 @@ public class SensorConfig: Decodable, Encodable {
         return json
     }
 }
+
+extension SensorConfig: Hashable {
+    
+    public var hashValue: Int {
+        
+        return 1
+    }
+}
+
+public func ==(lhs: SensorConfig, rhs: SensorConfig) -> Bool {
+    return lhs.on == rhs.on &&
+        lhs.reachable == rhs.reachable &&
+        lhs.battery == rhs.battery &&
+        lhs.url == rhs.url
+}

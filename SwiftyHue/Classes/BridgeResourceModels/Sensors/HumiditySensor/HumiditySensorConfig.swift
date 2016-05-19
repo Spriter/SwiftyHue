@@ -15,3 +15,10 @@ public class HumiditySensorConfig: SensorConfig {
         super.init(json: json)
     }
 }
+
+public func ==(lhs: HumiditySensorConfig, rhs: HumiditySensorConfig) -> Bool {
+    return lhs.on == rhs.on &&
+        lhs.reachable == rhs.reachable &&
+        lhs.battery == rhs.battery &&
+        lhs.url == rhs.url
+}

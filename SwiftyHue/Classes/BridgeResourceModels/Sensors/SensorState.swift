@@ -31,3 +31,15 @@ public class SensorState: Decodable, Encodable {
         return json
     }
 }
+
+extension SensorState: Hashable {
+    
+    public var hashValue: Int {
+        
+        return 1
+    }
+}
+
+public func ==(lhs: SensorState, rhs: SensorState) -> Bool {
+    return lhs.lastUpdated == rhs.lastUpdated
+}

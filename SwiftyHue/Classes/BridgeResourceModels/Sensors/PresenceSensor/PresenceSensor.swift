@@ -17,3 +17,14 @@ public class PresenceSensor: Sensor {
         super.init(json: json)
     }
 }
+
+public func ==(lhs: PresenceSensor, rhs: PresenceSensor) -> Bool {
+    return lhs.identifier == rhs.identifier &&
+        lhs.name == rhs.name &&
+        lhs.state == rhs.state &&
+        lhs.config == rhs.config &&
+        lhs.type == rhs.type &&
+        lhs.modelId == rhs.modelId &&
+        lhs.manufacturerName == rhs.manufacturerName &&
+        lhs.swVersion == rhs.swVersion
+}

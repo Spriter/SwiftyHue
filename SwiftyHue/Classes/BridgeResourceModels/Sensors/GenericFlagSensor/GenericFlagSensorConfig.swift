@@ -16,3 +16,10 @@ public class GenericFlagSensorConfig: SensorConfig {
         super.init(json: json)
     }
 }
+
+public func ==(lhs: DaylightSensorConfig, rhs: DaylightSensorConfig) -> Bool {
+    return lhs.on == rhs.on &&
+        lhs.reachable == rhs.reachable &&
+        lhs.battery == rhs.battery &&
+        lhs.url == rhs.url
+}

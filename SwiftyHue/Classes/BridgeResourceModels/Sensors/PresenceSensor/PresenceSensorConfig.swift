@@ -15,3 +15,10 @@ public class PresenceSensorConfig: SensorConfig {
         super.init(json: json)
     }
 }
+
+public func ==(lhs: PresenceSensorConfig, rhs: PresenceSensorConfig) -> Bool {
+    return lhs.on == rhs.on &&
+        lhs.reachable == rhs.reachable &&
+        lhs.battery == rhs.battery &&
+        lhs.url == rhs.url
+}

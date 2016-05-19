@@ -37,3 +37,8 @@ public class DaylightSensorState: SensorState {
         return nil
     }
 }
+
+public func ==(lhs: DaylightSensorState, rhs: DaylightSensorState) -> Bool {
+    return lhs.lastUpdated == rhs.lastUpdated &&
+        lhs.daylight == rhs.daylight
+}
