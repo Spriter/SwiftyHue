@@ -22,6 +22,7 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        swiftyHue.setMinLevelForLogMessages(.Debug)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -38,7 +39,6 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
 
             self.presentViewController(controller, animated: false, completion: nil)
         }
-        
 
     }
     

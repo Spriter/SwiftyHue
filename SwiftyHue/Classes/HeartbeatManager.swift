@@ -94,7 +94,7 @@ public class HeartbeatManager {
                 case .Failure(let error):
                     
                     self.notifyAboutNoLocalConnection()
-                    Log.error(error)
+                    Log.trace("Heartbeat Request Error: ", error)
                 }
         }
     
@@ -141,6 +141,9 @@ public class HeartbeatManager {
             NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
             
             self.lastLocalConnectionNotificationPostTime = NSDate().timeIntervalSince1970;
+            
+            // Make sure we instant notify about losing connection
+            self.lastNoLocalConnectionNotificationPostTime = nil;
         }
     }
     
@@ -152,7 +155,10 @@ public class HeartbeatManager {
             Log.info("Post Notification:", notification.rawValue)
             NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
             
-            self.lastLocalConnectionNotificationPostTime = NSDate().timeIntervalSince1970;
+            self.lastNoLocalConnectionNotificationPostTime = NSDate().timeIntervalSince1970;
+            
+            // Make sure we instant notify about getting connection
+            self.lastLocalConnectionNotificationPostTime = nil;
         }
     }
     

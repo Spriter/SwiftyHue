@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftyHue
-
+import Log
 
 public class SwiftyHue {
     
@@ -40,8 +40,18 @@ public class SwiftyHue {
         heartbeatManager?.stopHeartbeat()
     }
     
+    // MARK: Logging
+    
     public func enableLogging(enabled: Bool) {
         Log.enabled = enabled
+    }
+    
+    /**
+     The minimum level of severity for the Logger.
+     */
+    public func setMinLevelForLogMessages(level: Level) {
+        
+        Log.minLevel = level
     }
     
     // MARK: Private
@@ -50,7 +60,7 @@ public class SwiftyHue {
     private var resourceCacheHeartbeatProcessor: ResourceCacheHeartbeatProcessor?;
 
     public init() {
-        
+
     }
 }
 
