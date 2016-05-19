@@ -61,6 +61,7 @@ public class SwiftyHue {
 
     public init() {
 
+        enableLogging(false)
     }
 }
 

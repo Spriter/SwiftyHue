@@ -11,7 +11,14 @@ import Gloss
 
 public struct AppData: Decodable, Encodable {
     
+    /**
+        App specific version of the data field. App should take versioning into account when parsing the data string.
+     */
     public let version: Int
+    
+    /**
+        App specific data. Free format string.
+     */
     public let data: String
     
     public init(version: Int, data: String) {

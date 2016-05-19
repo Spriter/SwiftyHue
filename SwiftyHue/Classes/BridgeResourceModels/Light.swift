@@ -13,15 +13,54 @@ public class Light: BridgeResource, BridgeResourceDictGenerator {
     
     public typealias AssociatedBridgeResourceType = Light
     
+    /**
+     Identifier of the light.
+     */
     public let identifier: String
+    
+    /**
+        A unique, editable name given to the light.
+     */
     public let name: String
+    
+    /**
+        Details the state of the light.     
+     */
     public let state: LightState
+    
+    /**
+        A fixed name describing the type of light e.g. “Extended color light”.
+     */
     public let type: String
+    
+    /**
+        The hardware model of the light.
+     */
     public let modelId: String
+    
+    /**
+        As of 1.4. Unique id of the device. The MAC address of the device with a unique endpoint id in the form: AA:BB:CC:DD:EE:FF:00:11-XX
+     */
     public let uniqueId: String
+    
+    /**
+        As of 1.7. The manufacturer name.
+     */
     public let manufacturerName: String
+    
+    /**
+        As of 1.9. Unique ID of the luminaire the light is a part of in the format: AA:BB:CC:DD-XX-YY.  AA:BB:, ... represents the hex of the luminaireid, XX the lightsource position (incremental but may contain gaps) and YY the lightpoint position (index of light in luminaire group).  A gap in the lightpoint position indicates an incomplete luminaire (light search required to discover missing light points in this case).
+     */
     public let luminaireUniqueId: String?
+    
+    /**
+        An identifier for the software version running on the light.
+     */
     public let swVersion: String
+    
+    /**
+        This parameter is reserved for future functionality. As from 1.11 point symbols are no longer returned.
+     */
     public let pointsymbol: String?
     
     public required init?(json: JSON) {

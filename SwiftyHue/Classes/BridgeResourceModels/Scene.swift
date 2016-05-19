@@ -35,15 +35,51 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
     
     public typealias AssociatedBridgeResourceType = PartialScene
     
+    /**
+        The identifier of this scene.
+     */
     public let identifier: String
+    
+    /**
+        The name of this scene.
+     */
     public let name: String
+
+    /**
+        The identifiers of the lights controlled by this scene.
+     */
     public let lightIdentifiers: [String]
+    
+    /**
+        Whitelist user that created or modified the content of the scene. Note that changing name does not change the owner..
+     */
     public let owner: String
+    
+    /**
+        Indicates whether the scene can be automatically deleted by the bridge. Only available by POSTSet to 'false' when omitted. Legacy scenes created by PUT are defaulted to true. When set to 'false' the bridge keeps the scene until deleted by an application.
+     */
     public let recycle: Bool
+    
+    /**
+        Indicates that the scene is locked by a rule or a schedule and cannot be deleted until all resources requiring or that reference the scene are deleted.
+     */
     public let locked: Bool
+    
+    /**
+        App specific data linked to the scene.  Each individual application should take responsibility for the data written in this field.
+     */
     public let appData: AppData?
-    public let picture: String?
+    
+    /**
+        UTC time the scene has been created or has been updated by a PUT. Will be null when unknown (legacy scenes).
+     */
     public let lastUpdated: NSDate?
+    
+    /**
+        Version of scene document:
+        1 - Scene created via PUT, lightstates will be empty.
+        2 - Scene created via POST lightstates available.
+    */
     public let version: Int
     
     public required init?(json: JSON) {
@@ -69,7 +105,6 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
         let dateFormatter = NSDateFormatter.hueApiDateFormatter
         
         self.appData = "appdata" <~~ json
-        picture = "picture" <~~ json
         lastUpdated = Decoder.decodeDate("lastupdated", dateFormatter:dateFormatter)(json)
     }
     
@@ -85,7 +120,6 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
             "recycle" ~~> self.recycle,
             "locked" ~~> self.locked,
             "appdata" ~~> self.appData,
-            "picture" ~~> self.picture,
             "lastupdated" ~~> Encoder.encodeDate("lastupdated", dateFormatter: dateFormatter)(self.lastUpdated),
             "version" ~~> self.version
             ])
@@ -111,7 +145,6 @@ public func ==(lhs: PartialScene, rhs: PartialScene) -> Bool {
         lhs.recycle == rhs.recycle &&
         lhs.locked == rhs.locked &&
         lhs.appData == rhs.appData &&
-        lhs.picture == rhs.picture &&
         lhs.lastUpdated == rhs.lastUpdated &&
         lhs.version == rhs.version
 }
