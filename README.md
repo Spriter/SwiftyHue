@@ -1,3 +1,8 @@
+<p align="left">
+    <a href="https://img.shields.io/cocoapods/v/SwiftyHue.svg"><img alt="CocoaPods compatible" src="https://img.shields.io/cocoapods/v/SwiftyHue.svg"/></a>
+    <a href="https://img.shields.io/cocoapods/p/SwiftyHue.svg"><img alt="Platform" src="https://img.shields.io/cocoapods/p/SwiftyHue.svg"/></a>
+</p>
+
 # SwiftyHue
 Philips Hue SDK written in swift
 
