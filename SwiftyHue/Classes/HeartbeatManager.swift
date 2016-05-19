@@ -10,7 +10,7 @@ import Foundation
 import Gloss
 import Alamofire
 
-public enum BridgeConnectionStatusNotification: String {
+public enum BridgeHeartbeatConnectionStatusNotification: String {
     
     case localConnection, notAuthenticated, nolocalConnection
 }
@@ -30,6 +30,9 @@ public class HeartbeatManager {
     private var localHeartbeatTimers = [BridgeResourceType: NSTimer]()
     private var localHeartbeatTimerIntervals = [BridgeResourceType: NSTimeInterval]()
     private var heartbeatProcessors: [HeartbeatProcessor];
+    
+    private var lastLocolConnectionNotificationPostTime: NSTimeInterval?
+    private var lastNoLocolConnectionNotificationPostTime: NSTimeInterval?
 
     public init(bridgeAccesssConfig: BridgeAccessConfig, heartbeatProcessors: [HeartbeatProcessor]) {
         self.bridgeAccesssConfig = bridgeAccesssConfig
@@ -86,10 +89,11 @@ public class HeartbeatManager {
                 case .Success:
                     
                     self.handleSuccessResponseResult(response.result, resourceType: resourceType)
+                    self.notifyAboutLocalConnection()
                     
                 case .Failure(let error):
-                    NSNotificationCenter.defaultCenter().postNotificationName(BridgeConnectionStatusNotification.nolocalConnection.rawValue, object: nil)
                     
+                    self.notifyAboutNoLocalConnection()
                     Log.error(error)
                 }
         }
@@ -128,14 +132,38 @@ public class HeartbeatManager {
     
     // MARK: Notification
     
+    private func notifyAboutLocalConnection() {
+        
+        if lastLocolConnectionNotificationPostTime == nil || NSDate().timeIntervalSince1970 - lastLocolConnectionNotificationPostTime! > 10 {
+            
+            let notification = BridgeHeartbeatConnectionStatusNotification(rawValue: "localConnection")!
+            Log.info("Post Notification:", notification.rawValue)
+            NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
+            
+            self.lastLocolConnectionNotificationPostTime = NSDate().timeIntervalSince1970;
+        }
+    }
+    
+    private func notifyAboutNoLocalConnection() {
+        
+        if lastNoLocolConnectionNotificationPostTime == nil || NSDate().timeIntervalSince1970 - lastNoLocolConnectionNotificationPostTime! > 10 {
+            
+            let notification = BridgeHeartbeatConnectionStatusNotification(rawValue: "nolocalConnection")!
+            Log.info("Post Notification:", notification.rawValue)
+            NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
+            
+            self.lastLocolConnectionNotificationPostTime = NSDate().timeIntervalSince1970;
+        }
+    }
+    
     private func notifyAboutError(error: Error) {
         
-        var notification: BridgeConnectionStatusNotification?;
+        var notification: BridgeHeartbeatConnectionStatusNotification?;
         
         switch(error.type) {
             
         case .unauthorizedUser:
-            notification = BridgeConnectionStatusNotification(rawValue: "notAuthenticated")
+            notification = BridgeHeartbeatConnectionStatusNotification(rawValue: "notAuthenticated")
         default:
             break;
         }
