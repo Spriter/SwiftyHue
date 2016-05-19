@@ -17,7 +17,7 @@ public class GenericFlagSensorConfig: SensorConfig {
     }
 }
 
-public func ==(lhs: DaylightSensorConfig, rhs: DaylightSensorConfig) -> Bool {
+public func ==(lhs: GenericFlagSensorConfig, rhs: GenericFlagSensorConfig) -> Bool {
     return lhs.on == rhs.on &&
         lhs.reachable == rhs.reachable &&
         lhs.battery == rhs.battery &&
