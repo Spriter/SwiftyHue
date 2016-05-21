@@ -74,6 +74,10 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
         } else if segue.identifier == "RulesSegue" {
             
             destController.resourceTypeToDisplay = .Rules
+            
+        } else if segue.identifier == "ConfigSegue" {
+            
+            destController.resourceTypeToDisplay = .Config
         }
     }
 

@@ -63,7 +63,10 @@ class BridgeResourceTableViewController: UITableViewController {
                 }
                 
             case .Config:
-                break;
+                
+                if let config = resourceCache.bridgeConfiguration {
+                    bridgeResources.append(config)
+                }
             
             }
         }
