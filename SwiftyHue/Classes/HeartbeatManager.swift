@@ -56,6 +56,9 @@ public class HeartbeatManager {
        
         for (resourceType, timerInterval) in localHeartbeatTimerIntervals {
             
+            // Do Initial Request
+            doRequestForResourceType(resourceType)
+            
             // Create Timer
             let timer = NSTimer(timeInterval: timerInterval, target: self, selector: #selector(HeartbeatManager.timerAction), userInfo: resourceType.rawValue, repeats: true);
             
@@ -79,6 +82,10 @@ public class HeartbeatManager {
     @objc func timerAction(timer: NSTimer) {
         
         let resourceType: BridgeResourceType = BridgeResourceType(rawValue: timer.userInfo! as! String)!
+        doRequestForResourceType(resourceType)
+    }
+    
+    private func doRequestForResourceType(resourceType: BridgeResourceType) {
         
         Log.trace("Heartbeat Request", "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercaseString)")
         
@@ -97,7 +104,6 @@ public class HeartbeatManager {
                     Log.trace("Heartbeat Request Error: ", error)
                 }
         }
-    
     }
     
     // MARK: Timer Action Response Handling
