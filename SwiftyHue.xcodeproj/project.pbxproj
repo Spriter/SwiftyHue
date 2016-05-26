@@ -7,17 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F5DC71F1CF6660100CCBAE9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5DC7171CF665E700CCBAE9 /* Alamofire.framework */; };
-		1F5DC7201CF6660100CCBAE9 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5DC7181CF665E700CCBAE9 /* CocoaAsyncSocket.framework */; };
-		1F5DC7211CF6660100CCBAE9 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5DC7191CF665E700CCBAE9 /* Gloss.framework */; };
-		1F5DC7221CF6660100CCBAE9 /* Log.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5DC71A1CF665E700CCBAE9 /* Log.framework */; };
-		1F5DC7231CF6661700CCBAE9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5DC7171CF665E700CCBAE9 /* Alamofire.framework */; };
-		1F5DC7241CF6661700CCBAE9 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5DC7191CF665E700CCBAE9 /* Gloss.framework */; };
-		1F5DC7251CF6661700CCBAE9 /* Log.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5DC71A1CF665E700CCBAE9 /* Log.framework */; };
-		1F5DC7261CF6663000CCBAE9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5DC7171CF665E700CCBAE9 /* Alamofire.framework */; };
-		1F5DC7271CF6663000CCBAE9 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5DC7181CF665E700CCBAE9 /* CocoaAsyncSocket.framework */; };
-		1F5DC7281CF6663000CCBAE9 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5DC7191CF665E700CCBAE9 /* Gloss.framework */; };
-		1F5DC7291CF6663000CCBAE9 /* Log.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5DC71A1CF665E700CCBAE9 /* Log.framework */; };
 		1F6F02C31CF64D0B0041C739 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F02B71CF64D0B0041C739 /* AppDelegate.swift */; };
 		1F6F02C41CF64D0B0041C739 /* BridgeAccessConfigPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F02B91CF64D0B0041C739 /* BridgeAccessConfigPresentationViewController.swift */; };
 		1F6F02C51CF64D0B0041C739 /* BridgePushLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F02BA1CF64D0B0041C739 /* BridgePushLinkViewController.swift */; };
@@ -295,10 +284,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1F5DC7171CF665E700CCBAE9 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/tvOS/Alamofire.framework; sourceTree = "<group>"; };
-		1F5DC7181CF665E700CCBAE9 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/tvOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
-		1F5DC7191CF665E700CCBAE9 /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/tvOS/Gloss.framework; sourceTree = "<group>"; };
-		1F5DC71A1CF665E700CCBAE9 /* Log.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Log.framework; path = Carthage/Build/tvOS/Log.framework; sourceTree = "<group>"; };
 		1F6F02B61CF64CEF0041C739 /* SwiftyHue Example-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwiftyHue Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		1F6F02B71CF64D0B0041C739 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F6F02B91CF64D0B0041C739 /* BridgeAccessConfigPresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAccessConfigPresentationViewController.swift; sourceTree = "<group>"; };
@@ -421,10 +406,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F5DC7261CF6663000CCBAE9 /* Alamofire.framework in Frameworks */,
-				1F5DC7271CF6663000CCBAE9 /* CocoaAsyncSocket.framework in Frameworks */,
-				1F5DC7281CF6663000CCBAE9 /* Gloss.framework in Frameworks */,
-				1F5DC7291CF6663000CCBAE9 /* Log.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,9 +413,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F5DC7231CF6661700CCBAE9 /* Alamofire.framework in Frameworks */,
-				1F5DC7241CF6661700CCBAE9 /* Gloss.framework in Frameworks */,
-				1F5DC7251CF6661700CCBAE9 /* Log.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,10 +420,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F5DC71F1CF6660100CCBAE9 /* Alamofire.framework in Frameworks */,
-				1F5DC7201CF6660100CCBAE9 /* CocoaAsyncSocket.framework in Frameworks */,
-				1F5DC7211CF6660100CCBAE9 /* Gloss.framework in Frameworks */,
-				1F5DC7221CF6660100CCBAE9 /* Log.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,7 +467,6 @@
 		1FEF51C41CF5FEA200446694 = {
 			isa = PBXGroup;
 			children = (
-				1FEF56AB1CF6427E00446694 /* Frameworks */,
 				1FEF51FE1CF6035C00446694 /* Metadata */,
 				1FEF51F31CF5FFEB00446694 /* Sources */,
 				1FEF52151CF605CD00446694 /* SwiftyHue iOSTests */,
@@ -825,17 +798,6 @@
 				1FEF567A1CF6401400446694 /* BridgeValidator.swift */,
 			);
 			path = Validator;
-			sourceTree = "<group>";
-		};
-		1FEF56AB1CF6427E00446694 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1F5DC7171CF665E700CCBAE9 /* Alamofire.framework */,
-				1F5DC7181CF665E700CCBAE9 /* CocoaAsyncSocket.framework */,
-				1F5DC7191CF665E700CCBAE9 /* Gloss.framework */,
-				1F5DC71A1CF665E700CCBAE9 /* Log.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1513,12 +1475,14 @@
 		1FEF51C91CF5FEA200446694 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
 		};
 		1FEF51CA1CF5FEA200446694 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
 		};
@@ -1553,11 +1517,7 @@
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Alamofire/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/CocoaAsyncSocket/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Gloss/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Log/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1621,11 +1581,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Alamofire/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/CocoaAsyncSocket/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Gloss/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Log/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1681,10 +1637,7 @@
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Alamofire/build/Debug-watchos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Gloss/build/Debug-watchos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Log/build/Debug-watchos",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+					"$(PROJECT_DIR)/Carthage/Build/watchOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1747,10 +1700,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Alamofire/build/Debug-watchos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Gloss/build/Debug-watchos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Log/build/Debug-watchos",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+					"$(PROJECT_DIR)/Carthage/Build/watchOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1805,10 +1755,6 @@
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Alamofire/build/Debug-appletvos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/CocoaAsyncSocket/build/Debug-appletvos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Gloss/build/Debug-appletvos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Log/build/Debug-appletvos",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1871,10 +1817,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Alamofire/build/Debug-appletvos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/CocoaAsyncSocket/build/Debug-appletvos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Gloss/build/Debug-appletvos",
-					"$(PROJECT_DIR)/Carthage/Checkouts/Log/build/Debug-appletvos",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2016,6 +1958,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2068,6 +2011,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
