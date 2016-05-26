@@ -299,6 +299,7 @@
 		1F6F02C21CF64D0B0041C739 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1F6F02CE1CF64D310041C739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		1F6F02D01CF64D310041C739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		1F74BF0D1CF799490048044B /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		1FEF51D01CF5FEEF00446694 /* SwiftyHue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyHue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FEF51DE1CF5FF1200446694 /* SwiftyHue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyHue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FEF51F41CF6001E00446694 /* Info-iOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
@@ -510,6 +511,7 @@
 		1FEF51FE1CF6035C00446694 /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				1F74BF0D1CF799490048044B /* Cartfile */,
 				1FEF56AC1CF642A300446694 /* Cartfile.private */,
 				1FEF51FF1CF6035C00446694 /* LICENSE */,
 				1FEF52001CF6035C00446694 /* README.md */,
