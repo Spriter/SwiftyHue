@@ -1477,14 +1477,14 @@
 		1FEF51C91CF5FEA200446694 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				VALID_ARCHS = "i386 x86_64 arm64 armv7k";
+				VALID_ARCHS = "i386 x86_64 arm64 armv7k armv7";
 			};
 			name = Debug;
 		};
 		1FEF51CA1CF5FEA200446694 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				VALID_ARCHS = "i386 x86_64 arm64 armv7k";
+				VALID_ARCHS = "i386 x86_64 arm64 armv7k armv7";
 			};
 			name = Release;
 		};
