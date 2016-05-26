@@ -64,3 +64,13 @@ We use ['Log'](https://github.com/delba/Log) for Logging. Log` is a powerful log
 We'd love to see your ideas for improving this repo! The best way to contribute is by submitting a pull request. We'll do our best to respond to your patch as soon as possible. You can also submit a issue if you find bugs. :octocat:
 
 Please make sure to follow our general coding style and add test coverage for new features!
+
+### Needs
+You need [Carthage](https://github.com/Carthage/Carthage) to work on the SwiftyHue Project.
+If you have Carthage installed just run
+```bash
+$ carthage bootstrap
+```
+in the root directory of the project. 
+Remember to build the SwiftyHue framework targets to run the example application targets.
+
