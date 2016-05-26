@@ -42,6 +42,36 @@ Then, run the following command:
 $ pod install
 ```
 
+#### Example with submodules
+
+**SwiftyHue/Base:** The core functionality of SwiftyHue.
+
+**SwiftyHue/BridgeServices:** Provides classes to find bridges in a network and authenticate with them.
+
+```ruby
+target 'MyApp' do
+  use_frameworks!
+
+  pod ’SwiftyHue’, '~> 0.1.6'
+
+end
+
+target 'MyApp tvOS' do
+    use_frameworks!
+    
+    pod ’SwiftyHue’, '~> 0.1.6'
+    
+end
+
+target 'MyApp watchOS Extension' do
+    use_frameworks!
+    
+    pod ’SwiftyHue/Base’, '~> 0.1.6'
+    
+end
+```
+Note: You can use SwiftyHue/Base submodule to use SwiftyHue also on watchOS.
+
 ## Usage
 
 Coming soon ...
