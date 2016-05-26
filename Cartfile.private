@@ -1,0 +1,4 @@
+github "Alamofire/Alamofire" ~> 3.4.0
+github "hkellaway/Gloss" ~> 0.7
+github "robbiehanson/CocoaAsyncSocket" ~> 7.4.3
+github "delba/Log" ~> 0.5
