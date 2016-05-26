@@ -1,4 +1,5 @@
 <p align="left">
+    <a href="https://github.com/Carthage/Carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"/></a>
     <a href="https://img.shields.io/cocoapods/v/SwiftyHue.svg"><img alt="CocoaPods compatible" src="https://img.shields.io/cocoapods/v/SwiftyHue.svg"/></a>
     <a href="https://img.shields.io/cocoapods/p/SwiftyHue.svg"><img alt="Platform" src="https://img.shields.io/cocoapods/p/SwiftyHue.svg"/></a>
 </p>
