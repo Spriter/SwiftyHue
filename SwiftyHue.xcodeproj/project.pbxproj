@@ -204,8 +204,6 @@
 		1FEF56631CF6400B00446694 /* TestRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55BC1CF6400B00446694 /* TestRequester.swift */; };
 		1FEF56641CF6400B00446694 /* TestRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55BC1CF6400B00446694 /* TestRequester.swift */; };
 		1FEF56651CF6400B00446694 /* TestRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55BC1CF6400B00446694 /* TestRequester.swift */; };
-		1FEF56661CF6400B00446694 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55BD1CF6400B00446694 /* Utilities.swift */; };
-		1FEF56681CF6400B00446694 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55BD1CF6400B00446694 /* Utilities.swift */; };
 		1FEF567B1CF6401400446694 /* BridgeAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF566B1CF6401400446694 /* BridgeAuthenticator.swift */; };
 		1FEF567C1CF6401400446694 /* BridgeAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF566B1CF6401400446694 /* BridgeAuthenticator.swift */; };
 		1FEF567D1CF6401400446694 /* BridgeAuthenticatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF566C1CF6401400446694 /* BridgeAuthenticatorDelegate.swift */; };
@@ -232,6 +230,9 @@
 		1FEF56921CF6401400446694 /* BridgeResultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF56791CF6401400446694 /* BridgeResultParser.swift */; };
 		1FEF56931CF6401400446694 /* BridgeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF567A1CF6401400446694 /* BridgeValidator.swift */; };
 		1FEF56941CF6401400446694 /* BridgeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF567A1CF6401400446694 /* BridgeValidator.swift */; };
+		2843E6251CF77E1200CED6D6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2843E6241CF77E1200CED6D6 /* Utilities.swift */; };
+		2843E6261CF77E1200CED6D6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2843E6241CF77E1200CED6D6 /* Utilities.swift */; };
+		2843E6271CF77E1200CED6D6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2843E6241CF77E1200CED6D6 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -384,7 +385,6 @@
 		1FEF55BA1CF6400B00446694 /* ResourceCacheHeartbeatProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceCacheHeartbeatProcessor.swift; sourceTree = "<group>"; };
 		1FEF55BB1CF6400B00446694 /* SwiftyHue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyHue.swift; sourceTree = "<group>"; };
 		1FEF55BC1CF6400B00446694 /* TestRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRequester.swift; sourceTree = "<group>"; };
-		1FEF55BD1CF6400B00446694 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		1FEF566B1CF6401400446694 /* BridgeAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAuthenticator.swift; sourceTree = "<group>"; };
 		1FEF566C1CF6401400446694 /* BridgeAuthenticatorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAuthenticatorDelegate.swift; sourceTree = "<group>"; };
 		1FEF566E1CF6401400446694 /* BridgeFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeFinder.swift; sourceTree = "<group>"; };
@@ -399,6 +399,7 @@
 		1FEF56791CF6401400446694 /* BridgeResultParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeResultParser.swift; sourceTree = "<group>"; };
 		1FEF567A1CF6401400446694 /* BridgeValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeValidator.swift; sourceTree = "<group>"; };
 		1FEF56AC1CF642A300446694 /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = SOURCE_ROOT; };
+		2843E6241CF77E1200CED6D6 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -594,6 +595,7 @@
 				1FEF55B91CF6400B00446694 /* ReplaceMe.swift */,
 				1FEF55BA1CF6400B00446694 /* ResourceCacheHeartbeatProcessor.swift */,
 				1FEF55BB1CF6400B00446694 /* SwiftyHue.swift */,
+				2843E6241CF77E1200CED6D6 /* Utilities.swift */,
 				1FEF55BC1CF6400B00446694 /* TestRequester.swift */,
 			);
 			path = Base;
@@ -750,7 +752,6 @@
 		1FEF56691CF6401400446694 /* BridgeServices */ = {
 			isa = PBXGroup;
 			children = (
-				1FEF55BD1CF6400B00446694 /* Utilities.swift */,
 				1FEF566A1CF6401400446694 /* BridgeAuthenticator */,
 				1FEF566D1CF6401400446694 /* BridgeFinder */,
 			);
@@ -1197,6 +1198,7 @@
 				1FEF56811CF6401400446694 /* BridgeFinderDelegate.swift in Sources */,
 				1FEF55E51CF6400B00446694 /* Scene.swift in Sources */,
 				1FEF55D91CF6400B00446694 /* PortalState.swift in Sources */,
+				2843E6251CF77E1200CED6D6 /* Utilities.swift in Sources */,
 				1FEF55F11CF6400B00446694 /* DaylightSensorConfig.swift in Sources */,
 				1FEF562A1CF6400B00446694 /* SensorState.swift in Sources */,
 				1FEF55D61CF6400B00446694 /* LightState.swift in Sources */,
@@ -1224,7 +1226,6 @@
 				1FEF55EE1CF6400B00446694 /* DaylightSensor.swift in Sources */,
 				1FEF56181CF6400B00446694 /* OpenCloseSensorState.swift in Sources */,
 				1FEF55D31CF6400B00446694 /* Light.swift in Sources */,
-				1FEF56661CF6400B00446694 /* Utilities.swift in Sources */,
 				1FEF56361CF6400B00446694 /* TemperatureSensor.swift in Sources */,
 				1FEF56831CF6401400446694 /* HueBridge.swift in Sources */,
 				1FEF561B1CF6400B00446694 /* PresenceSensor.swift in Sources */,
@@ -1280,6 +1281,7 @@
 				1FEF563D1CF6400B00446694 /* TemperatureSensorState.swift in Sources */,
 				1FEF55EC1CF6400B00446694 /* ScheduleCommand.swift in Sources */,
 				1FEF55E01CF6400B00446694 /* RuleAction.swift in Sources */,
+				2843E6261CF77E1200CED6D6 /* Utilities.swift in Sources */,
 				1FEF56341CF6400B00446694 /* SwitchSensorState.swift in Sources */,
 				1FEF55F81CF6400B00446694 /* GenericFlagSensor.swift in Sources */,
 				1FEF565B1CF6400B00446694 /* ReplaceMe.swift in Sources */,
@@ -1337,6 +1339,7 @@
 				1FEF56821CF6401400446694 /* BridgeFinderDelegate.swift in Sources */,
 				1FEF55E71CF6400B00446694 /* Scene.swift in Sources */,
 				1FEF55DB1CF6400B00446694 /* PortalState.swift in Sources */,
+				2843E6271CF77E1200CED6D6 /* Utilities.swift in Sources */,
 				1FEF55F31CF6400B00446694 /* DaylightSensorConfig.swift in Sources */,
 				1FEF562C1CF6400B00446694 /* SensorState.swift in Sources */,
 				1FEF55D81CF6400B00446694 /* LightState.swift in Sources */,
@@ -1364,7 +1367,6 @@
 				1FEF55F01CF6400B00446694 /* DaylightSensor.swift in Sources */,
 				1FEF561A1CF6400B00446694 /* OpenCloseSensorState.swift in Sources */,
 				1FEF55D51CF6400B00446694 /* Light.swift in Sources */,
-				1FEF56681CF6400B00446694 /* Utilities.swift in Sources */,
 				1FEF56381CF6400B00446694 /* TemperatureSensor.swift in Sources */,
 				1FEF56841CF6401400446694 /* HueBridge.swift in Sources */,
 				1FEF561D1CF6400B00446694 /* PresenceSensor.swift in Sources */,

@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import CoreGraphics
+import UIKit.UIColor
 
 /**
  This class contains some utilities for applications using SwiftyHue.
