@@ -10,6 +10,15 @@ Work in progress...
 
 ## Installation
 
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
+
+To integrate SwiftyHue into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "Spriter/SwiftyHue"
+
 ### CocoaPods
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
 ```bash
