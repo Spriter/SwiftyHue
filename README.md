@@ -18,6 +18,7 @@ To integrate SwiftyHue into your Xcode project using Carthage, specify it in you
 
 ```ogdl
 github "Spriter/SwiftyHue"
+```
 
 ### CocoaPods
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
