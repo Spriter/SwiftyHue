@@ -172,7 +172,7 @@ You can use the SendAPI to send requests to the bridge. For example recall a Sce
 
 let sendAPI = swiftyHue.bridgeSendAPI
 
-´´
+´´´
 
 
 More coming soon...
