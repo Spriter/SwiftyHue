@@ -168,11 +168,12 @@ if let cache = swiftyHue.resourceCache {
 
 You can use the SendAPI to send requests to the bridge. For example recall a Scene or create a group.
 
-´´´Swift
 
-let sendAPI = swiftyHue.bridgeSendAPI
+```Swift
+let sendAPI = swiftyHue.brideSendAPI
+```
 
-´´´
+
 
 
 More coming soon...
