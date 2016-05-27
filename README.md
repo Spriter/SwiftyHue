@@ -74,6 +74,63 @@ Note: You can use SwiftyHue/Base submodule to use SwiftyHue also on watchOS.
 
 ## Usage
 
+### Find Bridge
+
+The first step is to find a bridge in the network.
+
+```swift
+let bridgeFinder = BridgeFinder()
+bridgeFinder.delegate = self;
+bridgeFinder.start()
+```
+
+Implement the BridgeFinderDelegate protocol to get the search results.
+
+```swift
+extension BridgeSelectionTableViewController: BridgeFinderDelegate {
+    
+    func bridgeFinder(finder: BridgeFinder, didFinishWithResult bridges: [HueBridge]) {
+     
+        let bridges = bridges;
+    }
+}
+```
+
+### Bridge Authenticator
+
+Before you can connect to a bridge you need to create user.
+
+```swift
+var bridgeAuthenticator: BridgeAuthenticator! = BridgeAuthenticator(bridge: bridge, uniqueIdentifier: "swiftyhue#\(UIDevice.currentDevice().name)")
+```
+
+Implement the BridgeAuthenticatorDelegate protocol to get the authentication events.
+
+```swift
+extension BridgePushLinkViewController: BridgeAuthenticatorDelegate {
+    
+    func bridgeAuthenticator(authenticator: BridgeAuthenticator, didFinishAuthentication username: String) {
+        
+    }
+    
+    func bridgeAuthenticator(authenticator: BridgeAuthenticator, didFailWithError error: NSError) {
+     
+    }
+    
+    // you should now ask the user to press the link button
+    func bridgeAuthenticatorRequiresLinkButtonPress(authenticator: BridgeAuthenticator) {
+
+    }
+    
+    // user did not press the link button in time, you restart the process and try again
+    func bridgeAuthenticatorDidTimeout(authenticator: BridgeAuthenticator) {
+        
+    }
+}
+```
+
+### Heartbeat
+
 Setup Heartbeat for resource updates.
 
 ```Swift
