@@ -74,7 +74,40 @@ Note: You can use SwiftyHue/Base submodule to use SwiftyHue also on watchOS.
 
 ## Usage
 
-Coming soon ...
+Setup Heartbeat for resource updates.
+
+```Swift
+    
+let bridgeAccessConfig= BridgeAccessConfig(bridgeId: "YOUR_BRIDGE_ID", ipAddress: "YOUR_BRIDGE_IP", username: "YOUR_BRIDGE_USERNAME")
+let swiftyHue: SwiftyHue = SwiftyHue();
+
+swiftyHue.setBridgeAccessConfig(bridgeAccessConfig)
+swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Lights)
+swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Groups)
+swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Rules)
+swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Scenes)
+swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Schedules)
+swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Sensors)
+swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Config)
+
+swiftyHue.startHeartbeat()
+```
+
+Register for Update Events.
+
+```Swift
+NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.lightChanged), name: ResourceCacheUpdateNotification.LightsUpdated.rawValue, object: nil)
+```
+
+Use the resource cache.
+```Swift
+if let cache = swiftyHue.resourceCache {
+    
+    // Dict of lights [String: Light]. Keys are the light identifiers.
+    let lights = cache.lights
+}
+```
+More coming soon...
 
 ## Generate documentation
 
