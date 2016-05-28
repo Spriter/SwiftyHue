@@ -110,7 +110,8 @@ public class HeartbeatManager {
     
     private func handleSuccessResponseResult(result: Result<AnyObject, NSError>, resourceType: BridgeResourceType) {
         
-        Log.trace("Heartbeat Response for Resource Type: \(resourceType.rawValue.lowercaseString): ", result.value)
+        Log.trace("Heartbeat Response for Resource Type \(resourceType.rawValue.lowercaseString) received")
+        //Log.trace("Heartbeat Response: \(resourceType.rawValue.lowercaseString): ", result.value)
         
         if let resultValueJSON = result.value as? JSON {
             

@@ -9,20 +9,6 @@
 import Foundation
 import Gloss
 
-//func ==<T: Equatable, K1: Hashable>(lhs: [K1: T], rhs: [K1: T]) -> Bool {
-//    if lhs.count != rhs.count { return false }
-//    
-//    for (key, value) in lhs {
-//       
-//        if value != rhs[key] {
-//            
-//            return false
-//        }
-//    }
-//    
-//    return true
-//}
-
 public enum ResourceCacheUpdateNotification: String {
     
     case LightsUpdated, GroupsUpdated, ScenesUpdated, SensorsUpdated, RulesUpdated, ConfigUpdated, SchedulesUpdated
@@ -113,7 +99,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
                  break;
             case .Config:
                 self.resourceCache.setBridgeConfiguration(bridgeResource as! BridgeConfiguration)
-                Log.trace("Stored Native BridgeConfiguration Object In Cache")
+                Log.info("Stored Native BridgeConfiguration Object In Cache")
             case .Schedules:
                  break;
             case .Sensors:
@@ -128,24 +114,24 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         switch resourceType {
             case .Lights:
                 self.resourceCache.setLights(dict as! [String: Light])
-                Log.trace("Stored Native Lights Dict In Cache")
+                Log.info("Stored Native Lights Dict In Cache")
             case .Groups:
                 self.resourceCache.setGroups(dict as! [String: Group])
-                Log.trace("Stored Native Groups Dict In Cache")
+                Log.info("Stored Native Groups Dict In Cache")
             case .Scenes:
                 self.resourceCache.setScenes(dict as! [String: PartialScene])
-                Log.trace("Stored Native Scenes Dict In Cache")
+                Log.info("Stored Native Scenes Dict In Cache")
             case .Config:
                 break;
             case .Schedules:
                 self.resourceCache.setSchedules(dict as! [String: Schedule])
-                Log.trace("Stored Native Schedules Dict In Cache")
+                Log.info("Stored Native Schedules Dict In Cache")
             case .Sensors:
                 self.resourceCache.setSensors(dict as! [String: Sensor])
-                Log.trace("Stored Native Sensors Dict In Cache")
+                Log.info("Stored Native Sensors Dict In Cache")
             case .Rules:
                 self.resourceCache.setRules(dict as! [String: Rule])
-                Log.trace("Stored Native Rules Dict In Cache")
+                Log.info("Stored Native Rules Dict In Cache")
         }
     }
     
@@ -153,23 +139,19 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         
         switch resourceType {
         case .Lights:
-            
-//            print(self.resourceCache.lights)
-//            print(dict as! [String: Light])
-            
             return self.resourceCache.lights != (dict as! [String: Light])
         case .Groups:
-            self.resourceCache.setGroups(dict as! [String: Group])
+            return self.resourceCache.groups != (dict as! [String: Group])
         case .Scenes:
-            self.resourceCache.setScenes(dict as! [String: PartialScene])
+            return self.resourceCache.scenes != (dict as! [String: PartialScene])
         case .Config:
             break;
         case .Schedules:
-            self.resourceCache.setSchedules(dict as! [String: Schedule])
+            return self.resourceCache.schedules != (dict as! [String: Schedule])
         case .Sensors:
-            self.resourceCache.setSensors(dict as! [String: Sensor])
+            return self.resourceCache.sensors != (dict as! [String: Sensor])
         case .Rules:
-            self.resourceCache.setRules(dict as! [String: Rule])
+            return self.resourceCache.rules != (dict as! [String: Rule])
         }
         
         return false
@@ -246,8 +228,9 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
     private func writeCacheToDisk() {
         
         var encodedJSON = NSKeyedArchiver.archivedDataWithRootObject(self.resourceCache.toJSON()!)
-
         NSUserDefaults.standardUserDefaults().setObject(encodedJSON, forKey: "CacheX")
+        
+        Log.info("writeCacheToDisk")
 
     }
     
@@ -257,10 +240,10 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         
         if let encodedJSON = encodedJSON {
           
-            Log.trace("readCacheFromDisk")
+            Log.info("readCacheFromDisk")
             
             let json = NSKeyedUnarchiver.unarchiveObjectWithData(encodedJSON) as! JSON
-            
+                        
             let resourceCache = BridgeResourcesCache(json: json)!
             self.resourceCache = resourceCache
             

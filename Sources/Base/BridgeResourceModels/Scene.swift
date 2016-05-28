@@ -92,7 +92,7 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
             let locked: Bool = "locked" <~~ json,
             let version: Int = "version" <~~ json
         
-            else { return nil }
+            else { Log.error("Can't create Partial Scene from JSON:\n \(json)"); return nil }
         
         self.identifier = identifier
         self.name = name
@@ -113,14 +113,14 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
         let dateFormatter = NSDateFormatter.hueApiDateFormatter
         
         var json = jsonify([
-            "identifier" ~~> self.identifier,
+            "id" ~~> self.identifier,
             "name" ~~> self.name,
             "lights" ~~> self.lightIdentifiers,
             "owner" ~~> self.owner,
             "recycle" ~~> self.recycle,
             "locked" ~~> self.locked,
             "appdata" ~~> self.appData,
-            "lastupdated" ~~> Encoder.encodeDate("lastupdated", dateFormatter: dateFormatter)(self.lastUpdated),
+            Encoder.encodeDate("lastupdated", dateFormatter: dateFormatter)(self.lastUpdated),
             "version" ~~> self.version
             ])
         
@@ -138,6 +138,7 @@ extension PartialScene: Hashable {
 }
 
 public func ==(lhs: PartialScene, rhs: PartialScene) -> Bool {
+        
     return lhs.identifier == rhs.identifier &&
         lhs.name == rhs.name &&
         (lhs.lightIdentifiers ?? []) == (rhs.lightIdentifiers ?? []) &&

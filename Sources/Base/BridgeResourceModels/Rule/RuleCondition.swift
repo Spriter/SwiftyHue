@@ -10,33 +10,33 @@ import Foundation
 import Gloss
 
 public enum RuleConditionOperator: String {
-    case EQ = "eq", GT = "gt", LT = "lt", DX = "dx"
+    case EQ = "eq", GT = "gt", LT = "lt", DX = "dx", DDX = "ddx"
+    
 }
 
 public class RuleCondition: Decodable, Encodable  {
     
     public let address: String
     public let conditionOperator: RuleConditionOperator
-    public let value: String
+    public let value: String?
     
     public required init?(json: JSON) {
-        
         guard let address: String = "address" <~~ json,
-            let conditionOperator: RuleConditionOperator = "operator" <~~ json,
-            let value: String = "value" <~~ json
+            let conditionOperator: RuleConditionOperator = RuleConditionOperator(rawValue: ("conditionOperator" <~~ json) ?? "eq")
             
-            else { return nil }
+            else { Log.error("Can't create RuleCondition from JSON:\n \(json)"); return nil }
         
         self.address = address
         self.conditionOperator = conditionOperator
-        self.value = value
+        
+        self.value = "value" <~~ json
     }
     
     public func toJSON() -> JSON? {
         
         let json = jsonify([
             "address" ~~> self.address,
-            "conditionOperator" ~~> self.conditionOperator,
+            "conditionOperator" ~~> self.conditionOperator.rawValue,
             "value" ~~> self.value
             ])
         

@@ -106,6 +106,8 @@ public class BridgeResourcesCache: Encodable, Decodable {
             BridgeResourceType.Config.rawValue ~~> self._bridgeConfiguration
             ])
         
+        print(json)
+        
         return json
         
     }

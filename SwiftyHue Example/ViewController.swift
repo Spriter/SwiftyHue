@@ -22,7 +22,8 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        swiftyHue.setMinLevelForLogMessages(.Debug)
+        swiftyHue.enableLogging(true)
+        swiftyHue.setMinLevelForLogMessages(.Info)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -126,13 +127,13 @@ extension ViewController {
         
         let bridgeAccessConfig = self.readBridgeAccessConfig()!
         swiftyHue.setBridgeAccessConfig(bridgeAccessConfig)
-        swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Lights)
-        swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Groups)
-       swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Rules)
-        swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Scenes)
-        swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Schedules)
-        swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Sensors)
-        swiftyHue.setLocalHeartbeatInterval(3, forResourceType: .Config)
+        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Lights)
+        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Groups)
+       swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Rules)
+        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Scenes)
+        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Schedules)
+        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Sensors)
+        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Config)
         swiftyHue.startHeartbeat();
         
 //        var lightState = LightState()

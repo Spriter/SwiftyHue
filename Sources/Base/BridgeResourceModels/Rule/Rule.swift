@@ -36,7 +36,7 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
             let conditionJSONs: [JSON] = "conditions" <~~ json,
             let actionJSONs: [JSON] = "actions" <~~ json
             
-            else { return nil }
+            else { Log.error("Can't create Rule from JSON:\n \(json)"); return nil }
         
         self.identifier = identifier
         self.name = name
@@ -56,8 +56,8 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
         let json = jsonify([
             "id" ~~> self.identifier,
             "name" ~~> self.name,
-            "created" ~~> Encoder.encodeDate("created", dateFormatter: dateFormatter)(self.created),
-            "lasttriggered" ~~> Encoder.encodeDate("lasttriggered", dateFormatter: dateFormatter)(self.lasttriggered),
+            Encoder.encodeDate("created", dateFormatter: dateFormatter)(self.created),
+            Encoder.encodeDate("lasttriggered", dateFormatter: dateFormatter)(self.lasttriggered),
             "timestriggered" ~~> self.timestriggered,
             "owner" ~~> self.owner,
             "status" ~~> self.status,
