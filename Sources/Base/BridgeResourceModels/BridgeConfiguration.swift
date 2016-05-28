@@ -131,7 +131,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     /**
      If a bridge backup file has been restored on this bridge from a bridge with a different bridgeid, it will indicate that bridge id, otherwise it will be null.
      */
-    public let replacesBridgeId: String
+    public let replacesBridgeId: String?
     
     /**
      backup
@@ -153,8 +153,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
             let modelid: String = "modelid" <~~ json,
             let swversion: String = "swversion" <~~ json,
             let apiversion: String = "apiversion" <~~ json,
-            let factorynew: Bool = "factorynew" <~~ json,
-            let replacesBridgeId: String = "replacesbridgeid" <~~ json
+            let factorynew: Bool = "factorynew" <~~ json
         
             else { Log.error("Can't create BridgeConfiguration from JSON:\n \(json)"); return nil }
         
@@ -164,8 +163,8 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         self.mac = mac
         self.modelId = modelid
         self.apiVersion = apiversion
-        self.replacesBridgeId = replacesBridgeId
         
+        self.replacesBridgeId = "replacesbridgeid" <~~ json
         self.zigbeeChannel = "zigbeechannel" <~~ json
         self.dhcp = "dhcp" <~~ json
         self.ipaddress = "ipaddress" <~~ json
