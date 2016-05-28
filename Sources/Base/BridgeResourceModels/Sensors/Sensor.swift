@@ -39,7 +39,7 @@ public class Sensor: BridgeResource, BridgeResourceDictGenerator {
             let manufacturerName: String = "manufacturername" <~~ json,
             let swVersion: String = "swversion" <~~ json
         
-        else { return nil }
+        else { Log.error("Can't create Sensor from JSON:\n \(json)"); return nil }
         
         self.identifier = identifier
         self.name = name

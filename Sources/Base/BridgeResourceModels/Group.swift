@@ -64,7 +64,7 @@ public class Group: BridgeResourceDictGenerator, BridgeResource {
             let type: GroupType = "type" <~~ json,
             let roomClass: RoomClass = RoomClass(rawValue: ("class" <~~ json) ?? "Other")
         
-            else { return nil }
+            else { Log.error("Can't create Group from JSON:\n \(json)"); return nil }
         
         self.identifier = identifier
         self.name = name
