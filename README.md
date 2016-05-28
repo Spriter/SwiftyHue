@@ -164,6 +164,18 @@ if let cache = swiftyHue.resourceCache {
     let lights = cache.lights
 }
 ```
+### Send API
+
+You can use the SendAPI to send requests to the bridge. For example recall a Scene or create a group.
+
+
+```Swift
+let sendAPI = swiftyHue.brideSendAPI
+```
+
+
+
+
 More coming soon...
 
 ## Generate documentation
@@ -193,4 +205,3 @@ $ carthage bootstrap
 ```
 in the root directory of the project. 
 Remember to build the SwiftyHue framework targets to run the example application targets.
-
