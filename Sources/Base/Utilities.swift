@@ -34,7 +34,7 @@ public struct Utilities {
         let colorPoints: [NSValue] = colorPointsForModel(model)
         let inReachOfLamps: Bool = checkPointInLampsReach(xy, withColorPoints: colorPoints)
         
-        if (!inReachOfLamps) {
+        if !inReachOfLamps {
             //It seems the colour is out of reach
             //let's find the closest colour we can produce with our lamp and send this XY value out.
             
@@ -51,11 +51,11 @@ public struct Utilities {
             var lowest = dAB
             var closestPoint = pAB
             
-            if (dAC < lowest) {
+            if dAC < lowest {
                 lowest = dAC
                 closestPoint = pAC
             }
-            if (dBC < lowest) {
+            if dBC < lowest {
                 lowest = dBC
                 closestPoint = pBC
             }
@@ -108,7 +108,7 @@ public struct Utilities {
         if r > b && r > g {
             
             // red is biggest
-            if (r > 1.0) {
+            if r > 1.0 {
                 g = g / r;
                 b = b / r;
                 r = 1.0;
@@ -117,7 +117,7 @@ public struct Utilities {
         } else if g > b && g > r {
             
             // green is biggest
-            if (g > 1.0) {
+            if g > 1.0 {
                 r = r / g;
                 b = b / g;
                 g = 1.0;
@@ -126,7 +126,7 @@ public struct Utilities {
         } else if b > r && b > g {
             
             // blue is biggest
-            if (b > 1.0) {
+            if b > 1.0 {
                 r = r / b;
                 g = g / b;
                 b = 1.0;
@@ -182,11 +182,11 @@ public struct Utilities {
         var cx: CGFloat = X / (X + Y + Z)
         var cy: CGFloat = Y / (X + Y + Z)
         
-        if (isnan(cx)) {
+        if isnan(cx) {
             cx = 0.0
         }
         
-        if (isnan(cy)) {
+        if isnan(cy) {
             cy = 0.0
         }
 
@@ -196,7 +196,7 @@ public struct Utilities {
         let colorPoints: [NSValue] = colorPointsForModel(model)
         let inReachOfLamps: Bool = checkPointInLampsReach(xyPoint, withColorPoints: colorPoints)
         
-        if (!inReachOfLamps) {
+        if !inReachOfLamps {
             //It seems the colour is out of reach
             //let's find the closest colour we can produce with our lamp and send this XY value out.
             
@@ -213,11 +213,11 @@ public struct Utilities {
             var lowest: CGFloat = dAB
             var closestPoint: CGPoint = pAB
             
-            if (dAC < lowest) {
+            if dAC < lowest {
                 lowest = dAC
                 closestPoint = pAC
             }
-            if (dBC < lowest) {
+            if dBC < lowest {
                 lowest = dBC
                 closestPoint = pBC
             }
@@ -258,19 +258,19 @@ public struct Utilities {
         let gamutC: [String] = ["LLC020" /* Hue Go */,
                                 "LST002" /* Hue LightStrips Plus */]
         
-        if (gamutA.contains(model)) {
+        if gamutA.contains(model) {
             
             colorPoints.append(getValueFromPoint(CGPoint(x: 0.703, y: 0.296)))  // Red
             colorPoints.append(getValueFromPoint(CGPoint(x: 0.214, y: 0.709)))  // Green
             colorPoints.append(getValueFromPoint(CGPoint(x: 0.139, y: 0.081)))  // Blue
             
-        } else if (gamutB.contains(model)) {
+        } else if gamutB.contains(model) {
             
             colorPoints.append(getValueFromPoint(CGPoint(x: 0.674, y: 0.322)))  // Red
             colorPoints.append(getValueFromPoint(CGPoint(x: 0.408, y: 0.517)))  // Green
             colorPoints.append(getValueFromPoint(CGPoint(x: 0.168, y: 0.041)))  // Blue
             
-        } else if (gamutC.contains(model)) {
+        } else if gamutC.contains(model) {
             
             colorPoints.append(getValueFromPoint(CGPoint(x: 0.692, y: 0.308)))  // Red
             colorPoints.append(getValueFromPoint(CGPoint(x: 0.17, y: 0.7)))     // Green

@@ -24,7 +24,7 @@ class BridgeResourceTableViewController: UITableViewController {
         
         if let resourceCache = swiftyHue.resourceCache {
             
-            switch (resourceTypeToDisplay) {
+            switch resourceTypeToDisplay {
                 
             case .Lights:
               
