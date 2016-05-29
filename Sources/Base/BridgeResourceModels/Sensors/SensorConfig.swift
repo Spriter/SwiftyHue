@@ -40,10 +40,10 @@ public class SensorConfig: Decodable, Encodable {
         let dateFormatter = NSDateFormatter.hueApiDateFormatter
         
         var json = jsonify([
-            "on" ~~> self.on,
-            "reachable" ~~> self.reachable,
-            "battery" ~~> self.battery,
-            "url" ~~> self.url,
+            "on" ~~> on,
+            "reachable" ~~> reachable,
+            "battery" ~~> battery,
+            "url" ~~> url,
             ])
         
         return json

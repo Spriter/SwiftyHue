@@ -113,15 +113,15 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
         let dateFormatter = NSDateFormatter.hueApiDateFormatter
         
         var json = jsonify([
-            "id" ~~> self.identifier,
-            "name" ~~> self.name,
-            "lights" ~~> self.lightIdentifiers,
-            "owner" ~~> self.owner,
-            "recycle" ~~> self.recycle,
-            "locked" ~~> self.locked,
-            "appdata" ~~> self.appData,
-            Encoder.encodeDate("lastupdated", dateFormatter: dateFormatter)(self.lastUpdated),
-            "version" ~~> self.version
+            "id" ~~> identifier,
+            "name" ~~> name,
+            "lights" ~~> lightIdentifiers,
+            "owner" ~~> owner,
+            "recycle" ~~> recycle,
+            "locked" ~~> locked,
+            "appdata" ~~> appData,
+            Encoder.encodeDate("lastupdated", dateFormatter: dateFormatter)(lastUpdated),
+            "version" ~~> version
             ])
         
         return json

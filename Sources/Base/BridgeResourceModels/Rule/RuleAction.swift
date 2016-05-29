@@ -31,9 +31,9 @@ public class RuleAction: Decodable, Encodable {
     public func toJSON() -> JSON? {
         
         let json = jsonify([
-            "address" ~~> self.address,
-            "method" ~~> self.method,
-            "body" ~~> self.body
+            "address" ~~> address,
+            "method" ~~> method,
+            "body" ~~> body
             ])
         
         return json

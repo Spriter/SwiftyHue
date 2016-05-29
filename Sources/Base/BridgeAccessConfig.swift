@@ -40,9 +40,9 @@ public struct BridgeAccessConfig: Encodable, Decodable {
     public func toJSON() -> JSON? {
         
         var json = jsonify([
-            "id" ~~> self.bridgeId,
-            "ipaddress" ~~> self.ipAddress,
-            "username" ~~> self.username
+            "id" ~~> bridgeId,
+            "ipaddress" ~~> ipAddress,
+            "username" ~~> username
             ])
         
         return json

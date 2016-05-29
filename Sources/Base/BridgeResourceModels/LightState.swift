@@ -71,16 +71,16 @@ public struct LightState: Decodable, Encodable {
     public func toJSON() -> JSON? {
   
         return jsonify([
-            "on" ~~> self.on,
-            "bri" ~~> self.brightness,
-            "hue" ~~> self.hue,
-            "sat" ~~> self.saturation,
-            "xy" ~~> self.xy,
-            "ct" ~~> self.ct,
-            "alert" ~~> self.alert,
-            "effect" ~~> self.effect,
-            "colormode" ~~> self.colormode,
-            "reachable" ~~> self.reachable,
+            "on" ~~> on,
+            "bri" ~~> brightness,
+            "hue" ~~> hue,
+            "sat" ~~> saturation,
+            "xy" ~~> xy,
+            "ct" ~~> ct,
+            "alert" ~~> alert,
+            "effect" ~~> effect,
+            "colormode" ~~> colormode,
+            "reachable" ~~> reachable,
     
         ])
     }

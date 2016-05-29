@@ -56,14 +56,14 @@ public class Sensor: BridgeResource, BridgeResourceDictGenerator {
         let dateFormatter = NSDateFormatter.hueApiDateFormatter
         
         var json = jsonify([
-            "id" ~~> self.identifier,
-            "name" ~~> self.name,
-            "state" ~~> self.state,
-            "config" ~~> self.config,
-            "type" ~~> self.type,
-            "modelid" ~~> self.modelId,
-            "id" ~~> self.manufacturerName,
-            "swversion" ~~> self.swVersion
+            "id" ~~> identifier,
+            "name" ~~> name,
+            "state" ~~> state,
+            "config" ~~> config,
+            "type" ~~> type,
+            "modelid" ~~> modelId,
+            "id" ~~> manufacturerName,
+            "swversion" ~~> swVersion
             ])
         
         return json

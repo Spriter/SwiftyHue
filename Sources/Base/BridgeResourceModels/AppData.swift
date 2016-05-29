@@ -41,8 +41,8 @@ public struct AppData: Decodable, Encodable {
     public func toJSON() -> JSON? {
         
         return jsonify([
-            "version" ~~> self.version,
-            "data" ~~> self.data,
+            "version" ~~> version,
+            "data" ~~> data,
         ])
     }
 }

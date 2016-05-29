@@ -26,9 +26,9 @@ class BridgeAccessConfigPresentationViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.usernameLabel?.text = bridgeAccesssConfig.username
-        self.bridgeIdLabel?.text = bridgeAccesssConfig.bridgeId
-        self.ipLabel?.text = bridgeAccesssConfig.ipAddress
+        usernameLabel?.text = bridgeAccesssConfig.username
+        bridgeIdLabel?.text = bridgeAccesssConfig.bridgeId
+        ipLabel?.text = bridgeAccesssConfig.ipAddress
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,7 +38,7 @@ class BridgeAccessConfigPresentationViewController: UIViewController {
     
     @IBAction func okButtonTapped(sender: AnyObject) {
     
-        (self.navigationController as! CreateBridgeAccessController).bridgeAccessCreated(bridgeAccesssConfig)
+        (navigationController as! CreateBridgeAccessController).bridgeAccessCreated(bridgeAccesssConfig)
     }
 
     /*

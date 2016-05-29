@@ -97,13 +97,13 @@ public class BridgeResourcesCache: Encodable, Decodable {
     public func toJSON() -> JSON? {
         
         var json = jsonify([
-            BridgeResourceType.Lights.rawValue ~~> self._lights,
-            BridgeResourceType.Groups.rawValue ~~> self._groups,
-            BridgeResourceType.Schedules.rawValue ~~> self._schedules,
-            BridgeResourceType.Scenes.rawValue ~~> self._scenes,
-            BridgeResourceType.Sensors.rawValue ~~> self._sensors,
-            BridgeResourceType.Rules.rawValue ~~> self._rules,
-            BridgeResourceType.Config.rawValue ~~> self._bridgeConfiguration
+            BridgeResourceType.Lights.rawValue ~~> _lights,
+            BridgeResourceType.Groups.rawValue ~~> _groups,
+            BridgeResourceType.Schedules.rawValue ~~> _schedules,
+            BridgeResourceType.Scenes.rawValue ~~> _scenes,
+            BridgeResourceType.Sensors.rawValue ~~> _sensors,
+            BridgeResourceType.Rules.rawValue ~~> _rules,
+            BridgeResourceType.Config.rawValue ~~> _bridgeConfiguration
             ])
         
         print(json)
@@ -126,31 +126,31 @@ public class BridgeResourcesCache: Encodable, Decodable {
     // MARK: Set
     
     internal func setLights(lights: [String: Light]) {
-        self._lights = lights
+        _lights = lights
     }
     
     internal func setGroups(groups: [String: Group]) {
-        self._groups = groups
+        _groups = groups
     }
     
     internal func setSchedules(schedules: [String: Schedule]) {
-        self._schedules = schedules
+        _schedules = schedules
     }
     
     internal func setScenes(scenes: [String: PartialScene]) {
-        self._scenes = scenes
+        _scenes = scenes
     }
     
     internal func setSensors(sensors: [String: Sensor]) {
-        self._sensors = sensors
+        _sensors = sensors
     }
     
     internal func setRules(rules: [String: Rule]) {
-        self._rules = rules
+        _rules = rules
     }
     
     internal func setBridgeConfiguration(bridgeConfiguration: BridgeConfiguration) {
-        self._bridgeConfiguration = bridgeConfiguration
+        _bridgeConfiguration = bridgeConfiguration
     }
     
     // MARK: Update

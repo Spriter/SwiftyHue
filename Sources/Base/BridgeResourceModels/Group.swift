@@ -80,14 +80,14 @@ public class Group: BridgeResourceDictGenerator, BridgeResource {
     public func toJSON() -> JSON? {
    
         var json = jsonify([
-            "id" ~~> self.identifier,
-            "name" ~~> self.name,
-            "action" ~~> self.action,
-            "lights" ~~> self.lightIdentifiers,
-            "type" ~~> self.type,
-            "modelid" ~~> self.modelId,
-            "uniqueid" ~~> self.uniqueId,
-            "class" ~~> self.roomClass.rawValue
+            "id" ~~> identifier,
+            "name" ~~> name,
+            "action" ~~> action,
+            "lights" ~~> lightIdentifiers,
+            "type" ~~> type,
+            "modelid" ~~> modelId,
+            "uniqueid" ~~> uniqueId,
+            "class" ~~> roomClass.rawValue
             ])
         
         return json

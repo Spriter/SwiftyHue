@@ -56,10 +56,10 @@ public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
         let dateFormatter = NSDateFormatter.hueApiDateFormatter
         
         var json = jsonify([
-            "id" ~~> self.identifier,
-            "name" ~~> self.name,
-            Encoder.encodeDate("last use date", dateFormatter: dateFormatter)(self.lastUseDate),
-            Encoder.encodeDate("create date", dateFormatter: dateFormatter)(self.createDate)
+            "id" ~~> identifier,
+            "name" ~~> name,
+            Encoder.encodeDate("last use date", dateFormatter: dateFormatter)(lastUseDate),
+            Encoder.encodeDate("create date", dateFormatter: dateFormatter)(createDate)
             ])
         
         return json

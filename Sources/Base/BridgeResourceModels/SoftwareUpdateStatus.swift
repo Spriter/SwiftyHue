@@ -58,12 +58,12 @@ public struct SoftwareUpdateStatus: Decodable, Encodable {
     public func toJSON() -> JSON? {
         
         var json = jsonify([
-            "updatestate" ~~> self.updatestate,
-            "checkforupdate" ~~> self.checkforupdate,
-            "devicetypes" ~~> self.devicetypes,
-            "url" ~~> self.url,
-            "text" ~~> self.text,
-            "notify" ~~> self.notify
+            "updatestate" ~~> updatestate,
+            "checkforupdate" ~~> checkforupdate,
+            "devicetypes" ~~> devicetypes,
+            "url" ~~> url,
+            "text" ~~> text,
+            "notify" ~~> notify
             ])
         
         return json

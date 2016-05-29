@@ -32,7 +32,7 @@ public class BridgeSendAPI {
         
         let parameters = ["scene": identifier]
         
-        if let bridgeAccessConfig = self.bridgeAccessConfig {
+        if let bridgeAccessConfig = bridgeAccessConfig {
          
             Alamofire.request(.PUT, "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/0/action", parameters: parameters, encoding: .JSON)
                 .responseJSON { response in
@@ -48,7 +48,7 @@ public class BridgeSendAPI {
     
     public func recallSceneWithIdentifier(identifier: String, inGroupWithIdentifier groupIdentifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
         
-        if let bridgeAccessConfig = self.bridgeAccessConfig {
+        if let bridgeAccessConfig = bridgeAccessConfig {
             
             let parameters = ["scene": identifier]
             
@@ -69,7 +69,7 @@ public class BridgeSendAPI {
      */
     public func createSceneWithName(name: String, inlcudeLightIds lightIds: [String], recycle: Bool = false, transitionTime: Int? = nil, picture: String? = nil, appData: AppData? = nil, completionHandler: BridgeSendErrorArrayCompletionHandler) {
         
-        if let bridgeAccessConfig = self.bridgeAccessConfig {
+        if let bridgeAccessConfig = bridgeAccessConfig {
             
             var parameters: [String: AnyObject] = ["name": name, "lights": lightIds, "recycle": recycle];
             
@@ -93,7 +93,7 @@ public class BridgeSendAPI {
     
     public func updateLightStateForId(identifier: String, withLightState lightState: LightState, completionHandler: BridgeSendErrorArrayCompletionHandler) {
         
-        if let bridgeAccessConfig = self.bridgeAccessConfig {
+        if let bridgeAccessConfig = bridgeAccessConfig {
             
             let parameters = lightState.toJSON()!
             

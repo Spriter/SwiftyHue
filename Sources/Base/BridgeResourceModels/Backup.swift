@@ -34,8 +34,8 @@ public struct Backup: Decodable, Encodable {
     public func toJSON() -> JSON? {
         
         var json = jsonify([
-            "status" ~~> self.status,
-            "errorcode" ~~> self.errorcode
+            "status" ~~> status,
+            "errorcode" ~~> errorcode
             ])
         
         return json

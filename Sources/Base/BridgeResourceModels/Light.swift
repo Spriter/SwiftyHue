@@ -93,16 +93,16 @@ public class Light: BridgeResource, BridgeResourceDictGenerator {
     public func toJSON() -> JSON? {
         
         var json = jsonify([
-            "id" ~~> self.identifier,
-            "name" ~~> self.name,
-            "state" ~~> self.state,
-            "type" ~~> self.type,
-            "modelid" ~~> self.modelId,
-            "uniqueid" ~~> self.uniqueId,
-            "manufacturername" ~~> self.manufacturerName,
-            "luminaireuniqueid" ~~> self.luminaireUniqueId,
-            "swversion" ~~> self.swVersion,
-            "pointsymbol" ~~> self.pointsymbol
+            "id" ~~> identifier,
+            "name" ~~> name,
+            "state" ~~> state,
+            "type" ~~> type,
+            "modelid" ~~> modelId,
+            "uniqueid" ~~> uniqueId,
+            "manufacturername" ~~> manufacturerName,
+            "luminaireuniqueid" ~~> luminaireUniqueId,
+            "swversion" ~~> swVersion,
+            "pointsymbol" ~~> pointsymbol
             ])
         
         return json

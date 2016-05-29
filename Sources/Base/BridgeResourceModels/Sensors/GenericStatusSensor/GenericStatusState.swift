@@ -28,7 +28,7 @@ public class GenericStatusState: SensorState {
         
         if var superJson = super.toJSON() {
             var json = jsonify([
-                "status" ~~> self.status
+                "status" ~~> status
                 ])
             superJson.unionInPlace(json!)
             return superJson

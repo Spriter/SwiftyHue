@@ -37,9 +37,9 @@ public struct SoftwareUpdateStatusDeviceTypes: Decodable, Encodable {
     public func toJSON() -> JSON? {
         
         var json = jsonify([
-            "bridge" ~~> self.bridge,
-            "lights" ~~> self.lights,
-            "sensors" ~~> self.sensors,
+            "bridge" ~~> bridge,
+            "lights" ~~> lights,
+            "sensors" ~~> sensors,
             ])
         
         return json

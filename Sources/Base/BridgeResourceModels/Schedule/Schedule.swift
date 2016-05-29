@@ -45,14 +45,14 @@ public class Schedule: BridgeResource, BridgeResourceDictGenerator {
     public func toJSON() -> JSON? {
         
         let json = jsonify([
-            "id" ~~> self.identifier,
-            "name" ~~> self.name,
-            "description" ~~> self.scheduleDescription,
-            "command" ~~> self.command,
-            "localtime" ~~> self.localtime,
-            "status" ~~> self.status,
-            "autodelete" ~~> self.autodelete,
-            "recycle" ~~> self.recycle
+            "id" ~~> identifier,
+            "name" ~~> name,
+            "description" ~~> scheduleDescription,
+            "command" ~~> command,
+            "localtime" ~~> localtime,
+            "status" ~~> status,
+            "autodelete" ~~> autodelete,
+            "recycle" ~~> recycle
             ])
         
         return json

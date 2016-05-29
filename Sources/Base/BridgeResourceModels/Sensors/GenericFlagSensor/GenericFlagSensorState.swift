@@ -28,7 +28,7 @@ public class GenericFlagSensorState: SensorState {
         
         if var superJson = super.toJSON() {
             var json = jsonify([
-                "flag" ~~> self.flag
+                "flag" ~~> flag
                 ])
             superJson.unionInPlace(json!)
             return superJson

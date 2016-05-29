@@ -35,9 +35,9 @@ public class RuleCondition: Decodable, Encodable  {
     public func toJSON() -> JSON? {
         
         let json = jsonify([
-            "address" ~~> self.address,
-            "conditionOperator" ~~> self.conditionOperator.rawValue,
-            "value" ~~> self.value
+            "address" ~~> address,
+            "conditionOperator" ~~> conditionOperator.rawValue,
+            "value" ~~> value
             ])
         
         return json

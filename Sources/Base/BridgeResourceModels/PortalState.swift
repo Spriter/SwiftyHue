@@ -48,10 +48,10 @@ public struct PortalState: Decodable, Encodable {
     public func toJSON() -> JSON? {
         
         var json = jsonify([
-            "signedon" ~~> self.signedon,
-            "incoming" ~~> self.incoming,
-            "outgoing" ~~> self.outgoing,
-            "communication" ~~> self.communication
+            "signedon" ~~> signedon,
+            "incoming" ~~> incoming,
+            "outgoing" ~~> outgoing,
+            "communication" ~~> communication
             ])
         
         return json

@@ -37,10 +37,10 @@ public class DaylightSensorConfig: SensorConfig {
         
         if var superJson = super.toJSON() {
             var json = jsonify([
-                "long" ~~> self.long,
-                "lat" ~~> self.lat,
-                "sunriseOffset" ~~> self.sunriseOffset,
-                "sunsetOffset" ~~> self.sunsetOffset
+                "long" ~~> long,
+                "lat" ~~> lat,
+                "sunriseOffset" ~~> sunriseOffset,
+                "sunsetOffset" ~~> sunsetOffset
                 ])
             superJson.unionInPlace(json!)
             return superJson
