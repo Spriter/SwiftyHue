@@ -233,6 +233,16 @@
 		2843E6251CF77E1200CED6D6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2843E6241CF77E1200CED6D6 /* Utilities.swift */; };
 		2843E6261CF77E1200CED6D6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2843E6241CF77E1200CED6D6 /* Utilities.swift */; };
 		2843E6271CF77E1200CED6D6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2843E6241CF77E1200CED6D6 /* Utilities.swift */; };
+		292749D71CF9FCB400D7A7B0 /* TestScanner1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749D61CF9FCB400D7A7B0 /* TestScanner1.swift */; };
+		292749D91CF9FCD300D7A7B0 /* TestScanner2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749D81CF9FCD300D7A7B0 /* TestScanner2.swift */; };
+		292749DB1CF9FCE800D7A7B0 /* BridgeFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749DA1CF9FCE800D7A7B0 /* BridgeFinderTests.swift */; };
+		292749DE1CF9FD0300D7A7B0 /* TestBadValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749DD1CF9FD0300D7A7B0 /* TestBadValidator.swift */; };
+		292749E01CF9FD1C00D7A7B0 /* TestGoodValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749DF1CF9FD1C00D7A7B0 /* TestGoodValidator.swift */; };
+		292749E21CF9FD2F00D7A7B0 /* BridgeFinderConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749E11CF9FD2F00D7A7B0 /* BridgeFinderConsumer.swift */; };
+		292749E41CFA004500D7A7B0 /* BridgeAuthenticatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749E31CFA004500D7A7B0 /* BridgeAuthenticatorTests.swift */; };
+		292749E61CFA040E00D7A7B0 /* BridgeAuthenticatorConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749E51CFA040E00D7A7B0 /* BridgeAuthenticatorConsumer.swift */; };
+		292749E81CFA043200D7A7B0 /* BridgeResultParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749E71CFA043200D7A7B0 /* BridgeResultParserTests.swift */; };
+		293C9E931CFADE5200AB6199 /* bridge_response.xml in Resources */ = {isa = PBXBuildFile; fileRef = 293C9E921CFADE5200AB6199 /* bridge_response.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -401,6 +411,16 @@
 		1FEF567A1CF6401400446694 /* BridgeValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeValidator.swift; sourceTree = "<group>"; };
 		1FEF56AC1CF642A300446694 /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = SOURCE_ROOT; };
 		2843E6241CF77E1200CED6D6 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		292749D61CF9FCB400D7A7B0 /* TestScanner1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScanner1.swift; sourceTree = "<group>"; };
+		292749D81CF9FCD300D7A7B0 /* TestScanner2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScanner2.swift; sourceTree = "<group>"; };
+		292749DA1CF9FCE800D7A7B0 /* BridgeFinderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeFinderTests.swift; sourceTree = "<group>"; };
+		292749DD1CF9FD0300D7A7B0 /* TestBadValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestBadValidator.swift; sourceTree = "<group>"; };
+		292749DF1CF9FD1C00D7A7B0 /* TestGoodValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestGoodValidator.swift; sourceTree = "<group>"; };
+		292749E11CF9FD2F00D7A7B0 /* BridgeFinderConsumer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeFinderConsumer.swift; sourceTree = "<group>"; };
+		292749E31CFA004500D7A7B0 /* BridgeAuthenticatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAuthenticatorTests.swift; sourceTree = "<group>"; };
+		292749E51CFA040E00D7A7B0 /* BridgeAuthenticatorConsumer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAuthenticatorConsumer.swift; sourceTree = "<group>"; };
+		292749E71CFA043200D7A7B0 /* BridgeResultParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeResultParserTests.swift; sourceTree = "<group>"; };
+		293C9E921CFADE5200AB6199 /* bridge_response.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = bridge_response.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -523,6 +543,7 @@
 		1FEF52151CF605CD00446694 /* SwiftyHue iOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				292749D31CF9FC5F00D7A7B0 /* BridgeServices */,
 				1FEF52161CF605CD00446694 /* SwiftyHue_iOSTests.swift */,
 				1FEF52181CF605CD00446694 /* Info.plist */,
 			);
@@ -803,6 +824,47 @@
 			path = Validator;
 			sourceTree = "<group>";
 		};
+		292749D31CF9FC5F00D7A7B0 /* BridgeServices */ = {
+			isa = PBXGroup;
+			children = (
+				292749D51CF9FCA400D7A7B0 /* Mocks */,
+				293C9E911CFADD2A00AB6199 /* BridgeAuthenticator */,
+				292749D41CF9FC8E00D7A7B0 /* BridgeFinder */,
+			);
+			name = BridgeServices;
+			sourceTree = "<group>";
+		};
+		292749D41CF9FC8E00D7A7B0 /* BridgeFinder */ = {
+			isa = PBXGroup;
+			children = (
+				292749DA1CF9FCE800D7A7B0 /* BridgeFinderTests.swift */,
+				292749E71CFA043200D7A7B0 /* BridgeResultParserTests.swift */,
+				293C9E921CFADE5200AB6199 /* bridge_response.xml */,
+			);
+			name = BridgeFinder;
+			sourceTree = "<group>";
+		};
+		292749D51CF9FCA400D7A7B0 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				292749D61CF9FCB400D7A7B0 /* TestScanner1.swift */,
+				292749D81CF9FCD300D7A7B0 /* TestScanner2.swift */,
+				292749DD1CF9FD0300D7A7B0 /* TestBadValidator.swift */,
+				292749DF1CF9FD1C00D7A7B0 /* TestGoodValidator.swift */,
+				292749E11CF9FD2F00D7A7B0 /* BridgeFinderConsumer.swift */,
+				292749E51CFA040E00D7A7B0 /* BridgeAuthenticatorConsumer.swift */,
+			);
+			name = Mocks;
+			sourceTree = "<group>";
+		};
+		293C9E911CFADD2A00AB6199 /* BridgeAuthenticator */ = {
+			isa = PBXGroup;
+			children = (
+				292749E31CFA004500D7A7B0 /* BridgeAuthenticatorTests.swift */,
+			);
+			name = BridgeAuthenticator;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -897,6 +959,7 @@
 				1FEF52101CF605CD00446694 /* Sources */,
 				1FEF52111CF605CD00446694 /* Frameworks */,
 				1FEF52121CF605CD00446694 /* Resources */,
+				293C9E941CFAE18500AB6199 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1064,6 +1127,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				293C9E931CFADE5200AB6199 /* bridge_response.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1150,6 +1214,20 @@
 				"$(SRCROOT)/Carthage/Build/tvOS/Log.framework",
 				"$(SRCROOT)/Carthage/Build/tvOS/Gloss.framework",
 				"$(SRCROOT)/Carthage/Build/tvOS/CocoaAsyncSocket.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		293C9E941CFAE18500AB6199 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Nocilla.framework",
 			);
 			outputPaths = (
 			);
@@ -1382,7 +1460,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				292749DE1CF9FD0300D7A7B0 /* TestBadValidator.swift in Sources */,
+				292749D71CF9FCB400D7A7B0 /* TestScanner1.swift in Sources */,
+				292749D91CF9FCD300D7A7B0 /* TestScanner2.swift in Sources */,
+				292749DB1CF9FCE800D7A7B0 /* BridgeFinderTests.swift in Sources */,
+				292749E41CFA004500D7A7B0 /* BridgeAuthenticatorTests.swift in Sources */,
 				1FEF52171CF605CD00446694 /* SwiftyHue_iOSTests.swift in Sources */,
+				292749E21CF9FD2F00D7A7B0 /* BridgeFinderConsumer.swift in Sources */,
+				292749E01CF9FD1C00D7A7B0 /* TestGoodValidator.swift in Sources */,
+				292749E81CFA043200D7A7B0 /* BridgeResultParserTests.swift in Sources */,
+				292749E61CFA040E00D7A7B0 /* BridgeAuthenticatorConsumer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1878,6 +1965,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1927,6 +2018,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
