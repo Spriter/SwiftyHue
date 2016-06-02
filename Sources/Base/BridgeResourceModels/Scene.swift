@@ -35,6 +35,10 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
     
     public typealias AssociatedBridgeResourceType = PartialScene
     
+    public var resourceType: BridgeResourceType {
+        return .scene
+    };
+    
     /**
         The identifier of this scene.
      */

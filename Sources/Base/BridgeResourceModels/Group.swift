@@ -23,6 +23,10 @@ public class Group: BridgeResourceDictGenerator, BridgeResource {
     
     public typealias AssociatedBridgeResourceType = Group;
 
+    public var resourceType: BridgeResourceType {
+        return .group
+    };
+    
     public var identifier: String
     public var name: String
     

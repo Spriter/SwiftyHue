@@ -13,6 +13,10 @@ public class Schedule: BridgeResource, BridgeResourceDictGenerator {
     
     public typealias AssociatedBridgeResourceType = Schedule
     
+    public var resourceType: BridgeResourceType {
+        return .schedule
+    };
+    
     public let identifier: String
     public let name: String
     public let scheduleDescription: String

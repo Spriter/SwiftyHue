@@ -13,6 +13,10 @@ public class Light: BridgeResource, BridgeResourceDictGenerator {
     
     public typealias AssociatedBridgeResourceType = Light
     
+    public var resourceType: BridgeResourceType {
+        return .light
+    };
+    
     /**
      Identifier of the light.
      */

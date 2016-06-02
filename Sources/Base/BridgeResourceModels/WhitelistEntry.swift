@@ -13,6 +13,10 @@ public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
     
     public typealias AssociatedBridgeResourceType = WhitelistEntry
     
+    public var resourceType: BridgeResourceType {
+        return .whitelistEntry
+    };
+    
     public let identifier: String
     
     /**

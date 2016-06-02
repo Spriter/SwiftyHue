@@ -15,10 +15,6 @@ public enum BridgeHeartbeatConnectionStatusNotification: String {
     case localConnection, notAuthenticated, nolocalConnection
 }
 
-//public enum BridgeResourceType: String {
-//    case Lights, Groups, Scenes, Sensors, Rules, Config, Schedules
-//}
-
 public enum HeartbeatBridgeResourceType: String {
     case lights, groups, scenes, sensors, rules, config, schedules
 }

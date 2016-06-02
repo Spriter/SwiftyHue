@@ -13,6 +13,10 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     
     public typealias AssociatedBridgeResourceType = BridgeConfiguration;
     
+    public var resourceType: BridgeResourceType {
+        return .config
+    };
+
     public let identifier: String
     
     /**

@@ -9,10 +9,15 @@
 import Foundation
 import Gloss
 
+public enum BridgeResourceType: String {
+    case light, group, scene, sensor, rule, config, schedule, whitelistEntry
+}
+
 public protocol BridgeResource: Decodable, Encodable {
     
     var identifier: String {get}
     var name: String {get}
+    var resourceType: BridgeResourceType {get};
 }
 
 /**

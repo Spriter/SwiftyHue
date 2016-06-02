@@ -17,6 +17,10 @@ public class Sensor: BridgeResource, BridgeResourceDictGenerator {
     
     public typealias AssociatedBridgeResourceType = Sensor
     
+    public var resourceType: BridgeResourceType {
+        return .sensor
+    };
+    
     public let identifier: String
     public let name: String
     public let state: SensorState

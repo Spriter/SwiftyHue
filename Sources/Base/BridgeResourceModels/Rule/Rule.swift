@@ -13,6 +13,10 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
     
     public typealias AssociatedBridgeResourceType = Rule
     
+    public var resourceType: BridgeResourceType {
+        return .rule
+    };
+    
     public let identifier: String
     public let name: String
     public let lasttriggered: NSDate?
