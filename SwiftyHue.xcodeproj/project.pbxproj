@@ -669,15 +669,15 @@
 		1FEF558B1CF6400B00446694 /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
+				1FEF55A41CF6400B00446694 /* Sensor.swift */,
+				1FEF55A51CF6400B00446694 /* SensorConfig.swift */,
+				1FEF55A61CF6400B00446694 /* SensorState.swift */,
 				1FEF558C1CF6400B00446694 /* DaylightSensor */,
 				1FEF55901CF6400B00446694 /* GenericFlagSensor */,
 				1FEF55941CF6400B00446694 /* GenericStatusSensor */,
 				1FEF55981CF6400B00446694 /* HumiditySensor */,
 				1FEF559C1CF6400B00446694 /* OpenCloseSensor */,
 				1FEF55A01CF6400B00446694 /* PresenceSensor */,
-				1FEF55A41CF6400B00446694 /* Sensor.swift */,
-				1FEF55A51CF6400B00446694 /* SensorConfig.swift */,
-				1FEF55A61CF6400B00446694 /* SensorState.swift */,
 				1FEF55A71CF6400B00446694 /* SwitchSensor */,
 				1FEF55AB1CF6400B00446694 /* TemperatureSensor */,
 			);
