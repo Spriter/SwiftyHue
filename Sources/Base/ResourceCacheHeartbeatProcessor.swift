@@ -13,7 +13,7 @@ public enum ResourceCacheUpdateNotification: String {
     
     case LightsUpdated, GroupsUpdated, ScenesUpdated, SensorsUpdated, RulesUpdated, ConfigUpdated, SchedulesUpdated
     
-    init?(resourceType: BridgeResourceType) {
+    init?(resourceType: HeartbeatBridgeResourceType) {
         
         self.init(rawValue: resourceType.rawValue + "Updated")
     }
@@ -56,11 +56,11 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         self.writeCacheToDisk()
     }
     
-    func processJSON(json: JSON, forResourceType resourceType: BridgeResourceType) {
+    func processJSON(json: JSON, forResourceType resourceType: HeartbeatBridgeResourceType) {
         
         // Convert To Native Object
         
-        if resourceType == .Config {
+        if resourceType == .config {
         
             let nativeObject = convertToNativeObject(json, resourceType: resourceType)
             
@@ -88,139 +88,139 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
 
     }
     
-    func storeNativeObjectInCache(bridgeResource: BridgeResource, resourceType: BridgeResourceType) {
+    func storeNativeObjectInCache(bridgeResource: BridgeResource, resourceType: HeartbeatBridgeResourceType) {
         
         switch resourceType {
-            case .Lights:
+            case .lights:
                 break;
-            case .Groups:
+            case .groups:
                  break;
-            case .Scenes:
+            case .scenes:
                  break;
-            case .Config:
+            case .config:
                 self.resourceCache.setBridgeConfiguration(bridgeResource as! BridgeConfiguration)
                 Log.info("Stored Native BridgeConfiguration Object In Cache")
-            case .Schedules:
+            case .schedules:
                  break;
-            case .Sensors:
+            case .sensors:
                  break;
-            case .Rules:
+            case .rules:
                  break;
         }
     }
     
-    func storeNativeObjectDictInCache(dict: NSDictionary, resourceType: BridgeResourceType) {
+    func storeNativeObjectDictInCache(dict: NSDictionary, resourceType: HeartbeatBridgeResourceType) {
         
         switch resourceType {
-            case .Lights:
+            case .lights:
                 self.resourceCache.setLights(dict as! [String: Light])
                 Log.info("Stored Native Lights Dict In Cache")
-            case .Groups:
+            case .groups:
                 self.resourceCache.setGroups(dict as! [String: Group])
                 Log.info("Stored Native Groups Dict In Cache")
-            case .Scenes:
+            case .scenes:
                 self.resourceCache.setScenes(dict as! [String: PartialScene])
                 Log.info("Stored Native Scenes Dict In Cache")
-            case .Config:
+            case .config:
                 break;
-            case .Schedules:
+            case .schedules:
                 self.resourceCache.setSchedules(dict as! [String: Schedule])
                 Log.info("Stored Native Schedules Dict In Cache")
-            case .Sensors:
+            case .sensors:
                 self.resourceCache.setSensors(dict as! [String: Sensor])
                 Log.info("Stored Native Sensors Dict In Cache")
-            case .Rules:
+            case .rules:
                 self.resourceCache.setRules(dict as! [String: Rule])
                 Log.info("Stored Native Rules Dict In Cache")
         }
     }
     
-    func nativeObjectDictDiffersFromCache(dict: NSDictionary, resourceType: BridgeResourceType) -> Bool {
+    func nativeObjectDictDiffersFromCache(dict: NSDictionary, resourceType: HeartbeatBridgeResourceType) -> Bool {
         
         switch resourceType {
-        case .Lights:
+        case .lights:
             return self.resourceCache.lights != (dict as! [String: Light])
-        case .Groups:
+        case .groups:
             return self.resourceCache.groups != (dict as! [String: Group])
-        case .Scenes:
+        case .scenes:
             return self.resourceCache.scenes != (dict as! [String: PartialScene])
-        case .Config:
+        case .config:
             break;
-        case .Schedules:
+        case .schedules:
             return self.resourceCache.schedules != (dict as! [String: Schedule])
-        case .Sensors:
+        case .sensors:
             return self.resourceCache.sensors != (dict as! [String: Sensor])
-        case .Rules:
+        case .rules:
             return self.resourceCache.rules != (dict as! [String: Rule])
         }
         
         return false
     }
     
-    func nativeObjectDiffersFromCache(bridgeResource: BridgeResource, resourceType: BridgeResourceType) -> Bool {
+    func nativeObjectDiffersFromCache(bridgeResource: BridgeResource, resourceType: HeartbeatBridgeResourceType) -> Bool {
         
         switch resourceType {
-        case .Lights:
+        case .lights:
             return false
-        case .Groups:
+        case .groups:
             return false
-        case .Scenes:
+        case .scenes:
             return false
-        case .Config:
+        case .config:
             return self.resourceCache.bridgeConfiguration != bridgeResource as? BridgeConfiguration
-        case .Schedules:
+        case .schedules:
             return false
-        case .Sensors:
+        case .sensors:
             return false
-        case .Rules:
+        case .rules:
             return false
         }
         
         return false
     }
     
-    func convertToNativeObjectDict(json: JSON, resourceType: BridgeResourceType) -> NSDictionary {
+    func convertToNativeObjectDict(json: JSON, resourceType: HeartbeatBridgeResourceType) -> NSDictionary {
         
         //Log.debug("convertToNativeObjectDict", json)
         
         switch resourceType {
             
-        case .Lights:
+        case .lights:
             return Light.dictionaryFromResourcesJSON(json)
-        case .Groups:
+        case .groups:
             return Group.dictionaryFromResourcesJSON(json)
-        case .Scenes:
+        case .scenes:
             return PartialScene.dictionaryFromResourcesJSON(json)
-        case .Config:
+        case .config:
             break;
-        case .Schedules:
+        case .schedules:
             return Schedule.dictionaryFromResourcesJSON(json)
-        case .Sensors:
+        case .sensors:
             return Sensor.dictionaryFromResourcesJSON(json)
-        case .Rules:
+        case .rules:
             return Rule.dictionaryFromResourcesJSON(json)
         }
         
         return [:]
     }
     
-    func convertToNativeObject(json: JSON, resourceType: BridgeResourceType) -> BridgeResource {
+    func convertToNativeObject(json: JSON, resourceType: HeartbeatBridgeResourceType) -> BridgeResource {
         
         switch resourceType {
             
-        case .Lights:
+        case .lights:
             return Light(json: json)!
-        case .Groups:
+        case .groups:
             return Group(json: json)!
-        case .Scenes:
+        case .scenes:
             return PartialScene(json: json)!
-        case .Config:
+        case .config:
            return BridgeConfiguration(json: json)!
-        case .Schedules:
+        case .schedules:
             return Schedule(json: json)!
-        case .Sensors:
+        case .sensors:
             return Sensor(json: json)!
-        case .Rules:
+        case .rules:
             return Rule(json: json)!
         }
     }
@@ -254,7 +254,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
     
     var resourceCache: BridgeResourcesCache;
     
-    func notifyAboutChangesForResourceType(resourceType: BridgeResourceType) {
+    func notifyAboutChangesForResourceType(resourceType: HeartbeatBridgeResourceType) {
         
         let notification = ResourceCacheUpdateNotification(resourceType: resourceType)!
         NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)

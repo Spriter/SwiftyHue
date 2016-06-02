@@ -54,31 +54,31 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
         
         if segue.identifier == "LightsSegue" {
             
-            destController.resourceTypeToDisplay = .Lights
+            destController.resourceTypeToDisplay = .lights
             
         } else if segue.identifier == "GroupsSegue" {
             
-            destController.resourceTypeToDisplay = .Groups
+            destController.resourceTypeToDisplay = .groups
             
         } else if segue.identifier == "ScenesSegue" {
             
-            destController.resourceTypeToDisplay = .Scenes
+            destController.resourceTypeToDisplay = .scenes
             
         } else if segue.identifier == "SensorsSegue" {
             
-            destController.resourceTypeToDisplay = .Sensors
+            destController.resourceTypeToDisplay = .sensors
             
         } else if segue.identifier == "SchedulesSegue" {
             
-            destController.resourceTypeToDisplay = .Schedules
+            destController.resourceTypeToDisplay = .schedules
             
         } else if segue.identifier == "RulesSegue" {
             
-            destController.resourceTypeToDisplay = .Rules
+            destController.resourceTypeToDisplay = .rules
             
         } else if segue.identifier == "ConfigSegue" {
             
-            destController.resourceTypeToDisplay = .Config
+            destController.resourceTypeToDisplay = .config
         }
     }
 
@@ -127,13 +127,13 @@ extension ViewController {
         
         let bridgeAccessConfig = self.readBridgeAccessConfig()!
         swiftyHue.setBridgeAccessConfig(bridgeAccessConfig)
-        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Lights)
-        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Groups)
-       swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Rules)
-        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Scenes)
-        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Schedules)
-        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Sensors)
-        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .Config)
+        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .lights)
+        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .groups)
+       swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .rules)
+        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .scenes)
+        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .schedules)
+        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .sensors)
+        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .config)
         swiftyHue.startHeartbeat();
         
 //        var lightState = LightState()

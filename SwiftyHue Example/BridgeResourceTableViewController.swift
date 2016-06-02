@@ -11,7 +11,7 @@ import SwiftyHue
 
 class BridgeResourceTableViewController: UITableViewController {
 
-    var resourceTypeToDisplay: BridgeResourceType = .Lights
+    var resourceTypeToDisplay: HeartbeatBridgeResourceType = .lights
     var bridgeResources =  [BridgeResource]()
     
     override func viewDidLoad() {
@@ -26,43 +26,43 @@ class BridgeResourceTableViewController: UITableViewController {
             
             switch resourceTypeToDisplay {
                 
-            case .Lights:
+            case .lights:
               
                 for light in resourceCache.lights.values {
                     bridgeResources.append(light)
                 }
                 
-            case .Groups:
+            case .groups:
                 
                 for group in resourceCache.groups.values {
                     bridgeResources.append(group)
                 }
                 
-            case .Scenes:
+            case .scenes:
                 
                 for scene in resourceCache.scenes.values {
                     bridgeResources.append(scene)
                 }
                 
-            case .Rules:
+            case .rules:
                 
                 for rule in resourceCache.rules.values {
                     bridgeResources.append(rule)
                 }
                 
-            case .Schedules:
+            case .schedules:
                 
                 for schedule in resourceCache.schedules.values {
                     bridgeResources.append(schedule)
                 }
                 
-            case .Sensors:
+            case .sensors:
                 
                 for sensor in resourceCache.sensors.values {
                     bridgeResources.append(sensor)
                 }
                 
-            case .Config:
+            case .config:
                 
                 if let config = resourceCache.bridgeConfiguration {
                     bridgeResources.append(config)

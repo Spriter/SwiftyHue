@@ -24,7 +24,7 @@ public class SwiftyHue {
         self.heartbeatManager = HeartbeatManager(bridgeAccesssConfig: bridgeAccessConfig, heartbeatProcessors: [resourceCacheHeartbeatProcessor!]);
     }
     
-    public func setLocalHeartbeatInterval(interval: NSTimeInterval, forResourceType resourceType: BridgeResourceType) {
+    public func setLocalHeartbeatInterval(interval: NSTimeInterval, forResourceType resourceType: HeartbeatBridgeResourceType) {
         
         heartbeatManager?.setLocalHeartbeatInterval(interval, forResourceType: resourceType)
     }

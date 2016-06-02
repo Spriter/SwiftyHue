@@ -73,13 +73,13 @@ public class BridgeResourcesCache: Encodable, Decodable {
     required public convenience init?(json: JSON) {
         
         self.init()
-        
-        guard let lightsDict: [String: Light] = BridgeResourceType.Lights.rawValue <~~ json,
-            groupsDict: [String: Group] = BridgeResourceType.Groups.rawValue <~~ json,
-            schedulesDict: [String: Schedule] = BridgeResourceType.Schedules.rawValue <~~ json,
-            scenesDict: [String: PartialScene] = BridgeResourceType.Scenes.rawValue <~~ json,
-            sensorsDict: [String: Sensor] = BridgeResourceType.Sensors.rawValue <~~ json,
-            rulesDict: [String: Rule] = BridgeResourceType.Rules.rawValue <~~ json
+                
+        guard let lightsDict: [String: Light] = HeartbeatBridgeResourceType.lights.rawValue <~~ json,
+            groupsDict: [String: Group] = HeartbeatBridgeResourceType.groups.rawValue <~~ json,
+            schedulesDict: [String: Schedule] = HeartbeatBridgeResourceType.schedules.rawValue <~~ json,
+            scenesDict: [String: PartialScene] = HeartbeatBridgeResourceType.scenes.rawValue <~~ json,
+            sensorsDict: [String: Sensor] = HeartbeatBridgeResourceType.sensors.rawValue <~~ json,
+            rulesDict: [String: Rule] = HeartbeatBridgeResourceType.rules.rawValue <~~ json
             
             else { return nil }
         
@@ -90,20 +90,20 @@ public class BridgeResourcesCache: Encodable, Decodable {
         self._sensors = sensorsDict
         self._rules = rulesDict
         
-        _bridgeConfiguration = BridgeResourceType.Config.rawValue <~~ json
+        _bridgeConfiguration = HeartbeatBridgeResourceType.config.rawValue <~~ json
         
     }
     
     public func toJSON() -> JSON? {
         
         var json = jsonify([
-            BridgeResourceType.Lights.rawValue ~~> _lights,
-            BridgeResourceType.Groups.rawValue ~~> _groups,
-            BridgeResourceType.Schedules.rawValue ~~> _schedules,
-            BridgeResourceType.Scenes.rawValue ~~> _scenes,
-            BridgeResourceType.Sensors.rawValue ~~> _sensors,
-            BridgeResourceType.Rules.rawValue ~~> _rules,
-            BridgeResourceType.Config.rawValue ~~> _bridgeConfiguration
+            HeartbeatBridgeResourceType.lights.rawValue ~~> _lights,
+            HeartbeatBridgeResourceType.groups.rawValue ~~> _groups,
+            HeartbeatBridgeResourceType.schedules.rawValue ~~> _schedules,
+            HeartbeatBridgeResourceType.scenes.rawValue ~~> _scenes,
+            HeartbeatBridgeResourceType.sensors.rawValue ~~> _sensors,
+            HeartbeatBridgeResourceType.rules.rawValue ~~> _rules,
+            HeartbeatBridgeResourceType.config.rawValue ~~> _bridgeConfiguration
             ])
         
         print(json)
@@ -197,16 +197,16 @@ public class BridgeResourcesCache: Encodable, Decodable {
 //        var sensorsJSONDict: [String: JSON] = convertBridgeResourceDictToJSONDict(self._sensors)
 //        var rulesJSONDict: [String: JSON] = convertBridgeResourceDictToJSONDict(self._rules)
 //
-//        dict[BridgeResourceType.Lights.rawValue] = lightsJSONDict;
-//        dict[BridgeResourceType.Groups.rawValue] = groupsJSONDict;
-//        dict[BridgeResourceType.Schedules.rawValue] = schedulesJSONDict;
-//        dict[BridgeResourceType.Scenes.rawValue] = scenesJSONDict;
-//        dict[BridgeResourceType.Sensors.rawValue] = sensorsJSONDict;
-//        dict[BridgeResourceType.Rules.rawValue] = rulesJSONDict;
+//        dict[HeartbeatBridgeResourceType.Lights.rawValue] = lightsJSONDict;
+//        dict[HeartbeatBridgeResourceType.Groups.rawValue] = groupsJSONDict;
+//        dict[HeartbeatBridgeResourceType.Schedules.rawValue] = schedulesJSONDict;
+//        dict[HeartbeatBridgeResourceType.Scenes.rawValue] = scenesJSONDict;
+//        dict[HeartbeatBridgeResourceType.Sensors.rawValue] = sensorsJSONDict;
+//        dict[HeartbeatBridgeResourceType.Rules.rawValue] = rulesJSONDict;
 //
 //        var bridgeConfigJSON = self.bridgeConfiguration?.toJSON()
 //        if let bridgeConfigJSON = bridgeConfigJSON {
-//            dict[BridgeResourceType.Config.rawValue] = bridgeConfigJSON
+//            dict[HeartbeatBridgeResourceType.Config.rawValue] = bridgeConfigJSON
 //        }
 //
 //        return dict

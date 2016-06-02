@@ -15,20 +15,24 @@ public enum BridgeHeartbeatConnectionStatusNotification: String {
     case localConnection, notAuthenticated, nolocalConnection
 }
 
-public enum BridgeResourceType: String {
-    case Lights, Groups, Scenes, Sensors, Rules, Config, Schedules
+//public enum BridgeResourceType: String {
+//    case Lights, Groups, Scenes, Sensors, Rules, Config, Schedules
+//}
+
+public enum HeartbeatBridgeResourceType: String {
+    case lights, groups, scenes, sensors, rules, config, schedules
 }
 
 public protocol HeartbeatProcessor {
     
-    func processJSON(json: JSON, forResourceType resourceType: BridgeResourceType)
+    func processJSON(json: JSON, forResourceType resourceType: HeartbeatBridgeResourceType)
 }
 
 public class HeartbeatManager {
     
     private let bridgeAccesssConfig: BridgeAccessConfig;
-    private var localHeartbeatTimers = [BridgeResourceType: NSTimer]()
-    private var localHeartbeatTimerIntervals = [BridgeResourceType: NSTimeInterval]()
+    private var localHeartbeatTimers = [HeartbeatBridgeResourceType: NSTimer]()
+    private var localHeartbeatTimerIntervals = [HeartbeatBridgeResourceType: NSTimeInterval]()
     private var heartbeatProcessors: [HeartbeatProcessor];
     
     private var lastLocalConnectionNotificationPostTime: NSTimeInterval?
@@ -39,12 +43,12 @@ public class HeartbeatManager {
         self.heartbeatProcessors = heartbeatProcessors;
     }
     
-    internal func setLocalHeartbeatInterval(interval: NSTimeInterval, forResourceType resourceType: BridgeResourceType) {
+    internal func setLocalHeartbeatInterval(interval: NSTimeInterval, forResourceType resourceType: HeartbeatBridgeResourceType) {
         
         localHeartbeatTimerIntervals[resourceType] = interval
     }
     
-    public func removeLocalHeartbeatInterval(interval: Float, forResourceType resourceType: BridgeResourceType) {
+    public func removeLocalHeartbeatInterval(interval: Float, forResourceType resourceType: HeartbeatBridgeResourceType) {
         
         if let timer = localHeartbeatTimers.removeValueForKey(resourceType) {
             
@@ -81,11 +85,11 @@ public class HeartbeatManager {
     
     @objc func timerAction(timer: NSTimer) {
         
-        let resourceType: BridgeResourceType = BridgeResourceType(rawValue: timer.userInfo! as! String)!
+        let resourceType: HeartbeatBridgeResourceType = HeartbeatBridgeResourceType(rawValue: timer.userInfo! as! String)!
         doRequestForResourceType(resourceType)
     }
     
-    private func doRequestForResourceType(resourceType: BridgeResourceType) {
+    private func doRequestForResourceType(resourceType: HeartbeatBridgeResourceType) {
         
         Log.trace("Heartbeat Request", "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercaseString)")
         
@@ -108,7 +112,7 @@ public class HeartbeatManager {
     
     // MARK: Timer Action Response Handling
     
-    private func handleSuccessResponseResult(result: Result<AnyObject, NSError>, resourceType: BridgeResourceType) {
+    private func handleSuccessResponseResult(result: Result<AnyObject, NSError>, resourceType: HeartbeatBridgeResourceType) {
         
         Log.trace("Heartbeat Response for Resource Type \(resourceType.rawValue.lowercaseString) received")
         //Log.trace("Heartbeat Response: \(resourceType.rawValue.lowercaseString): ", result.value)
