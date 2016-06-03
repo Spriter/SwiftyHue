@@ -17,11 +17,17 @@ public class RuleAction: Decodable, Encodable {
     
     public required init?(json: JSON) {
         
-        guard let address: String = "address" <~~ json,
-            let method: String = "method" <~~ json,
-            let body: JSON = "body" <~~ json
-            
-            else { return nil }
+        guard let address: String = "address" <~~ json else {
+            Log.error("Can't create RuleAction, missing required attribute \"address\" in JSON:\n \(json)"); return nil
+        }
+        
+        guard let method: String = "method" <~~ json else {
+            Log.error("Can't create RuleAction, missing required attribute \"method\" in JSON:\n \(json)"); return nil
+        }
+        
+        guard let body: JSON = "body" <~~ json else {
+            Log.error("Can't create RuleAction, missing required attribute \"body\" in JSON:\n \(json)"); return nil
+        }
         
         self.address = address
         self.method = method

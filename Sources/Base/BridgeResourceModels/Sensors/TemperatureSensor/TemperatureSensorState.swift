@@ -15,9 +15,9 @@ public class TemperatureSensorState: SensorState {
     
     required public init?(json: JSON) {
         
-        guard let temperature: Int = "temperature" <~~ json
-            
-            else { return nil }
+        guard let temperature: Int = "temperature" <~~ json else {
+            Log.error("Can't create TemperatureSensorState, missing required attribute \"temperature\" in JSON:\n \(json)"); return nil
+        }
         
         self.temperature = temperature
         
@@ -27,7 +27,7 @@ public class TemperatureSensorState: SensorState {
     public override func toJSON() -> JSON? {
         
         if var superJson = super.toJSON() {
-            var json = jsonify([
+            let json = jsonify([
                 "temperature" ~~> self.temperature
                 ])
             superJson.unionInPlace(json!)

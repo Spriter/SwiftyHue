@@ -22,6 +22,7 @@ public class Sensor: BridgeResource, BridgeResourceDictGenerator {
     };
     
     public let identifier: String
+    public let uniqueId: String?
     public let name: String
     public let type: SensorType
     public let modelId: String
@@ -33,15 +34,35 @@ public class Sensor: BridgeResource, BridgeResourceDictGenerator {
     
     public required init?(json: JSON) {
         
-        guard let identifier: String = "id" <~~ json,
-            let name: String = "name" <~~ json,
-            let type: SensorType = "type" <~~ json,
-            let modelId: String = "modelid" <~~ json,
-            let manufacturerName: String = "manufacturername" <~~ json,
-            let swVersion: String = "swversion" <~~ json
+        guard let identifier: String = "id" <~~ json else {
+            Log.error("Can't create Sensor, missing required attribute \"id\" in JSON:\n \(json)"); return nil
+        }
         
-        else { Log.error("Can't create Sensor from JSON:\n \(json)"); return nil }
+//        guard let uniqueId: String = "uniqueid" <~~ json else {
+//            Log.error("Can't create Sensor, missing required attribute \"uniqueId\" in JSON:\n \(json)"); return nil
+//        }
         
+        guard let name: String = "name" <~~ json else {
+            Log.error("Can't create Sensor, missing required attribute \"name\" in JSON:\n \(json)"); return nil
+        }
+        
+        guard let type: SensorType = "type" <~~ json else {
+            Log.error("Can't create Sensor, missing required attribute \"type\" in JSON:\n \(json)"); return nil
+        }
+        
+        guard let modelId: String = "modelid" <~~ json else {
+            Log.error("Can't create Sensor, missing required attribute \"modelid\" in JSON:\n \(json)"); return nil
+        }
+        
+        guard let manufacturerName: String = "manufacturername" <~~ json else {
+            Log.error("Can't create Sensor, missing required attribute \"manufacturername\" in JSON:\n \(json)"); return nil
+        }
+        
+        guard let swVersion: String = "swversion" <~~ json else {
+            Log.error("Can't create Sensor, missing required attribute \"swversion\" in JSON:\n \(json)"); return nil
+        }
+        
+        self.uniqueId = "uniqueid" <~~ json
         self.state = "state" <~~ json
         self.config = "config" <~~ json
         self.recycle = "recycle" <~~ json
@@ -58,6 +79,7 @@ public class Sensor: BridgeResource, BridgeResourceDictGenerator {
         
         let json = jsonify([
             "id" ~~> identifier,
+            "uniqueid" ~~> uniqueId,
             "name" ~~> name,
             "state" ~~> state,
             "config" ~~> config,

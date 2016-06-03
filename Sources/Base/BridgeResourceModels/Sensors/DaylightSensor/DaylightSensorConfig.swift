@@ -18,12 +18,21 @@ public class DaylightSensorConfig: SensorConfig {
     
     required public init?(json: JSON) {
         
-        guard let long: String = "long" <~~ json,
-            let lat: String = "lat" <~~ json,
-            let sunriseOffset: Int8 = "sunriseOffset" <~~ json,
-            let sunsetOffset: Int8 = "sunsetOffset" <~~ json
-            
-            else { return nil }
+        guard let long: String = "long" <~~ json else {
+            Log.error("Can't create DaylightSensorConfig, missing required attribute \"long\" in JSON:\n \(json)"); return nil
+        }
+        
+        guard let lat: String = "lat" <~~ json else {
+            Log.error("Can't create DaylightSensorConfig, missing required attribute \"lat\" in JSON:\n \(json)"); return nil
+        }
+        
+        guard let sunriseOffset: Int8 = "sunriseoffset" <~~ json else {
+            Log.error("Can't create DaylightSensorConfig, missing required attribute \"sunriseoffset\" in JSON:\n \(json)"); return nil
+        }
+        
+        guard let sunsetOffset: Int8 = "sunsetoffset" <~~ json else {
+            Log.error("Can't create DaylightSensorConfig, missing required attribute \"sunsetoffset\" in JSON:\n \(json)"); return nil
+        }
         
         self.long = long
         self.lat = lat
@@ -36,11 +45,11 @@ public class DaylightSensorConfig: SensorConfig {
     public override func toJSON() -> JSON? {
         
         if var superJson = super.toJSON() {
-            var json = jsonify([
+            let json = jsonify([
                 "long" ~~> long,
                 "lat" ~~> lat,
-                "sunriseOffset" ~~> sunriseOffset,
-                "sunsetOffset" ~~> sunsetOffset
+                "sunriseoffset" ~~> sunriseOffset,
+                "sunsetoffset" ~~> sunsetOffset
                 ])
             superJson.unionInPlace(json!)
             return superJson

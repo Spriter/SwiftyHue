@@ -25,9 +25,9 @@ public class SensorConfig: Decodable, Encodable {
     
     required public init?(json: JSON) {
         
-        guard let on: Bool = "on" <~~ json
-            
-            else { return nil }
+        guard let on: Bool = "on" <~~ json else {
+            Log.error("Can't create SensorConfig, missing required attribute \"on\" in JSON:\n \(json)"); return nil
+        }
         
         self.on = on
         self.reachable = "reachable" <~~ json
@@ -36,10 +36,8 @@ public class SensorConfig: Decodable, Encodable {
     }
     
     public func toJSON() -> JSON? {
-        
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
-        
-        var json = jsonify([
+
+        let json = jsonify([
             "on" ~~> on,
             "reachable" ~~> reachable,
             "battery" ~~> battery,

@@ -21,10 +21,14 @@ public class RuleCondition: Decodable, Encodable  {
     public let value: String?
     
     public required init?(json: JSON) {
-        guard let address: String = "address" <~~ json,
-            let conditionOperator: RuleConditionOperator = RuleConditionOperator(rawValue: ("conditionOperator" <~~ json) ?? "eq")
-            
-            else { Log.error("Can't create RuleCondition from JSON:\n \(json)"); return nil }
+        
+        guard let address: String = "address" <~~ json else {
+            Log.error("Can't create RuleCondition, missing required attribute \"address\" in JSON:\n \(json)"); return nil
+        }
+        
+        guard let conditionOperator: RuleConditionOperator = RuleConditionOperator(rawValue: ("operator" <~~ json) ?? "eq") else {
+            Log.error("Can't create RuleCondition, missing required attribute \"operator\" in JSON:\n \(json)"); return nil
+        }
         
         self.address = address
         self.conditionOperator = conditionOperator
@@ -36,7 +40,7 @@ public class RuleCondition: Decodable, Encodable  {
         
         let json = jsonify([
             "address" ~~> address,
-            "conditionOperator" ~~> conditionOperator.rawValue,
+            "operator" ~~> conditionOperator.rawValue,
             "value" ~~> value
             ])
         

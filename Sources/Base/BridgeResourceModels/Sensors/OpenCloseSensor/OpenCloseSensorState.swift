@@ -15,9 +15,9 @@ public class OpenCloseSensorState: SensorState {
     
     required public init?(json: JSON) {
         
-        guard let open: Bool = "open" <~~ json
-            
-            else { return nil }
+        guard let open: Bool = "open" <~~ json else {
+            Log.error("Can't create OpenCloseSensorState, missing required attribute \"open\" in JSON:\n \(json)"); return nil
+        }
         
         self.open = open
         
@@ -27,7 +27,7 @@ public class OpenCloseSensorState: SensorState {
     public override func toJSON() -> JSON? {
         
         if var superJson = super.toJSON() {
-            var json = jsonify([
+            let json = jsonify([
                 "open" ~~> self.open
                 ])
             superJson.unionInPlace(json!)

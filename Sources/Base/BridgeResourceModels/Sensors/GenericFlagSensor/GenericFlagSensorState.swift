@@ -15,9 +15,9 @@ public class GenericFlagSensorState: SensorState {
     
     required public init?(json: JSON) {
         
-        guard let flag: Bool = "flag" <~~ json
-            
-            else { return nil }
+        guard let flag: Bool = "flag" <~~ json else {
+            Log.error("Can't create GenericFlagSensorState, missing required attribute \"flag\" in JSON:\n \(json)"); return nil
+        }
         
         self.flag = flag
         
@@ -27,7 +27,7 @@ public class GenericFlagSensorState: SensorState {
     public override func toJSON() -> JSON? {
         
         if var superJson = super.toJSON() {
-            var json = jsonify([
+            let json = jsonify([
                 "flag" ~~> flag
                 ])
             superJson.unionInPlace(json!)

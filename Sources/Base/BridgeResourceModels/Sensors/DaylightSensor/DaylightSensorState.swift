@@ -15,9 +15,9 @@ public class DaylightSensorState: SensorState {
     
     required public init?(json: JSON) {
         
-        guard let daylight: Bool = "daylight" <~~ json
-            
-            else { return nil }
+        guard let daylight: Bool = "daylight" <~~ json else {
+            Log.error("Can't create DaylightSensorState, missing required attribute \"daylight\" in JSON:\n \(json)"); return nil
+        }
         
         self.daylight = daylight
         
@@ -27,7 +27,7 @@ public class DaylightSensorState: SensorState {
     public override func toJSON() -> JSON? {
         
         if var superJson = super.toJSON() {
-            var json = jsonify([
+            let json = jsonify([
                 "daylight" ~~> self.daylight
                 ])
             superJson.unionInPlace(json!)
