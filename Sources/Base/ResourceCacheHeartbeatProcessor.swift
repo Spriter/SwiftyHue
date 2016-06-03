@@ -247,15 +247,13 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
                     dict[sensorJson.0] = OpenCloseSensor(json: sensorIdJson)
                 case .CLIPPresence:
                     dict[sensorJson.0] = PresenceSensor(json: sensorIdJson)
-                case .ClipSwitch:
-                    dict[sensorJson.0] = SwitchSensor(json: sensorIdJson)
                 case .CLIPTemperature:
                     dict[sensorJson.0] = TemperatureSensor(json: sensorIdJson)
                 case .Daylight:
                     dict[sensorJson.0] = DaylightSensor(json: sensorIdJson)
-                case .ZGPSwitch:
-                    dict[sensorJson.0] = SwitchSensor(json: sensorIdJson)
-                case .ZLLSwitch:
+                case .ClipSwitch,
+                     .ZGPSwitch,
+                     .ZLLSwitch:
                     dict[sensorJson.0] = SwitchSensor(json: sensorIdJson)
                 }
             }
