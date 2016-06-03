@@ -83,7 +83,7 @@ public class Sensor: BridgeResource, BridgeResourceDictGenerator {
             "name" ~~> name,
             "state" ~~> state,
             "config" ~~> config,
-            "type" ~~> type.rawValue,
+            "type" ~~> type,
             "modelid" ~~> modelId,
             "manufacturername" ~~> manufacturerName,
             "swversion" ~~> swVersion
