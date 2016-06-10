@@ -154,7 +154,7 @@ extension ViewController {
 //        
 //        beatManager.startHeartbeat()
 //                
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.lightChanged), name: ResourceCacheUpdateNotification.LightsUpdated.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.lightChanged), name: ResourceCacheUpdateNotification.lightsUpdated.rawValue, object: nil)
         
         //        var lightState = LightState()
         //        lightState.on = true

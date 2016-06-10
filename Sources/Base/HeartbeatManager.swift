@@ -183,7 +183,7 @@ public class HeartbeatManager {
         
         if let notification = notification {
             
-            Log.trace("Post Notification:", notification.rawValue)
+            Log.trace("Post Notification: ", notification.rawValue)
             NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
         }
     }
