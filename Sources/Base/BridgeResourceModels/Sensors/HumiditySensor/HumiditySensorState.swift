@@ -15,9 +15,9 @@ public class HumiditySensorState: SensorState {
     
     required public init?(json: JSON) {
         
-        guard let humidity: Int = "humidity" <~~ json
-            
-            else { return nil }
+        guard let humidity: Int = "humidity" <~~ json else {
+            Log.error("Can't create HumiditySensorState, missing required attribute \"humidity\" in JSON:\n \(json)"); return nil
+        }
         
         self.humidity = humidity
         
@@ -27,7 +27,7 @@ public class HumiditySensorState: SensorState {
     public override func toJSON() -> JSON? {
         
         if var superJson = super.toJSON() {
-            var json = jsonify([
+            let json = jsonify([
                 "humidity" ~~> self.humidity
                 ])
             superJson.unionInPlace(json!)

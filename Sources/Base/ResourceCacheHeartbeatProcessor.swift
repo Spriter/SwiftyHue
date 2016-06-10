@@ -202,7 +202,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         case .schedules:
             return Schedule.dictionaryFromResourcesJSON(json)
         case .sensors:
-            return Sensor.dictionaryFromResourcesJSON(json)
+            return convertToExplicitSensorObjectDict(json)
         case .rules:
             return Rule.dictionaryFromResourcesJSON(json)
         }
@@ -229,6 +229,43 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         case .rules:
             return Rule(json: json)!
         }
+    }
+    
+    private func convertToExplicitSensorObjectDict(json: JSON) -> NSDictionary {
+        
+        let dict: NSMutableDictionary = [:]
+        
+        for sensorJson in json {
+            
+            var sensorIdJson = sensorJson.1 as! JSON
+            sensorIdJson["id"] = sensorJson.0
+            
+            if let sensorType: SensorType = "type" <~~ sensorIdJson {
+                
+                switch sensorType {
+                case .CLIPGenericFlag:
+                    dict[sensorJson.0] = GenericFlagSensor(json: sensorIdJson)
+                case .CLIPGenericStatus:
+                    dict[sensorJson.0] = GenericStatusSensor(json: sensorIdJson)
+                case .CLIPHumidity:
+                    dict[sensorJson.0] = HumiditySensor(json: sensorIdJson)
+                case .CLIPOpenClose:
+                    dict[sensorJson.0] = OpenCloseSensor(json: sensorIdJson)
+                case .CLIPPresence:
+                    dict[sensorJson.0] = PresenceSensor(json: sensorIdJson)
+                case .CLIPTemperature:
+                    dict[sensorJson.0] = TemperatureSensor(json: sensorIdJson)
+                case .Daylight:
+                    dict[sensorJson.0] = DaylightSensor(json: sensorIdJson)
+                case .ClipSwitch,
+                     .ZGPSwitch,
+                     .ZLLSwitch:
+                    dict[sensorJson.0] = SwitchSensor(json: sensorIdJson)
+                }
+            }
+        }
+
+        return dict
     }
     
     private func writeCacheToDisk() {

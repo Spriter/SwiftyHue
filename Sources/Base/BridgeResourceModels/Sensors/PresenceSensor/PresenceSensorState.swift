@@ -15,9 +15,9 @@ public class PresenceSensorState: SensorState {
     
     required public init?(json: JSON) {
         
-        guard let presence: Bool = "presence" <~~ json
-            
-            else { return nil }
+        guard let presence: Bool = "presence" <~~ json else {
+            Log.error("Can't create PresenceSensorState, missing required attribute \"presence\" in JSON:\n \(json)"); return nil
+        }
         
         self.presence = presence
         
@@ -27,7 +27,7 @@ public class PresenceSensorState: SensorState {
     public override func toJSON() -> JSON? {
         
         if var superJson = super.toJSON() {
-            var json = jsonify([
+            let json = jsonify([
                 "presence" ~~> self.presence
                 ])
             superJson.unionInPlace(json!)
