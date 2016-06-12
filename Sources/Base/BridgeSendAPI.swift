@@ -89,6 +89,11 @@ public class BridgeSendAPI {
         }
     }
     
+    public func removeSceneWithId(identifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
+        
+        remove(.scene, withIdentifier: identifier, completionHandler: completionHandler)
+    }
+    
     // MARK: Lights
     
     public func updateLightStateForId(identifier: String, withLightState lightState: LightState, completionHandler: BridgeSendErrorArrayCompletionHandler) {
@@ -107,6 +112,11 @@ public class BridgeSendAPI {
             
             completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
         }
+    }
+    
+    public func removeLightWithId(identifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
+        
+        remove(.light, withIdentifier: identifier, completionHandler: completionHandler)
     }
     
     // MARK: Groups
@@ -200,18 +210,7 @@ public class BridgeSendAPI {
     
     public func removeGroupWithId(identifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
         
-        if let bridgeAccessConfig = self.bridgeAccessConfig {
-            
-            Alamofire.request(.DELETE, "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/\(identifier)", encoding: .JSON)
-                .responseJSON { response in
-                    
-                    completionHandler(errors: self.errorsFromResponse(response))
-            }
-            
-        } else {
-            
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
-        }
+        remove(.group, withIdentifier: identifier, completionHandler: completionHandler)
     }
     
     public func setLightStateForGroupWithId(identifier: String, withLightState lightState: LightState, completionHandler: BridgeSendErrorArrayCompletionHandler) {
@@ -280,20 +279,7 @@ public class BridgeSendAPI {
     
     public func removeRuleWithId(identifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
         
-        if let bridgeAccessConfig = self.bridgeAccessConfig {
-            
-            let parameters = ["scene": identifier]
-            
-            Alamofire.request(.DELETE, "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/rules/\(identifier)", encoding: .JSON)
-                .responseJSON { response in
-                    
-                    completionHandler(errors: self.errorsFromResponse(response))
-            }
-            
-        } else {
-            
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
-        }
+        remove(.rule, withIdentifier: identifier, completionHandler: completionHandler)
     }
     
     // MARK: Schedules
@@ -342,18 +328,21 @@ public class BridgeSendAPI {
     
     public func removeScheduleWithId(identifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
         
-        if let bridgeAccessConfig = self.bridgeAccessConfig {
-            
-            Alamofire.request(.DELETE, "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/schedules/\(identifier)", encoding: .JSON)
-                .responseJSON { response in
-                    
-                    completionHandler(errors: self.errorsFromResponse(response))
-            }
-            
-        } else {
-            
-            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
-        }
+        remove(.schedule, withIdentifier: identifier, completionHandler: completionHandler)
+    }
+    
+    // MARK: Sensors
+    
+    public func removeSensorWithId(identifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
+        
+        remove(.sensor, withIdentifier: identifier, completionHandler: completionHandler)
+    }
+    
+    // MARK: Whitelist Entry
+    
+    public func removeWhitelistEntryWithId(identifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
+        
+        remove(.whitelistEntry, withIdentifier: identifier, completionHandler: completionHandler)
     }
 
     // MARK: Helpers
@@ -369,5 +358,24 @@ public class BridgeSendAPI {
         return errors?.count > 0 ? errors : nil
     }
     
+    private func remove(bridgeResourceType: BridgeResourceType, withIdentifier identifier: String, completionHandler: BridgeSendErrorArrayCompletionHandler) {
+        
+        let resourceTypeForURL = bridgeResourceType == .whitelistEntry
+                                 ? "config/whitelist"
+                                 : "\(bridgeResourceType)s"
+        
+        if let bridgeAccessConfig = self.bridgeAccessConfig {
+            
+            Alamofire.request(.DELETE, "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/\(resourceTypeForURL)/\(identifier)", encoding: .JSON)
+                .responseJSON { response in
+                    
+                    completionHandler(errors: self.errorsFromResponse(response))
+            }
+            
+        } else {
+            
+            completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+        }
+    }
     
 }
