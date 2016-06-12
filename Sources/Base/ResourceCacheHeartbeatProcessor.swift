@@ -11,7 +11,7 @@ import Gloss
 
 public enum ResourceCacheUpdateNotification: String {
     
-    case LightsUpdated, GroupsUpdated, ScenesUpdated, SensorsUpdated, RulesUpdated, ConfigUpdated, SchedulesUpdated
+    case lightsUpdated, groupsUpdated, scenesUpdated, sensorsUpdated, rulesUpdated, configUpdated, schedulesUpdated
     
     init?(resourceType: HeartbeatBridgeResourceType) {
         
@@ -69,6 +69,9 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
              
                 // Store in Cache
                 storeNativeObjectInCache(nativeObject, resourceType: resourceType)
+                
+                // Notify about changed
+                notifyAboutChangesForResourceType(resourceType)
             }
     
         } else {
@@ -80,6 +83,9 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
                 
                 // Store in Cache
                 storeNativeObjectDictInCache(nativeObjectDict, resourceType: resourceType)
+                
+                // Notify about changed
+                notifyAboutChangesForResourceType(resourceType)
             }
         }
         
@@ -294,6 +300,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
     func notifyAboutChangesForResourceType(resourceType: HeartbeatBridgeResourceType) {
         
         let notification = ResourceCacheUpdateNotification(resourceType: resourceType)!
+        Log.info("notifyAboutChangesForResourceType: \(notification.rawValue)")
         NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
     }
 }
