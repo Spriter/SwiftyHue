@@ -113,16 +113,45 @@ public class HeartbeatManager {
         Log.trace("Heartbeat Response for Resource Type \(resourceType.rawValue.lowercaseString) received")
         //Log.trace("Heartbeat Response: \(resourceType.rawValue.lowercaseString): ", result.value)
         
-        if let resultValueJSON = result.value as? JSON {
+        if responseResultIsPhilipsAPIErrorType(result: result, resourceType: resourceType) {
             
-            for heartbeatProcessor in self.heartbeatProcessors {
-                heartbeatProcessor.processJSON(resultValueJSON, forResourceType: resourceType)
+            if let resultValueJSONArray = result.value as? [JSON] {
+                
+                self.handleErrors(resultValueJSONArray)
             }
             
-        } else if let resultValueJSONArray = result.value as? [JSON] {
+        } else {
             
-            self.handleErrors(resultValueJSONArray)
+            if let resultValueJSON = result.value as? JSON {
+                
+                for heartbeatProcessor in self.heartbeatProcessors {
+                    heartbeatProcessor.processJSON(resultValueJSON, forResourceType: resourceType)
+                }
+                
+                self.notifyAboutLocalConnection()
+                
+            }
         }
+        
+    }
+    
+    private func responseResultIsPhilipsAPIErrorType(result result: Result<AnyObject, NSError>, resourceType resourceType: HeartbeatBridgeResourceType) -> Bool {
+        
+        switch resourceType {
+            
+        case .config:
+            
+            if let resultValueJSON = result.value as? JSON {
+                
+                return resultValueJSON.count <= 8 // HUE API gives always a respond for config request, but it only contains 8 Elements if no authorized user is used
+            }
+            
+        default:
+            
+            return result.value as? [JSON] != nil // Errros are delivered as Array
+        }
+        
+        return false
     }
     
     private func handleErrors(jsonErrorArray: [JSON]) {
