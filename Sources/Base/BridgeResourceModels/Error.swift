@@ -10,8 +10,18 @@ import Foundation
 import Gloss
 
 public enum SHErrorType: Int {
-    
+    case unknownError = 0
     case unauthorizedUser = 1
+    case bodyContainsInvalidJSON = 2
+    case resourceNotAvailable = 3
+    case methodNotAvailableForResource = 4
+    case missingParametersBody = 5
+    case parameterNotAvailable = 6
+    case invalidValueParameter = 7
+    case parameterIsNotModifiable = 8
+    case tooManyItemsInList = 9
+    case portalConnectionRequired = 10
+    case internalError = 901
 }
 
 public class Error: NSError, Decodable {
@@ -27,7 +37,12 @@ public class Error: NSError, Decodable {
             let errorDescription: String = "error.description" <~~ json
             else { Log.error("Can't create Error Object from JSON:\n \(json)"); return nil }
         
-        self.type = SHErrorType(rawValue: type)!
+        if let type = SHErrorType(rawValue: type) {
+            self.type = type
+        } else {
+            self.type = .unknownError
+        }
+        
         self.address = address
         self.errorDescription = errorDescription
         
