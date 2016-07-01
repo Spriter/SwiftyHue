@@ -13,8 +13,8 @@ public class DaylightSensorConfig: PartialSensorConfig {
     
     public let long: String
     public let lat: String
-    public let sunriseOffset: Int8
-    public let sunsetOffset: Int8
+    public let sunriseOffset: Int8?
+    public let sunsetOffset: Int8?
     
     init?(sensorConfig: SensorConfig) {
         
@@ -26,18 +26,10 @@ public class DaylightSensorConfig: PartialSensorConfig {
             Log.error("Can't create DaylightSensorConfig, missing required attribute \"lat\""); return nil
         }
         
-        guard let sunriseOffset: Int8 = sensorConfig.sunriseOffset else {
-            Log.error("Can't create DaylightSensorConfig, missing required attribute \"sunriseoffset\""); return nil
-        }
-        
-        guard let sunsetOffset: Int8 = sensorConfig.sunsetOffset else {
-            Log.error("Can't create DaylightSensorConfig, missing required attribute \"sunsetoffset\""); return nil
-        }
-        
         self.long = long
         self.lat = lat
-        self.sunriseOffset = sunriseOffset
-        self.sunsetOffset = sunsetOffset
+        self.sunriseOffset = sensorConfig.sunriseOffset
+        self.sunsetOffset = sensorConfig.sunsetOffset
         
         super.init(on: sensorConfig.on, reachable: sensorConfig.reachable, battery: sensorConfig.battery, url: sensorConfig.url)
     }
@@ -51,19 +43,11 @@ public class DaylightSensorConfig: PartialSensorConfig {
         guard let lat: String = "lat" <~~ json else {
             Log.error("Can't create DaylightSensorConfig, missing required attribute \"lat\" in JSON:\n \(json)"); return nil
         }
-        
-        guard let sunriseOffset: Int8 = "sunriseoffset" <~~ json else {
-            Log.error("Can't create DaylightSensorConfig, missing required attribute \"sunriseoffset\" in JSON:\n \(json)"); return nil
-        }
-        
-        guard let sunsetOffset: Int8 = "sunsetoffset" <~~ json else {
-            Log.error("Can't create DaylightSensorConfig, missing required attribute \"sunsetoffset\" in JSON:\n \(json)"); return nil
-        }
-        
+                
         self.long = long
         self.lat = lat
-        self.sunriseOffset = sunriseOffset
-        self.sunsetOffset = sunsetOffset
+        self.sunriseOffset = "sunriseoffset" <~~ json
+        self.sunsetOffset = "sunsetoffset" <~~ json
         
         super.init(json: json)
     }
