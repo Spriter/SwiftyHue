@@ -164,68 +164,68 @@ public func ==(lhs: Sensor, rhs: Sensor) -> Bool {
 
 extension Sensor {
     
-    func isDaylightSensor() -> Bool {
+    public func isDaylightSensor() -> Bool {
         return type == .Daylight
     }
     
-    func isGenericFlagSensor() -> Bool {
+    public func isGenericFlagSensor() -> Bool {
         return type == .CLIPGenericFlag
     }
 
-    func isGenericStatusSensor() -> Bool {
+    public func isGenericStatusSensor() -> Bool {
         return type == .CLIPGenericStatus
     }
     
-    func isHumiditySensor() -> Bool {
+    public func isHumiditySensor() -> Bool {
         return type == .CLIPHumidity
     }
     
-    func isOpenCloseSensor() -> Bool {
+    public func isOpenCloseSensor() -> Bool {
         return type == .CLIPOpenClose
     }
     
-    func isPresenceSensor() -> Bool {
+    public func isPresenceSensor() -> Bool {
         return type == .CLIPPresence
     }
     
-    func isSwitchSensor() -> Bool {
+    public func isSwitchSensor() -> Bool {
         return type == .ZGPSwitch || type == .ZLLSwitch || type == .ClipSwitch
     }
     
-    func isTemperatureSensor() -> Bool {
+    public func isTemperatureSensor() -> Bool {
         return type == .CLIPTemperature
     }
     
-    func asDaylightSensor() -> DaylightSensor? {
+    public func asDaylightSensor() -> DaylightSensor? {
         return DaylightSensor(sensor: self)
     }
     
-    func asGenericFlagSensor() -> GenericFlagSensor? {
+    public func asGenericFlagSensor() -> GenericFlagSensor? {
         
         return GenericFlagSensor(sensor: self)
     }
 
-    func asGenericStatusSensor() -> GenericStatusSensor? {
+    public func asGenericStatusSensor() -> GenericStatusSensor? {
         return GenericStatusSensor(sensor: self)
     }
     
-    func asHumiditySensor() -> HumiditySensor? {
+    public func asHumiditySensor() -> HumiditySensor? {
         return HumiditySensor(sensor: self)
     }
     
-    func asOpenCloseSensor() -> OpenCloseSensor? {
+    public func asOpenCloseSensor() -> OpenCloseSensor? {
         return OpenCloseSensor(sensor: self)
     }
     
-    func asPresenceSensor() -> PresenceSensor? {
+    public func asPresenceSensor() -> PresenceSensor? {
         return PresenceSensor(sensor: self)
     }
     
-    func asSwitchSensor() -> SwitchSensor? {
+    public func asSwitchSensor() -> SwitchSensor? {
         return SwitchSensor(sensor: self)
     }
     
-    func asTemperatureSensor() -> TemperatureSensor? {
+    public func asTemperatureSensor() -> TemperatureSensor? {
         return TemperatureSensor(sensor: self)
     }
 }
