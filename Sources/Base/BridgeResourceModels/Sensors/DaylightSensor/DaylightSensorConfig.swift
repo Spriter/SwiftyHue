@@ -13,8 +13,8 @@ public class DaylightSensorConfig: PartialSensorConfig {
     
     public let long: String
     public let lat: String
-    public let sunriseOffset: Int8?
-    public let sunsetOffset: Int8?
+    public let sunriseOffset: Int?
+    public let sunsetOffset: Int?
     
     init?(sensorConfig: SensorConfig) {
         

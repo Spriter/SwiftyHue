@@ -20,10 +20,10 @@ public class PartialSensorConfig: Decodable, Encodable {
 
     public var on: Bool
     public var reachable: Bool?
-    public var battery: Int8?
+    public var battery: Int?
     public var url: String?
     
-    init(on: Bool, reachable: Bool?, battery: Int8?, url: String?) {
+    init(on: Bool, reachable: Bool?, battery: Int?, url: String?) {
         
         self.on = on
         self.reachable = reachable
@@ -62,8 +62,8 @@ public class SensorConfig: PartialSensorConfig {
     // DaylightSensorConfig
     public let long: String?
     public let lat: String?
-    public let sunriseOffset: Int8?
-    public let sunsetOffset: Int8?
+    public let sunriseOffset: Int?
+    public let sunsetOffset: Int?
     
     required public init?(json: JSON) {
         
