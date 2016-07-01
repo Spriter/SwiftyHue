@@ -9,11 +9,48 @@
 import Foundation
 import Gloss
 
-public class DaylightSensor: Sensor {
+public class DaylightSensor: PartialSensor {
     
-    public typealias AssociatedBridgeResourceType = DaylightSensor
+    let config: DaylightSensorConfig
+    let state: DaylightSensorState
     
-    required public init?(json: JSON) {
+    required public init?(sensor: Sensor) {
+        
+        guard let sensorConfig = sensor.config else {
+            return nil
+        }
+        
+        guard let sensorState = sensor.state else {
+            return nil
+        }
+        
+        guard let config: DaylightSensorConfig = DaylightSensorConfig(sensorConfig: sensorConfig) else {
+            return nil
+        }
+        
+        guard let state: DaylightSensorState = DaylightSensorState(state: sensorState) else {
+            return nil
+        }
+        
+        self.config = config
+        self.state = state
+        
+        super.init(identifier: sensor.identifier, uniqueId: sensor.uniqueId, name: sensor.name, type: sensor.type, modelId: sensor.modelId, manufacturerName: sensor.manufacturerName, swVersion: sensor.swVersion, recycle: sensor.recycle)
+    }
+    
+    public required init?(json: JSON) {
+        
+        guard let config: DaylightSensorConfig = "config" <~~ json else {
+            return nil
+        }
+        
+        guard let state: DaylightSensorState = "state" <~~ json else {
+            return nil
+        }
+        
+        self.config = config
+        self.state = state
+        
         super.init(json: json)
     }
 }

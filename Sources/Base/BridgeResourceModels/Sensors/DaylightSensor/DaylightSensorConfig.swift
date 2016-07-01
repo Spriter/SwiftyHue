@@ -9,12 +9,38 @@
 import Foundation
 import Gloss
 
-public class DaylightSensorConfig: SensorConfig {
+public class DaylightSensorConfig: PartialSensorConfig {
     
     public let long: String
     public let lat: String
     public let sunriseOffset: Int8
     public let sunsetOffset: Int8
+    
+    init?(sensorConfig: SensorConfig) {
+        
+        guard let long: String = sensorConfig.long else {
+            Log.error("Can't create DaylightSensorConfig, missing required attribute \"long\""); return nil
+        }
+        
+        guard let lat: String = sensorConfig.lat else {
+            Log.error("Can't create DaylightSensorConfig, missing required attribute \"lat\""); return nil
+        }
+        
+        guard let sunriseOffset: Int8 = sensorConfig.sunriseOffset else {
+            Log.error("Can't create DaylightSensorConfig, missing required attribute \"sunriseoffset\""); return nil
+        }
+        
+        guard let sunsetOffset: Int8 = sensorConfig.sunsetOffset else {
+            Log.error("Can't create DaylightSensorConfig, missing required attribute \"sunsetoffset\""); return nil
+        }
+        
+        self.long = long
+        self.lat = lat
+        self.sunriseOffset = sunriseOffset
+        self.sunsetOffset = sunsetOffset
+        
+        super.init(on: sensorConfig.on, reachable: sensorConfig.reachable, battery: sensorConfig.battery, url: sensorConfig.url)
+    }
     
     required public init?(json: JSON) {
         

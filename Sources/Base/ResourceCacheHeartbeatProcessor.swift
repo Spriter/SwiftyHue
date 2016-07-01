@@ -133,8 +133,15 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
                 self.resourceCache.setSchedules(dict as! [String: Schedule])
                 Log.info("Stored Native Schedules Dict In Cache")
             case .sensors:
-                self.resourceCache.setSensors(dict as! [String: Sensor])
+                
+                var dictConverted: [String: Sensor] = [:]
+                for (key, value) in dict {
+                    dictConverted[key as! String] = value as! Sensor
+                }
+                self.resourceCache.setSensors(dictConverted)
                 Log.info("Stored Native Sensors Dict In Cache")
+            
+            
             case .rules:
                 self.resourceCache.setRules(dict as! [String: Rule])
                 Log.info("Stored Native Rules Dict In Cache")
@@ -155,7 +162,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         case .schedules:
             return self.resourceCache.schedules != (dict as! [String: Schedule])
         case .sensors:
-            return self.resourceCache.sensors != (dict as! [String: Sensor])
+            return true
         case .rules:
             return self.resourceCache.rules != (dict as! [String: Rule])
         }
@@ -202,7 +209,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         case .schedules:
             return Schedule.dictionaryFromResourcesJSON(json)
         case .sensors:
-            return convertToExplicitSensorObjectDict(json)
+            return Sensor.dictionaryFromResourcesJSON(json)
         case .rules:
             return Rule.dictionaryFromResourcesJSON(json)
         }
@@ -231,42 +238,73 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         }
     }
     
-    private func convertToExplicitSensorObjectDict(json: JSON) -> NSDictionary {
-        
-        let dict: NSMutableDictionary = [:]
-        
-        for sensorJson in json {
-            
-            var sensorIdJson = sensorJson.1 as! JSON
-            sensorIdJson["id"] = sensorJson.0
-            
-            if let sensorType: SensorType = "type" <~~ sensorIdJson {
-                
-                switch sensorType {
-                case .CLIPGenericFlag:
-                    dict[sensorJson.0] = GenericFlagSensor(json: sensorIdJson)
-                case .CLIPGenericStatus:
-                    dict[sensorJson.0] = GenericStatusSensor(json: sensorIdJson)
-                case .CLIPHumidity:
-                    dict[sensorJson.0] = HumiditySensor(json: sensorIdJson)
-                case .CLIPOpenClose:
-                    dict[sensorJson.0] = OpenCloseSensor(json: sensorIdJson)
-                case .CLIPPresence:
-                    dict[sensorJson.0] = PresenceSensor(json: sensorIdJson)
-                case .CLIPTemperature:
-                    dict[sensorJson.0] = TemperatureSensor(json: sensorIdJson)
-                case .Daylight:
-                    dict[sensorJson.0] = DaylightSensor(json: sensorIdJson)
-                case .ClipSwitch,
-                     .ZGPSwitch,
-                     .ZLLSwitch:
-                    dict[sensorJson.0] = SwitchSensor(json: sensorIdJson)
-                }
-            }
-        }
-
-        return dict
-    }
+//    private func convertToExplicitSensorObject(json: JSON) -> BridgeResource {
+//        
+//        let sensorType: SensorType = ("type" <~~ json)!
+//            
+//            switch sensorType {
+//            case .CLIPGenericFlag:
+//                return GenericFlagSensor(json: json)!
+//                //                case .CLIPGenericStatus:
+//                //                    dict[sensorJson.0] = GenericStatusSensor(json: sensorIdJson)
+//                //                case .CLIPHumidity:
+//                //                    dict[sensorJson.0] = HumiditySensor(json: sensorIdJson)
+//                //                case .CLIPOpenClose:
+//                //                    dict[sensorJson.0] = OpenCloseSensor(json: sensorIdJson)
+//                //                case .CLIPPresence:
+//                //                    dict[sensorJson.0] = PresenceSensor(json: sensorIdJson)
+//                //                case .CLIPTemperature:
+//                //                    dict[sensorJson.0] = TemperatureSensor(json: sensorIdJson)
+//                //                case .Daylight:
+//                //                    dict[sensorJson.0] = DaylightSensor(json: sensorIdJson)
+//                //                case .ClipSwitch,
+//                //                     .ZGPSwitch,
+//                //                     .ZLLSwitch:
+//            //                    dict[sensorJson.0] = SwitchSensor(json: sensorIdJson)
+//            default:
+//                return GenericFlagSensor(json: json)!
+//            }
+//        
+//    }
+    
+//    private func convertToExplicitSensorObjectDict(json: JSON) -> NSDictionary {
+//        
+//        let dict: NSMutableDictionary = [:]
+//        
+//        for sensorJson in json {
+//            
+//            var sensorIdJson = sensorJson.1 as! JSON
+//            sensorIdJson["id"] = sensorJson.0
+//            
+//            if let sensorType: SensorType = "type" <~~ sensorIdJson {
+//                
+//                switch sensorType {
+//                case .CLIPGenericFlag:
+//                    dict[sensorJson.0] = GenericFlagSensor(json: sensorIdJson)
+////                case .CLIPGenericStatus:
+////                    dict[sensorJson.0] = GenericStatusSensor(json: sensorIdJson)
+////                case .CLIPHumidity:
+////                    dict[sensorJson.0] = HumiditySensor(json: sensorIdJson)
+////                case .CLIPOpenClose:
+////                    dict[sensorJson.0] = OpenCloseSensor(json: sensorIdJson)
+////                case .CLIPPresence:
+////                    dict[sensorJson.0] = PresenceSensor(json: sensorIdJson)
+////                case .CLIPTemperature:
+////                    dict[sensorJson.0] = TemperatureSensor(json: sensorIdJson)
+////                case .Daylight:
+////                    dict[sensorJson.0] = DaylightSensor(json: sensorIdJson)
+////                case .ClipSwitch,
+////                     .ZGPSwitch,
+////                     .ZLLSwitch:
+////                    dict[sensorJson.0] = SwitchSensor(json: sensorIdJson)
+//                default:
+//                    dict[sensorJson.0] = GenericFlagSensor(json: sensorIdJson)
+//                }
+//            }
+//        }
+//
+//        return dict
+//    }
     
     private func writeCacheToDisk() {
         

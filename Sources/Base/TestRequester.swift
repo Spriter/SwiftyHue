@@ -178,21 +178,21 @@ public class TestRequester {
         }
     }
     
-    public func requestSensors() {
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/sensors", parameters: nil)
-            .responseJSON { response in
-                
-                if let resultValueJSON = response.result.value as? JSON {
-                    
-                    let sensorDict = Sensor.dictionaryFromResourcesJSON(resultValueJSON)
-                    print(sensorDict)
-                    for rule in sensorDict {
-                        
-                        print("\(rule.0) \(rule.1.name)")
-                    }
-                }
-        }
-    }
+//    public func requestSensors() {
+//        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/sensors", parameters: nil)
+//            .responseJSON { response in
+//                
+//                if let resultValueJSON = response.result.value as? JSON {
+//                    
+//                    let sensorDict = Sensor.dictionaryFromResourcesJSON(resultValueJSON)
+//                    print(sensorDict)
+//                    for rule in sensorDict {
+//                        
+//                        print("\(rule.0) \(rule.1.name)")
+//                    }
+//                }
+//        }
+//    }
     
     public func requestSchedules() {
         Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/schedules", parameters: nil)

@@ -9,9 +9,20 @@
 import Foundation
 import Gloss
 
-public class TemperatureSensorState: SensorState {
+public class TemperatureSensorState: PartialSensorState {
 
     public let temperature: Int
+    
+    init?(state: SensorState) {
+        
+        guard let temperature: Int = state.temperature else {
+            Log.error("Can't create TemperatureSensorState, missing required attribute \"temperature\""); return nil
+        }
+        
+        self.temperature = temperature
+        
+        super.init(lastUpdated: state.lastUpdated)
+    }
     
     required public init?(json: JSON) {
         

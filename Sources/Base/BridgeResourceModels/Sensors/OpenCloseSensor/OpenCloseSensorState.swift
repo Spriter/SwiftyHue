@@ -9,9 +9,20 @@
 import Foundation
 import Gloss
 
-public class OpenCloseSensorState: SensorState {
+public class OpenCloseSensorState: PartialSensorState {
 
     public let open: Bool
+    
+    init?(state: SensorState) {
+        
+        guard let open: Bool = state.open else {
+            Log.error("Can't create OpenCloseSensorState, missing required attribute \"open\""); return nil
+        }
+        
+        self.open = open
+        
+        super.init(lastUpdated: state.lastUpdated)
+    }
     
     required public init?(json: JSON) {
         

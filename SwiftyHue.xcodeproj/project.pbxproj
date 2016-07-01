@@ -108,9 +108,9 @@
 		1FEF56031CF6400B00446694 /* GenericStatusSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55961CF6400B00446694 /* GenericStatusSensorConfig.swift */; };
 		1FEF56041CF6400B00446694 /* GenericStatusSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55961CF6400B00446694 /* GenericStatusSensorConfig.swift */; };
 		1FEF56051CF6400B00446694 /* GenericStatusSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55961CF6400B00446694 /* GenericStatusSensorConfig.swift */; };
-		1FEF56061CF6400B00446694 /* GenericStatusState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55971CF6400B00446694 /* GenericStatusState.swift */; };
-		1FEF56071CF6400B00446694 /* GenericStatusState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55971CF6400B00446694 /* GenericStatusState.swift */; };
-		1FEF56081CF6400B00446694 /* GenericStatusState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55971CF6400B00446694 /* GenericStatusState.swift */; };
+		1FEF56061CF6400B00446694 /* GenericStatusSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55971CF6400B00446694 /* GenericStatusSensorState.swift */; };
+		1FEF56071CF6400B00446694 /* GenericStatusSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55971CF6400B00446694 /* GenericStatusSensorState.swift */; };
+		1FEF56081CF6400B00446694 /* GenericStatusSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55971CF6400B00446694 /* GenericStatusSensorState.swift */; };
 		1FEF56091CF6400B00446694 /* HumiditySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55991CF6400B00446694 /* HumiditySensor.swift */; };
 		1FEF560A1CF6400B00446694 /* HumiditySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55991CF6400B00446694 /* HumiditySensor.swift */; };
 		1FEF560B1CF6400B00446694 /* HumiditySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55991CF6400B00446694 /* HumiditySensor.swift */; };
@@ -364,7 +364,7 @@
 		1FEF55931CF6400B00446694 /* GenericFlagSensorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericFlagSensorState.swift; sourceTree = "<group>"; };
 		1FEF55951CF6400B00446694 /* GenericStatusSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericStatusSensor.swift; sourceTree = "<group>"; };
 		1FEF55961CF6400B00446694 /* GenericStatusSensorConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericStatusSensorConfig.swift; sourceTree = "<group>"; };
-		1FEF55971CF6400B00446694 /* GenericStatusState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericStatusState.swift; sourceTree = "<group>"; };
+		1FEF55971CF6400B00446694 /* GenericStatusSensorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericStatusSensorState.swift; sourceTree = "<group>"; };
 		1FEF55991CF6400B00446694 /* HumiditySensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HumiditySensor.swift; sourceTree = "<group>"; };
 		1FEF559A1CF6400B00446694 /* HumiditySensorConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HumiditySensorConfig.swift; sourceTree = "<group>"; };
 		1FEF559B1CF6400B00446694 /* HumiditySensorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HumiditySensorState.swift; sourceTree = "<group>"; };
@@ -709,7 +709,7 @@
 			children = (
 				1FEF55951CF6400B00446694 /* GenericStatusSensor.swift */,
 				1FEF55961CF6400B00446694 /* GenericStatusSensorConfig.swift */,
-				1FEF55971CF6400B00446694 /* GenericStatusState.swift */,
+				1FEF55971CF6400B00446694 /* GenericStatusSensorState.swift */,
 			);
 			path = GenericStatusSensor;
 			sourceTree = "<group>";
@@ -1282,7 +1282,7 @@
 				1FEF55F11CF6400B00446694 /* DaylightSensorConfig.swift in Sources */,
 				1FEF562A1CF6400B00446694 /* SensorState.swift in Sources */,
 				1FEF55D61CF6400B00446694 /* LightState.swift in Sources */,
-				1FEF56061CF6400B00446694 /* GenericStatusState.swift in Sources */,
+				1FEF56061CF6400B00446694 /* GenericStatusSensorState.swift in Sources */,
 				1FEF56271CF6400B00446694 /* SensorConfig.swift in Sources */,
 				1FEF55C71CF6400B00446694 /* BridgeConfiguration.swift in Sources */,
 				1FEF568D1CF6401400446694 /* ScannerDelegate.swift in Sources */,
@@ -1350,7 +1350,7 @@
 				1FEF55F21CF6400B00446694 /* DaylightSensorConfig.swift in Sources */,
 				1FEF562B1CF6400B00446694 /* SensorState.swift in Sources */,
 				1FEF55D71CF6400B00446694 /* LightState.swift in Sources */,
-				1FEF56071CF6400B00446694 /* GenericStatusState.swift in Sources */,
+				1FEF56071CF6400B00446694 /* GenericStatusSensorState.swift in Sources */,
 				1FEF56281CF6400B00446694 /* SensorConfig.swift in Sources */,
 				1FEF55C81CF6400B00446694 /* BridgeConfiguration.swift in Sources */,
 				1FEF55BF1CF6400B00446694 /* BridgeAccessConfig.swift in Sources */,
@@ -1423,7 +1423,7 @@
 				1FEF55F31CF6400B00446694 /* DaylightSensorConfig.swift in Sources */,
 				1FEF562C1CF6400B00446694 /* SensorState.swift in Sources */,
 				1FEF55D81CF6400B00446694 /* LightState.swift in Sources */,
-				1FEF56081CF6400B00446694 /* GenericStatusState.swift in Sources */,
+				1FEF56081CF6400B00446694 /* GenericStatusSensorState.swift in Sources */,
 				1FEF56291CF6400B00446694 /* SensorConfig.swift in Sources */,
 				1FEF55C91CF6400B00446694 /* BridgeConfiguration.swift in Sources */,
 				1FEF568E1CF6401400446694 /* ScannerDelegate.swift in Sources */,

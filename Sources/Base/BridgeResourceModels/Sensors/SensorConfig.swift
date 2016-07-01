@@ -16,12 +16,20 @@ public enum SensorAlertMode {
         LSelect // Select alert (30 seconds of indication cycles) is active
 }
 
-public class SensorConfig: Decodable, Encodable {
+public class PartialSensorConfig: Decodable, Encodable {
 
-    public let on: Bool
-    public let reachable: Bool?
-    public let battery: Int8?
-    public let url: String?
+    public var on: Bool
+    public var reachable: Bool?
+    public var battery: Int8?
+    public var url: String?
+    
+    init(on: Bool, reachable: Bool?, battery: Int8?, url: String?) {
+        
+        self.on = on
+        self.reachable = reachable
+        self.battery = battery
+        self.url = url
+    }
     
     required public init?(json: JSON) {
         
@@ -33,20 +41,57 @@ public class SensorConfig: Decodable, Encodable {
         self.reachable = "reachable" <~~ json
         self.battery = "battery" <~~ json
         self.url = "url" <~~ json
+        
     }
     
     public func toJSON() -> JSON? {
-
+        
         let json = jsonify([
             "on" ~~> on,
             "reachable" ~~> reachable,
             "battery" ~~> battery,
-            "url" ~~> url,
+            "url" ~~> url
             ])
         
         return json
     }
 }
+
+public class SensorConfig: PartialSensorConfig {
+    
+    // DaylightSensorConfig
+    public let long: String?
+    public let lat: String?
+    public let sunriseOffset: Int8?
+    public let sunsetOffset: Int8?
+    
+    required public init?(json: JSON) {
+        
+        long = "long" <~~ json
+        lat = "lat" <~~ json
+        sunriseOffset = "sunriseoffset" <~~ json
+        sunsetOffset = "sunsetoffset" <~~ json
+
+        super.init(json: json)
+    }
+    
+    public override func toJSON() -> JSON? {
+        
+        let json = jsonify([
+            "on" ~~> on,
+            "reachable" ~~> reachable,
+            "battery" ~~> battery,
+            "url" ~~> url,
+            "long" ~~> long,
+            "lat" ~~> lat,
+            "sunriseoffset" ~~> sunriseOffset,
+            "sunsetoffset" ~~> sunsetOffset,
+            ])
+        
+        return json
+    }
+}
+
 
 extension SensorConfig: Hashable {
     
@@ -60,5 +105,9 @@ public func ==(lhs: SensorConfig, rhs: SensorConfig) -> Bool {
     return lhs.on == rhs.on &&
         lhs.reachable == rhs.reachable &&
         lhs.battery == rhs.battery &&
-        lhs.url == rhs.url
+        lhs.url == rhs.url &&
+        lhs.long == rhs.long &&
+        lhs.lat == rhs.lat &&
+        lhs.sunriseOffset == rhs.sunriseOffset &&
+        lhs.sunsetOffset == rhs.sunsetOffset
 }

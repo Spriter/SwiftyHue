@@ -9,9 +9,20 @@
 import Foundation
 import Gloss
 
-public class DaylightSensorState: SensorState {
+public class DaylightSensorState: PartialSensorState {
 
     public let daylight: Bool
+    
+    init?(state: SensorState) {
+        
+        guard let daylight: Bool = state.daylight else {
+            Log.error("Can't create DaylightSensorState, missing required attribute \"daylight\""); return nil
+        }
+        
+        self.daylight = daylight
+        
+        super.init(lastUpdated: state.lastUpdated)
+    }
     
     required public init?(json: JSON) {
         

@@ -9,9 +9,20 @@
 import Foundation
 import Gloss
 
-public class PresenceSensorState: SensorState {
+public class PresenceSensorState: PartialSensorState {
 
     public let presence: Bool
+    
+    init?(state: SensorState) {
+        
+        guard let presence: Bool = state.presence else {
+            Log.error("Can't create PresenceSensorState, missing required attribute \"presence\""); return nil
+        }
+        
+        self.presence = presence
+        
+        super.init(lastUpdated: state.lastUpdated)
+    }
     
     required public init?(json: JSON) {
         

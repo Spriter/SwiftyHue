@@ -9,12 +9,17 @@
 import Foundation
 import Gloss
 
-public class GenericFlagSensorConfig: SensorConfig {
+public class GenericFlagSensorConfig: PartialSensorConfig {
+    
+    init(sensorConfig: SensorConfig) {
+        
+        super.init(on: sensorConfig.on, reachable: sensorConfig.reachable, battery: sensorConfig.battery, url: sensorConfig.url)
+    }
     
     required public init?(json: JSON) {
-        
         super.init(json: json)
     }
+
 }
 
 public func ==(lhs: GenericFlagSensorConfig, rhs: GenericFlagSensorConfig) -> Bool {

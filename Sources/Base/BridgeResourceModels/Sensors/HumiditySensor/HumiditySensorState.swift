@@ -9,9 +9,20 @@
 import Foundation
 import Gloss
 
-public class HumiditySensorState: SensorState {
+public class HumiditySensorState: PartialSensorState {
 
     public let humidity: Int
+    
+    init?(state: SensorState) {
+        
+        guard let humidity: Int = state.humidity else {
+            Log.error("Can't create HumiditySensorState, missing required attribute \"humidity\""); return nil
+        }
+        
+        self.humidity = humidity
+        
+        super.init(lastUpdated: state.lastUpdated)
+    }
     
     required public init?(json: JSON) {
         

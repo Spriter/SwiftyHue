@@ -9,8 +9,13 @@
 import Foundation
 import Gloss
 
-public class GenericStatusSensorConfig: SensorConfig {
+public class GenericStatusSensorConfig: PartialSensorConfig {
 
+    init(sensorConfig: SensorConfig) {
+        
+        super.init(on: sensorConfig.on, reachable: sensorConfig.reachable, battery: sensorConfig.battery, url: sensorConfig.url)
+    }
+    
     required public init?(json: JSON) {
         
         super.init(json: json)

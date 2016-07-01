@@ -9,11 +9,48 @@
 import Foundation
 import Gloss
 
-public class GenericFlagSensor: Sensor {
+public class GenericFlagSensor: PartialSensor {
     
-    public typealias AssociatedBridgeResourceType = GenericFlagSensor
+    let config: GenericFlagSensorConfig
+    let state: GenericFlagSensorState
+
+    required public init?(sensor: Sensor) {
+        
+        guard let sensorConfig = sensor.config else {
+            return nil
+        }
+        
+        guard let sensorState = sensor.state else {
+            return nil
+        }
+        
+        guard let config: GenericFlagSensorConfig = GenericFlagSensorConfig(sensorConfig: sensorConfig) else {
+            return nil
+        }
+        
+        guard let state: GenericFlagSensorState = GenericFlagSensorState(state: sensorState) else {
+            return nil
+        }
+        
+        self.config = config
+        self.state = state
+        
+        super.init(identifier: sensor.identifier, uniqueId: sensor.uniqueId, name: sensor.name, type: sensor.type, modelId: sensor.modelId, manufacturerName: sensor.manufacturerName, swVersion: sensor.swVersion, recycle: sensor.recycle)
+    }
     
-    required public init?(json: JSON) {
+    public required init?(json: JSON) {
+        
+        guard let config: GenericFlagSensorConfig = "config" <~~ json else {
+            return nil
+        }
+        
+        guard let state: GenericFlagSensorState = "state" <~~ json else {
+            return nil
+        }
+        
+        self.config = config
+        self.state = state
+        
         super.init(json: json)
     }
 }

@@ -9,9 +9,20 @@
 import Foundation
 import Gloss
 
-public class GenericFlagSensorState: SensorState {
+public class GenericFlagSensorState: PartialSensorState {
     
     public let flag: Bool
+    
+    init?(state: SensorState) {
+        
+        guard let flag: Bool = state.flag else {
+            Log.error("Can't create GenericFlagSensorState, missing required attribute \"flag\""); return nil
+        }
+        
+        self.flag = flag
+        
+        super.init(lastUpdated: state.lastUpdated)
+    }
     
     required public init?(json: JSON) {
         
@@ -36,6 +47,7 @@ public class GenericFlagSensorState: SensorState {
         
         return nil
     }
+
 }
 
 public func ==(lhs: GenericFlagSensorState, rhs: GenericFlagSensorState) -> Bool {
