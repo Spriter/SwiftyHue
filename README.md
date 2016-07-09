@@ -205,3 +205,6 @@ $ carthage bootstrap
 ```
 in the root directory of the project. 
 Remember to build the SwiftyHue framework targets to run the example application targets.
+
+### Made with SwiftyHue
+[Bridge Inspector](https://appsto.re/de/JvJodb.i)
