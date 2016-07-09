@@ -197,7 +197,7 @@ We'd love to see your ideas for improving this repo! The best way to contribute 
 
 Please make sure to follow our general coding style and add test coverage for new features!
 
-### Needs
+## Needs
 You need [Carthage](https://github.com/Carthage/Carthage) to work on the SwiftyHue Project.
 If you have Carthage installed just run
 ```bash
