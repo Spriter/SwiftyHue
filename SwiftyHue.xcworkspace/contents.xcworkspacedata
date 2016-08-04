@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Carthage/Checkouts/CocoaAsyncSocket/CocoaAsyncSocket.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Carthage/Checkouts/Nocilla/Nocilla.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:SwiftyHue.playground">
    </FileRef>
    <FileRef
