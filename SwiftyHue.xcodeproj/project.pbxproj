@@ -230,6 +230,89 @@
 		1FEF56921CF6401400446694 /* BridgeResultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF56791CF6401400446694 /* BridgeResultParser.swift */; };
 		1FEF56931CF6401400446694 /* BridgeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF567A1CF6401400446694 /* BridgeValidator.swift */; };
 		1FEF56941CF6401400446694 /* BridgeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF567A1CF6401400446694 /* BridgeValidator.swift */; };
+		23D507F81D53AAC0009E926F /* BridgeAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF566B1CF6401400446694 /* BridgeAuthenticator.swift */; };
+		23D507F91D53AAC0009E926F /* HumiditySensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF559A1CF6400B00446694 /* HumiditySensorConfig.swift */; };
+		23D507FA1D53AAC0009E926F /* GenericStatusSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55951CF6400B00446694 /* GenericStatusSensor.swift */; };
+		23D507FB1D53AAC0009E926F /* PresenceSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55A31CF6400B00446694 /* PresenceSensorState.swift */; };
+		23D507FC1D53AAC0009E926F /* SwitchSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55A91CF6400B00446694 /* SwitchSensorConfig.swift */; };
+		23D507FD1D53AAC0009E926F /* BridgeResourcesCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55B21CF6400B00446694 /* BridgeResourcesCache.swift */; };
+		23D507FE1D53AAC0009E926F /* BridgeAuthenticatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF566C1CF6401400446694 /* BridgeAuthenticatorDelegate.swift */; };
+		23D507FF1D53AAC0009E926F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF557F1CF6400B00446694 /* Group.swift */; };
+		23D508001D53AAC0009E926F /* HueBridgeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF56711CF6401400446694 /* HueBridgeIcon.swift */; };
+		23D508011D53AAC0009E926F /* OpenCloseSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF559D1CF6400B00446694 /* OpenCloseSensor.swift */; };
+		23D508021D53AAC0009E926F /* HumiditySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55991CF6400B00446694 /* HumiditySensor.swift */; };
+		23D508031D53AAC0009E926F /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55B41CF6400B00446694 /* Dictionary+Extension.swift */; };
+		23D508041D53AAC0009E926F /* SoftwareUpdateStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55AF1CF6400B00446694 /* SoftwareUpdateStatus.swift */; };
+		23D508051D53AAC0009E926F /* IPScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF56731CF6401400446694 /* IPScanner.swift */; };
+		23D508061D53AAC0009E926F /* SoftwareUpdateStatusDeviceTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55B01CF6400B00446694 /* SoftwareUpdateStatusDeviceTypes.swift */; };
+		23D508071D53AAC0009E926F /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55A41CF6400B00446694 /* Sensor.swift */; };
+		23D508081D53AAC0009E926F /* HumiditySensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF559B1CF6400B00446694 /* HumiditySensorState.swift */; };
+		23D508091D53AAC0009E926F /* GenericFlagSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55931CF6400B00446694 /* GenericFlagSensorState.swift */; };
+		23D5080A1D53AAC0009E926F /* PresenceSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55A21CF6400B00446694 /* PresenceSensorConfig.swift */; };
+		23D5080B1D53AAC0009E926F /* GenericStatusSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55961CF6400B00446694 /* GenericStatusSensorConfig.swift */; };
+		23D5080C1D53AAC0009E926F /* NUPNPScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF56741CF6401400446694 /* NUPNPScanner.swift */; };
+		23D5080D1D53AAC0009E926F /* Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF557B1CF6400B00446694 /* Backup.swift */; };
+		23D5080E1D53AAC0009E926F /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF56751CF6401400446694 /* Scanner.swift */; };
+		23D5080F1D53AAC0009E926F /* BridgeResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF557D1CF6400B00446694 /* BridgeResource.swift */; };
+		23D508101D53AAC0009E926F /* ResourceCacheHeartbeatProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55BA1CF6400B00446694 /* ResourceCacheHeartbeatProcessor.swift */; };
+		23D508111D53AAC0009E926F /* WhitelistEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55B11CF6400B00446694 /* WhitelistEntry.swift */; };
+		23D508121D53AAC0009E926F /* TemperatureSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55AD1CF6400B00446694 /* TemperatureSensorConfig.swift */; };
+		23D508131D53AAC0009E926F /* GenericFlagSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55921CF6400B00446694 /* GenericFlagSensorConfig.swift */; };
+		23D508141D53AAC0009E926F /* TestRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55BC1CF6400B00446694 /* TestRequester.swift */; };
+		23D508151D53AAC0009E926F /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55891CF6400B00446694 /* Schedule.swift */; };
+		23D508161D53AAC0009E926F /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55841CF6400B00446694 /* Rule.swift */; };
+		23D508171D53AAC0009E926F /* LoggerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55B71CF6400B00446694 /* LoggerConfig.swift */; };
+		23D508181D53AAC0009E926F /* SSDPScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF56771CF6401400446694 /* SSDPScanner.swift */; };
+		23D508191D53AAC0009E926F /* BridgeFinderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF566F1CF6401400446694 /* BridgeFinderDelegate.swift */; };
+		23D5081A1D53AAC0009E926F /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55871CF6400B00446694 /* Scene.swift */; };
+		23D5081B1D53AAC0009E926F /* PortalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55821CF6400B00446694 /* PortalState.swift */; };
+		23D5081C1D53AAC0009E926F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2843E6241CF77E1200CED6D6 /* Utilities.swift */; };
+		23D5081D1D53AAC0009E926F /* DaylightSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF558E1CF6400B00446694 /* DaylightSensorConfig.swift */; };
+		23D5081E1D53AAC0009E926F /* SensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55A61CF6400B00446694 /* SensorState.swift */; };
+		23D5081F1D53AAC0009E926F /* LightState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55811CF6400B00446694 /* LightState.swift */; };
+		23D508201D53AAC0009E926F /* GenericStatusSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55971CF6400B00446694 /* GenericStatusSensorState.swift */; };
+		23D508211D53AAC0009E926F /* SensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55A51CF6400B00446694 /* SensorConfig.swift */; };
+		23D508221D53AAC0009E926F /* BridgeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF557C1CF6400B00446694 /* BridgeConfiguration.swift */; };
+		23D508231D53AAC0009E926F /* ScannerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF56761CF6401400446694 /* ScannerDelegate.swift */; };
+		23D508241D53AAC0009E926F /* BridgeAccessConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55781CF6400B00446694 /* BridgeAccessConfig.swift */; };
+		23D508251D53AAC0009E926F /* RuleCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55861CF6400B00446694 /* RuleCondition.swift */; };
+		23D508261D53AAC0009E926F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF557E1CF6400B00446694 /* Error.swift */; };
+		23D508271D53AAC0009E926F /* SwiftyHue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55BB1CF6400B00446694 /* SwiftyHue.swift */; };
+		23D508281D53AAC0009E926F /* OpenCloseSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF559E1CF6400B00446694 /* OpenCloseSensorConfig.swift */; };
+		23D508291D53AAC0009E926F /* TemperatureSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55AE1CF6400B00446694 /* TemperatureSensorState.swift */; };
+		23D5082A1D53AAC0009E926F /* BridgeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF567A1CF6401400446694 /* BridgeValidator.swift */; };
+		23D5082B1D53AAC0009E926F /* ScheduleCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF558A1CF6400B00446694 /* ScheduleCommand.swift */; };
+		23D5082C1D53AAC0009E926F /* RuleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55851CF6400B00446694 /* RuleAction.swift */; };
+		23D5082D1D53AAC0009E926F /* SwitchSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55AA1CF6400B00446694 /* SwitchSensorState.swift */; };
+		23D5082E1D53AAC0009E926F /* GenericFlagSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55911CF6400B00446694 /* GenericFlagSensor.swift */; };
+		23D5082F1D53AAC0009E926F /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55B91CF6400B00446694 /* ReplaceMe.swift */; };
+		23D508301D53AAC0009E926F /* SwitchSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55A81CF6400B00446694 /* SwitchSensor.swift */; };
+		23D508311D53AAC0009E926F /* BridgeResultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF56791CF6401400446694 /* BridgeResultParser.swift */; };
+		23D508321D53AAC0009E926F /* DaylightSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF558F1CF6400B00446694 /* DaylightSensorState.swift */; };
+		23D508331D53AAC0009E926F /* HeartbeatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55B51CF6400B00446694 /* HeartbeatManager.swift */; };
+		23D508341D53AAC0009E926F /* BridgeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF566E1CF6401400446694 /* BridgeFinder.swift */; };
+		23D508351D53AAC0009E926F /* DaylightSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF558D1CF6400B00446694 /* DaylightSensor.swift */; };
+		23D508361D53AAC0009E926F /* OpenCloseSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF559F1CF6400B00446694 /* OpenCloseSensorState.swift */; };
+		23D508371D53AAC0009E926F /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55801CF6400B00446694 /* Light.swift */; };
+		23D508381D53AAC0009E926F /* TemperatureSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55AC1CF6400B00446694 /* TemperatureSensor.swift */; };
+		23D508391D53AAC0009E926F /* HueBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF56701CF6401400446694 /* HueBridge.swift */; };
+		23D5083A1D53AAC0009E926F /* PresenceSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55A11CF6400B00446694 /* PresenceSensor.swift */; };
+		23D5083B1D53AAC0009E926F /* NSDateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55B81CF6400B00446694 /* NSDateFormatter+Extension.swift */; };
+		23D5083C1D53AAC0009E926F /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF557A1CF6400B00446694 /* AppData.swift */; };
+		23D5083D1D53AAC0009E926F /* BridgeSendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55B31CF6400B00446694 /* BridgeSendAPI.swift */; };
+		23D508401D53AAC0009E926F /* SwiftyHue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEF51FA1CF6018E00446694 /* SwiftyHue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		23D508501D53ACBF009E926F /* SwiftyHue_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D5084F1D53ACBF009E926F /* SwiftyHue_macOSTests.swift */; };
+		23D508521D53ACBF009E926F /* SwiftyHue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D508461D53AAC0009E926F /* SwiftyHue.framework */; };
+		23D508581D53ACE4009E926F /* BridgeFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749DA1CF9FCE800D7A7B0 /* BridgeFinderTests.swift */; };
+		23D508591D53ACEA009E926F /* BridgeResultParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749E71CFA043200D7A7B0 /* BridgeResultParserTests.swift */; };
+		23D5085A1D53ACEE009E926F /* bridge_response.xml in Resources */ = {isa = PBXBuildFile; fileRef = 293C9E921CFADE5200AB6199 /* bridge_response.xml */; };
+		23D5085B1D53ACF4009E926F /* BridgeAuthenticatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749E31CFA004500D7A7B0 /* BridgeAuthenticatorTests.swift */; };
+		23D5085C1D53ACF9009E926F /* TestScanner1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749D61CF9FCB400D7A7B0 /* TestScanner1.swift */; };
+		23D5085D1D53ACFC009E926F /* TestScanner2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749D81CF9FCD300D7A7B0 /* TestScanner2.swift */; };
+		23D5085E1D53ACFE009E926F /* TestBadValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749DD1CF9FD0300D7A7B0 /* TestBadValidator.swift */; };
+		23D5085F1D53AD01009E926F /* TestGoodValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749DF1CF9FD1C00D7A7B0 /* TestGoodValidator.swift */; };
+		23D508601D53AD03009E926F /* BridgeFinderConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749E11CF9FD2F00D7A7B0 /* BridgeFinderConsumer.swift */; };
+		23D508611D53AD06009E926F /* BridgeAuthenticatorConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749E51CFA040E00D7A7B0 /* BridgeAuthenticatorConsumer.swift */; };
 		2843E6251CF77E1200CED6D6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2843E6241CF77E1200CED6D6 /* Utilities.swift */; };
 		2843E6261CF77E1200CED6D6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2843E6241CF77E1200CED6D6 /* Utilities.swift */; };
 		2843E6271CF77E1200CED6D6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2843E6241CF77E1200CED6D6 /* Utilities.swift */; };
@@ -266,6 +349,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1FEF528F1CF6081B00446694;
 			remoteInfo = "SwiftyHue Example Watch";
+		};
+		23D508531D53ACBF009E926F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1FEF51C51CF5FEA200446694 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 23D507F61D53AAC0009E926F;
+			remoteInfo = "SwiftyHue macOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -410,6 +500,11 @@
 		1FEF56791CF6401400446694 /* BridgeResultParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeResultParser.swift; sourceTree = "<group>"; };
 		1FEF567A1CF6401400446694 /* BridgeValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeValidator.swift; sourceTree = "<group>"; };
 		1FEF56AC1CF642A300446694 /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = SOURCE_ROOT; };
+		23D508461D53AAC0009E926F /* SwiftyHue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyHue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23D508471D53AAC0009E926F /* Info-macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-macOS.plist"; path = "/Users/aventurella/github/SwiftyHue/Info-macOS.plist"; sourceTree = "<absolute>"; };
+		23D5084D1D53ACBF009E926F /* SwiftyHue macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftyHue macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		23D5084F1D53ACBF009E926F /* SwiftyHue_macOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyHue_macOSTests.swift; sourceTree = "<group>"; };
+		23D508511D53ACBF009E926F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2843E6241CF77E1200CED6D6 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		292749D61CF9FCB400D7A7B0 /* TestScanner1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScanner1.swift; sourceTree = "<group>"; };
 		292749D81CF9FCD300D7A7B0 /* TestScanner2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScanner2.swift; sourceTree = "<group>"; };
@@ -474,6 +569,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		23D5083E1D53AAC0009E926F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23D5084A1D53ACBF009E926F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23D508521D53ACBF009E926F /* SwiftyHue.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -492,6 +602,7 @@
 				1FEF51FE1CF6035C00446694 /* Metadata */,
 				1FEF51F31CF5FFEB00446694 /* Sources */,
 				1FEF52151CF605CD00446694 /* SwiftyHue iOSTests */,
+				23D5084E1D53ACBF009E926F /* SwiftyHue macOSTests */,
 				1FEF527D1CF607F200446694 /* SwiftyHue Example */,
 				1FEF52911CF6081B00446694 /* SwiftyHue Example Watch */,
 				1FEF52A01CF6081B00446694 /* SwiftyHue Example Watch Extension */,
@@ -511,6 +622,8 @@
 				1FEF52901CF6081B00446694 /* SwiftyHue Example Watch.app */,
 				1FEF529C1CF6081B00446694 /* SwiftyHue Example Watch Extension.appex */,
 				1FEF52B71CF6087A00446694 /* SwiftyHue Example tvOS.app */,
+				23D508461D53AAC0009E926F /* SwiftyHue.framework */,
+				23D5084D1D53ACBF009E926F /* SwiftyHue macOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -521,6 +634,7 @@
 				1FEF56691CF6401400446694 /* BridgeServices */,
 				1FEF55771CF6400B00446694 /* Base */,
 				1FEF51FA1CF6018E00446694 /* SwiftyHue.h */,
+				23D508471D53AAC0009E926F /* Info-macOS.plist */,
 				1FEF51F41CF6001E00446694 /* Info-iOS.plist */,
 				1FEF51F51CF6001E00446694 /* Info-tvOS.plist */,
 				1FEF51F61CF6001E00446694 /* Info-watchOS.plist */,
@@ -824,6 +938,15 @@
 			path = Validator;
 			sourceTree = "<group>";
 		};
+		23D5084E1D53ACBF009E926F /* SwiftyHue macOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				23D5084F1D53ACBF009E926F /* SwiftyHue_macOSTests.swift */,
+				23D508511D53ACBF009E926F /* Info.plist */,
+			);
+			path = "SwiftyHue macOSTests";
+			sourceTree = "<group>";
+		};
 		292749D31CF9FC5F00D7A7B0 /* BridgeServices */ = {
 			isa = PBXGroup;
 			children = (
@@ -889,6 +1012,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FEF520F1CF6044A00446694 /* SwiftyHue.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23D5083F1D53AAC0009E926F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23D508401D53AAC0009E926F /* SwiftyHue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1041,6 +1172,43 @@
 			productReference = 1FEF52B71CF6087A00446694 /* SwiftyHue Example tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		23D507F61D53AAC0009E926F /* SwiftyHue macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23D508431D53AAC0009E926F /* Build configuration list for PBXNativeTarget "SwiftyHue macOS" */;
+			buildPhases = (
+				23D507F71D53AAC0009E926F /* Sources */,
+				23D5083E1D53AAC0009E926F /* Frameworks */,
+				23D5083F1D53AAC0009E926F /* Headers */,
+				23D508411D53AAC0009E926F /* Resources */,
+				23D508421D53AAC0009E926F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SwiftyHue macOS";
+			productName = "SwiftyHue iOS";
+			productReference = 23D508461D53AAC0009E926F /* SwiftyHue.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		23D5084C1D53ACBF009E926F /* SwiftyHue macOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23D508551D53ACBF009E926F /* Build configuration list for PBXNativeTarget "SwiftyHue macOSTests" */;
+			buildPhases = (
+				23D508491D53ACBF009E926F /* Sources */,
+				23D5084A1D53ACBF009E926F /* Frameworks */,
+				23D5084B1D53ACBF009E926F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				23D508541D53ACBF009E926F /* PBXTargetDependency */,
+			);
+			name = "SwiftyHue macOSTests";
+			productName = "SwiftyHue macOSTests";
+			productReference = 23D5084D1D53ACBF009E926F /* SwiftyHue macOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1074,6 +1242,9 @@
 					1FEF52B61CF6087A00446694 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
+					23D5084C1D53ACBF009E926F = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 				};
 			};
 			buildConfigurationList = 1FEF51C81CF5FEA200446694 /* Build configuration list for PBXProject "SwiftyHue" */;
@@ -1089,10 +1260,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				23D507F61D53AAC0009E926F /* SwiftyHue macOS */,
 				1FEF51CF1CF5FEEF00446694 /* SwiftyHue iOS */,
 				1FEF51DD1CF5FF1200446694 /* SwiftyHue watchOS */,
 				1FEF52061CF6042D00446694 /* SwiftyHue tvOS */,
 				1FEF52131CF605CD00446694 /* SwiftyHue iOSTests */,
+				23D5084C1D53ACBF009E926F /* SwiftyHue macOSTests */,
 				1FEF527B1CF607F200446694 /* SwiftyHue Example */,
 				1FEF528F1CF6081B00446694 /* SwiftyHue Example Watch */,
 				1FEF529B1CF6081B00446694 /* SwiftyHue Example Watch Extension */,
@@ -1168,6 +1341,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		23D508411D53AAC0009E926F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23D5084B1D53ACBF009E926F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23D5085A1D53ACEE009E926F /* bridge_response.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1214,6 +1402,23 @@
 				"$(SRCROOT)/Carthage/Build/tvOS/Log.framework",
 				"$(SRCROOT)/Carthage/Build/tvOS/Gloss.framework",
 				"$(SRCROOT)/Carthage/Build/tvOS/CocoaAsyncSocket.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		23D508421D53AAC0009E926F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/CocoaAsyncSocket.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/Gloss.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/Log.framework",
 			);
 			outputPaths = (
 			);
@@ -1507,6 +1712,100 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		23D507F71D53AAC0009E926F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23D507F81D53AAC0009E926F /* BridgeAuthenticator.swift in Sources */,
+				23D507F91D53AAC0009E926F /* HumiditySensorConfig.swift in Sources */,
+				23D507FA1D53AAC0009E926F /* GenericStatusSensor.swift in Sources */,
+				23D507FB1D53AAC0009E926F /* PresenceSensorState.swift in Sources */,
+				23D507FC1D53AAC0009E926F /* SwitchSensorConfig.swift in Sources */,
+				23D507FD1D53AAC0009E926F /* BridgeResourcesCache.swift in Sources */,
+				23D507FE1D53AAC0009E926F /* BridgeAuthenticatorDelegate.swift in Sources */,
+				23D507FF1D53AAC0009E926F /* Group.swift in Sources */,
+				23D508001D53AAC0009E926F /* HueBridgeIcon.swift in Sources */,
+				23D508011D53AAC0009E926F /* OpenCloseSensor.swift in Sources */,
+				23D508021D53AAC0009E926F /* HumiditySensor.swift in Sources */,
+				23D508031D53AAC0009E926F /* Dictionary+Extension.swift in Sources */,
+				23D508041D53AAC0009E926F /* SoftwareUpdateStatus.swift in Sources */,
+				23D508051D53AAC0009E926F /* IPScanner.swift in Sources */,
+				23D508061D53AAC0009E926F /* SoftwareUpdateStatusDeviceTypes.swift in Sources */,
+				23D508071D53AAC0009E926F /* Sensor.swift in Sources */,
+				23D508081D53AAC0009E926F /* HumiditySensorState.swift in Sources */,
+				23D508091D53AAC0009E926F /* GenericFlagSensorState.swift in Sources */,
+				23D5080A1D53AAC0009E926F /* PresenceSensorConfig.swift in Sources */,
+				23D5080B1D53AAC0009E926F /* GenericStatusSensorConfig.swift in Sources */,
+				23D5080C1D53AAC0009E926F /* NUPNPScanner.swift in Sources */,
+				23D5080D1D53AAC0009E926F /* Backup.swift in Sources */,
+				23D5080E1D53AAC0009E926F /* Scanner.swift in Sources */,
+				23D5080F1D53AAC0009E926F /* BridgeResource.swift in Sources */,
+				23D508101D53AAC0009E926F /* ResourceCacheHeartbeatProcessor.swift in Sources */,
+				23D508111D53AAC0009E926F /* WhitelistEntry.swift in Sources */,
+				23D508121D53AAC0009E926F /* TemperatureSensorConfig.swift in Sources */,
+				23D508131D53AAC0009E926F /* GenericFlagSensorConfig.swift in Sources */,
+				23D508141D53AAC0009E926F /* TestRequester.swift in Sources */,
+				23D508151D53AAC0009E926F /* Schedule.swift in Sources */,
+				23D508161D53AAC0009E926F /* Rule.swift in Sources */,
+				23D508171D53AAC0009E926F /* LoggerConfig.swift in Sources */,
+				23D508181D53AAC0009E926F /* SSDPScanner.swift in Sources */,
+				23D508191D53AAC0009E926F /* BridgeFinderDelegate.swift in Sources */,
+				23D5081A1D53AAC0009E926F /* Scene.swift in Sources */,
+				23D5081B1D53AAC0009E926F /* PortalState.swift in Sources */,
+				23D5081C1D53AAC0009E926F /* Utilities.swift in Sources */,
+				23D5081D1D53AAC0009E926F /* DaylightSensorConfig.swift in Sources */,
+				23D5081E1D53AAC0009E926F /* SensorState.swift in Sources */,
+				23D5081F1D53AAC0009E926F /* LightState.swift in Sources */,
+				23D508201D53AAC0009E926F /* GenericStatusSensorState.swift in Sources */,
+				23D508211D53AAC0009E926F /* SensorConfig.swift in Sources */,
+				23D508221D53AAC0009E926F /* BridgeConfiguration.swift in Sources */,
+				23D508231D53AAC0009E926F /* ScannerDelegate.swift in Sources */,
+				23D508241D53AAC0009E926F /* BridgeAccessConfig.swift in Sources */,
+				23D508251D53AAC0009E926F /* RuleCondition.swift in Sources */,
+				23D508261D53AAC0009E926F /* Error.swift in Sources */,
+				23D508271D53AAC0009E926F /* SwiftyHue.swift in Sources */,
+				23D508281D53AAC0009E926F /* OpenCloseSensorConfig.swift in Sources */,
+				23D508291D53AAC0009E926F /* TemperatureSensorState.swift in Sources */,
+				23D5082A1D53AAC0009E926F /* BridgeValidator.swift in Sources */,
+				23D5082B1D53AAC0009E926F /* ScheduleCommand.swift in Sources */,
+				23D5082C1D53AAC0009E926F /* RuleAction.swift in Sources */,
+				23D5082D1D53AAC0009E926F /* SwitchSensorState.swift in Sources */,
+				23D5082E1D53AAC0009E926F /* GenericFlagSensor.swift in Sources */,
+				23D5082F1D53AAC0009E926F /* ReplaceMe.swift in Sources */,
+				23D508301D53AAC0009E926F /* SwitchSensor.swift in Sources */,
+				23D508311D53AAC0009E926F /* BridgeResultParser.swift in Sources */,
+				23D508321D53AAC0009E926F /* DaylightSensorState.swift in Sources */,
+				23D508331D53AAC0009E926F /* HeartbeatManager.swift in Sources */,
+				23D508341D53AAC0009E926F /* BridgeFinder.swift in Sources */,
+				23D508351D53AAC0009E926F /* DaylightSensor.swift in Sources */,
+				23D508361D53AAC0009E926F /* OpenCloseSensorState.swift in Sources */,
+				23D508371D53AAC0009E926F /* Light.swift in Sources */,
+				23D508381D53AAC0009E926F /* TemperatureSensor.swift in Sources */,
+				23D508391D53AAC0009E926F /* HueBridge.swift in Sources */,
+				23D5083A1D53AAC0009E926F /* PresenceSensor.swift in Sources */,
+				23D5083B1D53AAC0009E926F /* NSDateFormatter+Extension.swift in Sources */,
+				23D5083C1D53AAC0009E926F /* AppData.swift in Sources */,
+				23D5083D1D53AAC0009E926F /* BridgeSendAPI.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23D508491D53ACBF009E926F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23D508611D53AD06009E926F /* BridgeAuthenticatorConsumer.swift in Sources */,
+				23D5085B1D53ACF4009E926F /* BridgeAuthenticatorTests.swift in Sources */,
+				23D5085F1D53AD01009E926F /* TestGoodValidator.swift in Sources */,
+				23D5085D1D53ACFC009E926F /* TestScanner2.swift in Sources */,
+				23D508581D53ACE4009E926F /* BridgeFinderTests.swift in Sources */,
+				23D508601D53AD03009E926F /* BridgeFinderConsumer.swift in Sources */,
+				23D5085C1D53ACF9009E926F /* TestScanner1.swift in Sources */,
+				23D5085E1D53ACFE009E926F /* TestBadValidator.swift in Sources */,
+				23D508591D53ACEA009E926F /* BridgeResultParserTests.swift in Sources */,
+				23D508501D53ACBF009E926F /* SwiftyHue_macOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1524,6 +1823,11 @@
 			isa = PBXTargetDependency;
 			target = 1FEF528F1CF6081B00446694 /* SwiftyHue Example Watch */;
 			targetProxy = 1FEF52A81CF6081B00446694 /* PBXContainerItemProxy */;
+		};
+		23D508541D53ACBF009E926F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 23D507F61D53AAC0009E926F /* SwiftyHue macOS */;
+			targetProxy = 23D508531D53ACBF009E926F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2425,6 +2729,221 @@
 			};
 			name = Release;
 		};
+		23D508441D53AAC0009E926F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Info-macOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-macOS";
+				PRODUCT_NAME = SwiftyHue;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "i386 x86_64";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		23D508451D53AAC0009E926F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Info-macOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-macOS";
+				PRODUCT_NAME = SwiftyHue;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "i386 x86_64";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		23D508561D53ACBF009E926F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "SwiftyHue macOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blitzagency.SwiftyHue-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		23D508571D53ACBF009E926F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "SwiftyHue macOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blitzagency.SwiftyHue-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2508,6 +3027,23 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		23D508431D53AAC0009E926F /* Build configuration list for PBXNativeTarget "SwiftyHue macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23D508441D53AAC0009E926F /* Debug */,
+				23D508451D53AAC0009E926F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23D508551D53ACBF009E926F /* Build configuration list for PBXNativeTarget "SwiftyHue macOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23D508561D53ACBF009E926F /* Debug */,
+				23D508571D53ACBF009E926F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
