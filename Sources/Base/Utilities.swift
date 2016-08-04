@@ -8,7 +8,17 @@
 
 import Foundation
 import CoreGraphics
-import UIKit.UIColor
+
+#if os(iOS) || os(watchOS) || os(tvOS)
+    import UIKit.UIColor
+    public typealias SwiftyHueColor = UIKit.UIColor
+    public typealias SwiftyPoint = CGPoint
+#else
+    import Cocoa
+    public typealias SwiftyHueColor = NSColor
+    public typealias SwiftyPoint = NSPoint
+#endif
+
 
 /**
  This class contains some utilities for applications using SwiftyHue.
@@ -28,7 +38,7 @@ public struct Utilities {
         - model: model of the lamp, example: "LCT001" for hue bulb. Used to calculate the color gamut. If this value is empty the default gamut values are used.
      - Returns: The color
      */
-    public static func colorFromXY(xy: CGPoint, forModel model: String) -> UIColor {
+    public static func colorFromXY(xy: CGPoint, forModel model: String) -> SwiftyHueColor {
      
         var xy = xy
         let colorPoints: [NSValue] = colorPointsForModel(model)
@@ -133,7 +143,7 @@ public struct Utilities {
             }
         }
         
-        return UIColor(red: r, green: g, blue: b, alpha: 1)
+        return SwiftyHueColor(red: r, green: g, blue: b, alpha: 1)
     }
     
     /**
@@ -144,7 +154,7 @@ public struct Utilities {
         - model: model of the lamp, example: "LCT001" for hue bulb. Used to calculate the color gamut. If this value is empty the default gamut values are used.
      - Returns: The xy color
      */
-    public static func calculateXY(color: UIColor, forModel model: String) -> CGPoint {
+    public static func calculateXY(color: SwiftyHueColor, forModel model: String) -> CGPoint {
         
         let cgColor: CGColorRef = color.CGColor
         let components = CGColorGetComponents(cgColor)
@@ -375,9 +385,13 @@ public struct Utilities {
         - value: value with a point
      - Returns: The point from this value
      */
-    private static func getPointFromValue(point: NSValue) -> CGPoint {
+    private static func getPointFromValue(point: NSValue) -> SwiftyPoint {
         
-        return point.CGPointValue()
+        #if os(OSX)
+            return point.pointValue
+        #else
+            return point.CGPointValue()
+        #endif
     }
     
     /**
@@ -389,6 +403,10 @@ public struct Utilities {
      */
     private static func getValueFromPoint(point: CGPoint) -> NSValue {
         
-        return NSValue(CGPoint: point)
+        #if os(OSX)
+            return NSValue(point: point)
+        #else
+            return NSValue(CGPoint: point)
+        #endif
     }
 }
