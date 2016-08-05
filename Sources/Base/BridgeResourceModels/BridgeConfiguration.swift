@@ -165,6 +165,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         self.mac = mac
         self.modelId = modelid
         self.apiVersion = apiversion
+        self.swVersion = swversion
         
         self.replacesBridgeId = "replacesbridgeid" <~~ json
         self.zigbeeChannel = "zigbeechannel" <~~ json
@@ -177,7 +178,6 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         self.UTC = "UTC" <~~ json
         self.localtime = "localtime" <~~ json
         self.timezone = "timezone" <~~ json
-        self.swVersion = "swversion" <~~ json
         self.swUpdate = "swupdate" <~~ json
         self.linkbutton = "linkbutton" <~~ json
         self.portalServices = "portalservices" <~~ json
