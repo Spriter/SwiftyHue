@@ -36,12 +36,12 @@ public class BridgeAuthenticator {
         startRequest()
     }
 
-    private func createRequest() -> NSMutableURLRequest {
+    private func createRequest() -> URLRequest {
         let url = URL(string: "http://\(ip)/api")!
 
         let body = ["devicetype": uniqueIdentifier]
 
-        let request = NSMutableURLRequest(url: url)
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = try! JSONSerialization.data(withJSONObject: body, options: [])
 
@@ -50,6 +50,7 @@ public class BridgeAuthenticator {
 
     @objc private func startRequest() {
         let request = createRequest()
+
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             self.handleResponse(data, response: response, error: error)
         }
