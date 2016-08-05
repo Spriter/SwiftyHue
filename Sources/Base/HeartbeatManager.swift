@@ -86,10 +86,12 @@ public class HeartbeatManager {
     }
     
     private func doRequestForResourceType(_ resourceType: HeartbeatBridgeResourceType) {
+
+        let url = "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercased)"
+
+        Log.trace("Heartbeat Request", "\(url)")
         
-        Log.trace("Heartbeat Request", "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercased)")
-        
-        Alamofire.request(.GET, "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercased)", parameters: nil)
+        Alamofire.request(.GET, url)
             .responseJSON { response in
                 
                 switch response.result {
