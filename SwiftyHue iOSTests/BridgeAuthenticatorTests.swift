@@ -29,7 +29,7 @@ class BridgeAuthenticatorTests: XCTestCase {
         authenticator.delegate = consumer
 
         // empty body
-        stubRequest("POST", "http://192.168.1.130/api").andReturn(200)
+        stubRequest("POST", "http://192.168.1.130/api").andReturn(200)!
         consumer.asyncExpectation = expectation(description: "authenticate")
         authenticator.start()
         waitForExpectations(timeout: 1) { (error) in
@@ -42,7 +42,7 @@ class BridgeAuthenticatorTests: XCTestCase {
 
         LSNocilla.sharedInstance().clearStubs()
         // wrong status code
-        stubRequest("POST", "http://192.168.1.130/api").andReturn(400)
+        stubRequest("POST", "http://192.168.1.130/api").andReturn(400)!
         consumer.asyncExpectation = expectation(description: "authenticate")
         authenticator.start()
         waitForExpectations(timeout: 1) { (error) in
@@ -55,7 +55,7 @@ class BridgeAuthenticatorTests: XCTestCase {
 
         LSNocilla.sharedInstance().clearStubs()
         // invalid data
-        stubRequest("POST", "http://192.168.1.130/api").andReturn(200).withBody("invalid")
+        stubRequest("POST", "http://192.168.1.130/api").andReturn(200)!.withBody("invalid")!
         consumer.asyncExpectation = expectation(description: "authenticate")
         authenticator.start()
         waitForExpectations(timeout: 1) { (error) in
@@ -74,7 +74,7 @@ class BridgeAuthenticatorTests: XCTestCase {
         authenticator.delegate = consumer
 
         // empty body
-        stubRequest("POST", "http://192.168.1.130/api").andReturn(200)
+        stubRequest("POST", "http://192.168.1.130/api").andReturn(200)!
             .withBody("[{\"error\": {\"type\": 101, \"address\": \"\", \"description\": \"link button not pressed\"}}]")
         consumer.asyncExpectation = expectation(description: "authenticate")
         authenticator.start()
@@ -95,7 +95,7 @@ class BridgeAuthenticatorTests: XCTestCase {
         authenticator.delegate = consumer
 
         // empty body
-        stubRequest("POST", "http://192.168.1.130/api").andReturn(200)
+        stubRequest("POST", "http://192.168.1.130/api").andReturn(200)!
             .withBody("[{\"error\": {\"type\": 101, \"address\": \"\", \"description\": \"link button not pressed\"}}]")
         consumer.asyncExpectation = expectation(description: "authenticate")
         authenticator.start()
@@ -118,16 +118,16 @@ class BridgeAuthenticatorTests: XCTestCase {
 
         // empty body
         stubRequest("POST", "http://192.168.1.130/api")
-            .withBody("{\"devicetype\":\"tests#simulator\"}")
-            .andReturn(200)
-            .withBody("[{\"success\": {\"username\": \"1028d66426293e821ecfd9ef1a0731df\"}}]")
+            .withBody("{\"devicetype\":\"tests#simulator\"}")!
+            .andReturn(200)!
+            .withBody("[{\"success\": {\"username\": \"1028d66426293e821ecfd9ef1a0731df\"}}]")!
         consumer.asyncExpectation = expectation(description: "authenticate")
         authenticator.start()
         waitForExpectations(timeout: 3) { (error) in
             if let error = error {
                 XCTFail("\(error)")
             }
-            
+
             XCTAssertEqual(consumer.finishWithUsername, "1028d66426293e821ecfd9ef1a0731df")
         }
     }
