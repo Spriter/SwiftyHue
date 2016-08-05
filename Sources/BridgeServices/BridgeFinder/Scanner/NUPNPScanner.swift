@@ -25,10 +25,10 @@ class NUPNPScanner: NSObject, Scanner {
 
     }
 
-    private func createRequest() -> NSMutableURLRequest {
+    private func createRequest() -> URLRequest {
         let url = URL(string: "https://www.meethue.com/api/nupnp")!
 
-        let request = NSMutableURLRequest(url: url)
+        var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
         return request
