@@ -59,7 +59,7 @@ public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
         
         let dateFormatter = DateFormatter.hueApiDateFormatter
         
-        var json = jsonify([
+        let json = jsonify([
             "id" ~~> identifier,
             "name" ~~> name,
             Encoder.encodeDate("last use date", dateFormatter: dateFormatter)(lastUseDate),

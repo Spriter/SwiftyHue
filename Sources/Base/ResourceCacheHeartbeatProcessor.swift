@@ -308,7 +308,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
     
     private func writeCacheToDisk() {
         
-        var encodedJSON = NSKeyedArchiver.archivedData(withRootObject: self.resourceCache.toJSON()!)
+        let encodedJSON = NSKeyedArchiver.archivedData(withRootObject: self.resourceCache.toJSON()!)
         UserDefaults.standard.set(encodedJSON, forKey: "CacheX")
         
         Log.info("writeCacheToDisk")

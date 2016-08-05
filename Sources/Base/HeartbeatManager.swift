@@ -161,7 +161,7 @@ public class HeartbeatManager {
         for jsonError in jsonErrorArray {
             
             Log.info("Hearbeat received Error Result", (json: jsonError))
-            var error = Error(json: jsonError)
+            let error = Error(json: jsonError)
             if let error = error {
                 self.notifyAboutError(error)
             }

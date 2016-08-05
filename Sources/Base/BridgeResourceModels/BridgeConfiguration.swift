@@ -198,7 +198,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         
         let dateFormatter = DateFormatter.hueApiDateFormatter
         
-        var json = jsonify([
+        let json = jsonify([
             "bridgeid" ~~> identifier,
             "name" ~~> name,
             "zigbeechannel" ~~> zigbeeChannel,
