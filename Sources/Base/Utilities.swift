@@ -396,7 +396,7 @@ public struct Utilities {
         #if os(OSX)
             return point.pointValue
         #else
-            return point.CGPointValue()
+            return point.cgPointValue
         #endif
     }
     
@@ -412,7 +412,7 @@ public struct Utilities {
         #if os(OSX)
             return NSValue(point: point)
         #else
-            return NSValue(CGPoint: point)
+            return NSValue(cgPoint: point)
         #endif
     }
 }
