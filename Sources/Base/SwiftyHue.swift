@@ -16,7 +16,7 @@ public class SwiftyHue {
     
     public var bridgeSendAPI: BridgeSendAPI = BridgeSendAPI();
     
-    public func setBridgeAccessConfig(bridgeAccessConfig: BridgeAccessConfig) {
+    public func setBridgeAccessConfig(_ bridgeAccessConfig: BridgeAccessConfig) {
         
         self.bridgeAccessConfig = bridgeAccessConfig;
         self.resourceCacheHeartbeatProcessor = ResourceCacheHeartbeatProcessor(delegate: self);
@@ -24,7 +24,7 @@ public class SwiftyHue {
         self.heartbeatManager = HeartbeatManager(bridgeAccesssConfig: bridgeAccessConfig, heartbeatProcessors: [resourceCacheHeartbeatProcessor!]);
     }
     
-    public func setLocalHeartbeatInterval(interval: NSTimeInterval, forResourceType resourceType: HeartbeatBridgeResourceType) {
+    public func setLocalHeartbeatInterval(_ interval: TimeInterval, forResourceType resourceType: HeartbeatBridgeResourceType) {
         
         heartbeatManager?.setLocalHeartbeatInterval(interval, forResourceType: resourceType)
     }
@@ -41,14 +41,14 @@ public class SwiftyHue {
     
     // MARK: Logging
     
-    public func enableLogging(enabled: Bool) {
+    public func enableLogging(_ enabled: Bool) {
         Log.enabled = enabled
     }
     
     /**
      The minimum level of severity for the Logger.
      */
-    public func setMinLevelForLogMessages(level: Level) {
+    public func setMinLevelForLogMessages(_ level: Level) {
         
         Log.minLevel = level
     }
@@ -66,7 +66,7 @@ public class SwiftyHue {
 
 extension SwiftyHue: ResourceCacheHeartbeatProcessorDelegate {
     
-    func resourceCacheUpdated(resourceCache: BridgeResourcesCache) {
+    func resourceCacheUpdated(_ resourceCache: BridgeResourcesCache) {
                 
         self.resourceCache = resourceCache;
     }

@@ -247,7 +247,7 @@ public class TestRequester {
         }
     }
     
-    class func convert(resourcesDict: NSMutableDictionary) -> [JSON] {
+    class func convert(_ resourcesDict: NSMutableDictionary) -> [JSON] {
         
         if let JSON = resourcesDict as? NSMutableDictionary {
             

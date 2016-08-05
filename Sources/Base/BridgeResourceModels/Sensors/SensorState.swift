@@ -13,83 +13,83 @@ public enum ButtonEvent: Int {
     /**
      Tap Button 1
      */
-    case BUTTON_1 = 34
+    case button_1 = 34
     /**
      Tap Button 2
      */
-    case BUTTON_2 = 16
+    case button_2 = 16
     /**
      Tap Button 3
      */
-    case BUTTON_3 = 17
+    case button_3 = 17
     /**
      Tap Button 4
      */
-    case BUTTON_4 = 18
+    case button_4 = 18
     /**
      INITIAL_PRESS Button 1 (ON)
      */
-    case INITIAL_PRESS_BUTTON_1 = 1000
+    case initial_PRESS_BUTTON_1 = 1000
     /**
      HOLD Button 1 (ON)
      */
-    case HOLD_BUTTON_1 = 1001
+    case hold_BUTTON_1 = 1001
     /**
      SHORT_RELEASED Button 1
      */
-    case SHORT_RELEASED_BUTTON_1 = 1002
+    case short_RELEASED_BUTTON_1 = 1002
     /**
      LONG_RELEASED Button 1
      */
-    case LONG_RELEASED_BUTTON_1 = 1003
+    case long_RELEASED_BUTTON_1 = 1003
     /**
      INITIAL_PRESS Button 2 (ON)
      */
-    case INITIAL_PRESS_BUTTON_2 = 2000
+    case initial_PRESS_BUTTON_2 = 2000
     /**
      HOLD Button 2 (ON)
      */
-    case HOLD_BUTTON_2 = 2001
+    case hold_BUTTON_2 = 2001
     /**
      SHORT_RELEASED Button 2
      */
-    case SHORT_RELEASED_BUTTON_2 = 2002
+    case short_RELEASED_BUTTON_2 = 2002
     /**
      LONG_RELEASED Button 2
      */
-    case LONG_RELEASED_BUTTON_2 = 2003
+    case long_RELEASED_BUTTON_2 = 2003
     /**
      INITIAL_PRESS Button 3 (ON)
      */
-    case INITIAL_PRESS_BUTTON_3 = 3000
+    case initial_PRESS_BUTTON_3 = 3000
     /**
      HOLD Button 3 (ON)
      */
-    case HOLD_BUTTON_3 = 3001
+    case hold_BUTTON_3 = 3001
     /**
      SHORT_RELEASED Button 3
      */
-    case SHORT_RELEASED_BUTTON_3 = 3002
+    case short_RELEASED_BUTTON_3 = 3002
     /**
      LONG_RELEASED Button 3
      */
-    case LONG_RELEASED_BUTTON_3 = 3003
+    case long_RELEASED_BUTTON_3 = 3003
     /**
      INITIAL_PRESS Button 4 (ON)
      */
-    case INITIAL_PRESS_BUTTON_4 = 4000
+    case initial_PRESS_BUTTON_4 = 4000
     /**
      HOLD Button 4 (ON)
      */
-    case HOLD_BUTTON_4 = 4001
+    case hold_BUTTON_4 = 4001
     /**
      SHORT_RELEASED Button 4
      */
-    case SHORT_RELEASED_BUTTON_4 = 4002
+    case short_RELEASED_BUTTON_4 = 4002
     /**
      LONG_RELEASED Button 4
      */
-    case LONG_RELEASED_BUTTON_4 = 4003
+    case long_RELEASED_BUTTON_4 = 4003
 }
 
 public func ==(lhs: PartialSensorState, rhs: PartialSensorState) -> Bool {
@@ -98,22 +98,22 @@ public func ==(lhs: PartialSensorState, rhs: PartialSensorState) -> Bool {
 
 public class PartialSensorState: Decodable, Encodable, Equatable {
     
-    public let lastUpdated: NSDate?
+    public let lastUpdated: Date?
     
-    init(lastUpdated: NSDate?) {
+    init(lastUpdated: Date?) {
         self.lastUpdated = lastUpdated
     }
     
     required public init?(json: JSON) {
         
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        let dateFormatter = DateFormatter.hueApiDateFormatter
         
         lastUpdated = Decoder.decodeDate("lastupdated", dateFormatter:dateFormatter)(json)
     }
     
     public func toJSON() -> JSON? {
         
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        let dateFormatter = DateFormatter.hueApiDateFormatter
         
         let json = jsonify([
             Encoder.encodeDate("lastupdated", dateFormatter: dateFormatter)(lastUpdated)

@@ -149,7 +149,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     
     public init?(json: JSON) {
         
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        let dateFormatter = DateFormatter.hueApiDateFormatter
         
         guard let identifier: String = "bridgeid" <~~ json,
             let name: String = "name" <~~ json,
@@ -196,7 +196,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     
     public func toJSON() -> JSON? {
         
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        let dateFormatter = DateFormatter.hueApiDateFormatter
         
         var json = jsonify([
             "bridgeid" ~~> identifier,

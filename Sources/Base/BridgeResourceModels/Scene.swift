@@ -77,7 +77,7 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
     /**
         UTC time the scene has been created or has been updated by a PUT. Will be null when unknown (legacy scenes).
      */
-    public let lastUpdated: NSDate?
+    public let lastUpdated: Date?
     
     /**
         Version of scene document:
@@ -106,7 +106,7 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
         self.locked = locked
         self.version = version
         
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        let dateFormatter = DateFormatter.hueApiDateFormatter
         
         self.appData = "appdata" <~~ json
         lastUpdated = Decoder.decodeDate("lastupdated", dateFormatter:dateFormatter)(json)
@@ -114,7 +114,7 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
     
     public func toJSON() -> JSON? {
         
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        let dateFormatter = DateFormatter.hueApiDateFormatter
         
         var json = jsonify([
             "id" ~~> identifier,

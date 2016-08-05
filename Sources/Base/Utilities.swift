@@ -38,7 +38,7 @@ public struct Utilities {
         - model: model of the lamp, example: "LCT001" for hue bulb. Used to calculate the color gamut. If this value is empty the default gamut values are used.
      - Returns: The color
      */
-    public static func colorFromXY(xy: CGPoint, forModel model: String) -> SwiftyHueColor {
+    public static func colorFromXY(_ xy: CGPoint, forModel model: String) -> SwiftyHueColor {
      
         var xy = xy
         let colorPoints: [NSValue] = colorPointsForModel(model)
@@ -154,11 +154,11 @@ public struct Utilities {
         - model: model of the lamp, example: "LCT001" for hue bulb. Used to calculate the color gamut. If this value is empty the default gamut values are used.
      - Returns: The xy color
      */
-    public static func calculateXY(color: SwiftyHueColor, forModel model: String) -> CGPoint {
+    public static func calculateXY(_ color: SwiftyHueColor, forModel model: String) -> CGPoint {
         
-        let cgColor: CGColorRef = color.CGColor
-        let components = CGColorGetComponents(cgColor)
-        let numberOfComponents = CGColorGetNumberOfComponents(cgColor)
+        let cgColor: CGColor = color.cgColor
+        let components = cgColor.components
+        let numberOfComponents = cgColor.numberOfComponents
         
         // Default to white
         var red: CGFloat = 1.0
@@ -167,16 +167,16 @@ public struct Utilities {
         
         if numberOfComponents == 4 {
             // Full color
-            red = components[0]
-            green = components[1]
-            blue = components[2]
+            red = (components?[0])!
+            green = (components?[1])!
+            blue = (components?[2])!
             
         } else if numberOfComponents == 2 {
             
             // Greyscale color
-            red = components[0]
-            green = components[0]
-            blue = components[0]
+            red = (components?[0])!
+            green = (components?[0])!
+            blue = (components?[0])!
         }
 
         // Apply gamma correction
@@ -237,7 +237,7 @@ public struct Utilities {
             cy = closestPoint.y
         }
         
-        return CGPointMake(cx, cy)
+        return CGPoint(x: cx, y: cy)
     }
     
     /**
@@ -247,7 +247,7 @@ public struct Utilities {
          - model: the light model
      - Returns: colorPoints
      */
-    private static func colorPointsForModel(model: String) -> [NSValue] {
+    private static func colorPointsForModel(_ model: String) -> [NSValue] {
         
         var colorPoints: [NSValue] = [NSValue]()
 
@@ -361,7 +361,7 @@ public struct Utilities {
          - p: the point containing the X,Y value
      - Returns: true if within reach, false otherwise.
      */
-    private static func checkPointInLampsReach(p: CGPoint, withColorPoints colorPoints:[NSValue]) -> Bool {
+    private static func checkPointInLampsReach(_ p: CGPoint, withColorPoints colorPoints:[NSValue]) -> Bool {
     
         let red: CGPoint =   getPointFromValue(colorPoints[cptRED])
         let green: CGPoint = getPointFromValue(colorPoints[cptGREEN])
@@ -385,7 +385,7 @@ public struct Utilities {
         - value: value with a point
      - Returns: The point from this value
      */
-    private static func getPointFromValue(point: NSValue) -> SwiftyPoint {
+    private static func getPointFromValue(_ point: NSValue) -> SwiftyPoint {
         
         #if os(OSX)
             return point.pointValue
@@ -401,7 +401,7 @@ public struct Utilities {
         - point: The point
      - Returns: The value with a point
      */
-    private static func getValueFromPoint(point: CGPoint) -> NSValue {
+    private static func getValueFromPoint(_ point: CGPoint) -> NSValue {
         
         #if os(OSX)
             return NSValue(point: point)

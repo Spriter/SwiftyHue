@@ -1242,6 +1242,9 @@
 					1FEF52B61CF6087A00446694 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
+					23D507F61D53AAC0009E926F = {
+						LastSwiftMigration = 0800;
+					};
 					23D5084C1D53ACBF009E926F = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -2787,6 +2790,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "i386 x86_64";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2844,6 +2848,7 @@
 				PRODUCT_NAME = SwiftyHue;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "i386 x86_64";
@@ -3044,6 +3049,7 @@
 				23D508571D53ACBF009E926F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

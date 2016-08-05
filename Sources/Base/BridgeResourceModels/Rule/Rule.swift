@@ -19,8 +19,8 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
     
     public let identifier: String
     public let name: String
-    public let lasttriggered: NSDate?
-    public let created: NSDate
+    public let lasttriggered: Date?
+    public let created: Date
     public let timestriggered: Int
     public let owner: String
     public let status: String
@@ -29,7 +29,7 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
     
     public required init?(json: JSON) {
         
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        let dateFormatter = DateFormatter.hueApiDateFormatter
         
         guard let identifier: String = "id" <~~ json else {
             Log.error("Can't create Rule, missing required attribute \"id\" in JSON:\n \(json)"); return nil
@@ -66,18 +66,18 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
         
         self.identifier = identifier
         self.name = name
-        self.created = created
+        self.created = created as Date
         self.lasttriggered = Decoder.decodeDate("lasttriggered", dateFormatter:dateFormatter)(json)
         self.timestriggered = timestriggered
         self.owner = owner
         self.status = status
-        self.conditions = [RuleCondition].fromJSONArray(conditionJSONs)
-        self.actions = [RuleAction].fromJSONArray(actionJSONs)
+        self.conditions = [RuleCondition].fromJSONArray(conditionJSONs)!
+        self.actions = [RuleAction].fromJSONArray(actionJSONs)!
     }
     
     public func toJSON() -> JSON? {
         
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        let dateFormatter = DateFormatter.hueApiDateFormatter
         
         let json = jsonify([
             "id" ~~> self.identifier,

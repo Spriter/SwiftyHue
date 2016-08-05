@@ -11,7 +11,7 @@ import Gloss
 
 public enum UpdateState: Int {
     
-    case NoUpdate, Downloading, ReadyForInstall, Installed
+    case noUpdate, downloading, readyForInstall, installed
 }
 
 public struct SoftwareUpdateStatus: Decodable, Encodable {
@@ -57,7 +57,7 @@ public struct SoftwareUpdateStatus: Decodable, Encodable {
     
     public func toJSON() -> JSON? {
         
-        var json = jsonify([
+        let json = jsonify([
             "updatestate" ~~> updatestate,
             "checkforupdate" ~~> checkforupdate,
             "devicetypes" ~~> devicetypes,

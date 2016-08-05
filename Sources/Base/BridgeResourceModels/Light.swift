@@ -96,7 +96,7 @@ public class Light: BridgeResource, BridgeResourceDictGenerator {
     
     public func toJSON() -> JSON? {
         
-        var json = jsonify([
+        let json = jsonify([
             "id" ~~> identifier,
             "name" ~~> name,
             "state" ~~> state,
