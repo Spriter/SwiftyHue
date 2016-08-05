@@ -116,7 +116,7 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
         
         let dateFormatter = DateFormatter.hueApiDateFormatter
         
-        var json = jsonify([
+        let json = jsonify([
             "id" ~~> identifier,
             "name" ~~> name,
             "lights" ~~> lightIdentifiers,
