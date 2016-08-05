@@ -239,7 +239,7 @@ extension BridgeConfiguration: Hashable {
 }
 public func ==(lhs: BridgeConfiguration, rhs: BridgeConfiguration) -> Bool {
     return lhs.identifier == rhs.identifier &&
-        lhs.name == rhs.name
+        lhs.name == rhs.name &&
         lhs.zigbeeChannel == rhs.zigbeeChannel &&
         lhs.mac == rhs.mac &&
         lhs.dhcp == rhs.dhcp &&
