@@ -22,7 +22,8 @@ class BridgeResultParserTests: XCTestCase {
     }
 
     func testPerform() {
-        let xml = NSData(contentsOfFile: NSBundle(forClass: BridgeResultParserTests.self).pathForResource("bridge_response", ofType: "xml")!)!
+        let path = Bundle(for: BridgeResultParserTests.self).path(forResource: "bridge_response", ofType: "xml")!
+        let xml = try! Data(contentsOf: URL(fileURLWithPath: path))
         let parser = BridgeResultParser(xmlData: xml)
 
         let asyncExpectation = expectation(description: "parseBridgeXML")
