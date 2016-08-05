@@ -188,8 +188,6 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         case .rules:
             return false
         }
-        
-        return false
     }
     
     func convertToNativeObjectDict(_ json: JSON, resourceType: HeartbeatBridgeResourceType) -> NSDictionary {
