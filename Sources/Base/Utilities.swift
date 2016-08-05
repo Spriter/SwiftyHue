@@ -192,11 +192,11 @@ public struct Utilities {
         var cx: CGFloat = X / (X + Y + Z)
         var cy: CGFloat = Y / (X + Y + Z)
         
-        if isnan(cx) {
+        if cx.isNaN {
             cx = 0.0
         }
         
-        if isnan(cy) {
+        if cy.isNaN {
             cy = 0.0
         }
 
