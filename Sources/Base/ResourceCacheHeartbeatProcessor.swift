@@ -37,8 +37,8 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         
         #if os(iOS) || os(tvOS)
             
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ResourceCacheHeartbeatProcessor.handleApplicationWillTerminateNotification), name: UIApplicationWillTerminateNotification, object: nil)
-            
+        NotificationCenter.default.addObserver(self, selector: #selector(ResourceCacheHeartbeatProcessor.handleApplicationWillTerminateNotification), name: .UIApplicationWillTerminate, object: nil)
+
         #elseif os(watchOS)
             
 // TODO:    We have to find a Solution for Watch OS
