@@ -95,12 +95,12 @@ public class HeartbeatManager {
             .responseJSON { response in
                 
                 switch response.result {
-                case .Success:
+                case .success:
                     
                     self.handleSuccessResponseResult(response.result, resourceType: resourceType)
                     self.notifyAboutLocalConnection()
                     
-                case .Failure(let error):
+                case .failure(let error):
                     
                     self.notifyAboutNoLocalConnection()
                     Log.trace("Heartbeat Request Error: ", error)
