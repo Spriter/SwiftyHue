@@ -75,11 +75,11 @@ public class BridgeResourcesCache: Encodable, Decodable {
         self.init()
                 
         guard let lightsDict: [String: Light] = HeartbeatBridgeResourceType.lights.rawValue <~~ json,
-            groupsDict: [String: Group] = HeartbeatBridgeResourceType.groups.rawValue <~~ json,
-            schedulesDict: [String: Schedule] = HeartbeatBridgeResourceType.schedules.rawValue <~~ json,
-            scenesDict: [String: PartialScene] = HeartbeatBridgeResourceType.scenes.rawValue <~~ json,
-            sensorsDict: [String: Sensor] = HeartbeatBridgeResourceType.sensors.rawValue <~~ json,
-            rulesDict: [String: Rule] = HeartbeatBridgeResourceType.rules.rawValue <~~ json
+            let groupsDict: [String: Group] = HeartbeatBridgeResourceType.groups.rawValue <~~ json,
+            let schedulesDict: [String: Schedule] = HeartbeatBridgeResourceType.schedules.rawValue <~~ json,
+            let scenesDict: [String: PartialScene] = HeartbeatBridgeResourceType.scenes.rawValue <~~ json,
+            let sensorsDict: [String: Sensor] = HeartbeatBridgeResourceType.sensors.rawValue <~~ json,
+            let rulesDict: [String: Rule] = HeartbeatBridgeResourceType.rules.rawValue <~~ json
             
             else { return nil }
         
