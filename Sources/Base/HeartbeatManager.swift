@@ -87,7 +87,7 @@ public class HeartbeatManager {
     
     private func doRequestForResourceType(_ resourceType: HeartbeatBridgeResourceType) {
         
-        Log.trace("Heartbeat Request", "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercaseString)")
+        Log.trace("Heartbeat Request", "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercased)")
         
         Alamofire.request(.GET, "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercased)", parameters: nil)
             .responseJSON { response in
@@ -110,7 +110,7 @@ public class HeartbeatManager {
     
     private func handleSuccessResponseResult(_ result: Result<AnyObject, NSError>, resourceType: HeartbeatBridgeResourceType) {
         
-        Log.trace("Heartbeat Response for Resource Type \(resourceType.rawValue.lowercaseString) received")
+        Log.trace("Heartbeat Response for Resource Type \(resourceType.rawValue.lowercased) received")
         //Log.trace("Heartbeat Response: \(resourceType.rawValue.lowercaseString): ", result.value)
         
         if responseResultIsPhilipsAPIErrorType(result: result, resourceType: resourceType) {
