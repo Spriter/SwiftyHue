@@ -300,7 +300,6 @@
 		23D5083C1D53AAC0009E926F /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF557A1CF6400B00446694 /* AppData.swift */; };
 		23D5083D1D53AAC0009E926F /* BridgeSendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55B31CF6400B00446694 /* BridgeSendAPI.swift */; };
 		23D508401D53AAC0009E926F /* SwiftyHue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEF51FA1CF6018E00446694 /* SwiftyHue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		23D508501D53ACBF009E926F /* SwiftyHue_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D5084F1D53ACBF009E926F /* SwiftyHue_macOSTests.swift */; };
 		23D508521D53ACBF009E926F /* SwiftyHue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D508461D53AAC0009E926F /* SwiftyHue.framework */; };
 		23D508581D53ACE4009E926F /* BridgeFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749DA1CF9FCE800D7A7B0 /* BridgeFinderTests.swift */; };
 		23D508591D53ACEA009E926F /* BridgeResultParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749E71CFA043200D7A7B0 /* BridgeResultParserTests.swift */; };
@@ -502,7 +501,6 @@
 		23D508461D53AAC0009E926F /* SwiftyHue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyHue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23D508471D53AAC0009E926F /* Info-macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-macOS.plist"; path = "/Users/aventurella/github/SwiftyHue/Info-macOS.plist"; sourceTree = "<absolute>"; };
 		23D5084D1D53ACBF009E926F /* SwiftyHue macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftyHue macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		23D5084F1D53ACBF009E926F /* SwiftyHue_macOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyHue_macOSTests.swift; sourceTree = "<group>"; };
 		23D508511D53ACBF009E926F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2843E6241CF77E1200CED6D6 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		292749D61CF9FCB400D7A7B0 /* TestScanner1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScanner1.swift; sourceTree = "<group>"; };
@@ -940,7 +938,6 @@
 		23D5084E1D53ACBF009E926F /* SwiftyHue macOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				23D5084F1D53ACBF009E926F /* SwiftyHue_macOSTests.swift */,
 				23D508511D53ACBF009E926F /* Info.plist */,
 			);
 			path = "SwiftyHue macOSTests";
@@ -1803,7 +1800,6 @@
 				23D5085C1D53ACF9009E926F /* TestScanner1.swift in Sources */,
 				23D5085E1D53ACFE009E926F /* TestBadValidator.swift in Sources */,
 				23D508591D53ACEA009E926F /* BridgeResultParserTests.swift in Sources */,
-				23D508501D53ACBF009E926F /* SwiftyHue_macOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
