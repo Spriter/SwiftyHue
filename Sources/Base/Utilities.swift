@@ -156,27 +156,25 @@ public struct Utilities {
      */
     public static func calculateXY(_ color: SwiftyHueColor, forModel model: String) -> CGPoint {
         
-        let cgColor: CGColor = color.cgColor
-        let components = cgColor.components
-        let numberOfComponents = cgColor.numberOfComponents
-        
+        let numberOfComponents = color.numberOfComponents
+
         // Default to white
         var red: CGFloat = 1.0
         var green: CGFloat = 1.0
         var blue: CGFloat = 1.0
-        
+
         if numberOfComponents == 4 {
             // Full color
-            red = (components?[0])!
-            green = (components?[1])!
-            blue = (components?[2])!
-            
+            red = color.redComponent
+            green = color.greenComponent
+            blue = color.blueComponent
+
         } else if numberOfComponents == 2 {
-            
+
             // Greyscale color
-            red = (components?[0])!
-            green = (components?[0])!
-            blue = (components?[0])!
+            red = color.blackComponent
+            green = color.blackComponent
+            blue = color.blackComponent
         }
 
         // Apply gamma correction
