@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ScannerDelegate: class {
-    func scanner(scanner: Scanner, didFinishWithResults ips: [String])
+    func scanner(_ scanner: Scanner, didFinishWithResults ips: [String])
 }

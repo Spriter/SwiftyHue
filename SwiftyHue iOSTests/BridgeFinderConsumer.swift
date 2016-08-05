@@ -13,7 +13,7 @@ class BridgeFinderConsumer: BridgeFinderDelegate {
     var resultBridges: [HueBridge]?
     var asyncExpectation: XCTestExpectation?
 
-    func bridgeFinder(finder: BridgeFinder, didFinishWithResult bridges: [HueBridge]) {
+    func bridgeFinder(_ finder: BridgeFinder, didFinishWithResult bridges: [HueBridge]) {
         guard let expectation = asyncExpectation else {
             XCTFail("Set expectation in test")
             return

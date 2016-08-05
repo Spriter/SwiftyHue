@@ -21,32 +21,32 @@ public enum HeartbeatBridgeResourceType: String {
 
 public protocol HeartbeatProcessor {
     
-    func processJSON(json: JSON, forResourceType resourceType: HeartbeatBridgeResourceType)
+    func processJSON(_ json: JSON, forResourceType resourceType: HeartbeatBridgeResourceType)
 }
 
 public class HeartbeatManager {
     
     private let bridgeAccesssConfig: BridgeAccessConfig;
-    private var localHeartbeatTimers = [HeartbeatBridgeResourceType: NSTimer]()
-    private var localHeartbeatTimerIntervals = [HeartbeatBridgeResourceType: NSTimeInterval]()
+    private var localHeartbeatTimers = [HeartbeatBridgeResourceType: Timer]()
+    private var localHeartbeatTimerIntervals = [HeartbeatBridgeResourceType: TimeInterval]()
     private var heartbeatProcessors: [HeartbeatProcessor];
     
-    private var lastLocalConnectionNotificationPostTime: NSTimeInterval?
-    private var lastNoLocalConnectionNotificationPostTime: NSTimeInterval?
+    private var lastLocalConnectionNotificationPostTime: TimeInterval?
+    private var lastNoLocalConnectionNotificationPostTime: TimeInterval?
 
     public init(bridgeAccesssConfig: BridgeAccessConfig, heartbeatProcessors: [HeartbeatProcessor]) {
         self.bridgeAccesssConfig = bridgeAccesssConfig
         self.heartbeatProcessors = heartbeatProcessors;
     }
     
-    internal func setLocalHeartbeatInterval(interval: NSTimeInterval, forResourceType resourceType: HeartbeatBridgeResourceType) {
+    internal func setLocalHeartbeatInterval(_ interval: TimeInterval, forResourceType resourceType: HeartbeatBridgeResourceType) {
         
         localHeartbeatTimerIntervals[resourceType] = interval
     }
     
-    public func removeLocalHeartbeatInterval(interval: Float, forResourceType resourceType: HeartbeatBridgeResourceType) {
+    public func removeLocalHeartbeatInterval(_ interval: Float, forResourceType resourceType: HeartbeatBridgeResourceType) {
         
-        if let timer = localHeartbeatTimers.removeValueForKey(resourceType) {
+        if let timer = localHeartbeatTimers.removeValue(forKey: resourceType) {
             
             timer.invalidate()
         }
@@ -60,13 +60,13 @@ public class HeartbeatManager {
             doRequestForResourceType(resourceType)
             
             // Create Timer
-            let timer = NSTimer(timeInterval: timerInterval, target: self, selector: #selector(HeartbeatManager.timerAction), userInfo: resourceType.rawValue, repeats: true);
+            let timer = Timer(timeInterval: timerInterval, target: self, selector: #selector(HeartbeatManager.timerAction), userInfo: resourceType.rawValue, repeats: true);
             
             // Store timer
             localHeartbeatTimers[resourceType] = timer;
             
             // Add Timer to RunLoop
-            NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
+            RunLoop.current.add(timer, forMode: RunLoopMode.defaultRunLoopMode)
         }
     }
     
@@ -75,30 +75,32 @@ public class HeartbeatManager {
         for (resourceType, timer) in localHeartbeatTimers {
             
             timer.invalidate()
-            localHeartbeatTimers.removeValueForKey(resourceType)
+            localHeartbeatTimers.removeValue(forKey: resourceType)
         }
     }
     
-    @objc func timerAction(timer: NSTimer) {
+    @objc func timerAction(_ timer: Timer) {
         
         let resourceType: HeartbeatBridgeResourceType = HeartbeatBridgeResourceType(rawValue: timer.userInfo! as! String)!
         doRequestForResourceType(resourceType)
     }
     
-    private func doRequestForResourceType(resourceType: HeartbeatBridgeResourceType) {
+    private func doRequestForResourceType(_ resourceType: HeartbeatBridgeResourceType) {
+
+        let url = "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercased())"
+
+        Log.trace("Heartbeat Request", "\(url)")
         
-        Log.trace("Heartbeat Request", "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercaseString)")
-        
-        Alamofire.request(.GET, "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercaseString)", parameters: nil)
+        Alamofire.request(.GET, url)
             .responseJSON { response in
                 
                 switch response.result {
-                case .Success:
+                case .success:
                     
                     self.handleSuccessResponseResult(response.result, resourceType: resourceType)
                     self.notifyAboutLocalConnection()
                     
-                case .Failure(let error):
+                case .failure(let error):
                     
                     self.notifyAboutNoLocalConnection()
                     Log.trace("Heartbeat Request Error: ", error)
@@ -108,9 +110,9 @@ public class HeartbeatManager {
     
     // MARK: Timer Action Response Handling
     
-    private func handleSuccessResponseResult(result: Result<AnyObject, NSError>, resourceType: HeartbeatBridgeResourceType) {
+    private func handleSuccessResponseResult(_ result: Result<AnyObject, NSError>, resourceType: HeartbeatBridgeResourceType) {
         
-        Log.trace("Heartbeat Response for Resource Type \(resourceType.rawValue.lowercaseString) received")
+        Log.trace("Heartbeat Response for Resource Type \(resourceType.rawValue.lowercased()) received")
         //Log.trace("Heartbeat Response: \(resourceType.rawValue.lowercaseString): ", result.value)
         
         if responseResultIsPhilipsAPIErrorType(result: result, resourceType: resourceType) {
@@ -135,7 +137,7 @@ public class HeartbeatManager {
         
     }
     
-    private func responseResultIsPhilipsAPIErrorType(result result: Result<AnyObject, NSError>, resourceType resourceType: HeartbeatBridgeResourceType) -> Bool {
+    private func responseResultIsPhilipsAPIErrorType(result: Result<AnyObject, NSError>, resourceType: HeartbeatBridgeResourceType) -> Bool {
         
         switch resourceType {
             
@@ -154,12 +156,12 @@ public class HeartbeatManager {
         return false
     }
     
-    private func handleErrors(jsonErrorArray: [JSON]) {
+    private func handleErrors(_ jsonErrorArray: [JSON]) {
         
         for jsonError in jsonErrorArray {
             
             Log.info("Hearbeat received Error Result", (json: jsonError))
-            var error = Error(json: jsonError)
+            let error = Error(json: jsonError)
             if let error = error {
                 self.notifyAboutError(error)
             }
@@ -170,13 +172,13 @@ public class HeartbeatManager {
     
     private func notifyAboutLocalConnection() {
         
-        if lastLocalConnectionNotificationPostTime == nil || NSDate().timeIntervalSince1970 - lastLocalConnectionNotificationPostTime! > 10 {
+        if lastLocalConnectionNotificationPostTime == nil || Date().timeIntervalSince1970 - lastLocalConnectionNotificationPostTime! > 10 {
             
             let notification = BridgeHeartbeatConnectionStatusNotification(rawValue: "localConnection")!
             Log.info("Post Notification:", notification.rawValue)
-            NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: notification.rawValue), object: nil)
             
-            self.lastLocalConnectionNotificationPostTime = NSDate().timeIntervalSince1970;
+            self.lastLocalConnectionNotificationPostTime = Date().timeIntervalSince1970;
             
             // Make sure we instant notify about losing connection
             self.lastNoLocalConnectionNotificationPostTime = nil;
@@ -185,20 +187,20 @@ public class HeartbeatManager {
     
     private func notifyAboutNoLocalConnection() {
         
-        if lastNoLocalConnectionNotificationPostTime == nil || NSDate().timeIntervalSince1970 - lastNoLocalConnectionNotificationPostTime! > 10 {
+        if lastNoLocalConnectionNotificationPostTime == nil || Date().timeIntervalSince1970 - lastNoLocalConnectionNotificationPostTime! > 10 {
             
             let notification = BridgeHeartbeatConnectionStatusNotification(rawValue: "nolocalConnection")!
             Log.info("Post Notification:", notification.rawValue)
-            NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: notification.rawValue), object: nil)
             
-            self.lastNoLocalConnectionNotificationPostTime = NSDate().timeIntervalSince1970;
+            self.lastNoLocalConnectionNotificationPostTime = Date().timeIntervalSince1970;
             
             // Make sure we instant notify about getting connection
             self.lastLocalConnectionNotificationPostTime = nil;
         }
     }
     
-    private func notifyAboutError(error: Error) {
+    private func notifyAboutError(_ error: Error) {
         
         var notification: BridgeHeartbeatConnectionStatusNotification?;
         
@@ -213,7 +215,7 @@ public class HeartbeatManager {
         if let notification = notification {
             
             Log.trace("Post Notification: ", notification.rawValue)
-            NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: notification.rawValue), object: nil)
         }
     }
 }

@@ -16,7 +16,7 @@ public enum BackupStatus: String {
 
 public enum BackupError: Int {
     
-    case None, ExportFailed, ImportFailed
+    case none, exportFailed, importFailed
 }
 
 public struct Backup: Decodable, Encodable {
@@ -33,7 +33,7 @@ public struct Backup: Decodable, Encodable {
     
     public func toJSON() -> JSON? {
         
-        var json = jsonify([
+        let json = jsonify([
             "status" ~~> status,
             "errorcode" ~~> errorcode
             ])

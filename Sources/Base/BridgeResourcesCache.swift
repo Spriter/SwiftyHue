@@ -75,11 +75,11 @@ public class BridgeResourcesCache: Encodable, Decodable {
         self.init()
                 
         guard let lightsDict: [String: Light] = HeartbeatBridgeResourceType.lights.rawValue <~~ json,
-            groupsDict: [String: Group] = HeartbeatBridgeResourceType.groups.rawValue <~~ json,
-            schedulesDict: [String: Schedule] = HeartbeatBridgeResourceType.schedules.rawValue <~~ json,
-            scenesDict: [String: PartialScene] = HeartbeatBridgeResourceType.scenes.rawValue <~~ json,
-            sensorsDict: [String: Sensor] = HeartbeatBridgeResourceType.sensors.rawValue <~~ json,
-            rulesDict: [String: Rule] = HeartbeatBridgeResourceType.rules.rawValue <~~ json
+            let groupsDict: [String: Group] = HeartbeatBridgeResourceType.groups.rawValue <~~ json,
+            let schedulesDict: [String: Schedule] = HeartbeatBridgeResourceType.schedules.rawValue <~~ json,
+            let scenesDict: [String: PartialScene] = HeartbeatBridgeResourceType.scenes.rawValue <~~ json,
+            let sensorsDict: [String: Sensor] = HeartbeatBridgeResourceType.sensors.rawValue <~~ json,
+            let rulesDict: [String: Rule] = HeartbeatBridgeResourceType.rules.rawValue <~~ json
             
             else { return nil }
         
@@ -96,7 +96,7 @@ public class BridgeResourcesCache: Encodable, Decodable {
     
     public func toJSON() -> JSON? {
         
-        var json = jsonify([
+        let json = jsonify([
             HeartbeatBridgeResourceType.lights.rawValue ~~> _lights,
             HeartbeatBridgeResourceType.groups.rawValue ~~> _groups,
             HeartbeatBridgeResourceType.schedules.rawValue ~~> _schedules,
@@ -112,7 +112,7 @@ public class BridgeResourcesCache: Encodable, Decodable {
         
     }
     
-    public func convertBridgeResourceDictToJSONDict(dictToConvert: [String: BridgeResource]) -> [String: JSON] {
+    public func convertBridgeResourceDictToJSONDict(_ dictToConvert: [String: BridgeResource]) -> [String: JSON] {
         
         var dict: [String: JSON] = [:]
         for (key, bridgeResource) in dictToConvert {
@@ -125,61 +125,61 @@ public class BridgeResourcesCache: Encodable, Decodable {
     
     // MARK: Set
     
-    internal func setLights(lights: [String: Light]) {
+    internal func setLights(_ lights: [String: Light]) {
         _lights = lights
     }
     
-    internal func setGroups(groups: [String: Group]) {
+    internal func setGroups(_ groups: [String: Group]) {
         _groups = groups
     }
     
-    internal func setSchedules(schedules: [String: Schedule]) {
+    internal func setSchedules(_ schedules: [String: Schedule]) {
         _schedules = schedules
     }
     
-    internal func setScenes(scenes: [String: PartialScene]) {
+    internal func setScenes(_ scenes: [String: PartialScene]) {
         _scenes = scenes
     }
     
-    internal func setSensors(sensors: [String: Sensor]) {
+    internal func setSensors(_ sensors: [String: Sensor]) {
         _sensors = sensors
     }
     
-    internal func setRules(rules: [String: Rule]) {
+    internal func setRules(_ rules: [String: Rule]) {
         _rules = rules
     }
     
-    internal func setBridgeConfiguration(bridgeConfiguration: BridgeConfiguration) {
+    internal func setBridgeConfiguration(_ bridgeConfiguration: BridgeConfiguration) {
         _bridgeConfiguration = bridgeConfiguration
     }
     
     // MARK: Update
     
-    internal func updateLight(light: Light) {
+    internal func updateLight(_ light: Light) {
         
         _lights[light.identifier] = light
     }
-    internal func updateGroup(group: Group) {
+    internal func updateGroup(_ group: Group) {
         
         _groups[group.identifier] = group
     }
-    internal func updateSchedule(schedule: Schedule) {
+    internal func updateSchedule(_ schedule: Schedule) {
         
         _schedules[schedule.identifier] = schedule
     }
-    internal func updateScene(scene: PartialScene) {
+    internal func updateScene(_ scene: PartialScene) {
         
         _scenes[scene.identifier] = scene
     }
-    internal func updateSensor(sensor: Sensor) {
+    internal func updateSensor(_ sensor: Sensor) {
         
         _sensors[sensor.identifier] = sensor
     }
-    internal func updateRule(rule: Rule) {
+    internal func updateRule(_ rule: Rule) {
         
         _rules[rule.identifier] = rule
     }
-    internal func updateBridgeConfiguration(bridgeConfiguration: BridgeConfiguration) {
+    internal func updateBridgeConfiguration(_ bridgeConfiguration: BridgeConfiguration) {
         
         _bridgeConfiguration = bridgeConfiguration
     }

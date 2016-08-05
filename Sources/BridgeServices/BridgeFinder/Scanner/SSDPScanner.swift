@@ -24,15 +24,15 @@ class SSDPScanner: NSObject, Scanner, AsyncUdpSocketDelegate {
     func start() {
         do {
             try ssdpSocket.enableBroadcast(true)
-            let searchData = "M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMan: \"ssdp:discover\"\r\nST: ssdp:all\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)
+            let searchData = "M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMan: \"ssdp:discover\"\r\nST: ssdp:all\r\n\r\n".data(using: String.Encoding.utf8)
             let host = "239.255.255.250"
             let port: UInt16 = 1900
             // listen 102 error: https://github.com/robbiehanson/CocoaAsyncSocket/issues/376
-            try ssdpSocket.bindToPort(0)
-            ssdpSocket.sendData(searchData, toHost: host, port: port, withTimeout: 5, tag: 1)
-            let receiveTimeout: NSTimeInterval = 5
-            ssdpSocket.receiveWithTimeout(receiveTimeout, tag: 1)
-            NSTimer.scheduledTimerWithTimeInterval(receiveTimeout, target: self, selector: #selector(SSDPScanner.stop), userInfo: self, repeats: false)
+            try ssdpSocket.bind(toPort: 0)
+            ssdpSocket.send(searchData, toHost: host, port: port, withTimeout: 5, tag: 1)
+            let receiveTimeout: TimeInterval = 5
+            ssdpSocket.receive(withTimeout: receiveTimeout, tag: 1)
+            Timer.scheduledTimer(timeInterval: receiveTimeout, target: self, selector: #selector(SSDPScanner.stop), userInfo: self, repeats: false)
 
         } catch let error as NSError {
             print("Exception: \(error)")
@@ -46,13 +46,13 @@ class SSDPScanner: NSObject, Scanner, AsyncUdpSocketDelegate {
 
     // MARK: - AsyncUdpSocketDelegate
 
-    func onUdpSocket(sock: AsyncUdpSocket!, didReceiveData data: NSData!, withTag tag: Int, fromHost host: String!, port: UInt16) -> Bool {
-        guard let result = NSString(data: data, encoding: NSASCIIStringEncoding) else {
+    func onUdpSocket(_ sock: AsyncUdpSocket!, didReceive data: Data!, withTag tag: Int, fromHost host: String!, port: UInt16) -> Bool {
+        guard let result = NSString(data: data, encoding: String.Encoding.ascii.rawValue) else {
             print("Could not decode ssdp data")
             return true
         }
 
-        if result.containsString("IpBridge") {
+        if result.contains("IpBridge") {
             results.append(host)
         }
         

@@ -42,6 +42,8 @@ public class TestRequester {
 //        }
 //        
 //    }
+
+    
     
     public func test() {
     
@@ -49,8 +51,9 @@ public class TestRequester {
         lightState.on = false;
     
         let parameters = lightState.toJSON()!
-        
-        Alamofire.request(.PUT, "http://\(bridgeIp)/api/\(bridgeAcc)/groups/1/action", parameters: parameters, encoding: .JSON)
+        let url = "http://\(bridgeIp)/api/\(bridgeAcc)/groups/1/action"
+
+        Alamofire.request(.PUT, url, parameters: parameters, encoding: .json)
             .responseJSON { response in
         
                 print(response)
@@ -247,7 +250,7 @@ public class TestRequester {
         }
     }
     
-    class func convert(resourcesDict: NSMutableDictionary) -> [JSON] {
+    class func convert(_ resourcesDict: NSMutableDictionary) -> [JSON] {
         
         if let JSON = resourcesDict as? NSMutableDictionary {
             

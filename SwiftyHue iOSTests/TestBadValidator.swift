@@ -12,7 +12,7 @@ import Foundation
 class TestBadValidator: BridgeValidator {
     var calledForIps = [String]()
 
-    override func validate(ip: String, success: (bridge: HueBridge) -> Void, failure: (error: NSError) -> Void) {
+    override func validate(_ ip: String, success: (bridge: HueBridge) -> Void, failure: (error: NSError) -> Void) {
         calledForIps.append(ip)
         failure(error: NSError(domain: "test", code: 500, userInfo: [NSLocalizedDescriptionKey: "Validation always fails"]))
     }

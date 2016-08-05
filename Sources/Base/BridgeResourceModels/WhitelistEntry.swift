@@ -22,12 +22,12 @@ public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
     /**
      The date when the entry is used for the last time
      */
-    public let lastUseDate: NSDate?
+    public let lastUseDate: Date?
     
     /**
      Creation date of the entry
      */
-    public let createDate: NSDate?
+    public let createDate: Date?
     
     /**
      Name of the entry
@@ -40,7 +40,7 @@ public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
     
     public init?(json: JSON) {
         
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        let dateFormatter = DateFormatter.hueApiDateFormatter
         
         guard let identifier: String = "id" <~~ json,
             let name: String = "name" <~~ json,
@@ -50,16 +50,16 @@ public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
         
         self.identifier = identifier
         self.name = name
-        self.lastUseDate = lastUseDate
-        self.createDate = createDate
+        self.lastUseDate = lastUseDate as Date
+        self.createDate = createDate as Date
         
     }
     
     public func toJSON() -> JSON? {
         
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        let dateFormatter = DateFormatter.hueApiDateFormatter
         
-        var json = jsonify([
+        let json = jsonify([
             "id" ~~> identifier,
             "name" ~~> name,
             Encoder.encodeDate("last use date", dateFormatter: dateFormatter)(lastUseDate),

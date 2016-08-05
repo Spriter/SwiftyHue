@@ -8,11 +8,11 @@
 
 import Foundation
 
-public extension NSDateFormatter {
+public extension DateFormatter {
     
-    static public var hueApiDateFormatter: NSDateFormatter {
+    static public var hueApiDateFormatter: DateFormatter {
     
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
    
         return dateFormatter

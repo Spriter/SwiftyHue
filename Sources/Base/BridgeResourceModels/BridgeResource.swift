@@ -27,12 +27,12 @@ public protocol BridgeResourceDictGenerator {
     
     associatedtype AssociatedBridgeResourceType: BridgeResource
     
-    static func dictionaryFromResourcesJSON(json: JSON) -> [String: AssociatedBridgeResourceType]
+    static func dictionaryFromResourcesJSON(_ json: JSON) -> [String: AssociatedBridgeResourceType]
 }
 
 public extension BridgeResourceDictGenerator {
     
-    public static func dictionaryFromResourcesJSON(json: JSON) -> [String: AssociatedBridgeResourceType] {
+    public static func dictionaryFromResourcesJSON(_ json: JSON) -> [String: AssociatedBridgeResourceType] {
         
         var dict = [String: AssociatedBridgeResourceType]();
 
@@ -42,7 +42,7 @@ public extension BridgeResourceDictGenerator {
             resourceJSON["id"] = key
 
             if let resource = AssociatedBridgeResourceType(json: resourceJSON) {
-                dict[key as! String] = resource;
+                dict[key ] = resource;
             }
         }
         

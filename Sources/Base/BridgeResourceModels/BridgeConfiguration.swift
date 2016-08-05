@@ -149,8 +149,6 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     
     public init?(json: JSON) {
         
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
-        
         guard let identifier: String = "bridgeid" <~~ json,
             let name: String = "name" <~~ json,
             let mac: String = "mac" <~~ json,
@@ -167,6 +165,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         self.mac = mac
         self.modelId = modelid
         self.apiVersion = apiversion
+        self.swVersion = swversion
         
         self.replacesBridgeId = "replacesbridgeid" <~~ json
         self.zigbeeChannel = "zigbeechannel" <~~ json
@@ -179,7 +178,6 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         self.UTC = "UTC" <~~ json
         self.localtime = "localtime" <~~ json
         self.timezone = "timezone" <~~ json
-        self.swVersion = "swversion" <~~ json
         self.swUpdate = "swupdate" <~~ json
         self.linkbutton = "linkbutton" <~~ json
         self.portalServices = "portalservices" <~~ json
@@ -196,9 +194,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     
     public func toJSON() -> JSON? {
         
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
-        
-        var json = jsonify([
+        let json = jsonify([
             "bridgeid" ~~> identifier,
             "name" ~~> name,
             "zigbeechannel" ~~> zigbeeChannel,
@@ -239,7 +235,7 @@ extension BridgeConfiguration: Hashable {
 }
 public func ==(lhs: BridgeConfiguration, rhs: BridgeConfiguration) -> Bool {
     return lhs.identifier == rhs.identifier &&
-        lhs.name == rhs.name
+        lhs.name == rhs.name &&
         lhs.zigbeeChannel == rhs.zigbeeChannel &&
         lhs.mac == rhs.mac &&
         lhs.dhcp == rhs.dhcp &&

@@ -21,7 +21,7 @@ public enum ResourceCacheUpdateNotification: String {
 
 protocol ResourceCacheHeartbeatProcessorDelegate: class {
     
-    func resourceCacheUpdated(resourceCache: BridgeResourcesCache)
+    func resourceCacheUpdated(_ resourceCache: BridgeResourcesCache)
 }
 
 class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
@@ -37,8 +37,8 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         
         #if os(iOS) || os(tvOS)
             
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ResourceCacheHeartbeatProcessor.handleApplicationWillTerminateNotification), name: UIApplicationWillTerminateNotification, object: nil)
-            
+        NotificationCenter.default.addObserver(self, selector: #selector(ResourceCacheHeartbeatProcessor.handleApplicationWillTerminateNotification), name: .UIApplicationWillTerminate, object: nil)
+
         #elseif os(watchOS)
             
 // TODO:    We have to find a Solution for Watch OS
@@ -56,7 +56,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         self.writeCacheToDisk()
     }
     
-    func processJSON(json: JSON, forResourceType resourceType: HeartbeatBridgeResourceType) {
+    func processJSON(_ json: JSON, forResourceType resourceType: HeartbeatBridgeResourceType) {
         
         // Convert To Native Object
         
@@ -94,7 +94,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
 
     }
     
-    func storeNativeObjectInCache(bridgeResource: BridgeResource, resourceType: HeartbeatBridgeResourceType) {
+    func storeNativeObjectInCache(_ bridgeResource: BridgeResource, resourceType: HeartbeatBridgeResourceType) {
         
         switch resourceType {
             case .lights:
@@ -115,7 +115,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         }
     }
     
-    func storeNativeObjectDictInCache(dict: NSDictionary, resourceType: HeartbeatBridgeResourceType) {
+    func storeNativeObjectDictInCache(_ dict: NSDictionary, resourceType: HeartbeatBridgeResourceType) {
         
         switch resourceType {
             case .lights:
@@ -148,7 +148,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         }
     }
     
-    func nativeObjectDictDiffersFromCache(dict: NSDictionary, resourceType: HeartbeatBridgeResourceType) -> Bool {
+    func nativeObjectDictDiffersFromCache(_ dict: NSDictionary, resourceType: HeartbeatBridgeResourceType) -> Bool {
         
         switch resourceType {
         case .lights:
@@ -170,7 +170,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         return false
     }
     
-    func nativeObjectDiffersFromCache(bridgeResource: BridgeResource, resourceType: HeartbeatBridgeResourceType) -> Bool {
+    func nativeObjectDiffersFromCache(_ bridgeResource: BridgeResource, resourceType: HeartbeatBridgeResourceType) -> Bool {
         
         switch resourceType {
         case .lights:
@@ -188,11 +188,9 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         case .rules:
             return false
         }
-        
-        return false
     }
     
-    func convertToNativeObjectDict(json: JSON, resourceType: HeartbeatBridgeResourceType) -> NSDictionary {
+    func convertToNativeObjectDict(_ json: JSON, resourceType: HeartbeatBridgeResourceType) -> NSDictionary {
         
         //Log.debug("convertToNativeObjectDict", json)
         
@@ -217,7 +215,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         return [:]
     }
     
-    func convertToNativeObject(json: JSON, resourceType: HeartbeatBridgeResourceType) -> BridgeResource {
+    func convertToNativeObject(_ json: JSON, resourceType: HeartbeatBridgeResourceType) -> BridgeResource {
         
         switch resourceType {
             
@@ -308,8 +306,8 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
     
     private func writeCacheToDisk() {
         
-        var encodedJSON = NSKeyedArchiver.archivedDataWithRootObject(self.resourceCache.toJSON()!)
-        NSUserDefaults.standardUserDefaults().setObject(encodedJSON, forKey: "CacheX")
+        let encodedJSON = NSKeyedArchiver.archivedData(withRootObject: self.resourceCache.toJSON()!)
+        UserDefaults.standard.set(encodedJSON, forKey: "CacheX")
         
         Log.info("writeCacheToDisk")
 
@@ -317,13 +315,13 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
     
     private func readCacheFromDisk() {
         
-        let encodedJSON = NSUserDefaults.standardUserDefaults().valueForKey("CacheX") as? NSData
+        let encodedJSON = UserDefaults.standard.value(forKey: "CacheX") as? Data
         
         if let encodedJSON = encodedJSON {
           
             Log.info("readCacheFromDisk")
             
-            let json = NSKeyedUnarchiver.unarchiveObjectWithData(encodedJSON) as! JSON
+            let json = NSKeyedUnarchiver.unarchiveObject(with: encodedJSON) as! JSON
                         
             let resourceCache = BridgeResourcesCache(json: json)!
             self.resourceCache = resourceCache
@@ -335,10 +333,10 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
     
     var resourceCache: BridgeResourcesCache;
     
-    func notifyAboutChangesForResourceType(resourceType: HeartbeatBridgeResourceType) {
+    func notifyAboutChangesForResourceType(_ resourceType: HeartbeatBridgeResourceType) {
         
         let notification = ResourceCacheUpdateNotification(resourceType: resourceType)!
         Log.info("notifyAboutChangesForResourceType: \(notification.rawValue)")
-        NSNotificationCenter.defaultCenter().postNotificationName(notification.rawValue, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: notification.rawValue), object: nil)
     }
 }

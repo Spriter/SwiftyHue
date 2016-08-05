@@ -17,7 +17,7 @@ class BridgeAuthenticatorConsumer: BridgeAuthenticatorDelegate {
     var ignoreLinkButtonCall = false
     var requiresLinkButtonCallCount = 0
 
-    func bridgeAuthenticatorDidTimeout(authenticator: BridgeAuthenticator) {
+    func bridgeAuthenticatorDidTimeout(_ authenticator: BridgeAuthenticator) {
         guard let expectation = asyncExpectation else {
             XCTFail("Set expectation in test")
             return
@@ -27,7 +27,7 @@ class BridgeAuthenticatorConsumer: BridgeAuthenticatorDelegate {
         expectation.fulfill()
     }
 
-    func bridgeAuthenticatorRequiresLinkButtonPress(authenticator: BridgeAuthenticator) {
+    func bridgeAuthenticatorRequiresLinkButtonPress(_ authenticator: BridgeAuthenticator) {
         requiresLinkButtonCallCount += 1
         if ignoreLinkButtonCall {
             return
@@ -41,7 +41,7 @@ class BridgeAuthenticatorConsumer: BridgeAuthenticatorDelegate {
         expectation.fulfill()
     }
 
-    func bridgeAuthenticator(authenticator: BridgeAuthenticator, didFailWithError error: NSError) {
+    func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFailWithError error: NSError) {
         guard let expectation = asyncExpectation else {
             XCTFail("Set expectation in test")
             return
@@ -51,7 +51,7 @@ class BridgeAuthenticatorConsumer: BridgeAuthenticatorDelegate {
         expectation.fulfill()
     }
 
-    func bridgeAuthenticator(authenticator: BridgeAuthenticator, didFinishAuthentication username: String) {
+    func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFinishAuthentication username: String) {
         guard let expectation = asyncExpectation else {
             XCTFail("Set expectation in test")
             return

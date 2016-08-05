@@ -25,7 +25,7 @@ public class BridgeFinder: NSObject, ScannerDelegate {
     init(validator: BridgeValidator, scannerClasses: [Scanner.Type]) {
         self.validator = validator
         // we are using pop to get the last scanner from the array, so we need to reverse it
-        self.allScannerClasses = scannerClasses.reverse()
+        self.allScannerClasses = scannerClasses.reversed()
         super.init()
     }
 
@@ -38,7 +38,7 @@ public class BridgeFinder: NSObject, ScannerDelegate {
     private func startNextScanner() {
         guard let scannerClass = remainingScannerClasses.popLast() else {
             // all scanners finished, no bridges found
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.delegate?.bridgeFinder(self, didFinishWithResult: self.foundBridges)
             }
             return
@@ -49,7 +49,7 @@ public class BridgeFinder: NSObject, ScannerDelegate {
         currentScanner?.start()
     }
 
-    private func validateBridges(ips: [String]) {
+    private func validateBridges(_ ips: [String]) {
         // create mutable copy, use recursion to check if every bridge has been validated
         var ips = ips
 
@@ -76,7 +76,7 @@ public class BridgeFinder: NSObject, ScannerDelegate {
             // no bridges found, continue with next scanner
             startNextScanner()
         } else {
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.delegate?.bridgeFinder(self, didFinishWithResult: self.foundBridges)
             }
         }
@@ -84,7 +84,7 @@ public class BridgeFinder: NSObject, ScannerDelegate {
 
     // MARK: - ScannerDelegate
 
-    func scanner(scanner: Scanner, didFinishWithResults ips: [String]) {
+    func scanner(_ scanner: Scanner, didFinishWithResults ips: [String]) {
         //Log.trace("Scanner finished: \(scanner) with result count: \(ips.count)")
         validateBridges(ips)
     }

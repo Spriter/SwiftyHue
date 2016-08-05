@@ -14,7 +14,6 @@
 		1F6F02C71CF64D0B0041C739 /* BridgeSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F02BC1CF64D0B0041C739 /* BridgeSelectionTableViewController.swift */; };
 		1F6F02C81CF64D0B0041C739 /* CreateBridgeAccessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F02BD1CF64D0B0041C739 /* CreateBridgeAccessController.swift */; };
 		1F6F02C91CF64D0B0041C739 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F6F02BE1CF64D0B0041C739 /* Images.xcassets */; };
-		1F6F02CA1CF64D0B0041C739 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F6F02BF1CF64D0B0041C739 /* Info.plist */; };
 		1F6F02CB1CF64D0B0041C739 /* UITableViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F02C11CF64D0B0041C739 /* UITableViewController+Extensions.swift */; };
 		1F6F02CC1CF64D0B0041C739 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F02C21CF64D0B0041C739 /* ViewController.swift */; };
 		1F6F02D11CF64D310041C739 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F6F02CD1CF64D310041C739 /* LaunchScreen.xib */; };
@@ -22,7 +21,6 @@
 		1FEF51FB1CF6018E00446694 /* SwiftyHue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEF51FA1CF6018E00446694 /* SwiftyHue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FEF51FC1CF6018E00446694 /* SwiftyHue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEF51FA1CF6018E00446694 /* SwiftyHue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FEF520F1CF6044A00446694 /* SwiftyHue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEF51FA1CF6018E00446694 /* SwiftyHue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1FEF52171CF605CD00446694 /* SwiftyHue_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF52161CF605CD00446694 /* SwiftyHue_iOSTests.swift */; };
 		1FEF52191CF605CD00446694 /* SwiftyHue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FEF51D01CF5FEEF00446694 /* SwiftyHue.framework */; };
 		1FEF52941CF6081B00446694 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FEF52921CF6081B00446694 /* Interface.storyboard */; };
 		1FEF52961CF6081B00446694 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FEF52951CF6081B00446694 /* Assets.xcassets */; };
@@ -301,7 +299,6 @@
 		23D5083C1D53AAC0009E926F /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF557A1CF6400B00446694 /* AppData.swift */; };
 		23D5083D1D53AAC0009E926F /* BridgeSendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF55B31CF6400B00446694 /* BridgeSendAPI.swift */; };
 		23D508401D53AAC0009E926F /* SwiftyHue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEF51FA1CF6018E00446694 /* SwiftyHue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		23D508501D53ACBF009E926F /* SwiftyHue_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D5084F1D53ACBF009E926F /* SwiftyHue_macOSTests.swift */; };
 		23D508521D53ACBF009E926F /* SwiftyHue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D508461D53AAC0009E926F /* SwiftyHue.framework */; };
 		23D508581D53ACE4009E926F /* BridgeFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749DA1CF9FCE800D7A7B0 /* BridgeFinderTests.swift */; };
 		23D508591D53ACEA009E926F /* BridgeResultParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292749E71CFA043200D7A7B0 /* BridgeResultParserTests.swift */; };
@@ -411,7 +408,6 @@
 		1FEF52011CF6035C00446694 /* SwiftyHue.podspec */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwiftyHue.podspec; sourceTree = "<group>"; };
 		1FEF52071CF6042D00446694 /* SwiftyHue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyHue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FEF52141CF605CD00446694 /* SwiftyHue iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftyHue iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FEF52161CF605CD00446694 /* SwiftyHue_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyHue_iOSTests.swift; sourceTree = "<group>"; };
 		1FEF52181CF605CD00446694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FEF527C1CF607F200446694 /* SwiftyHue Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftyHue Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FEF52901CF6081B00446694 /* SwiftyHue Example Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftyHue Example Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -503,7 +499,6 @@
 		23D508461D53AAC0009E926F /* SwiftyHue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyHue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23D508471D53AAC0009E926F /* Info-macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-macOS.plist"; path = "/Users/aventurella/github/SwiftyHue/Info-macOS.plist"; sourceTree = "<absolute>"; };
 		23D5084D1D53ACBF009E926F /* SwiftyHue macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftyHue macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		23D5084F1D53ACBF009E926F /* SwiftyHue_macOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyHue_macOSTests.swift; sourceTree = "<group>"; };
 		23D508511D53ACBF009E926F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2843E6241CF77E1200CED6D6 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		292749D61CF9FCB400D7A7B0 /* TestScanner1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScanner1.swift; sourceTree = "<group>"; };
@@ -658,7 +653,6 @@
 			isa = PBXGroup;
 			children = (
 				292749D31CF9FC5F00D7A7B0 /* BridgeServices */,
-				1FEF52161CF605CD00446694 /* SwiftyHue_iOSTests.swift */,
 				1FEF52181CF605CD00446694 /* Info.plist */,
 			);
 			path = "SwiftyHue iOSTests";
@@ -941,7 +935,6 @@
 		23D5084E1D53ACBF009E926F /* SwiftyHue macOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				23D5084F1D53ACBF009E926F /* SwiftyHue_macOSTests.swift */,
 				23D508511D53ACBF009E926F /* Info.plist */,
 			);
 			path = "SwiftyHue macOSTests";
@@ -1216,7 +1209,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				TargetAttributes = {
 					1FEF51CF1CF5FEEF00446694 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1241,6 +1234,9 @@
 					};
 					1FEF52B61CF6087A00446694 = {
 						CreatedOnToolsVersion = 7.3.1;
+					};
+					23D507F61D53AAC0009E926F = {
+						LastSwiftMigration = 0800;
 					};
 					23D5084C1D53ACBF009E926F = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1308,7 +1304,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F6F02CA1CF64D0B0041C739 /* Info.plist in Resources */,
 				1F6F02D11CF64D310041C739 /* LaunchScreen.xib in Resources */,
 				1F6F02C91CF64D0B0041C739 /* Images.xcassets in Resources */,
 				1F6F02D21CF64D310041C739 /* Main.storyboard in Resources */,
@@ -1670,7 +1665,6 @@
 				292749D91CF9FCD300D7A7B0 /* TestScanner2.swift in Sources */,
 				292749DB1CF9FCE800D7A7B0 /* BridgeFinderTests.swift in Sources */,
 				292749E41CFA004500D7A7B0 /* BridgeAuthenticatorTests.swift in Sources */,
-				1FEF52171CF605CD00446694 /* SwiftyHue_iOSTests.swift in Sources */,
 				292749E21CF9FD2F00D7A7B0 /* BridgeFinderConsumer.swift in Sources */,
 				292749E01CF9FD1C00D7A7B0 /* TestGoodValidator.swift in Sources */,
 				292749E81CFA043200D7A7B0 /* BridgeResultParserTests.swift in Sources */,
@@ -1802,7 +1796,6 @@
 				23D5085C1D53ACF9009E926F /* TestScanner1.swift in Sources */,
 				23D5085E1D53ACFE009E926F /* TestBadValidator.swift in Sources */,
 				23D508591D53ACEA009E926F /* BridgeResultParserTests.swift in Sources */,
-				23D508501D53ACBF009E926F /* SwiftyHue_macOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1870,6 +1863,25 @@
 		1FEF51C91CF5FEA200446694 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "i386 x86_64";
 			};
@@ -1878,6 +1890,23 @@
 		1FEF51CA1CF5FEA200446694 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "i386 x86_64";
 			};
@@ -1941,6 +1970,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 arm64";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1998,6 +2028,8 @@
 				PRODUCT_NAME = SwiftyHue;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 arm64";
@@ -2062,6 +2094,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALID_ARCHS = armv7k;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2118,6 +2151,8 @@
 				PRODUCT_NAME = SwiftyHue;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7k;
@@ -2182,6 +2217,7 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				VALID_ARCHS = arm64;
@@ -2237,6 +2273,8 @@
 				PRODUCT_NAME = SwiftyHue;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				VALIDATE_PRODUCT = YES;
@@ -2296,6 +2334,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -2341,6 +2380,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2394,6 +2435,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftyHue Example/SwiftyHue Example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2439,6 +2481,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftyHue Example/SwiftyHue Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2489,6 +2533,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -2531,6 +2576,8 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
@@ -2540,6 +2587,7 @@
 		1FEF52B01CF6081B00446694 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2558,7 +2606,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2592,6 +2639,7 @@
 		1FEF52B11CF6081B00446694 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2610,7 +2658,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2680,6 +2727,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -2723,6 +2771,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-Example-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				VALIDATE_PRODUCT = YES;
@@ -2780,6 +2830,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-macOS";
@@ -2787,6 +2838,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "i386 x86_64";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2839,11 +2891,14 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-macOS";
 				PRODUCT_NAME = SwiftyHue;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "i386 x86_64";
@@ -2899,6 +2954,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -2941,6 +2997,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.blitzagency.SwiftyHue-macOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -3044,6 +3102,7 @@
 				23D508571D53ACBF009E926F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
