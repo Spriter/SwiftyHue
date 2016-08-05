@@ -21,7 +21,6 @@
 		1FEF51FB1CF6018E00446694 /* SwiftyHue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEF51FA1CF6018E00446694 /* SwiftyHue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FEF51FC1CF6018E00446694 /* SwiftyHue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEF51FA1CF6018E00446694 /* SwiftyHue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FEF520F1CF6044A00446694 /* SwiftyHue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEF51FA1CF6018E00446694 /* SwiftyHue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1FEF52171CF605CD00446694 /* SwiftyHue_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF52161CF605CD00446694 /* SwiftyHue_iOSTests.swift */; };
 		1FEF52191CF605CD00446694 /* SwiftyHue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FEF51D01CF5FEEF00446694 /* SwiftyHue.framework */; };
 		1FEF52941CF6081B00446694 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FEF52921CF6081B00446694 /* Interface.storyboard */; };
 		1FEF52961CF6081B00446694 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FEF52951CF6081B00446694 /* Assets.xcassets */; };
@@ -409,7 +408,6 @@
 		1FEF52011CF6035C00446694 /* SwiftyHue.podspec */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwiftyHue.podspec; sourceTree = "<group>"; };
 		1FEF52071CF6042D00446694 /* SwiftyHue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyHue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FEF52141CF605CD00446694 /* SwiftyHue iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftyHue iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FEF52161CF605CD00446694 /* SwiftyHue_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyHue_iOSTests.swift; sourceTree = "<group>"; };
 		1FEF52181CF605CD00446694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FEF527C1CF607F200446694 /* SwiftyHue Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftyHue Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FEF52901CF6081B00446694 /* SwiftyHue Example Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftyHue Example Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -655,7 +653,6 @@
 			isa = PBXGroup;
 			children = (
 				292749D31CF9FC5F00D7A7B0 /* BridgeServices */,
-				1FEF52161CF605CD00446694 /* SwiftyHue_iOSTests.swift */,
 				1FEF52181CF605CD00446694 /* Info.plist */,
 			);
 			path = "SwiftyHue iOSTests";
@@ -1668,7 +1665,6 @@
 				292749D91CF9FCD300D7A7B0 /* TestScanner2.swift in Sources */,
 				292749DB1CF9FCE800D7A7B0 /* BridgeFinderTests.swift in Sources */,
 				292749E41CFA004500D7A7B0 /* BridgeAuthenticatorTests.swift in Sources */,
-				1FEF52171CF605CD00446694 /* SwiftyHue_iOSTests.swift in Sources */,
 				292749E21CF9FD2F00D7A7B0 /* BridgeFinderConsumer.swift in Sources */,
 				292749E01CF9FD1C00D7A7B0 /* TestGoodValidator.swift in Sources */,
 				292749E81CFA043200D7A7B0 /* BridgeResultParserTests.swift in Sources */,
