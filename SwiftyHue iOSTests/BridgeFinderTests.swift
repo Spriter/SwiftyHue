@@ -38,7 +38,7 @@ class BridgeFinderTests: XCTestCase {
 
             XCTAssertNotNil(TestScanner1.calledAt)
             XCTAssertNotNil(TestScanner2.calledAt)
-            XCTAssertTrue(TestScanner1.calledAt!.compare(TestScanner2.calledAt!) == ComparisonResult.OrderedAscending)
+            XCTAssertTrue(TestScanner1.calledAt!.compare(TestScanner2.calledAt!) == ComparisonResult.orderedAscending)
             XCTAssertEqual(consumer.resultBridges!.count, 0)
         }
     }
