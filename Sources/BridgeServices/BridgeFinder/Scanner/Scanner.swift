@@ -6,7 +6,6 @@
 //  Copyright © 2016 Nils Lattek. All rights reserved.
 //
 
-import Foundation
 
 protocol Scanner {
     weak var delegate: ScannerDelegate? { get set }
