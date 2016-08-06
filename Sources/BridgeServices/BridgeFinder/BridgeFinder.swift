@@ -19,12 +19,18 @@ public class BridgeFinder: NSObject, ScannerDelegate {
     public weak var delegate: BridgeFinderDelegate?
 
     public override convenience init() {
+        // The recommended search order from Philips is SSDPScanner, NUPNPScanner,
+        // IPScanner (not implemented currently).
         self.init(validator: BridgeValidator(), scannerClasses: [SSDPScanner.self, NUPNPScanner.self])
     }
 
     init(validator: BridgeValidator, scannerClasses: [Scanner.Type]) {
         self.validator = validator
-        // we are using pop to get the last scanner from the array, so we need to reverse it
+        // Given the recommened order from Phillips and in order to avoid
+        // dealing with checking the length of this array for remove(at:0)
+        // so we don't get an IndexError, we are going to use popLast() -> T?
+        // to pull the items out of it. In order to do that an maintain the
+        // recommened order from Phillips we need to reverse the array.
         self.allScannerClasses = scannerClasses.reversed()
         super.init()
     }
