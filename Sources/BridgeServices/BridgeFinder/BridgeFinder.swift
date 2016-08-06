@@ -27,10 +27,11 @@ public class BridgeFinder: NSObject, ScannerDelegate {
     init(validator: BridgeValidator, scannerClasses: [Scanner.Type]) {
         self.validator = validator
         // Given the recommened order from Phillips and in order to avoid
-        // dealing with checking the length of this array for remove(at:0)
+        // dealing with checking the length of this array using remove(at:0)
         // so we don't get an IndexError, we are going to use popLast() -> T?
-        // to pull the items out of it. In order to do that an maintain the
-        // recommened order from Phillips we need to reverse the array.
+        // to pull the items out of it. To do that and maintain the
+        // recommened order from Phillips we need to reverse the array as we
+        // declared it's contents in the recommended order.
         self.allScannerClasses = scannerClasses.reversed()
         super.init()
     }
