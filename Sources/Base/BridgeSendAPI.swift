@@ -96,14 +96,19 @@ public class BridgeSendAPI {
     
     // MARK: Lights
     
-    public func updateLightStateForId(_ identifier: String, withLightState lightState: LightState, completionHandler: BridgeSendErrorArrayCompletionHandler) {
+    public func updateLightStateForId(_ identifier: String, withLightState lightState: LightState, transitionTime: Int? = nil, completionHandler: BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = bridgeAccessConfig else {
             completionHandler(errors: [Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 
-        let parameters = lightState.toJSON()!
+        var parameters = lightState.toJSON()!
+
+        if let transitionTime = transitionTime{
+            parameters["transitiontime"] = transitionTime
+        }
+
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/lights/\(identifier)/state"
 
         Alamofire.request(.PUT, url, parameters: parameters, encoding: .json)
