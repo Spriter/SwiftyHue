@@ -11,8 +11,8 @@ import Gloss
 
 public class PresenceSensor: PartialSensor {
     
-    let config: GenericFlagSensorConfig
-    let state: GenericFlagSensorState
+    let config: PresenceSensorConfig
+    let state: PresenceSensorState
     
     required public init?(sensor: Sensor) {
         
@@ -24,11 +24,11 @@ public class PresenceSensor: PartialSensor {
             return nil
         }
         
-        guard let config: GenericFlagSensorConfig = GenericFlagSensorConfig(sensorConfig: sensorConfig) else {
+        guard let config: PresenceSensorConfig = PresenceSensorConfig(sensorConfig: sensorConfig) else {
             return nil
         }
         
-        guard let state: GenericFlagSensorState = GenericFlagSensorState(state: sensorState) else {
+        guard let state: PresenceSensorState = PresenceSensorState(state: sensorState) else {
             return nil
         }
         
@@ -40,11 +40,11 @@ public class PresenceSensor: PartialSensor {
     
     public required init?(json: JSON) {
         
-        guard let config: GenericFlagSensorConfig = "config" <~~ json else {
+        guard let config: PresenceSensorConfig = "config" <~~ json else {
             return nil
         }
         
-        guard let state: GenericFlagSensorState = "state" <~~ json else {
+        guard let state: PresenceSensorState = "state" <~~ json else {
             return nil
         }
         
