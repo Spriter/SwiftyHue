@@ -44,7 +44,7 @@ s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag 
     base.ios.deployment_target = '8.0'
     base.tvos.deployment_target = '9.0'
     base.watchos.deployment_target = '2.2'
-    base.osx.deployment_target = '10.9'
+    base.osx.deployment_target = '10.11'
 
     base.source_files = 'Sources/Base/**/*.{h,swift}'
     base.dependency 'Alamofire', '~> 3.4.0'
@@ -58,7 +58,7 @@ s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag 
 
     bridgeservices.ios.deployment_target = '8.0'
     bridgeservices.tvos.deployment_target = '9.0'
-    bridgeservices.osx.deployment_target = '10.9'
+    bridgeservices.osx.deployment_target = '10.11'
 
     bridgeservices.dependency 'Alamofire', '~> 3.4.0'
     bridgeservices.dependency 'Gloss', '~> 0.7'
