@@ -101,20 +101,20 @@ public class BridgeAuthenticator {
             return error
         }
 
-//        guard let data = data else {
-//            return NSError(domain: "BridgeAuthenticator", code: 404, userInfo: [NSLocalizedDescriptionKey: "Could not authenticate user (no data)"])
-//        }
+        guard let data = data else {
+            return NSError(domain: "BridgeAuthenticator", code: 404, userInfo: [NSLocalizedDescriptionKey: "Could not authenticate user (no data)"])
+        }
 
-//        guard let result = try? JSONSerialization.jsonObject(with: data, options: []) else {
-//            return NSError(domain: "BridgeAuthenticator", code: 500, userInfo: [NSLocalizedDescriptionKey: "Could not parse result."])
-//        }
+        guard let result = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: [String: Any]]] else {
+            return NSError(domain: "BridgeAuthenticator", code: 500, userInfo: [NSLocalizedDescriptionKey: "Could not parse result."])
+        }
 
-//        guard let errorJson = result[0]["error"] as? [String: Any] else {
-//            return nil
-//        }
-//
-//        let desc = errorJson["description"] as! String
-//        let error = NSError(domain: "BridgeAuthenticator", code: errorJson["type"] as! Int, userInfo: [NSLocalizedDescriptionKey: desc])
+        guard let errorJson = result![0]["error"] else {
+            return nil
+        }
+
+        let desc = errorJson["description"] as! String
+        let error = NSError(domain: "BridgeAuthenticator", code: errorJson["type"] as! Int, userInfo: [NSLocalizedDescriptionKey: desc])
         return error
     }
 
