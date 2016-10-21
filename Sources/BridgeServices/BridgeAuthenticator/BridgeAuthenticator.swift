@@ -23,7 +23,7 @@ public class BridgeAuthenticator {
         self.init(bridge: bridge, uniqueIdentifier: uniqueIdentifier, pollingInterval: 3, timeout: 30)
     }
 
-    init(bridge: HueBridge, uniqueIdentifier: String, pollingInterval: TimeInterval, timeout: TimeInterval) {
+    public init(bridge: HueBridge, uniqueIdentifier: String, pollingInterval: TimeInterval, timeout: TimeInterval) {
         self.ip = bridge.ip
         self.uniqueIdentifier = uniqueIdentifier
         self.pollingInterval = pollingInterval
