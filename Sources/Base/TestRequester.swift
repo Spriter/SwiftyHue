@@ -25,7 +25,7 @@ public class TestRequester {
 
 //    public func getConfig() {
 //        
-//        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/config", parameters: nil)
+//        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/config", parameters: nil)
 //            .responseJSON { response in
 //                
 //                if let resultValueJSON = response.result.value as? NSMutableDictionary {
@@ -53,7 +53,7 @@ public class TestRequester {
         let parameters = lightState.toJSON()!
         let url = "http://\(bridgeIp)/api/\(bridgeAcc)/groups/1/action"
 
-        Alamofire.request(.PUT, url, parameters: parameters, encoding: .json)
+        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
         
                 print(response)
@@ -61,7 +61,7 @@ public class TestRequester {
     }
 
 //    public func requestScene() {
-//        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/scenes/y3Npr8e3za8okWb", parameters: nil)
+//        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/scenes/y3Npr8e3za8okWb", parameters: nil)
 //            .responseJSON { response in
 //                
 //                if let resultValueJSON = response.result.value as? NSMutableDictionary {
@@ -84,7 +84,7 @@ public class TestRequester {
 //    }
     
 //    public func requestScenes() {
-//        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/scenes", parameters: nil)
+//        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/scenes", parameters: nil)
 //            .responseJSON { response in
 //                
 //                if let resultValueJSON = response.result.value as? NSMutableDictionary {
@@ -109,7 +109,7 @@ public class TestRequester {
 //    }
 
 //    public func requestGroups() {
-//        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/groups", parameters: nil)
+//        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/groups", parameters: nil)
 //            .responseJSON { response in
 //                
 //                if let resultValueJSON = response.result.value as? NSMutableDictionary {
@@ -134,7 +134,7 @@ public class TestRequester {
 //    }
     
     public func requestGroups() {
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/groups", parameters: nil)
+        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/groups", parameters: nil)
         .responseJSON { response in
             
             if let resultValueJSON = response.result.value as? JSON {
@@ -150,7 +150,7 @@ public class TestRequester {
     }
     
     public func requestScenes() {
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/scenes", parameters: nil)
+        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/scenes", parameters: nil)
             .responseJSON { response in
                 
                 if let resultValueJSON = response.result.value as? JSON {
@@ -166,7 +166,7 @@ public class TestRequester {
     }
     
     public func requestRules() {
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/rules", parameters: nil)
+        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/rules", parameters: nil)
             .responseJSON { response in
                 
                 if let resultValueJSON = response.result.value as? JSON {
@@ -182,7 +182,7 @@ public class TestRequester {
     }
     
 //    public func requestSensors() {
-//        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/sensors", parameters: nil)
+//        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/sensors", parameters: nil)
 //            .responseJSON { response in
 //                
 //                if let resultValueJSON = response.result.value as? JSON {
@@ -198,7 +198,7 @@ public class TestRequester {
 //    }
     
     public func requestSchedules() {
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/schedules", parameters: nil)
+        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/schedules", parameters: nil)
             .responseJSON { response in
                 
                 if let resultValueJSON = response.result.value as? JSON {
@@ -215,7 +215,7 @@ public class TestRequester {
     
     public func requestBridgeConfiguration() {
         
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/config", parameters: nil)
+        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/config", parameters: nil)
             .responseJSON { response in
                 
                 if let resultValueJSON = response.result.value as? JSON {
@@ -227,7 +227,7 @@ public class TestRequester {
     }
     
     public func requestLights() {
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/lights", parameters: nil)
+        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/lights", parameters: nil)
             .responseJSON { response in
                 
             if let resultValueJSON = response.result.value as? JSON {
@@ -239,12 +239,12 @@ public class TestRequester {
     }
     
     public func requestError() {
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/giveMeAError", parameters: nil)
+        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/giveMeAError", parameters: nil)
             .responseJSON { response in
                 
                 if let resultValueJSON = response.result.value as? [JSON] {
                     
-                    let errors = [Error].fromJSONArray(resultValueJSON)
+                    let errors = [HueError].from(jsonArray: resultValueJSON)
                     print(errors)
                 }
         }
@@ -252,22 +252,18 @@ public class TestRequester {
     
     class func convert(_ resourcesDict: NSMutableDictionary) -> [JSON] {
         
-        if let JSON = resourcesDict as? NSMutableDictionary {
+        var resourceJSONs = [[String: Any]]();
+        
+        for item in resourcesDict {
             
-            var resourceJSONs = [[String: AnyObject]]();
+            var resourceJSON = item.value as! [String: Any];
+            resourceJSON["id"] = item.key;
             
-            for item in JSON {
-                
-                var resourceJSON = item.value as! [String: AnyObject];
-                resourceJSON["id"] = item.key;
-                
-                resourceJSONs.append(resourceJSON)
-            }
-            
-            return resourceJSONs
-            
+            resourceJSONs.append(resourceJSON)
         }
         
+        return resourceJSONs
+
     }
     
 }

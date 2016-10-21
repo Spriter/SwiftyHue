@@ -23,7 +23,7 @@ import CoreGraphics
 /**
  This class contains some utilities for applications using SwiftyHue.
  */
-public struct Utilities {
+public struct HueUtilities {
     
     static let cptRED = 0
     static let cptGREEN = 1

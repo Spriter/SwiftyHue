@@ -49,7 +49,8 @@ class SSDPScanner: NSObject, Scanner, GCDAsyncUdpSocketDelegate {
     }
 
     // MARK: - GCDAsyncUdpSocketDelegate
-    func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext: AnyObject?){
+    
+    func udpSocket(_ sock: GCDAsyncUdpSocket!, didReceive data: Data!, fromAddress address: Data!, withFilterContext: Any?){
         guard let result = String(data: data, encoding:.ascii) else {
             print("Could not decode ssdp data")
             return

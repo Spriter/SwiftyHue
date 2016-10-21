@@ -115,7 +115,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         }
     }
     
-    func storeNativeObjectDictInCache(_ dict: NSDictionary, resourceType: HeartbeatBridgeResourceType) {
+    func storeNativeObjectDictInCache(_ dict: [String: Any], resourceType: HeartbeatBridgeResourceType) {
         
         switch resourceType {
             case .lights:
@@ -136,7 +136,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
                 
                 var dictConverted: [String: Sensor] = [:]
                 for (key, value) in dict {
-                    dictConverted[key as! String] = value as! Sensor
+                    dictConverted[key] = (value as! Sensor)
                 }
                 self.resourceCache.setSensors(dictConverted)
                 Log.info("Stored Native Sensors Dict In Cache")
@@ -148,7 +148,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         }
     }
     
-    func nativeObjectDictDiffersFromCache(_ dict: NSDictionary, resourceType: HeartbeatBridgeResourceType) -> Bool {
+    func nativeObjectDictDiffersFromCache(_ dict: [String: Any], resourceType: HeartbeatBridgeResourceType) -> Bool {
         
         switch resourceType {
         case .lights:
@@ -190,7 +190,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         }
     }
     
-    func convertToNativeObjectDict(_ json: JSON, resourceType: HeartbeatBridgeResourceType) -> NSDictionary {
+    func convertToNativeObjectDict(_ json: JSON, resourceType: HeartbeatBridgeResourceType) -> [String: Any] {
         
         //Log.debug("convertToNativeObjectDict", json)
         

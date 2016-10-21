@@ -20,7 +20,7 @@ import Gloss
 //        if lightStates != nil {
 //            
 //            var lightstateJSONS = TestRequester.convert((lightStates as! NSDictionary).mutableCopy() as! NSMutableDictionary)
-//            self.lightstates = Array.fromJSONArray(lightstateJSONS);
+//            self.lightstates = Array.from(jsonArray: lightstateJSONS);
 //        
 //        } else {
 //            self.lightstates = nil;
@@ -52,7 +52,7 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
     /**
         The identifiers of the lights controlled by this scene.
      */
-    public let lightIdentifiers: [String]
+    public let lightIdentifiers: [String]?
     
     /**
         Whitelist user that created or modified the content of the scene. Note that changing name does not change the owner..
@@ -109,7 +109,7 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
         let dateFormatter = DateFormatter.hueApiDateFormatter
         
         self.appData = "appdata" <~~ json
-        lastUpdated = Decoder.decodeDate("lastupdated", dateFormatter:dateFormatter)(json)
+        lastUpdated = Decoder.decode(dateForKey: "lastupdated", dateFormatter:dateFormatter)(json)
     }
     
     public func toJSON() -> JSON? {
@@ -124,7 +124,7 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
             "recycle" ~~> recycle,
             "locked" ~~> locked,
             "appdata" ~~> appData,
-            Encoder.encodeDate("lastupdated", dateFormatter: dateFormatter)(lastUpdated),
+            Encoder.encode(dateForKey: "lastupdated", dateFormatter: dateFormatter)(lastUpdated),
             "version" ~~> version
             ])
         
@@ -142,7 +142,7 @@ extension PartialScene: Hashable {
 }
 
 public func ==(lhs: PartialScene, rhs: PartialScene) -> Bool {
-        
+    
     return lhs.identifier == rhs.identifier &&
         lhs.name == rhs.name &&
         (lhs.lightIdentifiers ?? []) == (rhs.lightIdentifiers ?? []) &&

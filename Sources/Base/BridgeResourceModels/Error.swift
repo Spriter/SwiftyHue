@@ -24,7 +24,7 @@ public enum SHErrorType: Int {
     case internalError = 901
 }
 
-public class Error: NSError, Decodable {
+public class HueError: NSError, Decodable {
     
     public let address: String
     public let errorDescription: String

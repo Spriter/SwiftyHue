@@ -91,7 +91,7 @@ public class HeartbeatManager {
 
         Log.trace("Heartbeat Request", "\(url)")
         
-        Alamofire.request(.GET, url)
+        Alamofire.request(url)
             .responseJSON { response in
                 
                 switch response.result {
@@ -110,7 +110,7 @@ public class HeartbeatManager {
     
     // MARK: Timer Action Response Handling
     
-    private func handleSuccessResponseResult(_ result: Result<AnyObject, NSError>, resourceType: HeartbeatBridgeResourceType) {
+    private func handleSuccessResponseResult(_ result: Result<Any>, resourceType: HeartbeatBridgeResourceType) {
         
         Log.trace("Heartbeat Response for Resource Type \(resourceType.rawValue.lowercased()) received")
         //Log.trace("Heartbeat Response: \(resourceType.rawValue.lowercaseString): ", result.value)
@@ -137,7 +137,7 @@ public class HeartbeatManager {
         
     }
     
-    private func responseResultIsPhilipsAPIErrorType(result: Result<AnyObject, NSError>, resourceType: HeartbeatBridgeResourceType) -> Bool {
+    private func responseResultIsPhilipsAPIErrorType(result: Result<Any>, resourceType: HeartbeatBridgeResourceType) -> Bool {
         
         switch resourceType {
             
@@ -161,7 +161,7 @@ public class HeartbeatManager {
         for jsonError in jsonErrorArray {
             
             Log.info("Hearbeat received Error Result", (json: jsonError))
-            let error = Error(json: jsonError)
+            let error = HueError(json: jsonError)
             if let error = error {
                 self.notifyAboutError(error)
             }
@@ -200,7 +200,7 @@ public class HeartbeatManager {
         }
     }
     
-    private func notifyAboutError(_ error: Error) {
+    private func notifyAboutError(_ error: HueError) {
         
         var notification: BridgeHeartbeatConnectionStatusNotification?;
         
