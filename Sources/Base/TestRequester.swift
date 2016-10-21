@@ -254,7 +254,7 @@ public class TestRequester {
         
         var resourceJSONs = [[String: Any]]();
         
-        for item in resourcesDict {            
+        for item in resourcesDict {
             var resourceJSON = item.value as! [String: Any];
             resourceJSON["id"] = item.key;
             

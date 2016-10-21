@@ -82,8 +82,8 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
         let json = jsonify([
             "id" ~~> self.identifier,
             "name" ~~> self.name,
-            Encoder.encode(dateForKey:"created", dateFormatter: dateFormatter)(self.created),
-            Encoder.encode(dateForKey:"lasttriggered", dateFormatter: dateFormatter)(self.lasttriggered),
+            Encoder.encode(dateForKey: "created", dateFormatter: dateFormatter)(self.created),
+            Encoder.encode(dateForKey: "lasttriggered", dateFormatter: dateFormatter)(self.lasttriggered),
             "timestriggered" ~~> self.timestriggered,
             "owner" ~~> self.owner,
             "status" ~~> self.status,
