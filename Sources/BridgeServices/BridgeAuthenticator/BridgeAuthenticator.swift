@@ -52,7 +52,11 @@ public class BridgeAuthenticator {
         let request = createRequest()
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            self.handleResponse(data, response: response, error: NSError(domain: "HueBridgeAuthenticator", code: 500, userInfo: [NSLocalizedDescriptionKey: error?.localizedDescription]))
+            if let error = error as? NSError {
+                self.handleResponse(data, response: response, error: error)
+            } else {
+                self.handleResponse(data, response: response, error: nil)
+            }
             return ()
         }
 
@@ -71,7 +75,7 @@ public class BridgeAuthenticator {
         RunLoop.main.add(timer, forMode: RunLoopMode.defaultRunLoopMode)
     }
 
-    private func handleResponse(_ data: Data?, response: URLResponse?, error: NSError) {
+    private func handleResponse(_ data: Data?, response: URLResponse?, error: NSError?) {
         if let error = self.parseError(error, data: data) {
             if error.code == 101 && !didInformDelegateAboutLinkButton {
                 // user needs to press the link button
