@@ -14,7 +14,6 @@ public class BridgeAuthenticator {
     private let uniqueIdentifier: String
     private let pollingInterval: TimeInterval
     private let timeout: TimeInterval
-    private var didInformDelegateAboutLinkButton = false
 
     public weak var delegate: BridgeAuthenticatorDelegate?
 
@@ -31,7 +30,6 @@ public class BridgeAuthenticator {
     }
 
     public func start() {
-        didInformDelegateAboutLinkButton = false
         authenticationStartedAt = Date()
         startRequest()
     }
@@ -77,16 +75,11 @@ public class BridgeAuthenticator {
 
     private func handleResponse(_ data: Data?, response: URLResponse?, error: NSError?) {
         if let error = self.parseError(error, data: data) {
-            if error.code == 101 && !didInformDelegateAboutLinkButton {
-                // user needs to press the link button
+            if error.code == 101 {
                 let secondsLeft: TimeInterval = timeout - abs(authenticationStartedAt!.timeIntervalSinceNow)
                 DispatchQueue.main.async {
                     self.delegate?.bridgeAuthenticatorRequiresLinkButtonPress(self, secondsLeft: secondsLeft)
                 }
-                didInformDelegateAboutLinkButton = true
-                self.startNextRequest(self.ip, uniqueIdentifier: self.uniqueIdentifier)
-            } else if error.code == 101 {
-                // continue polling for link button
                 self.startNextRequest(self.ip, uniqueIdentifier: self.uniqueIdentifier)
             } else {
                 // unknown error
