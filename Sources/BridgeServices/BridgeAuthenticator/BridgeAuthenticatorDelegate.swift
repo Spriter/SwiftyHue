@@ -12,7 +12,7 @@ public protocol BridgeAuthenticatorDelegate: class {
     func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFinishAuthentication username: String)
     func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFailWithError error: NSError)
     // you should now ask the user to press the link button
-    func bridgeAuthenticatorRequiresLinkButtonPress(_ authenticator: BridgeAuthenticator)
+    func bridgeAuthenticatorRequiresLinkButtonPress(_ authenticator: BridgeAuthenticator, secondsLeft: TimeInterval)
     // user did not press the link button in time, you restart the process and try again
     func bridgeAuthenticatorDidTimeout(_ authenticator: BridgeAuthenticator)
 }

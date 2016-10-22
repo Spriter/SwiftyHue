@@ -84,8 +84,9 @@ public class BridgeAuthenticator {
         if let error = self.parseError(error, data: data) {
             if error.code == 101 && !didInformDelegateAboutLinkButton {
                 // user needs to press the link button
+                let secondsLeft: TimeInterval = timeout - abs(authenticationStartedAt!.timeIntervalSinceNow)
                 DispatchQueue.main.async {
-                    self.delegate?.bridgeAuthenticatorRequiresLinkButtonPress(self)
+                    self.delegate?.bridgeAuthenticatorRequiresLinkButtonPress(self, secondsLeft: secondsLeft)
                 }
                 didInformDelegateAboutLinkButton = true
                 self.startNextRequest(self.ip, uniqueIdentifier: self.uniqueIdentifier)
