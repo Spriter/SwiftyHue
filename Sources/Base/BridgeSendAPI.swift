@@ -67,7 +67,7 @@ public class BridgeSendAPI {
     /**
      Creates the given scene with all lights in the provided lights resource. For a given scene the current light settings of the given lights resources are stored. If the scene id is recalled in the future, these light settings will be reproduced on these lamps. If an existing name is used then the settings for this scene will be overwritten and the light states resaved. The bridge can support up to 200 scenes, however please also note there is a maximum of 2048 scene lightstates so for example, of all your scenes have 20 lightstates, the maximum number of allowed scenes will be 102.
      */
-    public func createSceneWithName(_ name: String, inlcudeLightIds lightIds: [String], recycle: Bool = false, transitionTime: Int? = nil, picture: String? = nil, appData: AppData? = nil, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
+    public func createSceneWithName(_ name: String, includeLightIds lightIds: [String], recycle: Bool = false, transitionTime: Int? = nil, picture: String? = nil, appData: AppData? = nil, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = bridgeAccessConfig else{
             completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
@@ -143,7 +143,7 @@ public class BridgeSendAPI {
     
     // MARK: Groups
     
-    public func createRoomWithName(_ name: String, andType type: GroupType, andRoomClass roomClass: RoomClass, inlcudeLightIds lightIds: [String], completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
+    public func createRoomWithName(_ name: String, andType type: GroupType, andRoomClass roomClass: RoomClass, includeLightIds lightIds: [String], completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = self.bridgeAccessConfig else {
             completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
@@ -162,7 +162,7 @@ public class BridgeSendAPI {
 
     }
     
-    public func createGroupWithName(_ name: String, andType type: GroupType, inlcudeLightIds lightIds: [String], completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
+    public func createGroupWithName(_ name: String, andType type: GroupType, includeLightIds lightIds: [String], completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = self.bridgeAccessConfig else {
             completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
