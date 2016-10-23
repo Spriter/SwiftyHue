@@ -109,7 +109,7 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
         let dateFormatter = DateFormatter.hueApiDateFormatter
         
         self.appData = "appdata" <~~ json
-        lastUpdated = Decoder.decode(dateForKey: "lastupdated", dateFormatter:dateFormatter)(json)
+        lastUpdated = Decoder.decode(dateForKey:"lastupdated", dateFormatter:dateFormatter)(json)
     }
     
     public func toJSON() -> JSON? {

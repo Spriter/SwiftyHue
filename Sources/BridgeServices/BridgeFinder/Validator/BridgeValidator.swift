@@ -28,7 +28,7 @@ class BridgeValidator {
     private func startRequest(_ request: URLRequest, success: @escaping (_ bridge: HueBridge) -> Void, failure: @escaping (_ error: NSError) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
-                failure(NSError(domain: "HueBridgeValidator", code: 500, userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]))
+                failure(error as NSError)
                 return
             }
 

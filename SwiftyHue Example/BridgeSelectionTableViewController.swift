@@ -17,57 +17,57 @@ class BridgeSelectionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         
-        self.setBackgroundMessage("Searching Bridge")
+        self.setBackgroundMessage(message: "Searching Bridge")
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         bridgeFinder.delegate = self;
         bridgeFinder.start()
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return bridges?.count ?? 0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let bridge = self.bridges![indexPath.row]
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("BridgeCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BridgeCell", for: indexPath)
         cell.textLabel?.text = bridge.friendlyName
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         selectedBridge = bridges![indexPath.row]
  
-        self.performSegueWithIdentifier("BridgePushLinkViewControllerSegue", sender: self)
+        performSegue(withIdentifier: "BridgePushLinkViewControllerSegue", sender: self)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let destController = segue.destinationViewController as! BridgePushLinkViewController;
+        let destController = segue.destination as! BridgePushLinkViewController;
         destController.bridge = selectedBridge
     }
 }
 
 extension BridgeSelectionTableViewController: BridgeFinderDelegate {
     
-    func bridgeFinder(finder: BridgeFinder, didFinishWithResult bridges: [HueBridge]) {
+    func bridgeFinder(_ finder: BridgeFinder, didFinishWithResult bridges: [HueBridge]) {
      
         self.bridges = bridges;
-        self.setBackgroundMessage(nil)
+        self.setBackgroundMessage(message: nil)
         self.tableView.reloadData()
     }
 }

@@ -14,19 +14,19 @@ var swiftyHue: SwiftyHue = SwiftyHue();
 
 class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     
-    private let bridgeAccessConfigUserDefaultsKey = "BridgeAccessConfig"
+    fileprivate let bridgeAccessConfigUserDefaultsKey = "BridgeAccessConfig"
     
-    private let bridgeFinder = BridgeFinder()
-    private var bridgeAuthenticator: BridgeAuthenticator?
+    fileprivate let bridgeFinder = BridgeFinder()
+    fileprivate var bridgeAuthenticator: BridgeAuthenticator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         swiftyHue.enableLogging(true)
-        swiftyHue.setMinLevelForLogMessages(.Info)
+        swiftyHue.setMinLevelForLogMessages(.info)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if let bridgeAccessConfig = readBridgeAccessConfig() {
@@ -35,10 +35,10 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
             
         } else {
            
-            var controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CreateBridgeAccessController") as! CreateBridgeAccessController
+            var controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateBridgeAccessController") as! CreateBridgeAccessController
             controller.bridgeAccessCreationDelegate = self;
 
-            self.presentViewController(controller, animated: false, completion: nil)
+            self.present(controller, animated: false, completion: nil)
         }
 
     }
@@ -48,9 +48,9 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        let destController = segue.destinationViewController as! BridgeResourceTableViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                
+        let destController = segue.destination as! BridgeResourceTableViewController
         
         if segue.identifier == "LightsSegue" {
             
@@ -90,8 +90,8 @@ extension ViewController {
     
     func readBridgeAccessConfig() -> BridgeAccessConfig? {
         
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        let bridgeAccessConfigJSON = userDefaults.objectForKey(bridgeAccessConfigUserDefaultsKey) as? JSON
+        let userDefaults = UserDefaults.standard
+        let bridgeAccessConfigJSON = userDefaults.object(forKey: bridgeAccessConfigUserDefaultsKey) as? JSON
         
         var bridgeAccessConfig: BridgeAccessConfig?
         if let bridgeAccessConfigJSON = bridgeAccessConfigJSON {
@@ -104,9 +104,9 @@ extension ViewController {
     
     func writeBridgeAccessConfig(bridgeAccessConfig: BridgeAccessConfig) {
         
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults = UserDefaults.standard
         let bridgeAccessConfigJSON = bridgeAccessConfig.toJSON()
-        userDefaults.setObject(bridgeAccessConfigJSON, forKey: bridgeAccessConfigUserDefaultsKey)
+        userDefaults.set(bridgeAccessConfigJSON, forKey: bridgeAccessConfigUserDefaultsKey)
     }
 }
 
@@ -116,7 +116,7 @@ extension ViewController: CreateBridgeAccessControllerDelegate {
     
     func bridgeAccessCreated(bridgeAccessConfig: BridgeAccessConfig) {
         
-        writeBridgeAccessConfig(bridgeAccessConfig)
+        writeBridgeAccessConfig(bridgeAccessConfig: bridgeAccessConfig)
     }
 }
 
@@ -154,7 +154,7 @@ extension ViewController {
 //        
 //        beatManager.startHeartbeat()
 //                
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.lightChanged), name: ResourceCacheUpdateNotification.lightsUpdated.rawValue, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.lightChanged), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.lightsUpdated.rawValue), object: nil)
         
         //        var lightState = LightState()
         //        lightState.on = true
@@ -229,7 +229,7 @@ extension ViewController {
     
     // MARK: - BridgeFinderDelegate
     
-    func bridgeFinder(finder: BridgeFinder, didFinishWithResult bridges: [HueBridge]) {
+    func bridgeFinder(_ finder: BridgeFinder, didFinishWithResult bridges: [HueBridge]) {
         print(bridges)
         guard let bridge = bridges.first else {
             return
@@ -242,19 +242,19 @@ extension ViewController {
     
     // MARK: - BridgeAuthenticatorDelegate
     
-    func bridgeAuthenticatorDidTimeout(authenticator: BridgeAuthenticator) {
+    func bridgeAuthenticatorDidTimeout(_ authenticator: BridgeAuthenticator) {
         print("Timeout")
     }
     
-    func bridgeAuthenticator(authenticator: BridgeAuthenticator, didFailWithError error: NSError) {
+    func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFailWithError error: NSError) {
         print("Error while authenticating: \(error)")
     }
     
-    func bridgeAuthenticatorRequiresLinkButtonPress(authenticator: BridgeAuthenticator) {
+    func bridgeAuthenticatorRequiresLinkButtonPress(_ authenticator: BridgeAuthenticator) {
         print("Press link button")
     }
     
-    func bridgeAuthenticator(authenticator: BridgeAuthenticator, didFinishAuthentication username: String) {
+    func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFinishAuthentication username: String) {
         print("Authenticated, hello \(username)")
     }
 }

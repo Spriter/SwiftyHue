@@ -39,7 +39,7 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
             Log.error("Can't create Rule, missing required attribute \"name\" in JSON:\n \(json)"); return nil
         }
         
-        guard let created: Date = Decoder.decode(dateForKey: "created", dateFormatter:dateFormatter)(json) else {
+        guard let created: Date = Decoder.decode(dateForKey:"created", dateFormatter:dateFormatter)(json) else {
             Log.error("Can't create Rule, missing required attribute \"created\" in JSON:\n \(json)"); return nil
         }
         
@@ -67,7 +67,7 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
         self.identifier = identifier
         self.name = name
         self.created = created as Date
-        self.lasttriggered = Decoder.decode(dateForKey: "lasttriggered", dateFormatter:dateFormatter)(json)
+        self.lasttriggered = Decoder.decode(dateForKey:"lasttriggered", dateFormatter:dateFormatter)(json)
         self.timestriggered = timestriggered
         self.owner = owner
         self.status = status
@@ -82,8 +82,8 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
         let json = jsonify([
             "id" ~~> self.identifier,
             "name" ~~> self.name,
-            Encoder.encode(dateForKey: "created", dateFormatter: dateFormatter)(self.created),
-            Encoder.encode(dateForKey: "lasttriggered", dateFormatter: dateFormatter)(self.lasttriggered),
+            Encoder.encode(dateForKey:"created", dateFormatter: dateFormatter)(self.created),
+            Encoder.encode(dateForKey:"lasttriggered", dateFormatter: dateFormatter)(self.lasttriggered),
             "timestriggered" ~~> self.timestriggered,
             "owner" ~~> self.owner,
             "status" ~~> self.status,

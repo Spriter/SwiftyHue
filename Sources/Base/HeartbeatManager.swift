@@ -91,20 +91,20 @@ public class HeartbeatManager {
 
         Log.trace("Heartbeat Request", "\(url)")
         
-        Alamofire.request(url)
-            .responseJSON { response in
+        Alamofire.request(url).responseJSON { response in // method
+            
+            switch response.result {
+            case .success:
                 
-                switch response.result {
-                case .success:
-                    
-                    self.handleSuccessResponseResult(response.result, resourceType: resourceType)
-                    self.notifyAboutLocalConnection()
-                    
-                case .failure(let error):
-                    
-                    self.notifyAboutNoLocalConnection()
-                    Log.trace("Heartbeat Request Error: ", error)
-                }
+                self.handleSuccessResponseResult(response.result, resourceType: resourceType)
+                self.notifyAboutLocalConnection()
+                
+            case .failure(let error):
+                
+                self.notifyAboutNoLocalConnection()
+                Log.trace("Heartbeat Request Error: ", error)
+            }
+            
         }
     }
     

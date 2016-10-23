@@ -40,7 +40,7 @@ public class BridgeSendAPI {
 
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/0/action"
 
-        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+        Alamofire.request(url, method: .get, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
@@ -70,7 +70,7 @@ public class BridgeSendAPI {
      */
     public func createSceneWithName(_ name: String, includeLightIds lightIds: [String], recycle: Bool = false, transitionTime: Int? = nil, picture: String? = nil, appData: AppData? = nil, completionHandler: @escaping BridgeCreateSceneCompletionHandler) {
         
-        guard let bridgeAccessConfig = bridgeAccessConfig else{
+        guard let bridgeAccessConfig = bridgeAccessConfig else {
             completionHandler(nil, [HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
