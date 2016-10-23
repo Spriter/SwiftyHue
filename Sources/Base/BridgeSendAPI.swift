@@ -89,6 +89,24 @@ public class BridgeSendAPI {
 
     }
     
+    public func updateLightStateInScene(_ sceneIdentifier: String, lightIdentifier: String, withLightState lightState: LightState, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
+        
+        guard let bridgeAccessConfig = bridgeAccessConfig else {
+            completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+            return
+        }
+        
+        let parameters = lightState.toJSON()!
+        
+        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/scenes/\(sceneIdentifier)/lightstate/\(lightIdentifier)"
+        
+        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+            .responseJSON { response in
+                
+                completionHandler(self.errorsFromResponse(response))
+        }
+    }
+
     public func removeSceneWithId(_ identifier: String, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
 
         remove(.scene, withIdentifier: identifier, completionHandler: completionHandler)
