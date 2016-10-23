@@ -11,8 +11,8 @@ import Gloss
 
 public class OpenCloseSensor: PartialSensor {
     
-    let config: OpenCloseSensorConfig
-    let state: OpenCloseSensorState
+    let config: GenericFlagSensorConfig
+    let state: GenericFlagSensorState
     
     required public init?(sensor: Sensor) {
         
@@ -24,11 +24,11 @@ public class OpenCloseSensor: PartialSensor {
             return nil
         }
         
-        guard let config: OpenCloseSensorConfig = OpenCloseSensorConfig(sensorConfig: sensorConfig) else {
+        guard let config: GenericFlagSensorConfig = GenericFlagSensorConfig(sensorConfig: sensorConfig) else {
             return nil
         }
         
-        guard let state: OpenCloseSensorState = OpenCloseSensorState(state: sensorState) else {
+        guard let state: GenericFlagSensorState = GenericFlagSensorState(state: sensorState) else {
             return nil
         }
         
@@ -40,11 +40,11 @@ public class OpenCloseSensor: PartialSensor {
     
     public required init?(json: JSON) {
         
-        guard let config: OpenCloseSensorConfig = "config" <~~ json else {
+        guard let config: GenericFlagSensorConfig = "config" <~~ json else {
             return nil
         }
         
-        guard let state: OpenCloseSensorState = "state" <~~ json else {
+        guard let state: GenericFlagSensorState = "state" <~~ json else {
             return nil
         }
         
