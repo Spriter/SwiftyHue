@@ -346,13 +346,17 @@ public class BridgeSendAPI {
     
     private func errorsFromResponse(_ response: DataResponse<Any>) -> [Error]? {
         
-        var errors: [HueError] = []
+        var errors: [HueError]?
         if let responseItemJSONs = response.result.value as? [JSON] {
             
-            errors = [HueError].from(jsonArray: responseItemJSONs)!
+            errors = [HueError].from(jsonArray: responseItemJSONs)
         }
         
-        return errors.count > 0 ? errors : nil
+        if let errors = errors, errors.count > 0 {
+            return errors
+        }
+        
+        return nil
     }
     
     private func remove(_ bridgeResourceType: BridgeResourceType, withIdentifier identifier: String, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
