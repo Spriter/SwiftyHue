@@ -26,10 +26,10 @@ class BridgePushLinkViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        bridgeAuthenticator = BridgeAuthenticator(bridge: bridge, uniqueIdentifier: "swiftyhue#\(UIDevice.currentDevice().name)")
+        bridgeAuthenticator = BridgeAuthenticator(bridge: bridge, uniqueIdentifier: "swiftyhue#\(UIDevice.current.name)")
         bridgeAuthenticator.delegate = self;
         bridgeAuthenticator.start()
     }
@@ -45,9 +45,8 @@ class BridgePushLinkViewController: UIViewController {
     }
     */
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        let destController = segue.destinationViewController as! BridgeAccessConfigPresentationViewController;
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destController = segue.destination as! BridgeAccessConfigPresentationViewController;
         destController.bridgeAccesssConfig = bridgeAccessConfig;
     }
 
@@ -55,24 +54,24 @@ class BridgePushLinkViewController: UIViewController {
 
 extension BridgePushLinkViewController: BridgeAuthenticatorDelegate {
     
-    func bridgeAuthenticator(authenticator: BridgeAuthenticator, didFinishAuthentication username: String) {
+    func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFinishAuthentication username: String) {
         
         self.bridgeAccessConfig = BridgeAccessConfig(bridgeId: "BridgeId", ipAddress: bridge.ip, username: username)
         
-        self.performSegueWithIdentifier("BridgeAccessConfigPresentationViewControllerSegue", sender: self)
+        self.performSegue(withIdentifier: "BridgeAccessConfigPresentationViewControllerSegue", sender: self)
     }
     
-    func bridgeAuthenticator(authenticator: BridgeAuthenticator, didFailWithError error: NSError) {
+    func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFailWithError error: NSError) {
      
         print(error)
     }
     
     // you should now ask the user to press the link button
-    func bridgeAuthenticatorRequiresLinkButtonPress(authenticator: BridgeAuthenticator) {
+    func bridgeAuthenticatorRequiresLinkButtonPress(_ authenticator: BridgeAuthenticator) {
 
     }
     // user did not press the link button in time, you restart the process and try again
-    func bridgeAuthenticatorDidTimeout(authenticator: BridgeAuthenticator) {
+    func bridgeAuthenticatorDidTimeout(_ authenticator: BridgeAuthenticator) {
         
         print("timeout")
     }

@@ -17,7 +17,7 @@ public enum RuleConditionOperator: String {
 public class RuleCondition: Decodable, Encodable  {
     
     public let address: String
-    public let conditionOperator: RuleConditionOperator
+    public let conditionOperator: RuleConditionOperator?
     public let value: String?
     
     public required init?(json: JSON) {
@@ -26,13 +26,13 @@ public class RuleCondition: Decodable, Encodable  {
             Log.error("Can't create RuleCondition, missing required attribute \"address\" in JSON:\n \(json)"); return nil
         }
         
-        guard let conditionOperator: RuleConditionOperator = "operator" <~~ json else {
-            Log.error("Can't create RuleCondition, missing required attribute \"operator\" in JSON:\n \(json)"); return nil
-        }
+//        guard let conditionOperator: RuleConditionOperator = "operator" <~~ json else {
+//            Log.error("Can't create RuleCondition, missing required attribute \"operator\" in JSON:\n \(json)"); return nil
+//        }
         
         self.address = address
-        self.conditionOperator = conditionOperator
         
+        self.conditionOperator = "operator" <~~ json
         self.value = "value" <~~ json
     }
     

@@ -53,7 +53,7 @@ public class TestRequester {
         let parameters = lightState.toJSON()!
         let url = "http://\(bridgeIp)/api/\(bridgeAcc)/groups/1/action"
 
-        Alamofire.request(.PUT, url, parameters: parameters, encoding: .json)
+        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
         
                 print(response)
@@ -134,7 +134,8 @@ public class TestRequester {
 //    }
     
     public func requestGroups() {
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/groups", parameters: nil)
+        
+        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/groups", parameters: nil)
         .responseJSON { response in
             
             if let resultValueJSON = response.result.value as? JSON {
@@ -150,7 +151,7 @@ public class TestRequester {
     }
     
     public func requestScenes() {
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/scenes", parameters: nil)
+        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/scenes", parameters: nil)
             .responseJSON { response in
                 
                 if let resultValueJSON = response.result.value as? JSON {
@@ -166,7 +167,7 @@ public class TestRequester {
     }
     
     public func requestRules() {
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/rules", parameters: nil)
+        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/rules", parameters: nil)
             .responseJSON { response in
                 
                 if let resultValueJSON = response.result.value as? JSON {
@@ -198,7 +199,7 @@ public class TestRequester {
 //    }
     
     public func requestSchedules() {
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/schedules", parameters: nil)
+        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/schedules", parameters: nil)
             .responseJSON { response in
                 
                 if let resultValueJSON = response.result.value as? JSON {
@@ -215,7 +216,7 @@ public class TestRequester {
     
     public func requestBridgeConfiguration() {
         
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/config", parameters: nil)
+        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/config", parameters: nil)
             .responseJSON { response in
                 
                 if let resultValueJSON = response.result.value as? JSON {
@@ -227,7 +228,7 @@ public class TestRequester {
     }
     
     public func requestLights() {
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/lights", parameters: nil)
+        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/lights", parameters: nil)
             .responseJSON { response in
                 
             if let resultValueJSON = response.result.value as? JSON {
@@ -239,12 +240,12 @@ public class TestRequester {
     }
     
     public func requestError() {
-        Alamofire.request(.GET, "http://\(bridgeIp)/api/\(bridgeAcc)/giveMeAError", parameters: nil)
+        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/giveMeAError", parameters: nil)
             .responseJSON { response in
                 
                 if let resultValueJSON = response.result.value as? [JSON] {
                     
-                    let errors = [Error].fromJSONArray(resultValueJSON)
+                    let errors = [Error].from(jsonArray: resultValueJSON)
                     print(errors)
                 }
         }
@@ -254,11 +255,11 @@ public class TestRequester {
         
         if let JSON = resourcesDict as? NSMutableDictionary {
             
-            var resourceJSONs = [[String: AnyObject]]();
+            var resourceJSONs = [[String: Any]]();
             
             for item in JSON {
                 
-                var resourceJSON = item.value as! [String: AnyObject];
+                var resourceJSON = item.value as! [String: Any];
                 resourceJSON["id"] = item.key;
                 
                 resourceJSONs.append(resourceJSON)

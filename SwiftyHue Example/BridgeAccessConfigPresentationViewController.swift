@@ -23,7 +23,7 @@ class BridgeAccessConfigPresentationViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         usernameLabel?.text = bridgeAccesssConfig.username
@@ -36,9 +36,9 @@ class BridgeAccessConfigPresentationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func okButtonTapped(sender: AnyObject) {
+    @IBAction func okButtonTapped(_ sender: AnyObject) {
     
-        (navigationController as! CreateBridgeAccessController).bridgeAccessCreated(bridgeAccesssConfig)
+        (navigationController as! CreateBridgeAccessController).bridgeAccessCreated(bridgeAccessConfig: bridgeAccesssConfig)
     }
 
     /*

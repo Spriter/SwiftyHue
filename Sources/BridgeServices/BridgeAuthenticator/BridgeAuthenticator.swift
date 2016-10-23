@@ -49,11 +49,21 @@ public class BridgeAuthenticator {
     }
 
     @objc private func startRequest() {
+        
         let request = createRequest()
-
+        
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            self.handleResponse(data, response: response, error: error)
+            self.handleResponse(data, response: response, error: error as NSError?)
+            return ()
         }
+        
+//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+//            self.handleResponse(data, response: response, error: error)
+//        }
+        
+//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+//            self.handleResponse(data, response: response, error: error)
+//        }
 
         task.resume()
     }
@@ -104,16 +114,17 @@ public class BridgeAuthenticator {
             return NSError(domain: "BridgeAuthenticator", code: 404, userInfo: [NSLocalizedDescriptionKey: "Could not authenticate user (no data)"])
         }
 
-        guard let result = try? JSONSerialization.jsonObject(with: data, options: []) else {
+        guard let result = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] else {
             return NSError(domain: "BridgeAuthenticator", code: 500, userInfo: [NSLocalizedDescriptionKey: "Could not parse result."])
         }
 
-        guard let errorJson = result[0]["error"] as? [String: AnyObject] else {
+        guard let errorJson = result?[0]["error"] as? [String: Any] else {
             return nil
         }
 
         let desc = errorJson["description"] as! String
         let error = NSError(domain: "BridgeAuthenticator", code: errorJson["type"] as! Int, userInfo: [NSLocalizedDescriptionKey: desc])
+        
         return error
     }
 

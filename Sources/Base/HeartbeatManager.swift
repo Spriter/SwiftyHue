@@ -91,26 +91,26 @@ public class HeartbeatManager {
 
         Log.trace("Heartbeat Request", "\(url)")
         
-        Alamofire.request(.GET, url)
-            .responseJSON { response in
+        Alamofire.request(url).responseJSON { response in // method
+            
+            switch response.result {
+            case .success:
                 
-                switch response.result {
-                case .success:
-                    
-                    self.handleSuccessResponseResult(response.result, resourceType: resourceType)
-                    self.notifyAboutLocalConnection()
-                    
-                case .failure(let error):
-                    
-                    self.notifyAboutNoLocalConnection()
-                    Log.trace("Heartbeat Request Error: ", error)
-                }
+                self.handleSuccessResponseResult(response.result, resourceType: resourceType)
+                self.notifyAboutLocalConnection()
+                
+            case .failure(let error):
+                
+                self.notifyAboutNoLocalConnection()
+                Log.trace("Heartbeat Request Error: ", error)
+            }
+            
         }
     }
     
     // MARK: Timer Action Response Handling
     
-    private func handleSuccessResponseResult(_ result: Result<AnyObject, NSError>, resourceType: HeartbeatBridgeResourceType) {
+    private func handleSuccessResponseResult(_ result: Result<Any>, resourceType: HeartbeatBridgeResourceType) {
         
         Log.trace("Heartbeat Response for Resource Type \(resourceType.rawValue.lowercased()) received")
         //Log.trace("Heartbeat Response: \(resourceType.rawValue.lowercaseString): ", result.value)
@@ -137,7 +137,7 @@ public class HeartbeatManager {
         
     }
     
-    private func responseResultIsPhilipsAPIErrorType(result: Result<AnyObject, NSError>, resourceType: HeartbeatBridgeResourceType) -> Bool {
+    private func responseResultIsPhilipsAPIErrorType(result: Result<Any>, resourceType: HeartbeatBridgeResourceType) -> Bool {
         
         switch resourceType {
             

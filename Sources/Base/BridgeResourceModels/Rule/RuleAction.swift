@@ -31,7 +31,7 @@ public class RuleAction: Decodable, Encodable {
         
         self.address = address
         self.method = method
-        self.body = body
+        self.body = body as NSDictionary
     }
     
     public func toJSON() -> JSON? {

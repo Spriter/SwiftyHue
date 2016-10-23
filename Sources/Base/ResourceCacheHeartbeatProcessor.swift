@@ -197,19 +197,19 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         switch resourceType {
             
         case .lights:
-            return Light.dictionaryFromResourcesJSON(json)
+            return Light.dictionaryFromResourcesJSON(json) as NSDictionary
         case .groups:
-            return Group.dictionaryFromResourcesJSON(json)
+            return Group.dictionaryFromResourcesJSON(json) as NSDictionary
         case .scenes:
-            return PartialScene.dictionaryFromResourcesJSON(json)
+            return PartialScene.dictionaryFromResourcesJSON(json) as NSDictionary
         case .config:
             break;
         case .schedules:
-            return Schedule.dictionaryFromResourcesJSON(json)
+            return Schedule.dictionaryFromResourcesJSON(json) as NSDictionary
         case .sensors:
-            return Sensor.dictionaryFromResourcesJSON(json)
+            return Sensor.dictionaryFromResourcesJSON(json) as NSDictionary
         case .rules:
-            return Rule.dictionaryFromResourcesJSON(json)
+            return Rule.dictionaryFromResourcesJSON(json) as NSDictionary
         }
         
         return [:]

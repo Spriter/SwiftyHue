@@ -12,8 +12,8 @@ class BridgeResultParser: NSObject, XMLParserDelegate {
     private let parser: XMLParser
     private var element: String = ""
     private var bridge: HueBridge?
-    private var successBlock: ((bridge: HueBridge) -> Void)?
-    private var failureBlock: ((error: NSError) -> Void)?
+    private var successBlock: ((_ bridge: HueBridge) -> Void)?
+    private var failureBlock: ((_ error: NSError) -> Void)?
 
     private var urlBase: String = ""
     private var ip: String = ""
@@ -35,7 +35,7 @@ class BridgeResultParser: NSObject, XMLParserDelegate {
         parser.delegate = self
     }
 
-    func parse(_ success: (bridge: HueBridge) -> Void, failure: (error: NSError) -> Void) {
+    func parse(_ success: @escaping (_ bridge: HueBridge) -> Void, failure: @escaping (_ error: NSError) -> Void) {
         self.successBlock = success
         self.failureBlock = failure
 
@@ -45,7 +45,7 @@ class BridgeResultParser: NSObject, XMLParserDelegate {
     private func cancelWithError(_ errorMessage: String) {
         parser.abortParsing()
         if let failureBlock = failureBlock {
-            failureBlock(error: NSError(domain: "HueBridgeParser", code: 500, userInfo: [NSLocalizedDescriptionKey: errorMessage]))
+            failureBlock(NSError(domain: "HueBridgeParser", code: 500, userInfo: [NSLocalizedDescriptionKey: errorMessage]))
         }
     }
 
@@ -117,7 +117,7 @@ class BridgeResultParser: NSObject, XMLParserDelegate {
 
     public func parserDidEndDocument(_ parser: XMLParser) {
         if let successBlock = successBlock, let bridge = bridge {
-            successBlock(bridge: bridge)
+            successBlock(bridge)
         }
     }
 

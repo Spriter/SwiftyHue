@@ -12,11 +12,11 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
 
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
-        
-        // Configure interface objects here.
-    }
+//    override func awakeWithContext(context: AnyObject?) {
+//        super.awake(withContext: context)
+//        
+//        // Configure interface objects here.
+//    }
 
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
