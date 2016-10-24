@@ -13,7 +13,7 @@ import Gloss
 public class BridgeSendAPI {
   
     //    public typealias PHBridgeSendDictionaryCompletionHandler = (dictionary: [String: Any], errors: [Error]?) -> Void
-    public typealias BridgeCreateSceneCompletionHandler = (_ sceneIdentifier: String?, errors: [Error]?) -> Void
+    public typealias BridgeCreateSceneCompletionHandler = (_ sceneIdentifier: String?, _ errors: [Error]?) -> Void
     public typealias BridgeSendErrorArrayCompletionHandler = (_ errors: [Error]?) -> Void
     
     private var bridgeAccessConfig: BridgeAccessConfig?;
