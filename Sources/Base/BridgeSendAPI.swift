@@ -105,7 +105,7 @@ public class BridgeSendAPI {
         
         let parameters = lightState.toJSON()!
         
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/scenes/\(sceneIdentifier)/lightstate/\(lightIdentifier)"
+        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/scenes/\(sceneIdentifier)/lightstates/\(lightIdentifier)"
         
         Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
