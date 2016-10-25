@@ -44,7 +44,7 @@ public class HeartbeatManager {
         localHeartbeatTimerIntervals[resourceType] = interval
     }
     
-    public func removeLocalHeartbeatInterval(_ interval: Float, forResourceType resourceType: HeartbeatBridgeResourceType) {
+    internal func removeLocalHeartbeat(forResourceType resourceType: HeartbeatBridgeResourceType) {
         
         if let timer = localHeartbeatTimers.removeValue(forKey: resourceType) {
             

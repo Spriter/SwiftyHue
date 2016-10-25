@@ -29,6 +29,11 @@ public class SwiftyHue {
         heartbeatManager?.setLocalHeartbeatInterval(interval, forResourceType: resourceType)
     }
     
+    public func removeLocalHeartbeat(forResourceType resourceType: HeartbeatBridgeResourceType) {
+        
+        heartbeatManager?.removeLocalHeartbeat(forResourceType: resourceType)
+    }
+    
     public func startHeartbeat() {
         
         heartbeatManager?.startHeartbeat()
