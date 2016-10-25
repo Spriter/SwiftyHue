@@ -19,7 +19,7 @@ public enum ResourceCacheUpdateNotification: String {
     }
 }
 
-protocol ResourceCacheHeartbeatProcessorDelegate: class {
+public protocol ResourceCacheHeartbeatProcessorDelegate: class {
     
     func resourceCacheUpdated(_ resourceCache: BridgeResourcesCache)
 }
