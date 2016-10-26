@@ -12,7 +12,8 @@ import Gloss
 
 public class BridgeSendAPI {
   
-    //    public typealias PHBridgeSendDictionaryCompletionHandler = (dictionary: [String: AnyObject], errors: [Error]?) -> Void
+    //    public typealias PHBridgeSendDictionaryCompletionHandler = (dictionary: [String: Any], errors: [Error]?) -> Void
+    public typealias BridgeCreateSceneCompletionHandler = (_ sceneIdentifier: String?, _ errors: [Error]?) -> Void
     public typealias BridgeSendErrorArrayCompletionHandler = (_ errors: [Error]?) -> Void
     
     private var bridgeAccessConfig: BridgeAccessConfig?;
@@ -33,12 +34,12 @@ public class BridgeSendAPI {
         let parameters = ["scene": identifier]
         
         guard let bridgeAccessConfig = bridgeAccessConfig else {
-            completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+            completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/0/action"
-        
+
         Alamofire.request(url, method: .get, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
@@ -50,7 +51,7 @@ public class BridgeSendAPI {
     public func recallSceneWithIdentifier(_ identifier: String, inGroupWithIdentifier groupIdentifier: String, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = bridgeAccessConfig else{
-            completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+            completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 
@@ -67,10 +68,10 @@ public class BridgeSendAPI {
     /**
      Creates the given scene with all lights in the provided lights resource. For a given scene the current light settings of the given lights resources are stored. If the scene id is recalled in the future, these light settings will be reproduced on these lamps. If an existing name is used then the settings for this scene will be overwritten and the light states resaved. The bridge can support up to 200 scenes, however please also note there is a maximum of 2048 scene lightstates so for example, of all your scenes have 20 lightstates, the maximum number of allowed scenes will be 102.
      */
-    public func createSceneWithName(_ name: String, includeLightIds lightIds: [String], recycle: Bool = false, transitionTime: Int? = nil, picture: String? = nil, appData: AppData? = nil, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
+    public func createSceneWithName(_ name: String, includeLightIds lightIds: [String], recycle: Bool = false, transitionTime: Int? = nil, picture: String? = nil, appData: AppData? = nil, completionHandler: @escaping BridgeCreateSceneCompletionHandler) {
         
-        guard let bridgeAccessConfig = bridgeAccessConfig else{
-            completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+        guard let bridgeAccessConfig = bridgeAccessConfig else {
+            completionHandler(nil, [HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 
@@ -84,7 +85,13 @@ public class BridgeSendAPI {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
-                completionHandler(self.errorsFromResponse(response))
+                var sceneIdentifier: String?
+                if let responseItemJSONs = response.result.value as? [JSON] {
+                    if let success = responseItemJSONs[0]["success"] as? JSON {
+                        sceneIdentifier = success["id"] as? String
+                    }
+                }
+                completionHandler(sceneIdentifier, self.errorsFromResponse(response))
         }
 
     }
@@ -117,7 +124,7 @@ public class BridgeSendAPI {
     public func updateLightStateForId(_ identifier: String, withLightState lightState: LightState, transitionTime: Int? = nil, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = bridgeAccessConfig else {
-            completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+            completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 
@@ -146,7 +153,7 @@ public class BridgeSendAPI {
     public func createRoomWithName(_ name: String, andType type: GroupType, andRoomClass roomClass: RoomClass, includeLightIds lightIds: [String], completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = self.bridgeAccessConfig else {
-            completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+            completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 
@@ -165,7 +172,7 @@ public class BridgeSendAPI {
     public func createGroupWithName(_ name: String, andType type: GroupType, includeLightIds lightIds: [String], completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = self.bridgeAccessConfig else {
-            completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+            completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 
@@ -186,7 +193,7 @@ public class BridgeSendAPI {
     public func updateGroupWithId(_ identifier: String, newName: String?, newLightIdentifiers: [String]?, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = self.bridgeAccessConfig else {
-            completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+            completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 
@@ -209,7 +216,7 @@ public class BridgeSendAPI {
     public func updateRoomWithId(_ identifier: String, newName: String?, newLightIdentifiers: [String]?, newRoomClass: RoomClass?, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = self.bridgeAccessConfig else{
-            completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+            completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 
@@ -235,7 +242,7 @@ public class BridgeSendAPI {
     public func setLightStateForGroupWithId(_ identifier: String, withLightState lightState: LightState, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = self.bridgeAccessConfig else{
-            completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+            completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 
@@ -254,7 +261,7 @@ public class BridgeSendAPI {
     public func createRuleWithName(_ name: String, andConditions conditions: [RuleCondition], andActions actions: [RuleAction], completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = self.bridgeAccessConfig else {
-            completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+            completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 
@@ -276,7 +283,7 @@ public class BridgeSendAPI {
     public func updateRuleWithId(_ identifier: String, newName: String, newConditions: [RuleCondition]?, newActions: [RuleAction]?, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = self.bridgeAccessConfig else {
-            completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+            completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 
@@ -304,7 +311,7 @@ public class BridgeSendAPI {
     public func createScheduleWithName(_ name: String, andCommand command: ScheduleCommand, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = self.bridgeAccessConfig else {
-            completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+            completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 
@@ -324,7 +331,7 @@ public class BridgeSendAPI {
     public func updateScheduleWithId(_ identifier: String, newName: String, newCommand: ScheduleCommand, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = self.bridgeAccessConfig else {
-            completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+            completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 
@@ -364,12 +371,17 @@ public class BridgeSendAPI {
     
     private func errorsFromResponse(_ response: DataResponse<Any>) -> [Error]? {
         
-        var errors: [Error]?
+        var errors: [HueError]?
         if let responseItemJSONs = response.result.value as? [JSON] {
-            errors = [Error].from(jsonArray: responseItemJSONs)
+            
+            errors = [HueError].from(jsonArray: responseItemJSONs)
         }
         
-        return (errors?.count)! > 0 ? errors : nil
+        if let errors = errors, errors.count > 0 {
+            return errors
+        }
+        
+        return nil
     }
     
     private func remove(_ bridgeResourceType: BridgeResourceType, withIdentifier identifier: String, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
@@ -379,7 +391,7 @@ public class BridgeSendAPI {
                                  : "\(bridgeResourceType)s"
 
         guard let bridgeAccessConfig = self.bridgeAccessConfig else {
-            completionHandler([Error(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
+            completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
 

@@ -161,7 +161,7 @@ public class HeartbeatManager {
         for jsonError in jsonErrorArray {
             
             Log.info("Hearbeat received Error Result", (json: jsonError))
-            let error = Error(json: jsonError)
+            let error = HueError(json: jsonError)
             if let error = error {
                 self.notifyAboutError(error)
             }
@@ -200,7 +200,7 @@ public class HeartbeatManager {
         }
     }
     
-    private func notifyAboutError(_ error: Error) {
+    private func notifyAboutError(_ error: HueError) {
         
         var notification: BridgeHeartbeatConnectionStatusNotification?;
         

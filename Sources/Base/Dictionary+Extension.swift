@@ -17,8 +17,8 @@ extension Dictionary {
     }
     
     // Thanks Airspeed Velocity
-    mutating func unionInPlace<S: Sequence where
-        S.Iterator.Element == (Key,Value)>(_ sequence: S) {
+    mutating func unionInPlace<S: Sequence>(_ sequence: S) where
+        S.Iterator.Element == (Key,Value) {
         for (key, value) in sequence {
             self[key] = value
         }

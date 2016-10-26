@@ -45,7 +45,7 @@ public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
         guard let identifier: String = "id" <~~ json,
             let name: String = "name" <~~ json,
             let lastUseDate: Date = Decoder.decode(dateForKey: "last use date", dateFormatter:dateFormatter)(json),
-            let createDate: Date = Decoder.decode(dateForKey:"create date", dateFormatter: dateFormatter)(json)
+            let createDate: Date = Decoder.decode(dateForKey: "create date", dateFormatter: dateFormatter)(json)
             else { return nil }
         
         self.identifier = identifier

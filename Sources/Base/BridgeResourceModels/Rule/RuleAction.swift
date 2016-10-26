@@ -13,7 +13,7 @@ public class RuleAction: Decodable, Encodable {
     
     public let address: String
     public let method: String
-    public let body: NSDictionary
+    public let body: [String: Any]
     
     public required init?(json: JSON) {
         
@@ -31,7 +31,7 @@ public class RuleAction: Decodable, Encodable {
         
         self.address = address
         self.method = method
-        self.body = body as NSDictionary
+        self.body = body
     }
     
     public func toJSON() -> JSON? {
@@ -56,6 +56,6 @@ extension RuleAction: Hashable {
 
 public func ==(lhs: RuleAction, rhs: RuleAction) -> Bool {
     return lhs.address == rhs.address &&
-            lhs.method  == rhs.method &&
-            lhs.body  == rhs.body
+            lhs.method  == rhs.method// &&
+//            lhs.body  == rhs.body
 }
