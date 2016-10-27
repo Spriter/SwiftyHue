@@ -13,7 +13,7 @@ public class ScheduleCommand: Decodable, Encodable {
     
     public let address: String
     public let method: String
-    public let body: NSDictionary
+    public let body: [String: Any]
     
     public required init?(json: JSON) {
         
@@ -31,7 +31,7 @@ public class ScheduleCommand: Decodable, Encodable {
         
         self.address = address
         self.method = method
-        self.body = body as NSDictionary
+        self.body = body
     }
     
     public func toJSON() -> JSON? {
@@ -56,6 +56,6 @@ extension ScheduleCommand: Hashable {
 
 public func ==(lhs: ScheduleCommand, rhs: ScheduleCommand) -> Bool {
     return lhs.address == rhs.address &&
-        lhs.method  == rhs.method &&
-        lhs.body  == rhs.body
+        lhs.method  == rhs.method //&&
+//        !zip(lhs.body, rhs.body).contains {$0 != $1}
 }

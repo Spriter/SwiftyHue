@@ -1,5 +1,4 @@
 github "Alamofire/Alamofire" "4.0.1"
 github "robbiehanson/CocoaAsyncSocket" "7.5.0"
 github "hkellaway/Gloss" "1.0.0"
-github "delba/Log" "7dcb773237d6e72c66e82eb744fb5eb379d64ceb"
-github "luisobo/Nocilla" "0.11.0"
+github "delba/Log" "1.0"

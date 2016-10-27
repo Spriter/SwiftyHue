@@ -168,7 +168,7 @@ extension ViewController {
         //            print(errors)
         //        }
         
-        //        BridgeSendAPI.createGroupWithName("TestRoom", andType: GroupType.LightGroup, inlcudeLightIds: ["1","2"]) { (errors) in
+        //        BridgeSendAPI.createGroupWithName("TestRoom", andType: GroupType.LightGroup, includeLightIds: ["1","2"]) { (errors) in
         //
         //            print(errors)
         //        }
@@ -188,7 +188,7 @@ extension ViewController {
         
         //TestRequester.sharedInstance.requestSchedules()
         
-        //        BridgeSendAPI.createSceneWithName("MeineTestScene", inlcudeLightIds: ["1"]) { (errors) in
+        //        BridgeSendAPI.createSceneWithName("MeineTestScene", includeLightIds: ["1"]) { (errors) in
         //
         //            print(errors)
         //        }
