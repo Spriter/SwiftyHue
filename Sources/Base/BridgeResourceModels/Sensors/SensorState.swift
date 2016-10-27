@@ -108,7 +108,7 @@ public class PartialSensorState: Decodable, Encodable, Equatable {
         
         let dateFormatter = DateFormatter.hueApiDateFormatter
         
-        lastUpdated = Decoder.decode(dateForKey: "lastupdated", dateFormatter:dateFormatter)(json)
+        lastUpdated = Decoder.decode(dateForKey: "lastupdated", dateFormatter: dateFormatter)(json)
     }
     
     public func toJSON() -> JSON? {

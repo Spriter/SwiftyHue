@@ -11,7 +11,7 @@ import Gloss
 
 public class HumiditySensorConfig: PartialSensorConfig {
 
-    init(sensorConfig: SensorConfig) {
+    init?(sensorConfig: SensorConfig) {
         
         super.init(on: sensorConfig.on, reachable: sensorConfig.reachable, battery: sensorConfig.battery, url: sensorConfig.url)
     }

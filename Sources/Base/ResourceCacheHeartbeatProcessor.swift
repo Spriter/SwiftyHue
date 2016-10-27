@@ -19,7 +19,7 @@ public enum ResourceCacheUpdateNotification: String {
     }
 }
 
-protocol ResourceCacheHeartbeatProcessorDelegate: class {
+public protocol ResourceCacheHeartbeatProcessorDelegate: class {
     
     func resourceCacheUpdated(_ resourceCache: BridgeResourcesCache)
 }
@@ -115,7 +115,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         }
     }
     
-    func storeNativeObjectDictInCache(_ dict: NSDictionary, resourceType: HeartbeatBridgeResourceType) {
+    func storeNativeObjectDictInCache(_ dict: [String: Any], resourceType: HeartbeatBridgeResourceType) {
         
         switch resourceType {
             case .lights:
@@ -136,7 +136,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
                 
                 var dictConverted: [String: Sensor] = [:]
                 for (key, value) in dict {
-                    dictConverted[key as! String] = value as! Sensor
+                    dictConverted[key] = (value as! Sensor)
                 }
                 self.resourceCache.setSensors(dictConverted)
                 Log.info("Stored Native Sensors Dict In Cache")
@@ -148,7 +148,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         }
     }
     
-    func nativeObjectDictDiffersFromCache(_ dict: NSDictionary, resourceType: HeartbeatBridgeResourceType) -> Bool {
+    func nativeObjectDictDiffersFromCache(_ dict: [String: Any], resourceType: HeartbeatBridgeResourceType) -> Bool {
         
         switch resourceType {
         case .lights:
@@ -190,26 +190,26 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         }
     }
     
-    func convertToNativeObjectDict(_ json: JSON, resourceType: HeartbeatBridgeResourceType) -> NSDictionary {
+    func convertToNativeObjectDict(_ json: JSON, resourceType: HeartbeatBridgeResourceType) -> [String: Any] {
         
         //Log.debug("convertToNativeObjectDict", json)
         
         switch resourceType {
             
         case .lights:
-            return Light.dictionaryFromResourcesJSON(json) as NSDictionary
+            return Light.dictionaryFromResourcesJSON(json)
         case .groups:
-            return Group.dictionaryFromResourcesJSON(json) as NSDictionary
+            return Group.dictionaryFromResourcesJSON(json)
         case .scenes:
-            return PartialScene.dictionaryFromResourcesJSON(json) as NSDictionary
+            return PartialScene.dictionaryFromResourcesJSON(json)
         case .config:
             break;
         case .schedules:
-            return Schedule.dictionaryFromResourcesJSON(json) as NSDictionary
+            return Schedule.dictionaryFromResourcesJSON(json)
         case .sensors:
-            return Sensor.dictionaryFromResourcesJSON(json) as NSDictionary
+            return Sensor.dictionaryFromResourcesJSON(json)
         case .rules:
-            return Rule.dictionaryFromResourcesJSON(json) as NSDictionary
+            return Rule.dictionaryFromResourcesJSON(json)
         }
         
         return [:]

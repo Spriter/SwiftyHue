@@ -22,7 +22,8 @@ Pod::Spec.new do |s|
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.authors          = { "Marcel Dittmann" => "marceldittmann@gmx.de", "Jerome Schmitz" => "jerome.schmitz@gmx.net", "Nils Lattek" => "nilslattek@gmail.com" }
-s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag => "0.2" }
+  s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag => "0.2" }
+
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
@@ -44,6 +45,7 @@ s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag 
     base.ios.deployment_target = '9.0'
     base.tvos.deployment_target = '9.0'
     base.watchos.deployment_target = '2.2'
+    base.osx.deployment_target = '10.11'
 
     base.source_files = 'Sources/Base/**/*.{h,swift}'
     base.dependency 'Alamofire', '~> 4.0.1'
@@ -57,6 +59,7 @@ s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag 
 
     bridgeservices.ios.deployment_target = '9.0'
     bridgeservices.tvos.deployment_target = '9.0'
+    bridgeservices.osx.deployment_target = '10.11'
 
     bridgeservices.dependency 'Alamofire', '~> 4.0.1'
     bridgeservices.dependency 'Gloss', '~> 1.0.0'

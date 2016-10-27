@@ -14,7 +14,6 @@ public class BridgeAuthenticator {
     private let uniqueIdentifier: String
     private let pollingInterval: TimeInterval
     private let timeout: TimeInterval
-    private var didInformDelegateAboutLinkButton = false
 
     public weak var delegate: BridgeAuthenticatorDelegate?
 
@@ -23,7 +22,7 @@ public class BridgeAuthenticator {
         self.init(bridge: bridge, uniqueIdentifier: uniqueIdentifier, pollingInterval: 3, timeout: 30)
     }
 
-    init(bridge: HueBridge, uniqueIdentifier: String, pollingInterval: TimeInterval, timeout: TimeInterval) {
+    public init(bridge: HueBridge, uniqueIdentifier: String, pollingInterval: TimeInterval, timeout: TimeInterval) {
         self.ip = bridge.ip
         self.uniqueIdentifier = uniqueIdentifier
         self.pollingInterval = pollingInterval
@@ -31,7 +30,6 @@ public class BridgeAuthenticator {
     }
 
     public func start() {
-        didInformDelegateAboutLinkButton = false
         authenticationStartedAt = Date()
         startRequest()
     }
@@ -82,15 +80,11 @@ public class BridgeAuthenticator {
 
     private func handleResponse(_ data: Data?, response: URLResponse?, error: NSError?) {
         if let error = self.parseError(error, data: data) {
-            if error.code == 101 && !didInformDelegateAboutLinkButton {
-                // user needs to press the link button
+            if error.code == 101 {
+                let secondsLeft: TimeInterval = timeout - abs(authenticationStartedAt!.timeIntervalSinceNow)
                 DispatchQueue.main.async {
-                    self.delegate?.bridgeAuthenticatorRequiresLinkButtonPress(self)
+                    self.delegate?.bridgeAuthenticatorRequiresLinkButtonPress(self, secondsLeft: secondsLeft)
                 }
-                didInformDelegateAboutLinkButton = true
-                self.startNextRequest(self.ip, uniqueIdentifier: self.uniqueIdentifier)
-            } else if error.code == 101 {
-                // continue polling for link button
                 self.startNextRequest(self.ip, uniqueIdentifier: self.uniqueIdentifier)
             } else {
                 // unknown error
@@ -114,17 +108,17 @@ public class BridgeAuthenticator {
             return NSError(domain: "BridgeAuthenticator", code: 404, userInfo: [NSLocalizedDescriptionKey: "Could not authenticate user (no data)"])
         }
 
-        guard let result = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] else {
+        guard let result = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: [String: Any]]] else {
             return NSError(domain: "BridgeAuthenticator", code: 500, userInfo: [NSLocalizedDescriptionKey: "Could not parse result."])
         }
 
-        guard let errorJson = result?[0]["error"] as? [String: Any] else {
+        guard let errorJson = result?[0]["error"] else {
             return nil
         }
 
         let desc = errorJson["description"] as! String
         let error = NSError(domain: "BridgeAuthenticator", code: errorJson["type"] as! Int, userInfo: [NSLocalizedDescriptionKey: desc])
-        
+
         return error
     }
 
