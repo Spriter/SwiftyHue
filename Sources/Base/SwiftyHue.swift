@@ -9,6 +9,7 @@
 import Foundation
 import Log
 
+@objc
 public class SwiftyHue {
     
     // MARK: Public Interface
