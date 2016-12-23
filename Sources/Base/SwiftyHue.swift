@@ -63,8 +63,8 @@ public class SwiftyHue: NSObject {
     private var heartbeatManager: HeartbeatManager?;
     private var resourceCacheHeartbeatProcessor: ResourceCacheHeartbeatProcessor?;
 
-    public init() {
-
+    public override init() {
+        super.init()
         enableLogging(false)
     }
 }

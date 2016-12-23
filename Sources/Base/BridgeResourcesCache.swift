@@ -106,7 +106,7 @@ public class BridgeResourcesCache: Encodable, Decodable {
             HeartbeatBridgeResourceType.config.rawValue ~~> _bridgeConfiguration
             ])
         
-        print(json)
+        print(json!)
         
         return json
         
