@@ -28,6 +28,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
   s.tvos.deployment_target = '9.0'
+  s.osx.deployment_target = '10.11'
 
   s.pod_target_xcconfig = { 'ENABLE_TESTABILITY[config=Debug]' => 'YES' }
   s.source_files = 'Sources/SwiftyHue.h'
@@ -48,10 +49,11 @@ Pod::Spec.new do |s|
     base.osx.deployment_target = '10.11'
 
     base.source_files = 'Sources/Base/**/*.{h,swift}'
-    base.dependency 'Alamofire', '~> 4.0.1'
+    base.dependency 'Alamofire', '~> 3.4.0'
+    # base.dependency 'Alamofire', '~> 4.0.1'
+    # base.dependency 'Gloss', '~> 0.7'
     base.dependency 'Gloss', '~> 1.0.0'
     base.dependency 'Log', '~> 1.0'
-
   end
 
   s.subspec 'BridgeServices' do |bridgeservices|
