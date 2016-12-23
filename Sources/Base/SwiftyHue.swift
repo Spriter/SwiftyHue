@@ -9,8 +9,7 @@
 import Foundation
 import Log
 
-@objc
-public class SwiftyHue {
+public class SwiftyHue: NSObject {
     
     // MARK: Public Interface
     public var resourceCache: BridgeResourcesCache?;
