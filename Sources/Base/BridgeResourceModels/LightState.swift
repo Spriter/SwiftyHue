@@ -49,6 +49,7 @@ public struct LightState: Decodable, Encodable {
     public var effect: String?;
     public var colormode: String?;
     public var reachable: Bool?;
+    public var transitiontime: Int?;
     
     public init() {
         
@@ -66,6 +67,7 @@ public struct LightState: Decodable, Encodable {
         self.effect = "effect" <~~ json
         self.colormode = "colormode" <~~ json
         self.reachable = "reachable" <~~ json
+        self.transitiontime = "transitiontime" <~~ json
     }
     
     public func toJSON() -> JSON? {
@@ -81,7 +83,8 @@ public struct LightState: Decodable, Encodable {
             "effect" ~~> effect,
             "colormode" ~~> colormode,
             "reachable" ~~> reachable,
-    
+            "transitiontime" ~~> transitiontime
+
         ])
     }
 }
@@ -103,5 +106,6 @@ public func ==(lhs: LightState, rhs: LightState) -> Bool {
         lhs.alert == rhs.alert &&
         lhs.effect == rhs.effect &&
         lhs.colormode == rhs.colormode &&
-        lhs.reachable == rhs.reachable
+        lhs.reachable == rhs.reachable &&
+        lhs.transitiontime == rhs.transitiontime
 }
