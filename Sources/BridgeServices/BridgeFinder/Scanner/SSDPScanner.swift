@@ -61,7 +61,7 @@ class SSDPScanner: NSObject, Scanner, GCDAsyncUdpSocketDelegate {
             var port: UInt16 = 0
 
             GCDAsyncUdpSocket.getHost(&host, port: &port, fromAddress: address)
-            if let host = host as? String{
+            if let host = host as String?{
                 results.insert(host)
             }
         }

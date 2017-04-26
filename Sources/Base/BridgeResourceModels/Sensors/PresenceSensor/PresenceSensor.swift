@@ -24,9 +24,7 @@ public class PresenceSensor: PartialSensor {
             return nil
         }
         
-        guard let config: PresenceSensorConfig = PresenceSensorConfig(sensorConfig: sensorConfig) else {
-            return nil
-        }
+        let config: PresenceSensorConfig = PresenceSensorConfig(sensorConfig: sensorConfig)
         
         guard let state: PresenceSensorState = PresenceSensorState(state: sensorState) else {
             return nil

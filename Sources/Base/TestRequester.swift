@@ -221,7 +221,7 @@ public class TestRequester {
                 if let resultValueJSON = response.result.value as? JSON {
                     
                     let groupsDict = BridgeConfiguration(json: resultValueJSON)
-                    print(groupsDict?.toJSON()!)
+                    print(groupsDict?.toJSON() as Any)
                 }
         }
     }
