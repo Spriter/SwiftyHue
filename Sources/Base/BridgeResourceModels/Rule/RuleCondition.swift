@@ -14,7 +14,7 @@ public enum RuleConditionOperator: String {
     
 }
 
-public class RuleCondition: Decodable, Encodable  {
+public class RuleCondition: Gloss.Decodable, Gloss.Encodable  {
     
     public let address: String
     public let conditionOperator: RuleConditionOperator?

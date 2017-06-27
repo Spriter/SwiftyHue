@@ -13,7 +13,7 @@ public enum BridgeResourceType: String {
     case light, group, scene, sensor, rule, config, schedule, whitelistEntry
 }
 
-public protocol BridgeResource: Decodable, Encodable {
+public protocol BridgeResource: Gloss.Decodable, Gloss.Encodable {
     
     var identifier: String {get}
     var name: String {get}
