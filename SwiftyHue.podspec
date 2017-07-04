@@ -32,14 +32,6 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = { 'ENABLE_TESTABILITY[config=Debug]' => 'YES' }
   s.source_files = 'Sources/SwiftyHue.h'
 
-  #s.resource_bundles = {
-   # 'SwiftyHue' => ['SwiftyHue/Assets/*.png']
-  #}
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
-
   s.subspec 'Base' do |base|
 
     base.ios.deployment_target = '9.0'
@@ -48,8 +40,8 @@ Pod::Spec.new do |s|
     base.osx.deployment_target = '10.11'
 
     base.source_files = 'Sources/Base/**/*.{h,swift}'
-    base.dependency 'Alamofire', '~> 4.0.1'
-    base.dependency 'Gloss', '~> 1.0.0'
+    base.dependency 'Alamofire', '~> 4.4.0'
+    base.dependency 'Gloss', '~> 1.2.4'
     base.dependency 'Log', '~> 1.0'
 
   end
@@ -61,8 +53,8 @@ Pod::Spec.new do |s|
     bridgeservices.tvos.deployment_target = '9.0'
     bridgeservices.osx.deployment_target = '10.11'
 
-    bridgeservices.dependency 'Alamofire', '~> 4.0.1'
-    bridgeservices.dependency 'Gloss', '~> 1.0.0'
+    bridgeservices.dependency 'Alamofire', '~> 4.4.0'
+    bridgeservices.dependency 'Gloss', '~> 1.2.4'
     bridgeservices.dependency 'CocoaAsyncSocket', '~> 7.4.3'
     bridgeservices.dependency 'Log', '~> 1.0'
 
