@@ -9,10 +9,10 @@
 import Foundation
 
 public protocol BridgeAuthenticatorDelegate: class {
-    func bridgeAuthenticator(authenticator: BridgeAuthenticator, didFinishAuthentication username: String)
-    func bridgeAuthenticator(authenticator: BridgeAuthenticator, didFailWithError error: NSError)
+    func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFinishAuthentication username: String)
+    func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFailWithError error: NSError)
     // you should now ask the user to press the link button
-    func bridgeAuthenticatorRequiresLinkButtonPress(authenticator: BridgeAuthenticator)
+    func bridgeAuthenticatorRequiresLinkButtonPress(_ authenticator: BridgeAuthenticator, secondsLeft: TimeInterval)
     // user did not press the link button in time, you restart the process and try again
-    func bridgeAuthenticatorDidTimeout(authenticator: BridgeAuthenticator)
+    func bridgeAuthenticatorDidTimeout(_ authenticator: BridgeAuthenticator)
 }

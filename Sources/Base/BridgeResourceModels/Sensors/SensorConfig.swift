@@ -10,10 +10,10 @@ import Foundation
 import Gloss
 
 public enum SensorAlertMode {
-    case Unknown, // It is unkown what the current alert value is
-        None, // No alert active
-        Select, // Select alert (1 indication cycle) is active
-        LSelect // Select alert (30 seconds of indication cycles) is active
+    case unknown, // It is unkown what the current alert value is
+        none, // No alert active
+        select, // Select alert (1 indication cycle) is active
+        lSelect // Select alert (30 seconds of indication cycles) is active
 }
 
 public class PartialSensorConfig: Decodable, Encodable {

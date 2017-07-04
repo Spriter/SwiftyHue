@@ -18,24 +18,24 @@ class NUPNPScanner: NSObject, Scanner {
 
     func start() {
         let request = createRequest()
-        startRequest(request)
+        startRequest(request as URLRequest)
     }
 
     func stop() {
 
     }
 
-    private func createRequest() -> NSMutableURLRequest {
-        let url = NSURL(string: "https://www.meethue.com/api/nupnp")!
+    private func createRequest() -> URLRequest {
+        let url = URL(string: "https://www.meethue.com/api/nupnp")!
 
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "GET"
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
 
         return request
     }
 
-    private func startRequest(request: NSURLRequest) {
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { [weak self] (data, response, error) in
+    private func startRequest(_ request: URLRequest) {
+        let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
             guard let this = self else {
                 return
             }
@@ -52,11 +52,11 @@ class NUPNPScanner: NSObject, Scanner {
         task.resume()
     }
 
-    private func parseResults(data: NSData) -> [String] {
+    private func parseResults(_ data: Data) -> [String] {
         var ips = [String]()
 
         do {
-            if let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [[String: String]] {
+            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
                 for bridgeJson in json {
                     if let ip = bridgeJson["internalipaddress"] {
                         ips.append(ip)

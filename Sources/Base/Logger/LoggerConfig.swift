@@ -13,12 +13,12 @@ let Log = Logger(formatter: .Detailed, theme: .TomorrowNight)
 
 extension Formatters {
     static let Detailed = Formatter("[%@] %@.%@:%@ %@: %@", [
-        .Date("yyyy-MM-dd HH:mm:ss.SSS"),
-        .File(fullPath: false, fileExtension: false),
-        .Function,
-        .Line,
-        .Level,
-        .Message
+        .date("yyyy-MM-dd HH:mm:ss.SSS"),
+        .file(fullPath: false, fileExtension: false),
+        .function,
+        .line,
+        .level,
+        .message
         ])
 }
 

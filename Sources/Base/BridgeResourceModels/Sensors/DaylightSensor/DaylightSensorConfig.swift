@@ -51,7 +51,7 @@ public class DaylightSensorConfig: PartialSensorConfig {
         
         super.init(json: json)
     }
-
+    
     public override func toJSON() -> JSON? {
         
         if var superJson = super.toJSON() {

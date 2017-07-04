@@ -19,8 +19,8 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
     
     public let identifier: String
     public let name: String
-    public let lasttriggered: NSDate?
-    public let created: NSDate
+    public let lasttriggered: Date?
+    public let created: Date
     public let timestriggered: Int
     public let owner: String
     public let status: String
@@ -29,7 +29,7 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
     
     public required init?(json: JSON) {
         
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        let dateFormatter = DateFormatter.hueApiDateFormatter
         
         guard let identifier: String = "id" <~~ json else {
             Log.error("Can't create Rule, missing required attribute \"id\" in JSON:\n \(json)"); return nil
@@ -39,7 +39,7 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
             Log.error("Can't create Rule, missing required attribute \"name\" in JSON:\n \(json)"); return nil
         }
         
-        guard let created: NSDate = Decoder.decodeDate("created", dateFormatter:dateFormatter)(json) else {
+        guard let created: Date = Decoder.decode(dateForKey:"created", dateFormatter:dateFormatter)(json) else {
             Log.error("Can't create Rule, missing required attribute \"created\" in JSON:\n \(json)"); return nil
         }
         
@@ -66,24 +66,24 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
         
         self.identifier = identifier
         self.name = name
-        self.created = created
-        self.lasttriggered = Decoder.decodeDate("lasttriggered", dateFormatter:dateFormatter)(json)
+        self.created = created as Date
+        self.lasttriggered = Decoder.decode(dateForKey:"lasttriggered", dateFormatter:dateFormatter)(json)
         self.timestriggered = timestriggered
         self.owner = owner
         self.status = status
-        self.conditions = [RuleCondition].fromJSONArray(conditionJSONs)
-        self.actions = [RuleAction].fromJSONArray(actionJSONs)
+        self.conditions = [RuleCondition].from(jsonArray: conditionJSONs)!
+        self.actions = [RuleAction].from(jsonArray: actionJSONs)!
     }
     
     public func toJSON() -> JSON? {
         
-        let dateFormatter = NSDateFormatter.hueApiDateFormatter
+        let dateFormatter = DateFormatter.hueApiDateFormatter
         
         let json = jsonify([
             "id" ~~> self.identifier,
             "name" ~~> self.name,
-            Encoder.encodeDate("created", dateFormatter: dateFormatter)(self.created),
-            Encoder.encodeDate("lasttriggered", dateFormatter: dateFormatter)(self.lasttriggered),
+            Encoder.encode(dateForKey: "created", dateFormatter: dateFormatter)(self.created),
+            Encoder.encode(dateForKey: "lasttriggered", dateFormatter: dateFormatter)(self.lasttriggered),
             "timestriggered" ~~> self.timestriggered,
             "owner" ~~> self.owner,
             "status" ~~> self.status,

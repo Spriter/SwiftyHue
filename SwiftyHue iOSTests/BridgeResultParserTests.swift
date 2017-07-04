@@ -22,10 +22,11 @@ class BridgeResultParserTests: XCTestCase {
     }
 
     func testPerform() {
-        let xml = NSData(contentsOfFile: NSBundle(forClass: BridgeResultParserTests.self).pathForResource("bridge_response", ofType: "xml")!)!
+        let path = Bundle(for: BridgeResultParserTests.self).path(forResource: "bridge_response", ofType: "xml")!
+        let xml = try! Data(contentsOf: URL(fileURLWithPath: path))
         let parser = BridgeResultParser(xmlData: xml)
 
-        let asyncExpectation = expectationWithDescription("parseBridgeXML")
+        let asyncExpectation = expectation(description: "parseBridgeXML")
         parser.parse({ (bridge) in
             XCTAssertEqual(bridge.ip, "192.168.1.130")
             XCTAssertEqual(bridge.deviceType, "urn:schemas-upnp-org:device:Basic:1")
@@ -44,7 +45,7 @@ class BridgeResultParserTests: XCTestCase {
 
         })
 
-        self.waitForExpectationsWithTimeout(2, handler: nil)
+        self.waitForExpectations(timeout: 2, handler: nil)
     }
     
 }

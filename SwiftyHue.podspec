@@ -25,45 +25,37 @@ Pod::Spec.new do |s|
 s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag => "v0.1.19" }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.tvos.deployment_target = '9.0'
 
   s.pod_target_xcconfig = { 'ENABLE_TESTABILITY[config=Debug]' => 'YES' }
   s.source_files = 'Sources/SwiftyHue.h'
 
-  #s.resource_bundles = {
-   # 'SwiftyHue' => ['SwiftyHue/Assets/*.png']
-  #}
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
-
   s.subspec 'Base' do |base|
 
-    base.ios.deployment_target = '8.0'
+    base.ios.deployment_target = '9.0'
     base.tvos.deployment_target = '9.0'
     base.watchos.deployment_target = '2.2'
     base.osx.deployment_target = '10.11'
 
     base.source_files = 'Sources/Base/**/*.{h,swift}'
-    base.dependency 'Alamofire', '~> 3.4.0'
-    base.dependency 'Gloss', '~> 0.7'
-    base.dependency 'Log', '~> 0.5'
+    base.dependency 'Alamofire', '~> 4.4.0'
+    base.dependency 'Gloss', '~> 1.2.4'
+    base.dependency 'Log', '~> 1.0'
 
   end
 
   s.subspec 'BridgeServices' do |bridgeservices|
     bridgeservices.source_files   = 'Sources/BridgeServices/**/*.{h,swift}'
 
-    bridgeservices.ios.deployment_target = '8.0'
+    bridgeservices.ios.deployment_target = '9.0'
     bridgeservices.tvos.deployment_target = '9.0'
     bridgeservices.osx.deployment_target = '10.11'
 
-    bridgeservices.dependency 'Alamofire', '~> 3.4.0'
-    bridgeservices.dependency 'Gloss', '~> 0.7'
+    bridgeservices.dependency 'Alamofire', '~> 4.4.0'
+    bridgeservices.dependency 'Gloss', '~> 1.2.4'
     bridgeservices.dependency 'CocoaAsyncSocket', '~> 7.4.3'
-    bridgeservices.dependency 'Log', '~> 0.5'
+    bridgeservices.dependency 'Log', '~> 1.0'
 
   end
 

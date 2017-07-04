@@ -11,29 +11,29 @@
 import Foundation
 
 class BridgeValidator {
-    func validate(ip: String, success: (bridge: HueBridge) -> Void, failure: (error: NSError) -> Void) {
+    func validate(_ ip: String, success: @escaping (_ bridge: HueBridge) -> Void, failure: @escaping (_ error: NSError) -> Void) {
         let request = createRequest(ip)
-        startRequest(request, success: success, failure: failure)
+        startRequest(request as URLRequest, success: success, failure: failure)
     }
 
-    private func createRequest(ip: String) -> NSMutableURLRequest {
-        let url = NSURL(string: "http://\(ip)/description.xml")!
+    private func createRequest(_ ip: String) -> NSMutableURLRequest {
+        let url = URL(string: "http://\(ip)/description.xml")!
 
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "GET"
+        let request = NSMutableURLRequest(url: url)
+        request.httpMethod = "GET"
 
         return request
     }
 
-    private func startRequest(request: NSURLRequest, success: (bridge: HueBridge) -> Void, failure: (error: NSError) -> Void) {
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+    private func startRequest(_ request: URLRequest, success: @escaping (_ bridge: HueBridge) -> Void, failure: @escaping (_ error: NSError) -> Void) {
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
-                failure(error: error)
+                failure(error as NSError)
                 return
             }
 
             guard let data = data else {
-                failure(error: NSError(domain: "HueBridgeValidator", code: 500, userInfo: [NSLocalizedDescriptionKey: "No data from bridge received."]))
+                failure(NSError(domain: "HueBridgeValidator", code: 500, userInfo: [NSLocalizedDescriptionKey: "No data from bridge received."]))
                 return
             }
 

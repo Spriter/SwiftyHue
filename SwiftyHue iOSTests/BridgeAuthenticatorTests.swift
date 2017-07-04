@@ -29,10 +29,10 @@ class BridgeAuthenticatorTests: XCTestCase {
         authenticator.delegate = consumer
 
         // empty body
-        stubRequest("POST", "http://192.168.1.130/api").andReturn(200)
-        consumer.asyncExpectation = expectationWithDescription("authenticate")
+        stubRequest("POST", "http://192.168.1.130/api").andReturn(200)!
+        consumer.asyncExpectation = expectation(description: "authenticate")
         authenticator.start()
-        waitForExpectationsWithTimeout(1) { (error) in
+        waitForExpectations(timeout: 1) { (error) in
             if let error = error {
                 XCTFail("\(error)")
             }
@@ -42,10 +42,10 @@ class BridgeAuthenticatorTests: XCTestCase {
 
         LSNocilla.sharedInstance().clearStubs()
         // wrong status code
-        stubRequest("POST", "http://192.168.1.130/api").andReturn(400)
-        consumer.asyncExpectation = expectationWithDescription("authenticate")
+        stubRequest("POST", "http://192.168.1.130/api").andReturn(400)!
+        consumer.asyncExpectation = expectation(description: "authenticate")
         authenticator.start()
-        waitForExpectationsWithTimeout(1) { (error) in
+        waitForExpectations(timeout: 1) { (error) in
             if let error = error {
                 XCTFail("\(error)")
             }
@@ -55,10 +55,10 @@ class BridgeAuthenticatorTests: XCTestCase {
 
         LSNocilla.sharedInstance().clearStubs()
         // invalid data
-        stubRequest("POST", "http://192.168.1.130/api").andReturn(200).withBody("invalid")
-        consumer.asyncExpectation = expectationWithDescription("authenticate")
+        stubRequest("POST", "http://192.168.1.130/api").andReturn(200)!.withBody("invalid")!
+        consumer.asyncExpectation = expectation(description: "authenticate")
         authenticator.start()
-        waitForExpectationsWithTimeout(1) { (error) in
+        waitForExpectations(timeout: 1) { (error) in
             if let error = error {
                 XCTFail("\(error)")
             }
@@ -74,11 +74,11 @@ class BridgeAuthenticatorTests: XCTestCase {
         authenticator.delegate = consumer
 
         // empty body
-        stubRequest("POST", "http://192.168.1.130/api").andReturn(200)
+        stubRequest("POST", "http://192.168.1.130/api").andReturn(200)!
             .withBody("[{\"error\": {\"type\": 101, \"address\": \"\", \"description\": \"link button not pressed\"}}]")
-        consumer.asyncExpectation = expectationWithDescription("authenticate")
+        consumer.asyncExpectation = expectation(description: "authenticate")
         authenticator.start()
-        waitForExpectationsWithTimeout(1) { (error) in
+        waitForExpectations(timeout: 1) { (error) in
             if let error = error {
                 XCTFail("\(error)")
             }
@@ -95,11 +95,11 @@ class BridgeAuthenticatorTests: XCTestCase {
         authenticator.delegate = consumer
 
         // empty body
-        stubRequest("POST", "http://192.168.1.130/api").andReturn(200)
+        stubRequest("POST", "http://192.168.1.130/api").andReturn(200)!
             .withBody("[{\"error\": {\"type\": 101, \"address\": \"\", \"description\": \"link button not pressed\"}}]")
-        consumer.asyncExpectation = expectationWithDescription("authenticate")
+        consumer.asyncExpectation = expectation(description: "authenticate")
         authenticator.start()
-        waitForExpectationsWithTimeout(3) { (error) in
+        waitForExpectations(timeout: 3) { (error) in
             if let error = error {
                 XCTFail("\(error)")
             }
@@ -118,16 +118,16 @@ class BridgeAuthenticatorTests: XCTestCase {
 
         // empty body
         stubRequest("POST", "http://192.168.1.130/api")
-            .withBody("{\"devicetype\":\"tests#simulator\"}")
-            .andReturn(200)
-            .withBody("[{\"success\": {\"username\": \"1028d66426293e821ecfd9ef1a0731df\"}}]")
-        consumer.asyncExpectation = expectationWithDescription("authenticate")
+            .withBody("{\"devicetype\":\"tests#simulator\"}")!
+            .andReturn(200)!
+            .withBody("[{\"success\": {\"username\": \"1028d66426293e821ecfd9ef1a0731df\"}}]")!
+        consumer.asyncExpectation = expectation(description: "authenticate")
         authenticator.start()
-        waitForExpectationsWithTimeout(3) { (error) in
+        waitForExpectations(timeout: 3) { (error) in
             if let error = error {
                 XCTFail("\(error)")
             }
-            
+
             XCTAssertEqual(consumer.finishWithUsername, "1028d66426293e821ecfd9ef1a0731df")
         }
     }

@@ -27,18 +27,18 @@ class BridgeFinderTests: XCTestCase {
         let finder = BridgeFinder(validator: validator, scannerClasses: [TestScanner1.self, TestScanner2.self])
         let consumer = BridgeFinderConsumer()
         finder.delegate = consumer
-        consumer.asyncExpectation = expectationWithDescription("performFind")
+        consumer.asyncExpectation = expectation(description: "performFind")
 
         finder.start()
 
-        waitForExpectationsWithTimeout(1) { (error) in
+        waitForExpectations(timeout: 1) { (error) in
             if let error = error {
                 XCTFail("\(error)")
             }
 
             XCTAssertNotNil(TestScanner1.calledAt)
             XCTAssertNotNil(TestScanner2.calledAt)
-            XCTAssertTrue(TestScanner1.calledAt!.compare(TestScanner2.calledAt!) == NSComparisonResult.OrderedAscending)
+            XCTAssertTrue(TestScanner1.calledAt!.compare(TestScanner2.calledAt!) == ComparisonResult.orderedAscending)
             XCTAssertEqual(consumer.resultBridges!.count, 0)
         }
     }
@@ -50,11 +50,11 @@ class BridgeFinderTests: XCTestCase {
         let finder = BridgeFinder(validator: validator, scannerClasses: [TestScanner1.self, TestScanner2.self])
         let consumer = BridgeFinderConsumer()
         finder.delegate = consumer
-        consumer.asyncExpectation = expectationWithDescription("performFind")
+        consumer.asyncExpectation = expectation(description: "performFind")
 
         finder.start()
 
-        waitForExpectationsWithTimeout(1) { (error) in
+        waitForExpectations(timeout: 1) { (error) in
             if let error = error {
                 XCTFail("\(error)")
             }
@@ -72,11 +72,11 @@ class BridgeFinderTests: XCTestCase {
         let finder = BridgeFinder(validator: validator, scannerClasses: [TestScanner1.self, TestScanner2.self])
         let consumer = BridgeFinderConsumer()
         finder.delegate = consumer
-        consumer.asyncExpectation = expectationWithDescription("performFind")
+        consumer.asyncExpectation = expectation(description: "performFind")
 
         finder.start()
 
-        waitForExpectationsWithTimeout(1) { (error) in
+        waitForExpectations(timeout: 1) { (error) in
             if let error = error {
                 XCTFail("\(error)")
             }

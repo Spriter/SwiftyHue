@@ -20,7 +20,7 @@ public class CreateBridgeAccessController: UINavigationController {
     
     func bridgeAccessCreated(bridgeAccessConfig: BridgeAccessConfig) {
         
-        dismissViewControllerAnimated(true, completion: nil)
-        bridgeAccessCreationDelegate?.bridgeAccessCreated(bridgeAccessConfig)
+        dismiss(animated: true, completion: nil)
+        bridgeAccessCreationDelegate?.bridgeAccessCreated(bridgeAccessConfig: bridgeAccessConfig)
     }
 }

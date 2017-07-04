@@ -8,12 +8,12 @@
 
 import Foundation
 
-class BridgeResultParser: NSObject, NSXMLParserDelegate {
-    private let parser: NSXMLParser
+class BridgeResultParser: NSObject, XMLParserDelegate {
+    private let parser: XMLParser
     private var element: String = ""
     private var bridge: HueBridge?
-    private var successBlock: ((bridge: HueBridge) -> Void)?
-    private var failureBlock: ((error: NSError) -> Void)?
+    private var successBlock: ((_ bridge: HueBridge) -> Void)?
+    private var failureBlock: ((_ error: NSError) -> Void)?
 
     private var urlBase: String = ""
     private var ip: String = ""
@@ -29,29 +29,29 @@ class BridgeResultParser: NSObject, NSXMLParserDelegate {
     private var width: String = ""
     private var iconName: String = ""
 
-    init(xmlData: NSData) {
-        parser = NSXMLParser(data: xmlData)
+    init(xmlData: Data) {
+        parser = XMLParser(data: xmlData)
         super.init()
         parser.delegate = self
     }
 
-    func parse(success: (bridge: HueBridge) -> Void, failure: (error: NSError) -> Void) {
+    func parse(_ success: @escaping (_ bridge: HueBridge) -> Void, failure: @escaping (_ error: NSError) -> Void) {
         self.successBlock = success
         self.failureBlock = failure
 
         parser.parse()
     }
 
-    private func cancelWithError(errorMessage: String) {
+    private func cancelWithError(_ errorMessage: String) {
         parser.abortParsing()
         if let failureBlock = failureBlock {
-            failureBlock(error: NSError(domain: "HueBridgeParser", code: 500, userInfo: [NSLocalizedDescriptionKey: errorMessage]))
+            failureBlock(NSError(domain: "HueBridgeParser", code: 500, userInfo: [NSLocalizedDescriptionKey: errorMessage]))
         }
     }
 
     // MARK: - NSXMLParserDelegate
 
-    public func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+    public func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         element = elementName
 
         if elementName == "root" {
@@ -66,7 +66,7 @@ class BridgeResultParser: NSObject, NSXMLParserDelegate {
         }
     }
 
-    public func parser(parser: NSXMLParser, foundCharacters string: String) {
+    public func parser(_ parser: XMLParser, foundCharacters string: String) {
         switch element {
         case "deviceType":
             deviceType += string
@@ -94,7 +94,7 @@ class BridgeResultParser: NSObject, NSXMLParserDelegate {
         }
     }
 
-    public func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+    public func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         element = ""
 
         if elementName == "device" {
@@ -104,7 +104,7 @@ class BridgeResultParser: NSObject, NSXMLParserDelegate {
                 cancelWithError("HueBridge data not valid.")
             }
         } else if elementName == "URLBase" {
-            let url = NSURL(string: urlBase)
+            let url = URL(string: urlBase)
             if let host = url?.host {
                 ip = host
             }
@@ -115,9 +115,9 @@ class BridgeResultParser: NSObject, NSXMLParserDelegate {
         }
     }
 
-    public func parserDidEndDocument(parser: NSXMLParser) {
+    public func parserDidEndDocument(_ parser: XMLParser) {
         if let successBlock = successBlock, let bridge = bridge {
-            successBlock(bridge: bridge)
+            successBlock(bridge)
         }
     }
 
