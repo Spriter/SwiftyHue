@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public class BridgeResourcesCache: Encodable, Decodable {
+public class BridgeResourcesCache: Gloss.Decodable, Gloss.Encodable {
     
     // MARK: Public Interface
     
@@ -106,7 +106,7 @@ public class BridgeResourcesCache: Encodable, Decodable {
             HeartbeatBridgeResourceType.config.rawValue ~~> _bridgeConfiguration
             ])
         
-        print(json)
+        print(json!)
         
         return json
         

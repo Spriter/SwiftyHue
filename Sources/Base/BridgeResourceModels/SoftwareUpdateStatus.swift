@@ -14,7 +14,7 @@ public enum UpdateState: Int {
     case noUpdate, downloading, readyForInstall, installed
 }
 
-public struct SoftwareUpdateStatus: Decodable, Encodable {
+public struct SoftwareUpdateStatus: Gloss.Decodable, Gloss.Encodable {
     
     public let updatestate: UpdateState?
     
