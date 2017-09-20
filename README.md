@@ -9,8 +9,6 @@ Philips Hue SDK written in swift
 
 Work in progress...
 
-Note: If you want to work with Swift 3 use the swift3 branch.
-
 ## Installation
 
 ### Carthage

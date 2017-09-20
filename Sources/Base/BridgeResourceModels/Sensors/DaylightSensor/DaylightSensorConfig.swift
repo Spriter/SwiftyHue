@@ -18,6 +18,14 @@ public class DaylightSensorConfig: PartialSensorConfig {
     
     init?(sensorConfig: SensorConfig) {
         
+//        guard let long: String = sensorConfig.long else {
+//            Log.error("Can't create DaylightSensorConfig, missing required attribute \"long\""); return nil
+//        }
+//        
+//        guard let lat: String = sensorConfig.lat else {
+//            Log.error("Can't create DaylightSensorConfig, missing required attribute \"lat\""); return nil
+//        }
+        
         self.long = sensorConfig.long
         self.lat = sensorConfig.lat
         self.sunriseOffset = sensorConfig.sunriseOffset
@@ -27,6 +35,14 @@ public class DaylightSensorConfig: PartialSensorConfig {
     }
     
     required public init?(json: JSON) {
+        
+//        guard let long: String = "long" <~~ json else {
+//            Log.error("Can't create DaylightSensorConfig, missing required attribute \"long\" in JSON:\n \(json)"); return nil
+//        }
+//        
+//        guard let lat: String = "lat" <~~ json else {
+//            Log.error("Can't create DaylightSensorConfig, missing required attribute \"lat\" in JSON:\n \(json)"); return nil
+//        }
         
         self.long = "long" <~~ json
         self.lat = "lat" <~~ json

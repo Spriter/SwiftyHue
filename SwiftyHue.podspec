@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "SwiftyHue"
-  s.version          = "0.2.4"
+  s.version          = "0.2.6"
   s.summary          = "Philips Hue SDK written in swift."
 
 # This description is used to generate tags and improve search results.
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.authors          = { "Marcel Dittmann" => "marceldittmann@gmx.de", "Jerome Schmitz" => "jerome.schmitz@gmx.net", "Nils Lattek" => "nilslattek@gmail.com" }
-  s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag => "0.2.4" }
+  s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag => "0.2.6" }
 
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
@@ -33,14 +33,6 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = { 'ENABLE_TESTABILITY[config=Debug]' => 'YES' }
   s.source_files = 'Sources/SwiftyHue.h'
 
-  #s.resource_bundles = {
-   # 'SwiftyHue' => ['SwiftyHue/Assets/*.png']
-  #}
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
-
   s.subspec 'Base' do |base|
 
     base.ios.deployment_target = '9.0'
@@ -49,7 +41,6 @@ Pod::Spec.new do |s|
     base.osx.deployment_target = '10.11'
 
     base.source_files = 'Sources/Base/**/*.{h,swift}'
-    # base.dependency 'Alamofire', '~> 3.4.0'
     base.dependency 'Alamofire', '~> 4.4.0'
     base.dependency 'Gloss', '~> 1.2.4'
     base.dependency 'Log', '~> 1.0'
