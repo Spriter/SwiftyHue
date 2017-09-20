@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public struct AppData: Decodable, Encodable {
+public struct AppData: Gloss.Decodable, Gloss.Encodable {
     
     /**
         App specific version of the data field. App should take versioning into account when parsing the data string.

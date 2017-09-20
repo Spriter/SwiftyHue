@@ -9,7 +9,7 @@
 import Foundation
 import Log
 
-public class SwiftyHue {
+public class SwiftyHue: NSObject {
     
     // MARK: Public Interface
     public var resourceCache: BridgeResourcesCache?;
@@ -63,8 +63,8 @@ public class SwiftyHue {
     private var heartbeatManager: HeartbeatManager?;
     private var resourceCacheHeartbeatProcessor: ResourceCacheHeartbeatProcessor?;
 
-    public init() {
-
+    public override init() {
+        super.init()
         enableLogging(false)
     }
 }

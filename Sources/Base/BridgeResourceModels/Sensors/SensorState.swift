@@ -96,7 +96,7 @@ public func ==(lhs: PartialSensorState, rhs: PartialSensorState) -> Bool {
     return lhs.lastUpdated == rhs.lastUpdated
 }
 
-public class PartialSensorState: Decodable, Encodable, Equatable {
+public class PartialSensorState: Gloss.Decodable, Gloss.Encodable, Equatable {
     
     public let lastUpdated: Date?
     

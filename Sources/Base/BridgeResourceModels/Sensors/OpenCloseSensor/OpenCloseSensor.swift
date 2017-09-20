@@ -24,9 +24,7 @@ public class OpenCloseSensor: PartialSensor {
             return nil
         }
         
-        guard let config: OpenCloseSensorConfig = OpenCloseSensorConfig(sensorConfig: sensorConfig) else {
-            return nil
-        }
+        let config: OpenCloseSensorConfig = OpenCloseSensorConfig(sensorConfig: sensorConfig)
         
         guard let state: OpenCloseSensorState = OpenCloseSensorState(state: sensorState) else {
             return nil

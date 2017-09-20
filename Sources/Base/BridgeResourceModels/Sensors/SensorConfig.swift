@@ -16,7 +16,7 @@ public enum SensorAlertMode {
         lSelect // Select alert (30 seconds of indication cycles) is active
 }
 
-public class PartialSensorConfig: Decodable, Encodable {
+public class PartialSensorConfig: Gloss.Decodable, Gloss.Encodable {
 
     public var on: Bool
     public var reachable: Bool?
