@@ -14,13 +14,16 @@ public class SwiftyHue: NSObject {
     // MARK: Public Interface
     public var resourceCache: BridgeResourcesCache?;
     
-    public var bridgeSendAPI: BridgeSendAPI = BridgeSendAPI();
+    public var bridgeSendAPI: BridgeSendAPI = BridgeSendAPI()
+    
+    public var resourceAPI: ResourceAPI = ResourceAPI()
     
     public func setBridgeAccessConfig(_ bridgeAccessConfig: BridgeAccessConfig, resourceCacheHeartbeatProcessorDelegate: ResourceCacheHeartbeatProcessorDelegate? = nil) {
         
         self.bridgeAccessConfig = bridgeAccessConfig;
         self.resourceCacheHeartbeatProcessor = ResourceCacheHeartbeatProcessor(delegate: resourceCacheHeartbeatProcessorDelegate ?? self);
         self.bridgeSendAPI.setBridgeAccessConfig(bridgeAccessConfig)
+        self.resourceAPI.setBridgeAccessConfig(bridgeAccessConfig)
         self.heartbeatManager = HeartbeatManager(bridgeAccesssConfig: bridgeAccessConfig, heartbeatProcessors: [resourceCacheHeartbeatProcessor!]);
     }
     

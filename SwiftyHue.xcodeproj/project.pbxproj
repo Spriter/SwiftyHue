@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F20ADA01FAB995F00511BB1 /* ResourceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F20AD9F1FAB995F00511BB1 /* ResourceAPI.swift */; };
+		1F20ADA11FAB995F00511BB1 /* ResourceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F20AD9F1FAB995F00511BB1 /* ResourceAPI.swift */; };
+		1F20ADA21FAB995F00511BB1 /* ResourceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F20AD9F1FAB995F00511BB1 /* ResourceAPI.swift */; };
+		1F20ADA31FAB995F00511BB1 /* ResourceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F20AD9F1FAB995F00511BB1 /* ResourceAPI.swift */; };
 		1F6F02C31CF64D0B0041C739 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F02B71CF64D0B0041C739 /* AppDelegate.swift */; };
 		1F6F02C41CF64D0B0041C739 /* BridgeAccessConfigPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F02B91CF64D0B0041C739 /* BridgeAccessConfigPresentationViewController.swift */; };
 		1F6F02C51CF64D0B0041C739 /* BridgePushLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F02BA1CF64D0B0041C739 /* BridgePushLinkViewController.swift */; };
@@ -382,6 +386,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1F20AD9F1FAB995F00511BB1 /* ResourceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceAPI.swift; sourceTree = "<group>"; };
 		1F6F02B61CF64CEF0041C739 /* SwiftyHue Example-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwiftyHue Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		1F6F02B71CF64D0B0041C739 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F6F02B91CF64D0B0041C739 /* BridgeAccessConfigPresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAccessConfigPresentationViewController.swift; sourceTree = "<group>"; };
@@ -719,6 +724,7 @@
 				1FEF55791CF6400B00446694 /* BridgeResourceModels */,
 				1FEF55B21CF6400B00446694 /* BridgeResourcesCache.swift */,
 				1FEF55B31CF6400B00446694 /* BridgeSendAPI.swift */,
+				1F20AD9F1FAB995F00511BB1 /* ResourceAPI.swift */,
 				1FEF55B41CF6400B00446694 /* Dictionary+Extension.swift */,
 				1FEF55B51CF6400B00446694 /* HeartbeatManager.swift */,
 				1FEF55B61CF6400B00446694 /* Logger */,
@@ -1475,6 +1481,7 @@
 				1FEF55E81CF6400B00446694 /* Schedule.swift in Sources */,
 				1FEF55DC1CF6400B00446694 /* Rule.swift in Sources */,
 				1FEF56541CF6400B00446694 /* LoggerConfig.swift in Sources */,
+				1F20ADA11FAB995F00511BB1 /* ResourceAPI.swift in Sources */,
 				1FEF568F1CF6401400446694 /* SSDPScanner.swift in Sources */,
 				1FEF56811CF6401400446694 /* BridgeFinderDelegate.swift in Sources */,
 				1FEF55E51CF6400B00446694 /* Scene.swift in Sources */,
@@ -1522,6 +1529,7 @@
 			files = (
 				1FEF560D1CF6400B00446694 /* HumiditySensorConfig.swift in Sources */,
 				1FEF56011CF6400B00446694 /* GenericStatusSensor.swift in Sources */,
+				1F20ADA21FAB995F00511BB1 /* ResourceAPI.swift in Sources */,
 				1FEF56221CF6400B00446694 /* PresenceSensorState.swift in Sources */,
 				1FEF56311CF6400B00446694 /* SwitchSensorConfig.swift in Sources */,
 				1FEF56491CF6400B00446694 /* BridgeResourcesCache.swift in Sources */,
@@ -1616,6 +1624,7 @@
 				1FEF55EA1CF6400B00446694 /* Schedule.swift in Sources */,
 				1FEF55DE1CF6400B00446694 /* Rule.swift in Sources */,
 				1FEF56561CF6400B00446694 /* LoggerConfig.swift in Sources */,
+				1F20ADA31FAB995F00511BB1 /* ResourceAPI.swift in Sources */,
 				1FEF56901CF6401400446694 /* SSDPScanner.swift in Sources */,
 				1FEF56821CF6401400446694 /* BridgeFinderDelegate.swift in Sources */,
 				1FEF55E71CF6400B00446694 /* Scene.swift in Sources */,
@@ -1743,6 +1752,7 @@
 				23D508151D53AAC0009E926F /* Schedule.swift in Sources */,
 				23D508161D53AAC0009E926F /* Rule.swift in Sources */,
 				23D508171D53AAC0009E926F /* LoggerConfig.swift in Sources */,
+				1F20ADA01FAB995F00511BB1 /* ResourceAPI.swift in Sources */,
 				23D508181D53AAC0009E926F /* SSDPScanner.swift in Sources */,
 				23D508191D53AAC0009E926F /* BridgeFinderDelegate.swift in Sources */,
 				23D5081A1D53AAC0009E926F /* Scene.swift in Sources */,
