@@ -172,11 +172,26 @@ You can use the SendAPI to send requests to the bridge. For example recall a Sce
 ```Swift
 let sendAPI = swiftyHue.brideSendAPI
 ```
-
-
-
-
 More coming soon...
+
+### Resource API
+
+You can use the resourceAPI to request resources from the bridge. For example all groups.
+
+
+```Swift
+let resourceAPI = swiftyHue.resourceAPI
+
+resourceAPI.fetchGroups { (result) in
+
+    guard let groups = result.value else {
+        //...
+        return
+    }
+    
+    //...
+}
+```
 
 ## Generate documentation
 
