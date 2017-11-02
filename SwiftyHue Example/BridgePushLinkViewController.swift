@@ -53,6 +53,12 @@ class BridgePushLinkViewController: UIViewController {
 }
 
 extension BridgePushLinkViewController: BridgeAuthenticatorDelegate {
+   
+    // you should now ask the user to press the link button
+    func bridgeAuthenticatorRequiresLinkButtonPress(_ authenticator: BridgeAuthenticator, secondsLeft: TimeInterval) {
+        
+    }
+    
     
     func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFinishAuthentication username: String) {
         
@@ -66,10 +72,8 @@ extension BridgePushLinkViewController: BridgeAuthenticatorDelegate {
         print(error)
     }
     
-    // you should now ask the user to press the link button
-    func bridgeAuthenticatorRequiresLinkButtonPress(_ authenticator: BridgeAuthenticator) {
+    
 
-    }
     // user did not press the link button in time, you restart the process and try again
     func bridgeAuthenticatorDidTimeout(_ authenticator: BridgeAuthenticator) {
         

@@ -250,7 +250,7 @@ extension ViewController {
         print("Error while authenticating: \(error)")
     }
     
-    func bridgeAuthenticatorRequiresLinkButtonPress(_ authenticator: BridgeAuthenticator) {
+    func bridgeAuthenticatorRequiresLinkButtonPress(_ authenticator: BridgeAuthenticator, secondsLeft: TimeInterval) {
         print("Press link button")
     }
     
