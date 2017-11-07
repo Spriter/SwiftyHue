@@ -51,21 +51,20 @@ $ pod install
 target 'MyApp' do
   use_frameworks!
 
-  pod ’SwiftyHue’, '~> 0.1.6'
+  pod ’SwiftyHue’, '0.3.3'
 
 end
 
 target 'MyApp tvOS' do
     use_frameworks!
     
-    pod ’SwiftyHue’, '~> 0.1.6'
-    
+    pod ’SwiftyHue’, '0.3.3'
 end
 
 target 'MyApp watchOS Extension' do
     use_frameworks!
     
-    pod ’SwiftyHue/Base’, '~> 0.1.6'
+    pod ’SwiftyHue/Base’, '0.3.3'
     
 end
 ```
