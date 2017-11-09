@@ -220,5 +220,5 @@ in the root directory of the project.
 Remember to build the SwiftyHue framework targets to run the example application targets.
 
 ## Made with SwiftyHue
-[Bridge Inspector](https://appsto.re/de/JvJodb.i)
-[Musicbox](https://itunes.apple.com/us/app/musicbox-mubo/id1089676976?l=de&ls=1&mt=8)
+- [Bridge Inspector](https://appsto.re/de/JvJodb.i)
+- [Musicbox - mubo](https://itunes.apple.com/us/app/musicbox-mubo/id1089676976?l=de&ls=1&mt=8)
