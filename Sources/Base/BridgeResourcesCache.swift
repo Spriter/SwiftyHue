@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public class BridgeResourcesCache: Gloss.Decodable, Gloss.Encodable {
+public class BridgeResourcesCache: JSONDecodable {
     
     // MARK: Public Interface
     

@@ -157,7 +157,7 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
             let apiversion: String = "apiversion" <~~ json,
             let factorynew: Bool = "factorynew" <~~ json
         
-            else { Log.error("Can't create BridgeConfiguration from JSON:\n \(json)"); return nil }
+            else { print("Can't create BridgeConfiguration from JSON:\n \(json)"); return nil }
         
         self.identifier = identifier
         self.name = name

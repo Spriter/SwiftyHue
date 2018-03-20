@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public class RuleAction: Gloss.Decodable, Gloss.Encodable {
+public class RuleAction: Glossy {
     
     public let address: String
     public let method: String
@@ -18,15 +18,15 @@ public class RuleAction: Gloss.Decodable, Gloss.Encodable {
     public required init?(json: JSON) {
         
         guard let address: String = "address" <~~ json else {
-            Log.error("Can't create RuleAction, missing required attribute \"address\" in JSON:\n \(json)"); return nil
+            print("Can't create RuleAction, missing required attribute \"address\" in JSON:\n \(json)"); return nil
         }
         
         guard let method: String = "method" <~~ json else {
-            Log.error("Can't create RuleAction, missing required attribute \"method\" in JSON:\n \(json)"); return nil
+            print("Can't create RuleAction, missing required attribute \"method\" in JSON:\n \(json)"); return nil
         }
         
         guard let body: JSON = "body" <~~ json else {
-            Log.error("Can't create RuleAction, missing required attribute \"body\" in JSON:\n \(json)"); return nil
+            print("Can't create RuleAction, missing required attribute \"body\" in JSON:\n \(json)"); return nil
         }
         
         self.address = address

@@ -16,7 +16,7 @@ public class GenericFlagSensorState: PartialSensorState {
     init?(state: SensorState) {
         
         guard let flag: Bool = state.flag else {
-            Log.error("Can't create GenericFlagSensorState, missing required attribute \"flag\""); return nil
+            print("Can't create GenericFlagSensorState, missing required attribute \"flag\""); return nil
         }
         
         self.flag = flag
@@ -27,7 +27,7 @@ public class GenericFlagSensorState: PartialSensorState {
     required public init?(json: JSON) {
         
         guard let flag: Bool = "flag" <~~ json else {
-            Log.error("Can't create GenericFlagSensorState, missing required attribute \"flag\" in JSON:\n \(json)"); return nil
+            print("Can't create GenericFlagSensorState, missing required attribute \"flag\" in JSON:\n \(json)"); return nil
         }
         
         self.flag = flag

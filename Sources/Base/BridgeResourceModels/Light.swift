@@ -78,7 +78,7 @@ public class Light: BridgeResource, BridgeResourceDictGenerator {
             let manufacturername: String = "manufacturername" <~~ json,
             let swversion: String = "swversion" <~~ json
         
-            else { Log.error("Can't create Light from JSON:\n \(json)"); return nil }
+            else { print("Can't create Light from JSON:\n \(json)"); return nil }
         
         self.identifier = identifier
         self.name = name

@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import Log
+//import Log
 
-let Log = Logger(formatter: .Detailed, theme: .TomorrowNight)
+/*let Log = Logger(formatter: .Detailed, theme: .TomorrowNight)
 
 extension Formatters {
     static let Detailed = Formatter("[%@] %@.%@:%@ %@: %@", [
@@ -30,4 +30,4 @@ extension Themes {
         warning: "#F0C674",
         error:   "#CC6666"
     )
-}
+}*/

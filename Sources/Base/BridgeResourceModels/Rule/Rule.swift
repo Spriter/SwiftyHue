@@ -32,35 +32,35 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
         let dateFormatter = DateFormatter.hueApiDateFormatter
         
         guard let identifier: String = "id" <~~ json else {
-            Log.error("Can't create Rule, missing required attribute \"id\" in JSON:\n \(json)"); return nil
+            print("Can't create Rule, missing required attribute \"id\" in JSON:\n \(json)"); return nil
         }
         
         guard let name: String = "name" <~~ json else {
-            Log.error("Can't create Rule, missing required attribute \"name\" in JSON:\n \(json)"); return nil
+            print("Can't create Rule, missing required attribute \"name\" in JSON:\n \(json)"); return nil
         }
         
         guard let created: Date = Decoder.decode(dateForKey:"created", dateFormatter:dateFormatter)(json) else {
-            Log.error("Can't create Rule, missing required attribute \"created\" in JSON:\n \(json)"); return nil
+            print("Can't create Rule, missing required attribute \"created\" in JSON:\n \(json)"); return nil
         }
         
         guard let timestriggered: Int = "timestriggered" <~~ json else {
-            Log.error("Can't create Rule, missing required attribute \"timestriggered\" in JSON:\n \(json)"); return nil
+            print("Can't create Rule, missing required attribute \"timestriggered\" in JSON:\n \(json)"); return nil
         }
         
         guard let owner: String = "owner" <~~ json else {
-            Log.error("Can't create Rule, missing required attribute \"owner\" in JSON:\n \(json)"); return nil
+            print("Can't create Rule, missing required attribute \"owner\" in JSON:\n \(json)"); return nil
         }
         
         guard let status: String = "status" <~~ json else {
-            Log.error("Can't create Rule, missing required attribute \"status\" in JSON:\n \(json)"); return nil
+            print("Can't create Rule, missing required attribute \"status\" in JSON:\n \(json)"); return nil
         }
         
         guard let conditionJSONs: [JSON] = "conditions" <~~ json else {
-            Log.error("Can't create Rule, missing required attribute \"conditions\" in JSON:\n \(json)"); return nil
+            print("Can't create Rule, missing required attribute \"conditions\" in JSON:\n \(json)"); return nil
         }
         
         guard let actionJSONs: [JSON] = "actions" <~~ json else {
-            Log.error("Can't create Rule, missing required attribute \"actions\" in JSON:\n \(json)"); return nil
+            print("Can't create Rule, missing required attribute \"actions\" in JSON:\n \(json)"); return nil
         }
         
         

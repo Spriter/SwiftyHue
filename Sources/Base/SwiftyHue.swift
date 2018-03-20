@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Log
+//import Log
 
 public class SwiftyHue: NSObject {
     
@@ -50,26 +50,26 @@ public class SwiftyHue: NSObject {
     // MARK: Logging
     
     public func enableLogging(_ enabled: Bool) {
-        Log.enabled = enabled
+        //Log.enabled = enabled
     }
     
     /**
      The minimum level of severity for the Logger.
      */
-    public func setMinLevelForLogMessages(_ level: Level) {
+    /*public func setMinLevelForLogMessages(_ level: Level) {
         
-        Log.minLevel = level
-    }
+        //Log.minLevel = level
+    }*/
     
     // MARK: Private
     private var bridgeAccessConfig: BridgeAccessConfig?;
     private var heartbeatManager: HeartbeatManager?;
     private var resourceCacheHeartbeatProcessor: ResourceCacheHeartbeatProcessor?;
 
-    public override init() {
+    /*public override init() {
         super.init()
-        enableLogging(false)
-    }
+        //enableLogging(false)
+    }*/
 }
 
 extension SwiftyHue: ResourceCacheHeartbeatProcessorDelegate {

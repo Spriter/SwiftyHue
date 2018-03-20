@@ -16,7 +16,7 @@ public class PresenceSensorState: PartialSensorState {
     init?(state: SensorState) {
         
         guard let presence: Bool = state.presence else {
-            Log.error("Can't create PresenceSensorState, missing required attribute \"presence\""); return nil
+            print("Can't create PresenceSensorState, missing required attribute \"presence\""); return nil
         }
         
         self.presence = presence
@@ -27,7 +27,7 @@ public class PresenceSensorState: PartialSensorState {
     required public init?(json: JSON) {
         
         guard let presence: Bool = "presence" <~~ json else {
-            Log.error("Can't create PresenceSensorState, missing required attribute \"presence\" in JSON:\n \(json)"); return nil
+            print("Can't create PresenceSensorState, missing required attribute \"presence\" in JSON:\n \(json)"); return nil
         }
         
         self.presence = presence

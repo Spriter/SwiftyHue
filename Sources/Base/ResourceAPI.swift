@@ -34,13 +34,15 @@ public class ResourceAPI {
             
             switch response.result {
                 
-            case .success(let data):
+            case .success(let data) where data is JSON:
                 
                 let resources = Resource.dictionaryFromResourcesJSON(data as! JSON)
                 completionHandler(.success(resources))
                 
-            case .failure(let error):
+            case .success(_):
+                completionHandler(.failure(NSError(domain: "unexpected response", code: 0, userInfo: nil)))
                 
+            case .failure(let error):
                 completionHandler(.failure(error))
             }
         }
@@ -70,3 +72,4 @@ public class ResourceAPI {
         fetch(resource: .schedules, completionHandler: completionHandler)
     }
 }
+

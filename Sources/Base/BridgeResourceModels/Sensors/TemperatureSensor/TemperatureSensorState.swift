@@ -16,7 +16,7 @@ public class TemperatureSensorState: PartialSensorState {
     init?(state: SensorState) {
         
         guard let temperature: Int = state.temperature else {
-            Log.error("Can't create TemperatureSensorState, missing required attribute \"temperature\""); return nil
+            print("Can't create TemperatureSensorState, missing required attribute \"temperature\""); return nil
         }
         
         self.temperature = temperature
@@ -27,7 +27,7 @@ public class TemperatureSensorState: PartialSensorState {
     required public init?(json: JSON) {
         
         guard let temperature: Int = "temperature" <~~ json else {
-            Log.error("Can't create TemperatureSensorState, missing required attribute \"temperature\" in JSON:\n \(json)"); return nil
+            print("Can't create TemperatureSensorState, missing required attribute \"temperature\" in JSON:\n \(json)"); return nil
         }
         
         self.temperature = temperature

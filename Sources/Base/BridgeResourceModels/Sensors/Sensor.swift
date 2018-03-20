@@ -55,7 +55,7 @@ public class PartialSensor: BridgeResource, BridgeResourceDictGenerator, Equatab
     public required init?(json: JSON) {
         
         guard let identifier: String = "id" <~~ json else {
-            Log.error("Can't create Sensor, missing required attribute \"id\" in JSON:\n \(json)"); return nil
+            print("Can't create Sensor, missing required attribute \"id\" in JSON:\n \(json)"); return nil
         }
         
         //        guard let uniqueId: String = "uniqueid" <~~ json else {
@@ -63,23 +63,23 @@ public class PartialSensor: BridgeResource, BridgeResourceDictGenerator, Equatab
         //        }
         
         guard let name: String = "name" <~~ json else {
-            Log.error("Can't create Sensor, missing required attribute \"name\" in JSON:\n \(json)"); return nil
+            print("Can't create Sensor, missing required attribute \"name\" in JSON:\n \(json)"); return nil
         }
         
         guard let type: SensorType = "type" <~~ json else {
-            Log.error("Can't create Sensor, missing required attribute \"type\" in JSON:\n \(json)"); return nil
+            print("Can't create Sensor, missing required attribute \"type\" in JSON:\n \(json)"); return nil
         }
         
         guard let modelId: String = "modelid" <~~ json else {
-            Log.error("Can't create Sensor, missing required attribute \"modelid\" in JSON:\n \(json)"); return nil
+            print("Can't create Sensor, missing required attribute \"modelid\" in JSON:\n \(json)"); return nil
         }
         
         guard let manufacturerName: String = "manufacturername" <~~ json else {
-            Log.error("Can't create Sensor, missing required attribute \"manufacturername\" in JSON:\n \(json)"); return nil
+            print("Can't create Sensor, missing required attribute \"manufacturername\" in JSON:\n \(json)"); return nil
         }
         
         guard let swVersion: String = "swversion" <~~ json else {
-            Log.error("Can't create Sensor, missing required attribute \"swversion\" in JSON:\n \(json)"); return nil
+            print("Can't create Sensor, missing required attribute \"swversion\" in JSON:\n \(json)"); return nil
         }
         
         self.uniqueId = "uniqueid" <~~ json

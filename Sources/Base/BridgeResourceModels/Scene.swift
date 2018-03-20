@@ -96,7 +96,7 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
             let locked: Bool = "locked" <~~ json,
             let version: Int = "version" <~~ json
         
-            else { Log.error("Can't create Partial Scene from JSON:\n \(json)"); return nil }
+            else { print("Can't create Partial Scene from JSON:\n \(json)"); return nil }
         
         self.identifier = identifier
         self.name = name

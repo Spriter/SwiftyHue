@@ -16,7 +16,7 @@ public class OpenCloseSensorState: PartialSensorState {
     init?(state: SensorState) {
         
         guard let open: Bool = state.open else {
-            Log.error("Can't create OpenCloseSensorState, missing required attribute \"open\""); return nil
+            print("Can't create OpenCloseSensorState, missing required attribute \"open\""); return nil
         }
         
         self.open = open
@@ -27,7 +27,7 @@ public class OpenCloseSensorState: PartialSensorState {
     required public init?(json: JSON) {
         
         guard let open: Bool = "open" <~~ json else {
-            Log.error("Can't create OpenCloseSensorState, missing required attribute \"open\" in JSON:\n \(json)"); return nil
+            print("Can't create OpenCloseSensorState, missing required attribute \"open\" in JSON:\n \(json)"); return nil
         }
         
         self.open = open

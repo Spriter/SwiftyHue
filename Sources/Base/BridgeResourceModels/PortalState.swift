@@ -14,7 +14,7 @@ public enum PortalStateCommunication: String {
     case connected, connecting, disconnected, unknown
 }
 
-public struct PortalState: Gloss.Decodable, Gloss.Encodable {
+public struct PortalState: JSONDecodable {
     
     /**
      The bridge is signed on the portal

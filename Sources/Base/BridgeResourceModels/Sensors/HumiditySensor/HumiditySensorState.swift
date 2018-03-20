@@ -16,7 +16,7 @@ public class HumiditySensorState: PartialSensorState {
     init?(state: SensorState) {
         
         guard let humidity: Int = state.humidity else {
-            Log.error("Can't create HumiditySensorState, missing required attribute \"humidity\""); return nil
+            print("Can't create HumiditySensorState, missing required attribute \"humidity\""); return nil
         }
         
         self.humidity = humidity
@@ -27,7 +27,7 @@ public class HumiditySensorState: PartialSensorState {
     required public init?(json: JSON) {
         
         guard let humidity: Int = "humidity" <~~ json else {
-            Log.error("Can't create HumiditySensorState, missing required attribute \"humidity\" in JSON:\n \(json)"); return nil
+            print("Can't create HumiditySensorState, missing required attribute \"humidity\" in JSON:\n \(json)"); return nil
         }
         
         self.humidity = humidity

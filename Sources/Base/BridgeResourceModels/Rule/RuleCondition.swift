@@ -14,7 +14,7 @@ public enum RuleConditionOperator: String {
     
 }
 
-public class RuleCondition: Gloss.Decodable, Gloss.Encodable  {
+public class RuleCondition: Glossy  {
     
     public let address: String
     public let conditionOperator: RuleConditionOperator?
@@ -23,7 +23,7 @@ public class RuleCondition: Gloss.Decodable, Gloss.Encodable  {
     public required init?(json: JSON) {
         
         guard let address: String = "address" <~~ json else {
-            Log.error("Can't create RuleCondition, missing required attribute \"address\" in JSON:\n \(json)"); return nil
+            print("Can't create RuleCondition, missing required attribute \"address\" in JSON:\n \(json)"); return nil
         }
         
 //        guard let conditionOperator: RuleConditionOperator = "operator" <~~ json else {
