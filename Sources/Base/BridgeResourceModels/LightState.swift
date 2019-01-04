@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public struct LightState: JSONDecodable {
+public struct LightState: JSONDecodable, JSONEncodable {
     
     /**
      The on off status to set the light to.
