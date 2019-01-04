@@ -66,7 +66,7 @@ public class HeartbeatManager {
             localHeartbeatTimers[resourceType] = timer;
             
             // Add Timer to RunLoop
-            RunLoop.current.add(timer, forMode: RunLoopMode.defaultRunLoopMode)
+            RunLoop.current.add(timer, forMode: RunLoop.Mode.default)
         }
     }
     

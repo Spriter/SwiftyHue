@@ -75,7 +75,7 @@ public class BridgeAuthenticator {
         }
 
         let timer = Timer(timeInterval: pollingInterval, target: self, selector: #selector(BridgeAuthenticator.startRequest), userInfo: nil, repeats: false)
-        RunLoop.main.add(timer, forMode: RunLoopMode.defaultRunLoopMode)
+        RunLoop.main.add(timer, forMode: RunLoop.Mode.default)
     }
 
     private func handleResponse(_ data: Data?, response: URLResponse?, error: NSError?) {

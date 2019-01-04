@@ -9,6 +9,11 @@
 import Foundation
 import Gloss
 
+#if os(iOS) || os(tvOS)
+import UIKit
+#endif
+
+
 public enum ResourceCacheUpdateNotification: String {
     
     case lightsUpdated, groupsUpdated, scenesUpdated, sensorsUpdated, rulesUpdated, configUpdated, schedulesUpdated
@@ -36,8 +41,8 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         self.readCacheFromDisk()
         
         #if os(iOS) || os(tvOS)
-            
-        NotificationCenter.default.addObserver(self, selector: #selector(ResourceCacheHeartbeatProcessor.handleApplicationWillTerminateNotification), name: .UIApplicationWillTerminate, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ResourceCacheHeartbeatProcessor.handleApplicationWillTerminateNotification), name: UIApplication.willTerminateNotification, object: nil)
 
         #elseif os(watchOS)
             
@@ -80,7 +85,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
             
             // Check if Objects Dict differs from the cached one
             if nativeObjectDictDiffersFromCache(nativeObjectDict, resourceType: resourceType) {
-                
+
                 // Store in Cache
                 storeNativeObjectDictInCache(nativeObjectDict, resourceType: resourceType)
                 
