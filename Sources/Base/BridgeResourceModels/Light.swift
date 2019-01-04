@@ -122,15 +122,5 @@ extension Light: Hashable {
 }
 
 public func ==(lhs: Light, rhs: Light) -> Bool {
-    
-    return lhs.identifier == rhs.identifier &&
-        lhs.name == rhs.name &&
-        lhs.state == rhs.state &&
-        lhs.type == rhs.type &&
-        lhs.modelId == rhs.modelId &&
-        lhs.uniqueId == rhs.uniqueId &&
-        lhs.manufacturerName == rhs.manufacturerName &&
-        lhs.luminaireUniqueId == rhs.luminaireUniqueId &&
-        lhs.swVersion == rhs.swVersion &&
-        lhs.pointsymbol == rhs.pointsymbol
+    return lhs.identifier == rhs.identifier
 }
