@@ -23,7 +23,7 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
         super.viewDidLoad()
         
         swiftyHue.enableLogging(true)
-        swiftyHue.setMinLevelForLogMessages(.info)
+        //swiftyHue.setMinLevelForLogMessages(.info)
     }
     
     override func viewDidAppear(_ animated: Bool) {
