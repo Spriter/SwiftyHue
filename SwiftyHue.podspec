@@ -33,6 +33,8 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = { 'ENABLE_TESTABILITY[config=Debug]' => 'YES' }
   s.source_files = 'Sources/SwiftyHue.h'
 
+  s.swift_version = '4.2'
+
   s.subspec 'Base' do |base|
 
     base.ios.deployment_target = '9.0'
