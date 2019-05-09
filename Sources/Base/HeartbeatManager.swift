@@ -160,7 +160,7 @@ public class HeartbeatManager {
         
         for jsonError in jsonErrorArray {
             
-            print("Hearbeat received Error Result", (json: jsonError))
+            print("Hearbeat received Error Result", jsonError)
             let error = HueError(json: jsonError)
             if let error = error {
                 self.notifyAboutError(error)
