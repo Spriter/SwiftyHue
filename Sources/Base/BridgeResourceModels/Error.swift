@@ -32,6 +32,10 @@ public class HueError: NSError, JSONDecodable {
     
     public required init?(json: JSON) {
 
+        if let _: Any = "success" <~~ json {
+            return nil
+        }
+
         guard let type: Int = "error.type" <~~ json,
             let address: String = "error.address" <~~ json,
             let errorDescription: String = "error.description" <~~ json
