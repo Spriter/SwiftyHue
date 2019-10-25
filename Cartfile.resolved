@@ -1,4 +1,4 @@
 github "Alamofire/Alamofire" "4.8.0"
-github "hkellaway/Gloss" "2.1.0"
+github "hkellaway/Gloss" "3.1.0"
 github "luisobo/Nocilla" "0.11.0"
 github "robbiehanson/CocoaAsyncSocket" "7.6.3"

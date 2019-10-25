@@ -101,9 +101,9 @@ public class Group: BridgeResourceDictGenerator, BridgeResource {
 
 extension Group: Hashable {
     
-    public var hashValue: Int {
-        
-        return Int(self.identifier)!
+    public func hash(into hasher: inout Hasher) {
+     
+        hasher.combine(Int(self.identifier)!)
     }
 }
 

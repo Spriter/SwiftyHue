@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "SwiftyHue"
-  s.version          = "0.5.2"
+  s.version          = "0.5.3"
   s.summary          = "Philips Hue SDK written in swift."
 
 # This description is used to generate tags and improve search results.
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.authors          = { "Marcel Dittmann" => "marceldittmann@gmx.de", "Jerome Schmitz" => "jerome.schmitz@gmx.net", "Nils Lattek" => "nilslattek@gmail.com" }
-  s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag => "0.5.2" }
+  s.source           = { :git => "https://github.com/Spriter/SwiftyHue.git", :tag => "0.5.3" }
 
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = { 'ENABLE_TESTABILITY[config=Debug]' => 'YES' }
   s.source_files = 'Sources/SwiftyHue.h'
 
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
 
   s.subspec 'Base' do |base|
 
@@ -44,7 +44,7 @@ Pod::Spec.new do |s|
 
     base.source_files = 'Sources/Base/**/*.{h,swift}'
     base.dependency 'Alamofire', '4.8.0'
-    base.dependency 'Gloss', '2.1.0'
+    base.dependency 'Gloss', '3.1.0'
   end
 
   s.subspec 'BridgeServices' do |bridgeservices|
@@ -55,7 +55,7 @@ Pod::Spec.new do |s|
     bridgeservices.osx.deployment_target = '10.11'
 
     bridgeservices.dependency 'Alamofire', '4.8.0'
-    bridgeservices.dependency 'Gloss', '2.1.0'
+    bridgeservices.dependency 'Gloss', '3.1.0'
     bridgeservices.dependency 'CocoaAsyncSocket', '7.6.3'
 
   end

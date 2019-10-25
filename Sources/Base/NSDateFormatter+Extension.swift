@@ -10,7 +10,7 @@ import Foundation
 
 public extension DateFormatter {
     
-    static public var hueApiDateFormatter: DateFormatter {
+    static var hueApiDateFormatter: DateFormatter {
     
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"

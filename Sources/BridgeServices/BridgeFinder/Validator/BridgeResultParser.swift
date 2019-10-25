@@ -122,6 +122,6 @@ class BridgeResultParser: NSObject, XMLParserDelegate {
     }
 
     private func isBridgeDataValid() -> Bool {
-        return ip.characters.count != 0 && deviceType.characters.count != 0
+        return ip.count != 0 && deviceType.count != 0
     }
 }

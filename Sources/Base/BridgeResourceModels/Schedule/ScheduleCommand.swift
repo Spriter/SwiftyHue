@@ -48,9 +48,9 @@ public class ScheduleCommand: JSONDecodable {
 
 extension ScheduleCommand: Hashable {
     
-    public var hashValue: Int {
+    public func hash(into hasher: inout Hasher) {
         
-        return 1
+        hasher.combine(1)
     }
 }
 

@@ -49,9 +49,8 @@ public struct AppData: Glossy {
 
 extension AppData: Hashable {
     
-    public var hashValue: Int {
-        
-        return version
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(version)
     }
 }
 public func ==(lhs: AppData, rhs: AppData) -> Bool {

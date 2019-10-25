@@ -72,9 +72,9 @@ public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
 
 extension WhitelistEntry: Hashable {
     
-    public var hashValue: Int {
+    public func hash(into hasher: inout Hasher) {
         
-        return Int(identifier)!
+        hasher.combine(Int(self.identifier)!)
     }
 }
 

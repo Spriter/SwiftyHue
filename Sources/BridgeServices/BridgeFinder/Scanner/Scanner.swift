@@ -8,7 +8,7 @@
 
 
 protocol Scanner {
-    weak var delegate: ScannerDelegate? { get set }
+    var delegate: ScannerDelegate? { get set }
 
     init(delegate: ScannerDelegate?)
     func start()

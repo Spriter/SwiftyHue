@@ -95,9 +95,9 @@ public class SensorConfig: PartialSensorConfig {
 
 extension SensorConfig: Hashable {
     
-    public var hashValue: Int {
+    public func hash(into hasher: inout Hasher) {
         
-        return 1
+        hasher.combine(1)
     }
 }
 

@@ -43,9 +43,9 @@ public struct Backup: JSONDecodable {
 }
 extension Backup: Hashable {
     
-    public var hashValue: Int {
+    public func hash(into hasher: inout Hasher) {
         
-        return 1
+        hasher.combine(1)
     }
 }
 public func ==(lhs: Backup, rhs: Backup) -> Bool {
