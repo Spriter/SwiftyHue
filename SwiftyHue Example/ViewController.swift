@@ -29,13 +29,13 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let bridgeAccessConfig = readBridgeAccessConfig() {
+        if readBridgeAccessConfig() != nil {
         
             runTestCode()
             
         } else {
            
-            var controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateBridgeAccessController") as! CreateBridgeAccessController
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateBridgeAccessController") as! CreateBridgeAccessController
             controller.bridgeAccessCreationDelegate = self;
 
             self.present(controller, animated: false, completion: nil)
@@ -218,7 +218,7 @@ extension ViewController {
         //        }
     }
     
-    public func lightChanged() {
+    @objc public func lightChanged() {
         
         print("Changed")
         

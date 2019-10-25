@@ -97,9 +97,9 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
 
 extension Rule: Hashable {
     
-    public var hashValue: Int {
+    public func hash(into hasher: inout Hasher) {
         
-        return Int(self.identifier)!
+        hasher.combine(Int(self.identifier)!)
     }
 }
 

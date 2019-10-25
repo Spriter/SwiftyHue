@@ -135,9 +135,9 @@ public class PartialScene: BridgeResource, BridgeResourceDictGenerator {
 
 extension PartialScene: Hashable {
     
-    public var hashValue: Int {
+    public func hash(into hasher: inout Hasher) {
         
-        return Int(identifier)!
+        hasher.combine(Int(self.identifier)!)
     }
 }
 

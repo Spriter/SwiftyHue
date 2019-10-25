@@ -112,7 +112,7 @@ public class BridgeAuthenticator {
             return NSError(domain: "BridgeAuthenticator", code: 500, userInfo: [NSLocalizedDescriptionKey: "Could not parse result."])
         }
 
-        guard let errorJson = result?[0]["error"] else {
+        guard let errorJson = result[0]["error"] else {
             return nil
         }
 

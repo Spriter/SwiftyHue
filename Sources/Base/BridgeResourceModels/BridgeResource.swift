@@ -32,7 +32,7 @@ public protocol BridgeResourceDictGenerator {
 
 public extension BridgeResourceDictGenerator {
     
-    public static func dictionaryFromResourcesJSON(_ json: JSON) -> [String: AssociatedBridgeResourceType] {
+    static func dictionaryFromResourcesJSON(_ json: JSON) -> [String: AssociatedBridgeResourceType] {
         
         var dict = [String: AssociatedBridgeResourceType]();
 
