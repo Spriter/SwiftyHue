@@ -36,7 +36,7 @@ public struct LightState: JSONDecodable, JSONEncodable {
      */
     public var saturation: Int?;
         
-    public var xy: [Float]?;
+    public var xy: [Double]?;
     
     /**
      The colortemperature to set the light to in Mirek

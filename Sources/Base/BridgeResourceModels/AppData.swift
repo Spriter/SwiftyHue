@@ -29,13 +29,12 @@ public struct AppData: Glossy {
     
     public init?(json: JSON) {
         
-        guard let version: Int = "data" <~~ json,
-        let data: String = "version" <~~ json
-        else {return nil}
+        guard let version: Int = "version" <~~ json, let data: String = "data" <~~ json else {
+            return nil
+        }
         
         self.version = version
         self.data = data
-        
     }
     
     public func toJSON() -> JSON? {
