@@ -11,13 +11,15 @@ import Gloss
 
 public class LightlevelSensorState: PartialSensorState {
 
-    public let lightlevel: Int
-    public let dark: Bool
-    public let daylight: Bool
+    public let lightlevel: Int?
+    public let dark: Bool?
+    public let daylight: Bool?
     
     init?(state: SensorState) {
         
         self.lightlevel = state.lightlevel
+        self.dark = state.dark
+        self.daylight = state.daylight
         
         super.init(lastUpdated: state.lastUpdated)
     }

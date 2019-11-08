@@ -149,6 +149,10 @@ public class SensorState: PartialSensorState  {
     // TemperatureSensorState
     public let temperature: Int?
     
+    // LightlevelSensorState
+    public let lightlevel: Int?
+    public let dark: Bool?
+    
     required public init?(json: JSON) {
         
         daylight = "daylight" <~~ json
@@ -159,6 +163,8 @@ public class SensorState: PartialSensorState  {
         presence = "presence" <~~ json
         buttonEvent = "buttonevent" <~~ json
         temperature = "temperature" <~~ json
+        lightlevel = "lightlevel" <~~ json
+        dark = "dark" <~~ json
         
         super.init(json: json)
     }
@@ -173,7 +179,9 @@ public class SensorState: PartialSensorState  {
             "open" ~~> open,
             "presence" ~~> presence,
             "buttonevent" ~~> buttonEvent,
-            "temperature" ~~> temperature
+            "temperature" ~~> temperature,
+            "lightlevel" ~~> lightlevel,
+            "dark" ~~> dark
             ])
         
         return json
@@ -190,6 +198,7 @@ public func ==(lhs: SensorState, rhs: SensorState) -> Bool {
             lhs.open == rhs.open &&
             lhs.presence == rhs.presence &&
             lhs.buttonEvent == rhs.buttonEvent &&
-            lhs.temperature == rhs.temperature
-    
+            lhs.temperature == rhs.temperature &&
+            lhs.lightlevel == rhs.lightlevel &&
+            lhs.dark == rhs.dark
 }

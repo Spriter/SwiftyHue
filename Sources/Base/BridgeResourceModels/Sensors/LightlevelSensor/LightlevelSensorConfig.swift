@@ -24,14 +24,14 @@ public class LightlevelSensorConfig: PartialSensorConfig {
     init?(sensorConfig: SensorConfig) {
         
         guard let tholddark: Int = sensorConfig.tholddark else {
-            Log.error("Can't create LightlevelSensorConfig, missing required attribute \"tholddark\""); return nil
+            print("Can't create LightlevelSensorConfig, missing required attribute \"tholddark\""); return nil
         }
         self.tholddark = tholddark
         
         guard let tholdoffset: Int = sensorConfig.tholdoffset else {
-            Log.error("Can't create LightlevelSensorConfig, missing required attribute \"tholdoffset\""); return nil
+            print("Can't create LightlevelSensorConfig, missing required attribute \"tholdoffset\""); return nil
         }
-        self.tholdoffset = sensorConfig.tholdoffset
+        self.tholdoffset = tholdoffset
         
         super.init(on: sensorConfig.on, reachable: sensorConfig.reachable, battery: sensorConfig.battery, url: sensorConfig.url)
     }
@@ -39,12 +39,12 @@ public class LightlevelSensorConfig: PartialSensorConfig {
     required public init?(json: JSON) {
         
         guard let tholddark: Int = "tholddark" <~~ json else {
-            Log.error("Can't create LightlevelSensorConfig, missing required attribute \"tholddark\""); return nil
+            print("Can't create LightlevelSensorConfig, missing required attribute \"tholddark\""); return nil
         }
         self.tholddark = tholddark
         
         guard let tholdoffset: Int = "tholdoffset" <~~ json else {
-            Log.error("Can't create LightlevelSensorConfig, missing required attribute \"tholdoffset\""); return nil
+            print("Can't create LightlevelSensorConfig, missing required attribute \"tholdoffset\""); return nil
         }
         self.tholdoffset = tholdoffset
         

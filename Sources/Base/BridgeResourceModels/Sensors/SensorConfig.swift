@@ -65,12 +65,18 @@ public class SensorConfig: PartialSensorConfig {
     public let sunriseOffset: Int?
     public let sunsetOffset: Int?
     
+    // LightlevelSensorConfig
+    public let tholddark: Int?
+    public let tholdoffset: Int?
+    
     required public init?(json: JSON) {
         
         long = "long" <~~ json
         lat = "lat" <~~ json
         sunriseOffset = "sunriseoffset" <~~ json
         sunsetOffset = "sunsetoffset" <~~ json
+        tholddark = "tholddark" <~~ json
+        tholdoffset = "tholdoffset" <~~ json
 
         super.init(json: json)
     }
@@ -86,6 +92,8 @@ public class SensorConfig: PartialSensorConfig {
             "lat" ~~> lat,
             "sunriseoffset" ~~> sunriseOffset,
             "sunsetoffset" ~~> sunsetOffset,
+            "tholddark" ~~> tholddark,
+            "tholdoffset" ~~> tholdoffset
             ])
         
         return json
@@ -109,5 +117,7 @@ public func ==(lhs: SensorConfig, rhs: SensorConfig) -> Bool {
         lhs.long == rhs.long &&
         lhs.lat == rhs.lat &&
         lhs.sunriseOffset == rhs.sunriseOffset &&
-        lhs.sunsetOffset == rhs.sunsetOffset
+        lhs.sunsetOffset == rhs.sunsetOffset &&
+        lhs.tholddark == rhs.tholddark &&
+        lhs.tholdoffset == rhs.tholdoffset
 }

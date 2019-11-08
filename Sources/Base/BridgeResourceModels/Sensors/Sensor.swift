@@ -192,7 +192,7 @@ extension Sensor {
         return type == .ZGPSwitch || type == .ZLLSwitch || type == .ClipSwitch
     }
     
-    public func LightlevelSensor() -> Bool {
+    public func isLightlevelSensor() -> Bool {
         return type == .CLIPLightlevel || type == .ZLLLightlevel
     }
     
