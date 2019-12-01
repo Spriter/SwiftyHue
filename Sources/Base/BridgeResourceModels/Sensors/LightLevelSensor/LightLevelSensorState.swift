@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public class LightlevelSensorState: PartialSensorState {
+public class LightLevelSensorState: PartialSensorState {
 
     public let lightlevel: Int?
     public let dark: Bool?
@@ -60,7 +60,7 @@ public class LightlevelSensorState: PartialSensorState {
     }
 }
 
-public func ==(lhs: LightlevelSensorState, rhs: LightlevelSensorState) -> Bool {
+public func ==(lhs: LightLevelSensorState, rhs: LightLevelSensorState) -> Bool {
     return lhs.lastUpdated == rhs.lastUpdated &&
         lhs.lightlevel == rhs.lightlevel &&
         lhs.dark == lhs.dark &&

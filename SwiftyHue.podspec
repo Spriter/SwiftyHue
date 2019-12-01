@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "SwiftyHue"
-  s.version          = "0.5.7"
+  s.version          = "0.5.8"
   s.summary          = "Philips Hue SDK written in swift."
 
 # This description is used to generate tags and improve search results.

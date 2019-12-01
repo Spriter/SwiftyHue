@@ -1,5 +1,5 @@
 //
-//  LightlevelSensor.swift
+//  LightLevelSensor.swift
 //  Pods
 //
 //  Created by Jerome Schmitz on 08.11.19.
@@ -9,10 +9,10 @@
 import Foundation
 import Gloss
 
-public class LightlevelSensor: PartialSensor {
+public class LightLevelSensor: PartialSensor {
     
-    let config: LightlevelSensorConfig
-    let state: LightlevelSensorState
+    let config: LightLevelSensorConfig
+    let state: LightLevelSensorState
     
     required public init?(sensor: Sensor) {
         
@@ -24,11 +24,11 @@ public class LightlevelSensor: PartialSensor {
             return nil
         }
         
-        guard let config: LightlevelSensorConfig = LightlevelSensorConfig(sensorConfig: sensorConfig) else {
+        guard let config: LightLevelSensorConfig = LightLevelSensorConfig(sensorConfig: sensorConfig) else {
             return nil
         }
         
-        guard let state: LightlevelSensorState = LightlevelSensorState(state: sensorState) else {
+        guard let state: LightLevelSensorState = LightLevelSensorState(state: sensorState) else {
             return nil
         }
         
@@ -40,11 +40,11 @@ public class LightlevelSensor: PartialSensor {
     
     public required init?(json: JSON) {
         
-        guard let config: LightlevelSensorConfig = "config" <~~ json else {
+        guard let config: LightLevelSensorConfig = "config" <~~ json else {
             return nil
         }
         
-        guard let state: LightlevelSensorState = "state" <~~ json else {
+        guard let state: LightLevelSensorState = "state" <~~ json else {
             return nil
         }
         
@@ -55,7 +55,7 @@ public class LightlevelSensor: PartialSensor {
     }
 }
 
-public func ==(lhs: LightlevelSensor, rhs: LightlevelSensor) -> Bool {
+public func ==(lhs: LightLevelSensor, rhs: LightLevelSensor) -> Bool {
     return lhs.identifier == rhs.identifier &&
         lhs.name == rhs.name &&
         lhs.state == rhs.state &&

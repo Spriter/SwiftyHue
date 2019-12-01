@@ -1,5 +1,5 @@
 //
-//  LightlevelSensorConfig.swift
+//  LightLevelSensorConfig.swift
 //  Pods
 //
 //  Created by Jerome Schmitz on 08.11.19.
@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public class LightlevelSensorConfig: PartialSensorConfig {
+public class LightLevelSensorConfig: PartialSensorConfig {
     
     /**
      Threshold the user configured to be used in rules to determine insufficient lightlevel (ie below threshold). Default value 16000
@@ -66,7 +66,7 @@ public class LightlevelSensorConfig: PartialSensorConfig {
     }
 }
 
-public func ==(lhs: LightlevelSensorConfig, rhs: LightlevelSensorConfig) -> Bool {
+public func ==(lhs: LightLevelSensorConfig, rhs: LightLevelSensorConfig) -> Bool {
     return lhs.on == rhs.on &&
         lhs.reachable == rhs.reachable &&
         lhs.battery == rhs.battery &&

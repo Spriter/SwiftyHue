@@ -11,7 +11,7 @@ import Gloss
 
 
 public enum SensorType: String {
-    case ZGPSwitch, ZLLSwitch, ClipSwitch = "Clip Switch", CLIPOpenClose, CLIPPresence, ZLLPresence, CLIPTemperature, ZLLTemperature, CLIPHumidity, Daylight, CLIPGenericFlag, CLIPGenericStatus, CLIPLightlevel, ZLLLightlevel
+    case ZGPSwitch, ZLLSwitch, ClipSwitch = "Clip Switch", CLIPOpenClose, CLIPPresence, ZLLPresence, CLIPTemperature, ZLLTemperature, CLIPHumidity, Daylight, CLIPGenericFlag, CLIPGenericStatus, CLIPLightLevel, ZLLLightLevel
 }
 
 public func ==(lhs: PartialSensor, rhs: PartialSensor) -> Bool {
@@ -192,8 +192,8 @@ extension Sensor {
         return type == .ZGPSwitch || type == .ZLLSwitch || type == .ClipSwitch
     }
     
-    public func isLightlevelSensor() -> Bool {
-        return type == .CLIPLightlevel || type == .ZLLLightlevel
+    public func isLightLevelSensor() -> Bool {
+        return type == .CLIPLightLevel || type == .ZLLLightLevel
     }
     
     public func isTemperatureSensor() -> Bool {
@@ -233,7 +233,7 @@ extension Sensor {
         return TemperatureSensor(sensor: self)
     }
     
-    public func asLightlevelSensor() -> LightlevelSensor? {
-        return LightlevelSensor(sensor: self)
+    public func asLightlevelSensor() -> LightLevelSensor? {
+        return LightLevelSensor(sensor: self)
     }
 }
