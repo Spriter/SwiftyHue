@@ -11,12 +11,12 @@ import Gloss
 
 public enum GroupType: String {
     
-    case LightGroup, Room, Luminaire, LightSource
+    case LightGroup, Room, Luminaire, LightSource, Entertainment, Zone
 }
 
 public enum RoomClass: String {
     
-    case LivingRoom = "Living room", Kitchen, Dining, Bedroom, KidsBedroom = "Kids bedroom", Bathroom, Nursery, Recreation, Office, Gym, Hallway, Toilet, FrontDoor = "Front door", Garage, Terrace, Garden, Driveway, Carport, Other
+    case LivingRoom = "Living room", Kitchen, Dining, Bedroom, KidsBedroom = "Kids bedroom", Bathroom, Nursery, Recreation, Office, Gym, Hallway, Toilet, FrontDoor = "Front door", Garage, Terrace, Garden, Driveway, Carport, Other, Home, Downstairs, Upstairs, TopFloor = "Top floor", Attic, GuestRoom = "Guest room", Staircase, Lounge, ManCave = "Man cave", Computer, Studio, Music, TV, Reading, Closet, Storage, LaundryRoom = "Laundry room", Balcony, Porch, Barbecue, Pool
 }
 
 public class Group: BridgeResourceDictGenerator, BridgeResource {
