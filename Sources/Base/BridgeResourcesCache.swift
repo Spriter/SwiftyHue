@@ -125,7 +125,7 @@ public class BridgeResourcesCache: JSONDecodable {
     
     // MARK: Set
     
-    internal func setLights(_ lights: [String: Light]) {
+    public func setLights(_ lights: [String: Light]) {
         _lights = lights
     }
     
