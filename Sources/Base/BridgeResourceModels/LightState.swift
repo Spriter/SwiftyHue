@@ -75,16 +75,15 @@ public struct LightState: JSONDecodable, JSONEncodable {
         return jsonify([
             "on" ~~> on,
             "bri" ~~> brightness,
-            "hue" ~~> hue,
-            "sat" ~~> saturation,
-            "xy" ~~> xy,
-            "ct" ~~> ct,
-            "alert" ~~> alert,
-            "effect" ~~> effect,
-            "colormode" ~~> colormode,
-            "reachable" ~~> reachable,
-            "transitiontime" ~~> transitiontime
-
+//            "hue" ~~> hue,
+//            "sat" ~~> saturation,
+//            "xy" ~~> xy,
+//            "ct" ~~> ct,
+//            "alert" ~~> alert,
+//            "effect" ~~> effect,
+//            "colormode" ~~> colormode,
+//            "reachable" ~~> reachable,
+//            "transitiontime" ~~> transitiontime
         ])
     }
 }
