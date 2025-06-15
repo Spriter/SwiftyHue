@@ -84,7 +84,6 @@ public struct LightState: JSONDecodable, JSONEncodable {
             "colormode" ~~> colormode,
             "reachable" ~~> reachable,
             "transitiontime" ~~> transitiontime
-
         ])
     }
 }

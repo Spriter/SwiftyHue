@@ -143,17 +143,6 @@ extension ViewController {
 //            print(errors)
 //        }
         
-        //        var beatManager = BeatManager(bridgeAccessConfig: bridgeAccessConfig)
-//        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Lights)
-//        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Groups)
-//        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Rules)
-//        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Scenes)
-//        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Schedules)
-//        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Sensors)
-//        beatManager.setLocalHeartbeatInterval(3, forResourceType: .Config)
-//        
-//        beatManager.startHeartbeat()
-//                
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.lightChanged), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.lightsUpdated.rawValue), object: nil)
         
         //        var lightState = LightState()

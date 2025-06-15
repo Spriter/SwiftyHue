@@ -11,7 +11,6 @@ import Alamofire
 import Gloss
 
 public class BridgeSendAPI {
-  
     //    public typealias PHBridgeSendDictionaryCompletionHandler = (dictionary: [String: Any], errors: [Error]?) -> Void
     public typealias BridgeCreateSceneCompletionHandler = (_ sceneIdentifier: String?, _ errors: [Error]?) -> Void
     public typealias BridgeSendErrorArrayCompletionHandler = (_ errors: [Error]?) -> Void
@@ -37,15 +36,15 @@ public class BridgeSendAPI {
             completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
-
+        
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/0/action"
-
+        
         Alamofire.request(url, method: .get, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
-        }
-
+            }
+        
     }
     
     public func recallSceneWithIdentifier(_ identifier: String, inGroupWithIdentifier groupIdentifier: String, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
@@ -54,15 +53,15 @@ public class BridgeSendAPI {
             completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
-
+        
         let parameters = ["scene": identifier]
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/\(groupIdentifier)/action"
-
+        
         Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
-        }
+            }
     }
     
     /**
@@ -74,14 +73,14 @@ public class BridgeSendAPI {
             completionHandler(nil, [HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
-
+        
         var parameters: [String: Any] = ["name": name, "lights": lightIds, "recycle": recycle];
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/scenes"
-
+        
         parameters["transitiontime"] = transitionTime
         parameters["picture"] = picture
         parameters["appdata"] = appData?.toJSON()
-
+        
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
@@ -92,8 +91,8 @@ public class BridgeSendAPI {
                     }
                 }
                 completionHandler(sceneIdentifier, self.errorsFromResponse(response))
-        }
-
+            }
+        
     }
     
     public func updateLightStateInScene(_ sceneIdentifier: String, lightIdentifier: String, withLightState lightState: LightState, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
@@ -111,11 +110,11 @@ public class BridgeSendAPI {
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
-        }
+            }
     }
-
+    
     public func removeSceneWithId(_ identifier: String, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
-
+        
         remove(.scene, withIdentifier: identifier, completionHandler: completionHandler)
     }
     
@@ -127,20 +126,20 @@ public class BridgeSendAPI {
             completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
-
+        
         var parameters = lightState.toJSON()!
-
+        
         if let transitionTime = transitionTime{
             parameters["transitiontime"] = transitionTime
         }
-
+        
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/lights/\(identifier)/state"
-
+        
         Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
-        }
+            }
     }
     
     public func removeLightWithId(_ identifier: String, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
@@ -156,17 +155,17 @@ public class BridgeSendAPI {
             completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
-
+        
         let parameters: [String: Any] = ["name": name, "class": roomClass.rawValue, "type": type.rawValue
-            , "lights": lightIds]
+                                         , "lights": lightIds]
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups"
         
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
-        }
-
+            }
+        
     }
     
     public func createGroupWithName(_ name: String, andType type: GroupType, includeLightIds lightIds: [String], completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
@@ -175,28 +174,28 @@ public class BridgeSendAPI {
             completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
-
+        
         let parameters: [String: Any] = ["name": name, "type": type.rawValue
-            , "lights": lightIds]
+                                         , "lights": lightIds]
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups"
-
+        
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
-        }
+            }
     }
     
-    /** 
+    /**
      Allows the user to modify the name and the lights of a group
-    */
+     */
     public func updateGroupWithId(_ identifier: String, newName: String?, newLightIdentifiers: [String]?, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         guard let bridgeAccessConfig = self.bridgeAccessConfig else {
             completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
-
+        
         var parameters = [String: Any]()
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/\(identifier)"
         parameters["name"] = newName;
@@ -206,8 +205,8 @@ public class BridgeSendAPI {
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
-        }
-
+            }
+        
     }
     
     /**
@@ -219,10 +218,10 @@ public class BridgeSendAPI {
             completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
-
+        
         var parameters = [String: Any]()
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/\(identifier)"
-
+        
         parameters["name"] = newName;
         parameters["class"] = newRoomClass?.rawValue;
         parameters["lights"] = newLightIdentifiers;
@@ -231,7 +230,7 @@ public class BridgeSendAPI {
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
-        }
+            }
     }
     
     public func removeGroupWithId(_ identifier: String, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
@@ -245,7 +244,7 @@ public class BridgeSendAPI {
             completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
-
+        
         let parameters = lightState.toJSON()!
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/\(identifier)/action"
         
@@ -253,7 +252,7 @@ public class BridgeSendAPI {
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
-        }
+            }
     }
     
     // MARK: Rules
@@ -264,10 +263,10 @@ public class BridgeSendAPI {
             completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
-
+        
         var parameters = [String: Any]()
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/rules"
-
+        
         parameters["name"] = name;
         parameters["conditions"] = conditions.toJSONArray();
         parameters["actions"] = actions.toJSONArray();
@@ -276,8 +275,8 @@ public class BridgeSendAPI {
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
-        }
-
+            }
+        
     }
     
     public func updateRuleWithId(_ identifier: String, newName: String, newConditions: [RuleCondition]?, newActions: [RuleAction]?, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
@@ -286,7 +285,7 @@ public class BridgeSendAPI {
             completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
-
+        
         var parameters = [String: Any]()
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/rules/\(identifier)"
         
@@ -298,7 +297,7 @@ public class BridgeSendAPI {
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
-        }
+            }
     }
     
     public func removeRuleWithId(_ identifier: String, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
@@ -314,7 +313,7 @@ public class BridgeSendAPI {
             completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
-
+        
         var parameters = [String: Any]()
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/schedules"
         
@@ -325,7 +324,7 @@ public class BridgeSendAPI {
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
-        }
+            }
     }
     
     public func updateScheduleWithId(_ identifier: String, newName: String, newCommand: ScheduleCommand, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
@@ -334,10 +333,10 @@ public class BridgeSendAPI {
             completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
-
+        
         var parameters = [String: Any]()
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/schedules/\(identifier)"
-
+        
         parameters["name"] = newName;
         parameters["command"] = newCommand.toJSON();
         
@@ -345,7 +344,7 @@ public class BridgeSendAPI {
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
-        }
+            }
     }
     
     public func removeScheduleWithId(_ identifier: String, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
@@ -366,7 +365,7 @@ public class BridgeSendAPI {
         
         remove(.whitelistEntry, withIdentifier: identifier, completionHandler: completionHandler)
     }
-
+    
     // MARK: Helpers
     
     private func errorsFromResponse(_ response: DataResponse<Any>) -> [Error]? {
@@ -387,21 +386,44 @@ public class BridgeSendAPI {
     private func remove(_ bridgeResourceType: BridgeResourceType, withIdentifier identifier: String, completionHandler: @escaping BridgeSendErrorArrayCompletionHandler) {
         
         let resourceTypeForURL = bridgeResourceType == .whitelistEntry
-                                 ? "config/whitelist"
-                                 : "\(bridgeResourceType)s"
-
+        ? "config/whitelist"
+        : "\(bridgeResourceType)s"
+        
         guard let bridgeAccessConfig = self.bridgeAccessConfig else {
             completionHandler([HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!])
             return
         }
-
+        
         let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/\(resourceTypeForURL)/\(identifier)"
-
+        
         Alamofire.request(url, method: .delete, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
-            completionHandler(self.errorsFromResponse(response))
+                completionHandler(self.errorsFromResponse(response))
+            }
+    }
+    
+    public func requestLights(completion: @escaping ([Light]?) -> Void) {
+        guard let ipAddress = bridgeAccessConfig?.ipAddress,
+              let username = bridgeAccessConfig?.username
+        else {
+            return
         }
+        Alamofire.request("http://\(ipAddress)/api/\(username)/lights", parameters: nil)
+            .responseJSON { response in
+                var lights: [Light] = []
+                if let resultValueJSON = response.result.value as? JSON {
+                    for (key, value) in resultValueJSON {
+                        var resourceJSON = value as! JSON
+                        resourceJSON["id"] = key
+                        if let light = Light(json: resourceJSON), light.state.reachable == true {
+                            light.identifier = key
+                            lights.append(light)
+                        }
+                    }
+                }
+                completion(lights)
+            }
     }
     
 }

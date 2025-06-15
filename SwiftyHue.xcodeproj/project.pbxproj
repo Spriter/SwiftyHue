@@ -1232,12 +1232,15 @@
 					};
 					1FEF527B1CF607F200446694 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 7UCMG35W8L;
 					};
 					1FEF528F1CF6081B00446694 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 7UCMG35W8L;
 					};
 					1FEF529B1CF6081B00446694 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 7UCMG35W8L;
 					};
 					1FEF52B61CF6087A00446694 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -2442,6 +2445,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 7UCMG35W8L;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
@@ -2464,7 +2468,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-Example.demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftyHue Example/SwiftyHue Example-Bridging-Header.h";
@@ -2496,6 +2500,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 7UCMG35W8L;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
@@ -2511,7 +2516,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-Example.demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftyHue Example/SwiftyHue Example-Bridging-Header.h";
@@ -2542,6 +2547,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 7UCMG35W8L;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2562,7 +2568,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-Example.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-Example.demo.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -2593,6 +2599,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 7UCMG35W8L;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2606,7 +2613,7 @@
 				INFOPLIST_FILE = "SwiftyHue Example Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-Example.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-Example.demo.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -2640,6 +2647,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 7UCMG35W8L;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2660,7 +2668,7 @@
 				INFOPLIST_FILE = "SwiftyHue Example Watch/Info.plist";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-Example.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-Example.demo.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -2692,6 +2700,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 7UCMG35W8L;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2705,7 +2714,7 @@
 				IBSC_MODULE = SwiftyHue_Example_Watch_Extension;
 				INFOPLIST_FILE = "SwiftyHue Example Watch/Info.plist";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-Example.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blowfishlab.SwiftyHue-Example.demo.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

@@ -20,7 +20,7 @@ public class Light: BridgeResource, BridgeResourceDictGenerator {
     /**
      Identifier of the light.
      */
-    public let identifier: String
+    public var identifier: String = ""
     
     /**
         A unique, editable name given to the light.
@@ -69,7 +69,7 @@ public class Light: BridgeResource, BridgeResourceDictGenerator {
     
     public required init?(json: JSON) {
         
-        guard let identifier: String = "id" <~~ json,
+        guard //let identifier: String = "id" <~~ json,
             let name: String = "name" <~~ json,
             let state: LightState = "state" <~~ json,
             let type: String = "type" <~~ json,
@@ -80,7 +80,7 @@ public class Light: BridgeResource, BridgeResourceDictGenerator {
         
             else { print("Can't create Light from JSON:\n \(json)"); return nil }
         
-        self.identifier = identifier
+        //self.identifier = identifier
         self.name = name
         self.state = state
         self.type = type
@@ -97,7 +97,7 @@ public class Light: BridgeResource, BridgeResourceDictGenerator {
     public func toJSON() -> JSON? {
         
         let json = jsonify([
-            "id" ~~> identifier,
+            //"id" ~~> identifier,
             "name" ~~> name,
             "state" ~~> state,
             "type" ~~> type,
