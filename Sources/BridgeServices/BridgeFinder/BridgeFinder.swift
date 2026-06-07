@@ -16,6 +16,7 @@ public class BridgeFinder: NSObject, ScannerDelegate {
     private var remainingScannerClasses: [Scanner.Type] = []
     private var currentScanner: Scanner?
     private let validator: BridgeValidator
+    private var didFinish = false
     public weak var delegate: BridgeFinderDelegate?
 
     public override convenience init() {
@@ -38,20 +39,36 @@ public class BridgeFinder: NSObject, ScannerDelegate {
 
     /// Start scanning, make sure to assign a delegate to get notified about the results.
     public func start() {
+        didFinish = false
+        foundBridges = []
         remainingScannerClasses = allScannerClasses
+        scheduleOverallTimeout()
         startNextScanner()
+    }
+
+    private func scheduleOverallTimeout() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 20) { [weak self] in
+            guard let self = self, !self.didFinish else { return }
+            self.finish()
+        }
+    }
+
+    private func finish() {
+        guard !didFinish else { return }
+        didFinish = true
+        let ips = foundBridges.map { $0.ip }.joined(separator: ", ")
+        DispatchQueue.main.async {
+            self.delegate?.bridgeFinder(self, didFinishWithResult: self.foundBridges)
+        }
     }
 
     private func startNextScanner() {
         guard let scannerClass = remainingScannerClasses.popLast() else {
-            // all scanners finished, no bridges found
-            DispatchQueue.main.async {
-                self.delegate?.bridgeFinder(self, didFinishWithResult: self.foundBridges)
-            }
+            // all scanners finished
+            finish()
             return
         }
 
-        //Log.trace("Scanner started: \(scannerClass)")
         currentScanner = scannerClass.init(delegate: self)
         currentScanner?.start()
     }
@@ -68,11 +85,27 @@ public class BridgeFinder: NSObject, ScannerDelegate {
 
         validator.validate(ip, success: { [weak self] (bridge) in
             if let this = self {
-                this.foundBridges.append(bridge)
+                if !this.foundBridges.contains(where: { $0.ip == bridge.ip }) {
+                    this.foundBridges.append(bridge)
+                }
                 this.validateBridges(ips)
             }
         }, failure: { [weak self] (error) in
             if let this = self {
+                // Bridge Pro and newer firmware may not expose legacy description.xml
+                // in a parser-compatible shape. Keep discovered IPs usable by creating
+                // a minimal bridge model as fallback.
+                if !this.foundBridges.contains(where: { $0.ip == ip }) {
+                    let fallbackBridge = HueBridge(ip: ip,
+                                                   deviceType: "IpBridge",
+                                                   friendlyName: ip,
+                                                   modelDescription: "",
+                                                   modelName: "",
+                                                   serialNumber: "",
+                                                   UDN: "",
+                                                   icons: [])
+                    this.foundBridges.append(fallbackBridge)
+                }
                 this.validateBridges(ips)
             }
         })
@@ -83,16 +116,31 @@ public class BridgeFinder: NSObject, ScannerDelegate {
             // no bridges found, continue with next scanner
             startNextScanner()
         } else {
-            DispatchQueue.main.async {
-                self.delegate?.bridgeFinder(self, didFinishWithResult: self.foundBridges)
-            }
+            finish()
         }
     }
 
     // MARK: - ScannerDelegate
 
     func scanner(_ scanner: Scanner, didFinishWithResults ips: [String]) {
-        //Log.trace("Scanner finished: \(scanner) with result count: \(ips.count)")
-        validateBridges(ips)
+        // Discovery IPs from SSDP/NUPNP are already useful to proceed with push-link.
+        // Do not block UI on legacy description.xml validation, which may hang on newer bridges.
+        for ip in ips where !foundBridges.contains(where: { $0.ip == ip }) {
+            let bridge = HueBridge(ip: ip,
+                                   deviceType: "IpBridge",
+                                   friendlyName: ip,
+                                   modelDescription: "",
+                                   modelName: "",
+                                   serialNumber: "",
+                                   UDN: "",
+                                   icons: [])
+            foundBridges.append(bridge)
+        }
+
+        if !foundBridges.isEmpty {
+            finish()
+        } else {
+            validateBridges(ips)
+        }
     }
 }

@@ -17,16 +17,17 @@ class BridgeValidator {
     }
 
     private func createRequest(_ ip: String) -> NSMutableURLRequest {
-        let url = URL(string: "http://\(ip)/description.xml")!
+        let url = URL(string: "https://\(ip)/description.xml")!
 
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
+        request.timeoutInterval = 8
 
         return request
     }
 
     private func startRequest(_ request: URLRequest, success: @escaping (_ bridge: HueBridge) -> Void, failure: @escaping (_ error: NSError) -> Void) {
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let task = HueNetwork.urlSession.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 failure(error as NSError)
                 return
@@ -38,8 +39,12 @@ class BridgeValidator {
             }
 
             // TODO: check specVersion/xmlns and use correct parser
-            let parser = BridgeResultParser(xmlData: data)
-            parser.parse(success, failure: failure)
+            let parser = BridgeResultParser(xmlData: data, fallbackIP: request.url?.host ?? "")
+            parser.parse({ bridge in
+                success(bridge)
+            }, failure: { error in
+                failure(error)
+            })
         }
         
         task.resume()

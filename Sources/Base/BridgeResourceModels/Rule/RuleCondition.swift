@@ -7,52 +7,36 @@
 //
 
 import Foundation
-import Gloss
 
-public enum RuleConditionOperator: String {
+public enum RuleConditionOperator: String, Codable {
     case EQ = "eq", GT = "gt", LT = "lt", DX = "dx", DDX = "ddx"
-    
 }
 
-public class RuleCondition: Glossy  {
-    
+public class RuleCondition: Codable  {
+
     public let address: String
     public let conditionOperator: RuleConditionOperator?
     public let value: String?
-    
-    public required init?(json: JSON) {
-        
-        guard let address: String = "address" <~~ json else {
-            print("Can't create RuleCondition, missing required attribute \"address\" in JSON:\n \(json)"); return nil
-        }
-        
-//        guard let conditionOperator: RuleConditionOperator = "operator" <~~ json else {
-//            Log.error("Can't create RuleCondition, missing required attribute \"operator\" in JSON:\n \(json)"); return nil
-//        }
-        
-        self.address = address
-        
-        self.conditionOperator = "operator" <~~ json
-        self.value = "value" <~~ json
+
+    enum CodingKeys: String, CodingKey {
+        case address
+        case conditionOperator = "operator"
+        case value
     }
-    
-    public func toJSON() -> JSON? {
-        
-        let json = jsonify([
-            "address" ~~> address,
-            "operator" ~~> conditionOperator,
-            "value" ~~> value
-            ])
-        
-        return json
+
+    public init(address: String, conditionOperator: RuleConditionOperator?, value: String?) {
+        self.address = address
+        self.conditionOperator = conditionOperator
+        self.value = value
     }
 }
 
 extension RuleCondition: Hashable {
-    
+
     public func hash(into hasher: inout Hasher) {
-        
-        hasher.combine(1)
+        hasher.combine(address)
+        hasher.combine(conditionOperator?.rawValue)
+        hasher.combine(value)
     }
 }
 
@@ -60,4 +44,20 @@ public func ==(lhs: RuleCondition, rhs: RuleCondition) -> Bool {
     return lhs.address == rhs.address &&
         lhs.conditionOperator  == rhs.conditionOperator &&
         lhs.value  == rhs.value
+}
+
+
+public extension RuleCondition {
+    convenience init?(json: [String: Any]) {
+        guard let data = try? JSONSerialization.data(withJSONObject: json),
+              let decoded = try? JSONDecoder().decode(RuleCondition.self, from: data) else { return nil }
+        self.init(address: decoded.address, conditionOperator: decoded.conditionOperator, value: decoded.value)
+    }
+
+    func toJSON() -> [String: Any]? {
+        guard let data = try? JSONEncoder().encode(self),
+              let object = try? JSONSerialization.jsonObject(with: data),
+              let json = object as? [String: Any] else { return nil }
+        return json
+    }
 }

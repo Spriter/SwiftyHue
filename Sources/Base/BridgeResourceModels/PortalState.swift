@@ -7,61 +7,54 @@
 //
 
 import Foundation
-import Gloss
 
-public enum PortalStateCommunication: String {
-    
+public enum PortalStateCommunication: String, Codable {
     case connected, connecting, disconnected, unknown
 }
 
-public struct PortalState: JSONDecodable {
-    
+public struct PortalState: Codable {
+
     /**
      The bridge is signed on the portal
      */
     public let signedon: Bool?
-    
+
     /**
      The bridge is able to send messages to the portal
      */
     public let incoming: Bool?
-    
+
     /**
      The bridge is able to recieve messages from the portal
      */
     public let outgoing: Bool?
-    
+
     /**
      The bridge is communicating with SmartPortal
      */
     public let communication: PortalStateCommunication?
-    
-    public init?(json: JSON) {
-        
-        signedon = "signedon" <~~ json
-        incoming = "incoming" <~~ json
-        outgoing = "outgoing" <~~ json
-        communication = "communication" <~~ json
-        
+
+    public init?(json: [String: Any]) {
+        guard let data = try? JSONSerialization.data(withJSONObject: json),
+              let decoded = try? JSONDecoder().decode(PortalState.self, from: data) else {
+            return nil
+        }
+        self = decoded
     }
-    
-    public func toJSON() -> JSON? {
-        
-        let json = jsonify([
-            "signedon" ~~> signedon,
-            "incoming" ~~> incoming,
-            "outgoing" ~~> outgoing,
-            "communication" ~~> communication
-            ])
-        
+
+    public func toJSON() -> [String: Any]? {
+        guard let data = try? JSONEncoder().encode(self),
+              let object = try? JSONSerialization.jsonObject(with: data),
+              let json = object as? [String: Any] else {
+            return nil
+        }
         return json
     }
 }
 
 extension PortalState: Hashable {
-    
+
     public func hash(into hasher: inout Hasher) {
-        
         hasher.combine(1)
     }
 }

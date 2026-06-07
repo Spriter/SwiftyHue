@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import Gloss
 
 public class BridgeSendAPI {
   
@@ -38,9 +37,9 @@ public class BridgeSendAPI {
             return
         }
 
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/0/action"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/0/action"
 
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .get, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
@@ -56,9 +55,9 @@ public class BridgeSendAPI {
         }
 
         let parameters = ["scene": identifier]
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/\(groupIdentifier)/action"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/\(groupIdentifier)/action"
 
-        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
@@ -76,17 +75,17 @@ public class BridgeSendAPI {
         }
 
         var parameters: [String: Any] = ["name": name, "lights": lightIds, "recycle": recycle];
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/scenes"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/scenes"
 
         parameters["transitiontime"] = transitionTime
         parameters["picture"] = picture
         parameters["appdata"] = appData?.toJSON()
 
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 var sceneIdentifier: String?
-                if let responseItemJSONs = response.result.value as? [JSON] {
+                if let responseItemJSONs = response.value as? [JSON] {
                     if let success = responseItemJSONs[0]["success"] as? JSON {
                         sceneIdentifier = success["id"] as? String
                     }
@@ -105,9 +104,9 @@ public class BridgeSendAPI {
         
         let parameters = lightState.toJSON()!
         
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/scenes/\(sceneIdentifier)/lightstates/\(lightIdentifier)"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/scenes/\(sceneIdentifier)/lightstates/\(lightIdentifier)"
         
-        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
@@ -134,9 +133,9 @@ public class BridgeSendAPI {
             parameters["transitiontime"] = transitionTime
         }
 
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/lights/\(identifier)/state"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/lights/\(identifier)/state"
 
-        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
@@ -159,9 +158,9 @@ public class BridgeSendAPI {
 
         let parameters: [String: Any] = ["name": name, "class": roomClass.rawValue, "type": type.rawValue
             , "lights": lightIds]
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups"
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
@@ -178,9 +177,9 @@ public class BridgeSendAPI {
 
         let parameters: [String: Any] = ["name": name, "type": type.rawValue
             , "lights": lightIds]
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups"
 
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
@@ -198,11 +197,11 @@ public class BridgeSendAPI {
         }
 
         var parameters = [String: Any]()
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/\(identifier)"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/\(identifier)"
         parameters["name"] = newName;
         parameters["lights"] = newLightIdentifiers;
         
-        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
@@ -221,13 +220,13 @@ public class BridgeSendAPI {
         }
 
         var parameters = [String: Any]()
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/\(identifier)"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/\(identifier)"
 
         parameters["name"] = newName;
         parameters["class"] = newRoomClass?.rawValue;
         parameters["lights"] = newLightIdentifiers;
         
-        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
@@ -247,9 +246,9 @@ public class BridgeSendAPI {
         }
 
         let parameters = lightState.toJSON()!
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/\(identifier)/action"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/groups/\(identifier)/action"
         
-        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
@@ -266,13 +265,13 @@ public class BridgeSendAPI {
         }
 
         var parameters = [String: Any]()
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/rules"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/rules"
 
         parameters["name"] = name;
-        parameters["conditions"] = conditions.toJSONArray();
-        parameters["actions"] = actions.toJSONArray();
+        parameters["conditions"] = conditions.compactMap { $0.toJSON() };
+        parameters["actions"] = actions.compactMap { $0.toJSON() };
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
@@ -288,13 +287,13 @@ public class BridgeSendAPI {
         }
 
         var parameters = [String: Any]()
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/rules/\(identifier)"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/rules/\(identifier)"
         
         parameters["name"] = newName;
-        parameters["conditions"] = newConditions?.toJSONArray();
-        parameters["actions"] = newActions?.toJSONArray();
+        parameters["conditions"] = newConditions?.compactMap { $0.toJSON() };
+        parameters["actions"] = newActions?.compactMap { $0.toJSON() };
         
-        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
@@ -316,12 +315,12 @@ public class BridgeSendAPI {
         }
 
         var parameters = [String: Any]()
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/schedules"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/schedules"
         
         parameters["name"] = name;
         parameters["command"] = command.toJSON();
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
@@ -336,12 +335,12 @@ public class BridgeSendAPI {
         }
 
         var parameters = [String: Any]()
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/schedules/\(identifier)"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/schedules/\(identifier)"
 
         parameters["name"] = newName;
         parameters["command"] = newCommand.toJSON();
         
-        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
                 completionHandler(self.errorsFromResponse(response))
@@ -369,12 +368,12 @@ public class BridgeSendAPI {
 
     // MARK: Helpers
     
-    private func errorsFromResponse(_ response: DataResponse<Any>) -> [Error]? {
+    private func errorsFromResponse(_ response: AFDataResponse<Any>) -> [Error]? {
         
         var errors: [HueError]?
-        if let responseItemJSONs = response.result.value as? [JSON] {
+        if let responseItemJSONs = response.value as? [JSON] {
             
-            errors = [HueError].from(jsonArray: responseItemJSONs)
+            errors = responseItemJSONs.compactMap { HueError(json: $0) }
         }
         
         if let errors = errors, errors.count > 0 {
@@ -395,9 +394,9 @@ public class BridgeSendAPI {
             return
         }
 
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/\(resourceTypeForURL)/\(identifier)"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/\(resourceTypeForURL)/\(identifier)"
 
-        Alamofire.request(url, method: .delete, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .delete, encoding: JSONEncoding.default)
             .responseJSON { response in
                 
             completionHandler(self.errorsFromResponse(response))

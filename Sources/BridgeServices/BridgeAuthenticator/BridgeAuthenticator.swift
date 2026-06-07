@@ -35,7 +35,7 @@ public class BridgeAuthenticator {
     }
 
     private func createRequest() -> URLRequest {
-        let url = URL(string: "http://\(ip)/api")!
+        let url = URL(string: "https://\(ip)/api")!
 
         let body = ["devicetype": uniqueIdentifier]
 
@@ -50,16 +50,16 @@ public class BridgeAuthenticator {
         
         let request = createRequest()
         
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let task = HueNetwork.urlSession.dataTask(with: request) { (data, response, error) in
             self.handleResponse(data, response: response, error: error as NSError?)
             return ()
         }
         
-//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+//        let task = HueNetwork.urlSession.dataTask(with: request) { (data, response, error) in
 //            self.handleResponse(data, response: response, error: error)
 //        }
         
-//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+//        let task = HueNetwork.urlSession.dataTask(with: request) { (data, response, error) in
 //            self.handleResponse(data, response: response, error: error)
 //        }
 

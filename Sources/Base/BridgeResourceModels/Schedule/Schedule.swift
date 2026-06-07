@@ -7,16 +7,13 @@
 //
 
 import Foundation
-import Gloss
 
 public class Schedule: BridgeResource, BridgeResourceDictGenerator {
-    
+
     public typealias AssociatedBridgeResourceType = Schedule
-    
-    public var resourceType: BridgeResourceType {
-        return .schedule
-    };
-    
+
+    public var resourceType: BridgeResourceType { .schedule }
+
     public let identifier: String
     public let name: String
     public let scheduleDescription: String
@@ -25,60 +22,52 @@ public class Schedule: BridgeResource, BridgeResourceDictGenerator {
     public let status: String
     public let autodelete: Bool?
     public let recycle: Bool?
-    
-    public required init?(json: JSON) {
-        
-        guard let identifier: String = "id" <~~ json else {
+
+    public required init?(json: [String: Any]) {
+        guard let identifier = json["id"] as? String else {
             print("Can't create Schedule, missing required attribute \"id\" in JSON:\n \(json)"); return nil
         }
-        
-        guard let name: String = "name" <~~ json else {
+        guard let name = json["name"] as? String else {
             print("Can't create Schedule, missing required attribute \"name\" in JSON:\n \(json)"); return nil
         }
-        
-        guard let scheduleDescription: String = "description" <~~ json else {
+        guard let scheduleDescription = json["description"] as? String else {
             print("Can't create Schedule, missing required attribute \"description\" in JSON:\n \(json)"); return nil
         }
-        
-        guard let command: ScheduleCommand = "command" <~~ json else {
+        guard let commandJSON = json["command"] as? [String: Any],
+              let command = ScheduleCommand(json: commandJSON) else {
             print("Can't create Schedule, missing required attribute \"command\" in JSON:\n \(json)"); return nil
         }
-        
-        guard let status: String = "status" <~~ json else {
+        guard let status = json["status"] as? String else {
             print("Can't create Schedule, missing required attribute \"status\" in JSON:\n \(json)"); return nil
         }
-        
+
         self.identifier = identifier
         self.name = name
         self.scheduleDescription = scheduleDescription
         self.command = command
         self.status = status
-        self.recycle = "recycle" <~~ json
-        self.autodelete = "autodelete" <~~ json
-        self.localtime = "localtime" <~~ json
+        self.recycle = json["recycle"] as? Bool
+        self.autodelete = json["autodelete"] as? Bool
+        self.localtime = json["localtime"] as? String
     }
-    
-    public func toJSON() -> JSON? {
-        
-        let json = jsonify([
-            "id" ~~> identifier,
-            "name" ~~> name,
-            "description" ~~> scheduleDescription,
-            "command" ~~> command,
-            "localtime" ~~> localtime,
-            "status" ~~> status,
-            "autodelete" ~~> autodelete,
-            "recycle" ~~> recycle
-            ])
-        
+
+    public func toJSON() -> [String: Any]? {
+        var json: [String: Any] = [
+            "id": identifier,
+            "name": name,
+            "description": scheduleDescription,
+            "status": status
+        ]
+        if let commandJSON = command.toJSON() { json["command"] = commandJSON }
+        if let localtime { json["localtime"] = localtime }
+        if let autodelete { json["autodelete"] = autodelete }
+        if let recycle { json["recycle"] = recycle }
         return json
     }
 }
 
 extension Schedule: Hashable {
-    
     public func hash(into hasher: inout Hasher) {
-        
         hasher.combine(1)
     }
 }

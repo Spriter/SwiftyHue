@@ -9,7 +9,6 @@ import Foundation
 
 import Foundation
 import Alamofire
-import Gloss
 
 public class ResourceAPI {
     
@@ -20,17 +19,17 @@ public class ResourceAPI {
         self.bridgeAccessConfig = bridgeAccessConfig
     }
     
-    public func fetch<Resource: BridgeResourceDictGenerator>(resource: HeartbeatBridgeResourceType, completionHandler:@escaping (Alamofire.Result<[String: Resource]>) -> ()) where Resource.AssociatedBridgeResourceType == Resource {
+    public func fetch<Resource: BridgeResourceDictGenerator>(resource: HeartbeatBridgeResourceType, completionHandler:@escaping (Result<[String: Resource], Error>) -> ()) where Resource.AssociatedBridgeResourceType == Resource {
         
         guard let bridgeAccessConfig = bridgeAccessConfig else {
             
-            completionHandler(Alamofire.Result.failure(HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!))
+            completionHandler(.failure(HueError(address: "SwiftyHue", errorDescription: "No bridgeAccessConfig available", type: 1)!))
             return
         }
         
-        let url = "http://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/\(resource.rawValue.lowercased())"
+        let url = "https://\(bridgeAccessConfig.ipAddress)/api/\(bridgeAccessConfig.username)/\(resource.rawValue.lowercased())"
         
-        Alamofire.request(url).responseJSON { response in
+        HueNetwork.session.request(url).responseJSON { response in
             
             switch response.result {
                 
@@ -48,28 +47,27 @@ public class ResourceAPI {
         }
     }
     
-    public func fetchLights(_ completionHandler: @escaping (Alamofire.Result<[String: Light]>) -> ()) {
+    public func fetchLights(_ completionHandler: @escaping (Result<[String: Light], Error>) -> ()) {
         fetch(resource: .lights, completionHandler: completionHandler)
     }
     
-    public func fetchGroups(_ completionHandler: @escaping (Alamofire.Result<[String: Group]>) -> ()) {
+    public func fetchGroups(_ completionHandler: @escaping (Result<[String: Group], Error>) -> ()) {
         fetch(resource: .groups, completionHandler: completionHandler)
     }
     
-    public func fetchScenes(_ completionHandler: @escaping (Alamofire.Result<[String: PartialScene]>) -> ()) {
+    public func fetchScenes(_ completionHandler: @escaping (Result<[String: PartialScene], Error>) -> ()) {
         fetch(resource: .scenes, completionHandler: completionHandler)
     }
     
-    public func fetchRules(_ completionHandler: @escaping (Alamofire.Result<[String: Rule]>) -> ()) {
+    public func fetchRules(_ completionHandler: @escaping (Result<[String: Rule], Error>) -> ()) {
         fetch(resource: .rules, completionHandler: completionHandler)
     }
     
-    public func fetchSensors(_ completionHandler: @escaping (Alamofire.Result<[String: Sensor]>) -> ()) {
+    public func fetchSensors(_ completionHandler: @escaping (Result<[String: Sensor], Error>) -> ()) {
         fetch(resource: .sensors, completionHandler: completionHandler)
     }
     
-    public func fetchSchedules(_ completionHandler: @escaping (Alamofire.Result<[String: Schedule]>) -> ()) {
+    public func fetchSchedules(_ completionHandler: @escaping (Result<[String: Schedule], Error>) -> ()) {
         fetch(resource: .schedules, completionHandler: completionHandler)
     }
 }
-

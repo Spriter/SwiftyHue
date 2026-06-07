@@ -7,65 +7,24 @@
 //
 
 import Foundation
-import Gloss
 
-public class DaylightSensorConfig: PartialSensorConfig {
-    
-    public let long: String?
-    public let lat: String?
-    public let sunriseOffset: Int?
-    public let sunsetOffset: Int?
-    
-    init?(sensorConfig: SensorConfig) {
-        
-//        guard let long: String = sensorConfig.long else {
-//            Log.error("Can't create DaylightSensorConfig, missing required attribute \"long\""); return nil
-//        }
-//        
-//        guard let lat: String = sensorConfig.lat else {
-//            Log.error("Can't create DaylightSensorConfig, missing required attribute \"lat\""); return nil
-//        }
-        
-        self.long = sensorConfig.long
-        self.lat = sensorConfig.lat
-        self.sunriseOffset = sensorConfig.sunriseOffset
-        self.sunsetOffset = sensorConfig.sunsetOffset
-        
-        super.init(on: sensorConfig.on, reachable: sensorConfig.reachable, battery: sensorConfig.battery, url: sensorConfig.url)
+public class DaylightSensorConfig: SensorConfig {
+
+    required public init?(sensorConfig: SensorConfig) {
+        super.init(on: sensorConfig.on, reachable: sensorConfig.reachable, battery: sensorConfig.battery, url: sensorConfig.url, long: sensorConfig.long, lat: sensorConfig.lat, sunriseOffset: sensorConfig.sunriseOffset, sunsetOffset: sensorConfig.sunsetOffset, tholddark: sensorConfig.tholddark, tholdoffset: sensorConfig.tholdoffset)
     }
-    
-    required public init?(json: JSON) {
-        
-//        guard let long: String = "long" <~~ json else {
-//            Log.error("Can't create DaylightSensorConfig, missing required attribute \"long\" in JSON:\n \(json)"); return nil
-//        }
-//        
-//        guard let lat: String = "lat" <~~ json else {
-//            Log.error("Can't create DaylightSensorConfig, missing required attribute \"lat\" in JSON:\n \(json)"); return nil
-//        }
-        
-        self.long = "long" <~~ json
-        self.lat = "lat" <~~ json
-        self.sunriseOffset = "sunriseoffset" <~~ json
-        self.sunsetOffset = "sunsetoffset" <~~ json
-        
+
+    required public init?(json: [String: Any]) {
         super.init(json: json)
     }
-    
-    public override func toJSON() -> JSON? {
-        
-        if var superJson = super.toJSON() {
-            let json = jsonify([
-                "long" ~~> long,
-                "lat" ~~> lat,
-                "sunriseoffset" ~~> sunriseOffset,
-                "sunsetoffset" ~~> sunsetOffset
-                ])
-            superJson.unionInPlace(json!)
-            return superJson
-        }
-        
-        return nil
+
+    public override func toJSON() -> [String: Any]? {
+        var superJson = super.toJSON() ?? [:]
+        if let long { superJson["long"] = long }
+        if let lat { superJson["lat"] = lat }
+        if let sunriseOffset { superJson["sunriseoffset"] = sunriseOffset }
+        if let sunsetOffset { superJson["sunsetoffset"] = sunsetOffset }
+        return superJson
     }
 }
 

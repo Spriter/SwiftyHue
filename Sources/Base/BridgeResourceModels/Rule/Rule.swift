@@ -7,16 +7,15 @@
 //
 
 import Foundation
-import Gloss
 
 public class Rule: BridgeResource, BridgeResourceDictGenerator {
-    
+
     public typealias AssociatedBridgeResourceType = Rule
-    
+
     public var resourceType: BridgeResourceType {
         return .rule
-    };
-    
+    }
+
     public let identifier: String
     public let name: String
     public let lasttriggered: Date?
@@ -26,79 +25,87 @@ public class Rule: BridgeResource, BridgeResourceDictGenerator {
     public let status: String
     public let conditions: [RuleCondition]
     public let actions: [RuleAction]
-    
+
     public required init?(json: JSON) {
-        
+
         let dateFormatter = DateFormatter.hueApiDateFormatter
-        
-        guard let identifier: String = "id" <~~ json else {
+
+        guard let identifier = json["id"] as? String else {
             print("Can't create Rule, missing required attribute \"id\" in JSON:\n \(json)"); return nil
         }
-        
-        guard let name: String = "name" <~~ json else {
+
+        guard let name = json["name"] as? String else {
             print("Can't create Rule, missing required attribute \"name\" in JSON:\n \(json)"); return nil
         }
-        
-        guard let created: Date = Decoder.decode(dateForKey:"created", dateFormatter:dateFormatter)(json) else {
+
+        guard let createdString = json["created"] as? String,
+              let created = dateFormatter.date(from: createdString) else {
             print("Can't create Rule, missing required attribute \"created\" in JSON:\n \(json)"); return nil
         }
-        
-        guard let timestriggered: Int = "timestriggered" <~~ json else {
+
+        guard let timestriggered = json["timestriggered"] as? Int else {
             print("Can't create Rule, missing required attribute \"timestriggered\" in JSON:\n \(json)"); return nil
         }
-        
-        guard let owner: String = "owner" <~~ json else {
+
+        guard let owner = json["owner"] as? String else {
             print("Can't create Rule, missing required attribute \"owner\" in JSON:\n \(json)"); return nil
         }
-        
-        guard let status: String = "status" <~~ json else {
+
+        guard let status = json["status"] as? String else {
             print("Can't create Rule, missing required attribute \"status\" in JSON:\n \(json)"); return nil
         }
-        
-        guard let conditionJSONs: [JSON] = "conditions" <~~ json else {
+
+        guard let conditionJSONs = json["conditions"] as? [JSON] else {
             print("Can't create Rule, missing required attribute \"conditions\" in JSON:\n \(json)"); return nil
         }
-        
-        guard let actionJSONs: [JSON] = "actions" <~~ json else {
+
+        guard let actionJSONs = json["actions"] as? [JSON] else {
             print("Can't create Rule, missing required attribute \"actions\" in JSON:\n \(json)"); return nil
         }
-        
-        
+
+        let conditions = conditionJSONs.compactMap { RuleCondition(json: $0) }
+        let actions = actionJSONs.compactMap { RuleAction(json: $0) }
+        guard conditions.count == conditionJSONs.count, actions.count == actionJSONs.count else {
+            return nil
+        }
+
         self.identifier = identifier
         self.name = name
-        self.created = created as Date
-        self.lasttriggered = Decoder.decode(dateForKey:"lasttriggered", dateFormatter:dateFormatter)(json)
+        self.created = created
+        if let lastTriggeredString = json["lasttriggered"] as? String {
+            self.lasttriggered = dateFormatter.date(from: lastTriggeredString)
+        } else {
+            self.lasttriggered = nil
+        }
         self.timestriggered = timestriggered
         self.owner = owner
         self.status = status
-        self.conditions = [RuleCondition].from(jsonArray: conditionJSONs)!
-        self.actions = [RuleAction].from(jsonArray: actionJSONs)!
+        self.conditions = conditions
+        self.actions = actions
     }
-    
+
     public func toJSON() -> JSON? {
-        
+
         let dateFormatter = DateFormatter.hueApiDateFormatter
-        
-        let json = jsonify([
-            "id" ~~> self.identifier,
-            "name" ~~> self.name,
-            Encoder.encode(dateForKey: "created", dateFormatter: dateFormatter)(self.created),
-            Encoder.encode(dateForKey: "lasttriggered", dateFormatter: dateFormatter)(self.lasttriggered),
-            "timestriggered" ~~> self.timestriggered,
-            "owner" ~~> self.owner,
-            "status" ~~> self.status,
-            "conditions" ~~> self.conditions,
-            "actions" ~~> self.actions
-            ])
-        
-        return json
+
+        return [
+            "id": self.identifier,
+            "name": self.name,
+            "created": dateFormatter.string(from: self.created),
+            "lasttriggered": self.lasttriggered.map { dateFormatter.string(from: $0) } as Any,
+            "timestriggered": self.timestriggered,
+            "owner": self.owner,
+            "status": self.status,
+            "conditions": self.conditions.compactMap { $0.toJSON() },
+            "actions": self.actions.compactMap { $0.toJSON() }
+        ].compactMapValues { $0 }
     }
 }
 
 extension Rule: Hashable {
-    
+
     public func hash(into hasher: inout Hasher) {
-        
+
         hasher.combine(Int(self.identifier)!)
     }
 }

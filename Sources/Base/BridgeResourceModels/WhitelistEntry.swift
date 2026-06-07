@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Gloss
 
 public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
     
@@ -15,7 +14,7 @@ public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
     
     public var resourceType: BridgeResourceType {
         return .whitelistEntry
-    };
+    }
     
     public let identifier: String
     
@@ -35,37 +34,43 @@ public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
     public let name: String
     
     public var username: String? {
-        return identifier;
+        return identifier
     }
     
     public init?(json: JSON) {
-        
         let dateFormatter = DateFormatter.hueApiDateFormatter
-        
-        guard let identifier: String = "id" <~~ json,
-            let name: String = "name" <~~ json,
-            let lastUseDate: Date = Decoder.decode(dateForKey: "last use date", dateFormatter:dateFormatter)(json),
-            let createDate: Date = Decoder.decode(dateForKey: "create date", dateFormatter: dateFormatter)(json)
-            else { return nil }
-        
+
+        guard let identifier = json["id"] as? String,
+              let name = json["name"] as? String else { return nil }
+
         self.identifier = identifier
         self.name = name
-        self.lastUseDate = lastUseDate as Date
-        self.createDate = createDate as Date
-        
+
+        if let lastUse = json["last use date"] as? String {
+            self.lastUseDate = dateFormatter.date(from: lastUse)
+        } else {
+            self.lastUseDate = nil
+        }
+
+        if let created = json["create date"] as? String {
+            self.createDate = dateFormatter.date(from: created)
+        } else {
+            self.createDate = nil
+        }
     }
     
     public func toJSON() -> JSON? {
-        
         let dateFormatter = DateFormatter.hueApiDateFormatter
-        
-        let json = jsonify([
-            "id" ~~> identifier,
-            "name" ~~> name,
-            Encoder.encode(dateForKey: "last use date", dateFormatter: dateFormatter)(lastUseDate),
-            Encoder.encode(dateForKey: "create date", dateFormatter: dateFormatter)(createDate)
-            ])
-        
+        var json: JSON = [
+            "id": identifier,
+            "name": name
+        ]
+        if let lastUseDate {
+            json["last use date"] = dateFormatter.string(from: lastUseDate)
+        }
+        if let createDate {
+            json["create date"] = dateFormatter.string(from: createDate)
+        }
         return json
     }
 }
@@ -73,14 +78,13 @@ public struct WhitelistEntry: BridgeResource, BridgeResourceDictGenerator {
 extension WhitelistEntry: Hashable {
     
     public func hash(into hasher: inout Hasher) {
-        
-        hasher.combine(Int(self.identifier)!)
+        hasher.combine(Int(self.identifier) ?? 0)
     }
 }
 
 public func ==(lhs: WhitelistEntry, rhs: WhitelistEntry) -> Bool {
     return lhs.identifier == rhs.identifier &&
-        lhs.name == rhs.identifier &&
+        lhs.name == rhs.name &&
         lhs.lastUseDate == rhs.lastUseDate &&
         lhs.createDate == rhs.createDate
 }

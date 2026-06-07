@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import Gloss
 
 public class TestRequester {
     
@@ -25,10 +24,10 @@ public class TestRequester {
 
 //    public func getConfig() {
 //        
-//        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/config", parameters: nil)
+//        HueNetwork.session.request("https://\(bridgeIp)/api/\(bridgeAcc)/config", parameters: nil)
 //            .responseJSON { response in
 //                
-//                if let resultValueJSON = response.result.value as? NSMutableDictionary {
+//                if let resultValueJSON = response.value as? NSMutableDictionary {
 //                    
 //                    //print("JSON: \(JSON as! NSMutableDictionary)")
 //                    
@@ -51,9 +50,9 @@ public class TestRequester {
         lightState.on = false;
     
         let parameters = lightState.toJSON()!
-        let url = "http://\(bridgeIp)/api/\(bridgeAcc)/groups/1/action"
+        let url = "https://\(bridgeIp)/api/\(bridgeAcc)/groups/1/action"
 
-        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+        HueNetwork.session.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
         
                 print(response)
@@ -61,10 +60,10 @@ public class TestRequester {
     }
 
 //    public func requestScene() {
-//        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/scenes/y3Npr8e3za8okWb", parameters: nil)
+//        HueNetwork.session.request("https://\(bridgeIp)/api/\(bridgeAcc)/scenes/y3Npr8e3za8okWb", parameters: nil)
 //            .responseJSON { response in
 //                
-//                if let resultValueJSON = response.result.value as? NSMutableDictionary {
+//                if let resultValueJSON = response.value as? NSMutableDictionary {
 //                    
 //                    //print("JSON: \(JSON as! NSMutableDictionary)")
 //
@@ -84,10 +83,10 @@ public class TestRequester {
 //    }
     
 //    public func requestScenes() {
-//        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/scenes", parameters: nil)
+//        HueNetwork.session.request("https://\(bridgeIp)/api/\(bridgeAcc)/scenes", parameters: nil)
 //            .responseJSON { response in
 //                
-//                if let resultValueJSON = response.result.value as? NSMutableDictionary {
+//                if let resultValueJSON = response.value as? NSMutableDictionary {
 //                    
 //                    //print("JSON: \(JSON as! NSMutableDictionary)")
 //                    
@@ -109,10 +108,10 @@ public class TestRequester {
 //    }
 
 //    public func requestGroups() {
-//        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/groups", parameters: nil)
+//        HueNetwork.session.request("https://\(bridgeIp)/api/\(bridgeAcc)/groups", parameters: nil)
 //            .responseJSON { response in
 //                
-//                if let resultValueJSON = response.result.value as? NSMutableDictionary {
+//                if let resultValueJSON = response.value as? NSMutableDictionary {
 //                    
 //                    //print("JSON: \(JSON as! NSMutableDictionary)")
 //                    
@@ -134,10 +133,10 @@ public class TestRequester {
 //    }
     
     public func requestGroups() {
-        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/groups", parameters: nil)
+        HueNetwork.session.request("https://\(bridgeIp)/api/\(bridgeAcc)/groups", parameters: nil)
         .responseJSON { response in
             
-            if let resultValueJSON = response.result.value as? JSON {
+            if let resultValueJSON = response.value as? JSON {
 
                 let groupsDict = Group.dictionaryFromResourcesJSON(resultValueJSON)
             
@@ -150,10 +149,10 @@ public class TestRequester {
     }
     
     public func requestScenes() {
-        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/scenes", parameters: nil)
+        HueNetwork.session.request("https://\(bridgeIp)/api/\(bridgeAcc)/scenes", parameters: nil)
             .responseJSON { response in
                 
-                if let resultValueJSON = response.result.value as? JSON {
+                if let resultValueJSON = response.value as? JSON {
                     
                     let scenesDict = PartialScene.dictionaryFromResourcesJSON(resultValueJSON)
                     print(scenesDict)
@@ -166,10 +165,10 @@ public class TestRequester {
     }
     
     public func requestRules() {
-        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/rules", parameters: nil)
+        HueNetwork.session.request("https://\(bridgeIp)/api/\(bridgeAcc)/rules", parameters: nil)
             .responseJSON { response in
                 
-                if let resultValueJSON = response.result.value as? JSON {
+                if let resultValueJSON = response.value as? JSON {
                     
                     let rulesDict = Rule.dictionaryFromResourcesJSON(resultValueJSON)
                     print(rulesDict)
@@ -182,10 +181,10 @@ public class TestRequester {
     }
     
 //    public func requestSensors() {
-//        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/sensors", parameters: nil)
+//        HueNetwork.session.request("https://\(bridgeIp)/api/\(bridgeAcc)/sensors", parameters: nil)
 //            .responseJSON { response in
 //                
-//                if let resultValueJSON = response.result.value as? JSON {
+//                if let resultValueJSON = response.value as? JSON {
 //                    
 //                    let sensorDict = Sensor.dictionaryFromResourcesJSON(resultValueJSON)
 //                    print(sensorDict)
@@ -198,10 +197,10 @@ public class TestRequester {
 //    }
     
     public func requestSchedules() {
-        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/schedules", parameters: nil)
+        HueNetwork.session.request("https://\(bridgeIp)/api/\(bridgeAcc)/schedules", parameters: nil)
             .responseJSON { response in
                 
-                if let resultValueJSON = response.result.value as? JSON {
+                if let resultValueJSON = response.value as? JSON {
                     
                     let schedulesDict = Schedule.dictionaryFromResourcesJSON(resultValueJSON)
                     print(schedulesDict)
@@ -215,10 +214,10 @@ public class TestRequester {
     
     public func requestBridgeConfiguration() {
         
-        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/config", parameters: nil)
+        HueNetwork.session.request("https://\(bridgeIp)/api/\(bridgeAcc)/config", parameters: nil)
             .responseJSON { response in
                 
-                if let resultValueJSON = response.result.value as? JSON {
+                if let resultValueJSON = response.value as? JSON {
                     
                     let groupsDict = BridgeConfiguration(json: resultValueJSON)
                     print(groupsDict?.toJSON() as Any)
@@ -227,10 +226,10 @@ public class TestRequester {
     }
     
     public func requestLights() {
-        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/lights", parameters: nil)
+        HueNetwork.session.request("https://\(bridgeIp)/api/\(bridgeAcc)/lights", parameters: nil)
             .responseJSON { response in
                 
-            if let resultValueJSON = response.result.value as? JSON {
+            if let resultValueJSON = response.value as? JSON {
                 
                 let lightsDict = Light.dictionaryFromResourcesJSON(resultValueJSON)
                 print(lightsDict)
@@ -239,12 +238,12 @@ public class TestRequester {
     }
     
     public func requestError() {
-        Alamofire.request("http://\(bridgeIp)/api/\(bridgeAcc)/giveMeAError", parameters: nil)
+        HueNetwork.session.request("https://\(bridgeIp)/api/\(bridgeAcc)/giveMeAError", parameters: nil)
             .responseJSON { response in
                 
-                if let resultValueJSON = response.result.value as? [JSON] {
+                if let resultValueJSON = response.value as? [JSON] {
                     
-                    let errors = [HueError].from(jsonArray: resultValueJSON)
+                    let errors = resultValueJSON.compactMap { HueError(json: $0) }
                     print(errors ?? "(no errors)")
                 }
         }

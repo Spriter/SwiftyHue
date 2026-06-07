@@ -7,47 +7,38 @@
 //
 
 import Foundation
-import Gloss
 
 public class GenericFlagSensorState: PartialSensorState {
-    
+
     public let flag: Bool
-    
+
     init?(state: SensorState) {
-        
+
         guard let flag: Bool = state.flag else {
-            print("Can't create GenericFlagSensorState, missing required attribute \"flag\""); return nil
+            print("Can\'t create GenericFlagSensorState, missing required attribute \"flag\""); return nil
         }
-        
+
         self.flag = flag
-        
+
         super.init(lastUpdated: state.lastUpdated)
     }
-    
-    required public init?(json: JSON) {
-        
-        guard let flag: Bool = "flag" <~~ json else {
+
+    required public init?(json: [String: Any]) {
+        guard let flag: Bool = json["flag"] as? Bool else {
             print("Can't create GenericFlagSensorState, missing required attribute \"flag\" in JSON:\n \(json)"); return nil
         }
-        
+
         self.flag = flag
-        
+
         super.init(json: json)
     }
-    
-    public override func toJSON() -> JSON? {
-        
-        if var superJson = super.toJSON() {
-            let json = jsonify([
-                "flag" ~~> flag
-                ])
-            superJson.unionInPlace(json!)
-            return superJson
-        }
-        
-        return nil
-    }
 
+    public override func toJSON() -> [String: Any]? {
+
+        var superJson = super.toJSON() ?? [:]
+        superJson["flag"] = self.flag
+        return superJson
+    }
 }
 
 public func ==(lhs: GenericFlagSensorState, rhs: GenericFlagSensorState) -> Bool {

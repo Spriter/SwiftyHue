@@ -7,44 +7,38 @@
 //
 
 import Foundation
-import Gloss
 
-public struct BridgeAccessConfig: JSONDecodable {
-    
-    public let bridgeId: String;
-    public let ipAddress: String;
-    public let username: String;
-    
-    public init(bridgeId: String, ipAddress: String, username: String) {
-    
-        self.bridgeId = bridgeId;
-        self.ipAddress = ipAddress;
-        self.username = username;
-        
+public struct BridgeAccessConfig: Codable {
+
+    public let bridgeId: String
+    public let ipAddress: String
+    public let username: String
+
+    enum CodingKeys: String, CodingKey {
+        case bridgeId = "id"
+        case ipAddress = "ipaddress"
+        case username
     }
-    
-    public init?(json: JSON) {
-        
-        guard let bridgeId: String = "id" <~~ json,
-            let ipAddress: String = "ipaddress" <~~ json,
-            let username: String = "username" <~~ json
-            
-            else { return nil }
-        
+
+    public init(bridgeId: String, ipAddress: String, username: String) {
         self.bridgeId = bridgeId
         self.ipAddress = ipAddress
         self.username = username
-        
     }
-    
-    public func toJSON() -> JSON? {
-        
-        let json = jsonify([
-            "id" ~~> bridgeId,
-            "ipaddress" ~~> ipAddress,
-            "username" ~~> username
-            ])
-        
+}
+
+
+public extension BridgeAccessConfig {
+    init?(json: [String: Any]) {
+        guard let data = try? JSONSerialization.data(withJSONObject: json),
+              let decoded = try? JSONDecoder().decode(BridgeAccessConfig.self, from: data) else { return nil }
+        self = decoded
+    }
+
+    func toJSON() -> [String: Any]? {
+        guard let data = try? JSONEncoder().encode(self),
+              let object = try? JSONSerialization.jsonObject(with: data),
+              let json = object as? [String: Any] else { return nil }
         return json
     }
 }

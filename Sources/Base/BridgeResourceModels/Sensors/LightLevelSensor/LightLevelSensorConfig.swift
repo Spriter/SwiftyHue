@@ -2,67 +2,50 @@
 //  LightLevelSensorConfig.swift
 //  Pods
 //
-//  Created by Jerome Schmitz on 08.11.19.
+//  Created by Jerome Schmitz on 01.05.16.
 //
 //
 
 import Foundation
-import Gloss
 
-public class LightLevelSensorConfig: PartialSensorConfig {
-    
-    /**
-     Threshold the user configured to be used in rules to determine insufficient lightlevel (ie below threshold). Default value 16000
-     */
-    public let tholddark: Int
-    
-    /**
-     Threshold the user configured to be used in rules to determine sufficient lightlevel (ie above threshold). Specified as relative offset to the “dark” threshold. Shall be >=1. Default value 7000
-     */
-    public let tholdoffset: Int
-    
-    init?(sensorConfig: SensorConfig) {
-        
-        guard let tholddark: Int = sensorConfig.tholddark else {
-            print("Can't create LightlevelSensorConfig, missing required attribute \"tholddark\""); return nil
+public class LightLevelSensorConfig: SensorConfig {
+
+    required public init?(sensorConfig: SensorConfig) {
+
+        guard let tholddark = sensorConfig.tholddark else {
+            print("Can't create LightLevelSensorConfig, missing required attribute \"tholddark\"")
+            return nil
         }
-        self.tholddark = tholddark
-        
-        guard let tholdoffset: Int = sensorConfig.tholdoffset else {
-            print("Can't create LightlevelSensorConfig, missing required attribute \"tholdoffset\""); return nil
+
+        guard let tholdoffset = sensorConfig.tholdoffset else {
+            print("Can't create LightLevelSensorConfig, missing required attribute \"tholdoffset\"")
+            return nil
         }
-        self.tholdoffset = tholdoffset
-        
-        super.init(on: sensorConfig.on, reachable: sensorConfig.reachable, battery: sensorConfig.battery, url: sensorConfig.url)
+
+        super.init(on: sensorConfig.on, reachable: sensorConfig.reachable, battery: sensorConfig.battery, url: sensorConfig.url, long: sensorConfig.long, lat: sensorConfig.lat, sunriseOffset: sensorConfig.sunriseOffset, sunsetOffset: sensorConfig.sunsetOffset, tholddark: tholddark, tholdoffset: tholdoffset)
     }
-    
-    required public init?(json: JSON) {
-        
-        guard let tholddark: Int = "tholddark" <~~ json else {
-            print("Can't create LightlevelSensorConfig, missing required attribute \"tholddark\""); return nil
+
+    required public init?(json: [String: Any]) {
+
+        guard let tholddark = json["tholddark"] as? Int else {
+            print("Can't create LightLevelSensorConfig, missing required attribute \"tholddark\" in JSON:\n \(json)")
+            return nil
         }
-        self.tholddark = tholddark
-        
-        guard let tholdoffset: Int = "tholdoffset" <~~ json else {
-            print("Can't create LightlevelSensorConfig, missing required attribute \"tholdoffset\""); return nil
+
+        guard let tholdoffset = json["tholdoffset"] as? Int else {
+            print("Can't create LightLevelSensorConfig, missing required attribute \"tholdoffset\" in JSON:\n \(json)")
+            return nil
         }
-        self.tholdoffset = tholdoffset
-        
+
         super.init(json: json)
     }
-    
-    public override func toJSON() -> JSON? {
-        
-        if var superJson = super.toJSON() {
-            let json = jsonify([
-                "tholddark" ~~> tholddark,
-                "tholdoffset" ~~> tholdoffset
-                ])
-            superJson.unionInPlace(json!)
-            return superJson
-        }
-        
-        return nil
+
+    public override func toJSON() -> [String: Any]? {
+
+        var superJson = super.toJSON() ?? [:]
+        superJson["tholddark"] = tholddark
+        superJson["tholdoffset"] = tholdoffset
+        return superJson
     }
 }
 

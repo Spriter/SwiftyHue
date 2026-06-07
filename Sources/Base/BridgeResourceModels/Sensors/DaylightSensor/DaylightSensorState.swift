@@ -7,41 +7,37 @@
 //
 
 import Foundation
-import Gloss
 
 public class DaylightSensorState: PartialSensorState {
 
-    public let daylight: Bool?
-    
+    public let daylight: Bool
+
     init?(state: SensorState) {
-        
-        self.daylight = state.daylight
-        
-        super.init(lastUpdated: state.lastUpdated)
-    }
-    
-    required public init?(json: JSON) {
-        
-        guard let daylight: Bool = "daylight" <~~ json else {
-            print("Can't create DaylightSensorState, missing required attribute \"daylight\" in JSON:\n \(json)"); return nil
-        }
-        
-        self.daylight = daylight
-        
-        super.init(json: json)
-    }
-    
-    public override func toJSON() -> JSON? {
-        
-        if var superJson = super.toJSON() {
-            let json = jsonify([
-                "daylight" ~~> self.daylight
-                ])
-            superJson.unionInPlace(json!)
-            return superJson
+
+        guard let daylight: Bool = state.daylight else {
+            print("Can\'t create DaylightSensorState, missing required attribute \"daylight\""); return nil
         }
 
-        return nil
+        self.daylight = daylight
+
+        super.init(lastUpdated: state.lastUpdated)
+    }
+
+    required public init?(json: [String: Any]) {
+        guard let daylight: Bool = json["daylight"] as? Bool else {
+            print("Can't create DaylightSensorState, missing required attribute \"daylight\" in JSON:\n \(json)"); return nil
+        }
+
+        self.daylight = daylight
+
+        super.init(json: json)
+    }
+
+    public override func toJSON() -> [String: Any]? {
+
+        var superJson = super.toJSON() ?? [:]
+        superJson["daylight"] = self.daylight
+        return superJson
     }
 }
 

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Gloss
 
 public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     
@@ -149,15 +148,18 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     
     public init?(json: JSON) {
         
-        guard let identifier: String = "bridgeid" <~~ json,
-            let name: String = "name" <~~ json,
-            let mac: String = "mac" <~~ json,
-            let modelid: String = "modelid" <~~ json,
-            let swversion: String = "swversion" <~~ json,
-            let apiversion: String = "apiversion" <~~ json,
-            let factorynew: Bool = "factorynew" <~~ json
-        
-            else { print("Can't create BridgeConfiguration from JSON:\n \(json)"); return nil }
+        guard
+            let identifier = json["bridgeid"] as? String,
+            let name = json["name"] as? String,
+            let mac = json["mac"] as? String,
+            let modelid = json["modelid"] as? String,
+            let swversion = json["swversion"] as? String,
+            let apiversion = json["apiversion"] as? String,
+            let factorynew = json["factorynew"] as? Bool
+        else {
+            print("Can't create BridgeConfiguration from JSON:\n \(json)")
+            return nil
+        }
         
         self.identifier = identifier
         self.name = name
@@ -167,23 +169,35 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
         self.apiVersion = apiversion
         self.swVersion = swversion
         
-        self.replacesBridgeId = "replacesbridgeid" <~~ json
-        self.zigbeeChannel = "zigbeechannel" <~~ json
-        self.dhcp = "dhcp" <~~ json
-        self.ipaddress = "ipaddress" <~~ json
-        self.netmask = "netmask" <~~ json
-        self.gateway = "gateway" <~~ json
-        self.proxyaddress = "proxyaddress" <~~ json
-        self.proxyport = "proxyport" <~~ json
-        self.UTC = "UTC" <~~ json
-        self.localtime = "localtime" <~~ json
-        self.timezone = "timezone" <~~ json
-        self.swUpdate = "swupdate" <~~ json
-        self.linkbutton = "linkbutton" <~~ json
-        self.portalServices = "portalservices" <~~ json
-        self.portalConnection = "portalconnection" <~~ json
-        self.portalState = "portalstate" <~~ json
-        self.backup = "backup" <~~ json
+        self.replacesBridgeId = json["replacesbridgeid"] as? String
+        self.zigbeeChannel = json["zigbeechannel"] as? Int
+        self.dhcp = json["dhcp"] as? Bool
+        self.ipaddress = json["ipaddress"] as? String
+        self.netmask = json["netmask"] as? String
+        self.gateway = json["gateway"] as? String
+        self.proxyaddress = json["proxyaddress"] as? String
+        self.proxyport = json["proxyport"] as? Int
+        self.UTC = json["UTC"] as? String
+        self.localtime = json["localtime"] as? String
+        self.timezone = json["timezone"] as? String
+        if let swUpdateJSON = json["swupdate"] as? JSON {
+            self.swUpdate = SoftwareUpdateStatus(json: swUpdateJSON)
+        } else {
+            self.swUpdate = nil
+        }
+        self.linkbutton = json["linkbutton"] as? Bool
+        self.portalServices = json["portalservices"] as? Bool
+        self.portalConnection = json["portalconnection"] as? String
+        if let portalStateJSON = json["portalstate"] as? JSON {
+            self.portalState = PortalState(json: portalStateJSON)
+        } else {
+            self.portalState = nil
+        }
+        if let backupJSON = json["backup"] as? JSON {
+            self.backup = Backup(json: backupJSON)
+        } else {
+            self.backup = nil
+        }
          
         if let whitelistJSON = json["whitelist"] as? JSON {
             self.whitelist = WhitelistEntry.dictionaryFromResourcesJSON(whitelistJSON)
@@ -193,35 +207,39 @@ public struct BridgeConfiguration: BridgeResourceDictGenerator, BridgeResource {
     }
     
     public func toJSON() -> JSON? {
-        
-        let json = jsonify([
-            "bridgeid" ~~> identifier,
-            "name" ~~> name,
-            "zigbeechannel" ~~> zigbeeChannel,
-            "mac" ~~> mac,
-            "dhcp" ~~> dhcp,
-            "ipaddress" ~~> ipaddress,
-            "netmask" ~~> netmask,
-            "gateway" ~~> gateway,
-            "proxyaddress" ~~> proxyaddress,
-            "proxyport" ~~> proxyport,
-            "UTC" ~~> UTC,
-            "localtime" ~~> localtime,
-            "timezone" ~~> timezone,
-            "modelid" ~~> modelId,
-            "swversion" ~~> swVersion,
-            "apiversion" ~~> apiVersion,
-            "swupdate" ~~> swUpdate,
-            "linkbutton" ~~> linkbutton,
-            "portalservices" ~~> portalServices,
-            "portalconnection" ~~> portalConnection,
-            "portalstate" ~~> portalState,
-            "factorynew" ~~> factorynew,
-            "replacesbridgeid" ~~> replacesBridgeId,
-            "backup" ~~> backup,
-            "whitelist" ~~> whitelist,
-            ])
-        
+        var json: JSON = [
+            "bridgeid": identifier,
+            "name": name,
+            "mac": mac,
+            "modelid": modelId,
+            "apiversion": apiVersion,
+            "factorynew": factorynew
+        ]
+        json["swversion"] = swVersion
+        json["zigbeechannel"] = zigbeeChannel
+        json["dhcp"] = dhcp
+        json["ipaddress"] = ipaddress
+        json["netmask"] = netmask
+        json["gateway"] = gateway
+        json["proxyaddress"] = proxyaddress
+        json["proxyport"] = proxyport
+        json["UTC"] = UTC
+        json["localtime"] = localtime
+        json["timezone"] = timezone
+        json["swupdate"] = swUpdate?.toJSON()
+        json["linkbutton"] = linkbutton
+        json["portalservices"] = portalServices
+        json["portalconnection"] = portalConnection
+        json["portalstate"] = portalState?.toJSON()
+        json["replacesbridgeid"] = replacesBridgeId
+        json["backup"] = backup?.toJSON()
+        if let whitelist {
+            var whitelistJSON: JSON = [:]
+            for (key, entry) in whitelist {
+                whitelistJSON[key] = entry.toJSON()
+            }
+            json["whitelist"] = whitelistJSON
+        }
         return json
     }
 }

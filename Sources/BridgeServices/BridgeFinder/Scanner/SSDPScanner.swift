@@ -38,7 +38,6 @@ class SSDPScanner: NSObject, Scanner, GCDAsyncUdpSocketDelegate {
             Timer.scheduledTimer(timeInterval: receiveTimeout, target: self, selector: #selector(SSDPScanner.stop), userInfo: self, repeats: false)
 
         } catch let error as NSError {
-            print("Exception: \(error)")
         }
     }
 
@@ -52,11 +51,17 @@ class SSDPScanner: NSObject, Scanner, GCDAsyncUdpSocketDelegate {
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext: Any?){
         guard let result = String(data: data, encoding:.ascii) else {
-            print("Could not decode ssdp data")
             return
         }
 
-        if result.contains("IpBridge") {
+        // Prefer parsing LOCATION header; Bridge Pro responses are not always
+        // guaranteed to contain the legacy "IpBridge" marker.
+        if let ipFromLocation = extractHostFromLocationHeader(result) {
+            results.insert(ipFromLocation)
+            return
+        }
+
+        if result.localizedCaseInsensitiveContains("IpBridge") || result.localizedCaseInsensitiveContains("hue-bridgeid") {
             var host: NSString?
             var port: UInt16 = 0
 
@@ -65,5 +70,19 @@ class SSDPScanner: NSObject, Scanner, GCDAsyncUdpSocketDelegate {
                 results.insert(host)
             }
         }
+    }
+
+    private func extractHostFromLocationHeader(_ response: String) -> String? {
+        let lines = response.components(separatedBy: .newlines)
+        guard let locationLine = lines.first(where: { $0.lowercased().hasPrefix("location:") }) else {
+            return nil
+        }
+
+        let value = locationLine.replacingOccurrences(of: "location:", with: "", options: .caseInsensitive).trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let url = URL(string: value), let host = url.host, !host.isEmpty else {
+            return nil
+        }
+
+        return host
     }
 }

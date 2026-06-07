@@ -7,46 +7,30 @@
 //
 
 import Foundation
-import Gloss
-
 
 public class SwitchSensorState: PartialSensorState {
 
     public let buttonEvent: ButtonEvent?
-    
+
     init?(state: SensorState) {
-        
-//        guard let buttonEvent: ButtonEvent = state.buttonEvent else {
-//            Log.error("Can't create SwitchSensorState, missing required attribute \"buttonevent\""); return nil
-//        }
-        
         self.buttonEvent = state.buttonEvent
-        
         super.init(lastUpdated: state.lastUpdated)
     }
-    
-    required public init?(json: JSON) {
-        
-//        guard let buttonEvent: ButtonEvent = "buttonevent" <~~ json else {
-//            Log.error("Can't create SwitchSensorState, missing required attribute \"buttonevent\" in JSON:\n \(json)"); return nil
-//        }
-        
-        self.buttonEvent = "buttonevent" <~~ json
-        
+
+    required public init?(json: [String: Any]) {
+        if let raw = json["buttonevent"] as? Int {
+            self.buttonEvent = ButtonEvent(rawValue: raw)
+        } else {
+            self.buttonEvent = nil
+        }
+
         super.init(json: json)
     }
-    
-    public override func toJSON() -> JSON? {
-        
-        if var superJson = super.toJSON() {
-            let json = jsonify([
-                "buttonevent" ~~> self.buttonEvent
-                ])
-            superJson.unionInPlace(json!)
-            return superJson
-        }
-        
-        return nil
+
+    public override func toJSON() -> [String: Any]? {
+        var superJson = super.toJSON() ?? [:]
+        if let buttonEvent { superJson["buttonevent"] = buttonEvent.rawValue }
+        return superJson
     }
 }
 

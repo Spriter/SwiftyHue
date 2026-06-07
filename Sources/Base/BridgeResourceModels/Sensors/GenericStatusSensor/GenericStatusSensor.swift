@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Gloss
 
 public class GenericStatusSensor: PartialSensor {
     
@@ -38,13 +37,14 @@ public class GenericStatusSensor: PartialSensor {
         super.init(identifier: sensor.identifier, uniqueId: sensor.uniqueId, name: sensor.name, type: sensor.type, modelId: sensor.modelId, manufacturerName: sensor.manufacturerName, swVersion: sensor.swVersion, recycle: sensor.recycle)
     }
     
-    public required init?(json: JSON) {
-        
-        guard let config: GenericStatusSensorConfig = "config" <~~ json else {
+    public required init?(json: [String: Any]) {
+        guard let configJSON = json["config"] as? [String: Any],
+              let config: GenericStatusSensorConfig = GenericStatusSensorConfig(json: configJSON) else {
             return nil
         }
-        
-        guard let state: GenericStatusSensorState = "state" <~~ json else {
+
+        guard let stateJSON = json["state"] as? [String: Any],
+              let state: GenericStatusSensorState = GenericStatusSensorState(json: stateJSON) else {
             return nil
         }
         

@@ -7,86 +7,46 @@
 //
 
 import Foundation
-import Gloss
 
 public enum BridgeResourceType: String {
     case light, group, scene, sensor, rule, config, schedule, whitelistEntry
 }
 
-public protocol BridgeResource: Glossy {
-    
-    var identifier: String {get}
-    var name: String {get}
-    var resourceType: BridgeResourceType {get};
+public protocol BridgeResource {
+
+    init?(json: [String: Any])
+    func toJSON() -> [String: Any]?
+
+    var identifier: String { get }
+    var name: String { get }
+    var resourceType: BridgeResourceType { get }
 }
 
 /**
  Can create a dictionary of a specific BridgeResource (BridgeResourceType) from a JSON ([String: AnyObject]).
  */
 public protocol BridgeResourceDictGenerator {
-    
+
     associatedtype AssociatedBridgeResourceType: BridgeResource
-    
-    static func dictionaryFromResourcesJSON(_ json: JSON) -> [String: AssociatedBridgeResourceType]
+
+    static func dictionaryFromResourcesJSON(_ json: [String: Any]) -> [String: AssociatedBridgeResourceType]
 }
 
 public extension BridgeResourceDictGenerator {
-    
-    static func dictionaryFromResourcesJSON(_ json: JSON) -> [String: AssociatedBridgeResourceType] {
-        
-        var dict = [String: AssociatedBridgeResourceType]();
+
+    static func dictionaryFromResourcesJSON(_ json: [String: Any]) -> [String: AssociatedBridgeResourceType] {
+
+        var dict: [String: AssociatedBridgeResourceType] = [:]
 
         for (key, value) in json {
-
-            var resourceJSON = value as! JSON
+            guard var resourceJSON = value as? [String: Any] else { continue }
             resourceJSON["id"] = key
 
             if let resource = AssociatedBridgeResourceType(json: resourceJSON) {
-                dict[key ] = resource;
+                dict[key] = resource
             }
         }
-        
-        return dict;
+
+        return dict
     }
 }
-
-//extension BridgeResource {
-//    
-//    public init?(json: JSON) {
-//        
-//        self.init()
-//        
-//        identifier = "id" <~~ json
-//        name = "name" <~~ json
-//        
-//    }
-//    
-//    /**
-//     Object encoded as JSON
-//     */
-//    public func toJSON() -> JSON? {
-//        
-//        return jsonify([
-//            "id" ~~> self.identifier,
-//            "login" ~~> self.name
-//            ])
-//    }
-//    
-//    public static func dictionaryOf(json: JSON) -> [String: BridgeResource]? {
-//        
-//        var dict = [String: BridgeResource]();
-//        
-//        for (key, value) in json {
-//            
-//            var groupJSON = value as! JSON
-//            groupJSON["id"] = key
-//            
-//            if let group = self.init(json: groupJSON) {
-//                dict[key as! String] = group;
-//            }
-//            
-//        }
-//        
-//        return nil;
-//    }
-//}

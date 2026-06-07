@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Gloss
 import Alamofire
 
 public enum BridgeHeartbeatConnectionStatusNotification: String {
@@ -87,16 +86,16 @@ public class HeartbeatManager {
     
     private func doRequestForResourceType(_ resourceType: HeartbeatBridgeResourceType) {
 
-        let url = "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercased())"
+        let url = "https://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercased())"
 
         print("Heartbeat Request", "\(url)")
         
-        Alamofire.request(url).responseJSON { response in // method
+        HueNetwork.session.request(url).responseJSON { response in // method
             
             switch response.result {
-            case .success:
+            case .success(let value):
                 
-                self.handleSuccessResponseResult(response.result, resourceType: resourceType)
+                self.handleSuccessResponseValue(value, resourceType: resourceType)
                 self.notifyAboutLocalConnection()
                 
             case .failure(let error):
@@ -110,21 +109,21 @@ public class HeartbeatManager {
     
     // MARK: Timer Action Response Handling
     
-    private func handleSuccessResponseResult(_ result: Result<Any>, resourceType: HeartbeatBridgeResourceType) {
+    private func handleSuccessResponseValue(_ value: Any, resourceType: HeartbeatBridgeResourceType) {
         
         print("Heartbeat Response for Resource Type \(resourceType.rawValue.lowercased()) received")
-        //Log.trace("Heartbeat Response: \(resourceType.rawValue.lowercaseString): ", result.value)
+        //Log.trace("Heartbeat Response: \(resourceType.rawValue.lowercaseString): ", value)
         
-        if responseResultIsPhilipsAPIErrorType(result: result, resourceType: resourceType) {
+        if responseResultIsPhilipsAPIErrorType(value: value, resourceType: resourceType) {
             
-            if let resultValueJSONArray = result.value as? [JSON] {
+            if let resultValueJSONArray = value as? [JSON] {
                 
                 self.handleErrors(resultValueJSONArray)
             }
             
         } else {
             
-            if let resultValueJSON = result.value as? JSON {
+            if let resultValueJSON = value as? JSON {
                 
                 for heartbeatProcessor in self.heartbeatProcessors {
                     heartbeatProcessor.processJSON(resultValueJSON, forResourceType: resourceType)
@@ -137,20 +136,20 @@ public class HeartbeatManager {
         
     }
     
-    private func responseResultIsPhilipsAPIErrorType(result: Result<Any>, resourceType: HeartbeatBridgeResourceType) -> Bool {
+    private func responseResultIsPhilipsAPIErrorType(value: Any, resourceType: HeartbeatBridgeResourceType) -> Bool {
         
         switch resourceType {
             
         case .config:
             
-            if let resultValueJSON = result.value as? JSON {
+            if let resultValueJSON = value as? JSON {
                 
                 return resultValueJSON.count <= 8 // HUE API gives always a respond for config request, but it only contains 8 Elements if no authorized user is used
             }
             
         default:
             
-            return result.value as? [JSON] != nil // Errros are delivered as Array
+            return value as? [JSON] != nil // Errors are delivered as Array
         }
         
         return false

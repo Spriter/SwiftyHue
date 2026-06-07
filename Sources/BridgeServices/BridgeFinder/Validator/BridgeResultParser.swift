@@ -28,9 +28,11 @@ class BridgeResultParser: NSObject, XMLParserDelegate {
     private var height: String = ""
     private var width: String = ""
     private var iconName: String = ""
+    private let fallbackIP: String
 
-    init(xmlData: Data) {
+    init(xmlData: Data, fallbackIP: String = "") {
         parser = XMLParser(data: xmlData)
+        self.fallbackIP = fallbackIP
         super.init()
         parser.delegate = self
     }
@@ -98,6 +100,9 @@ class BridgeResultParser: NSObject, XMLParserDelegate {
         element = ""
 
         if elementName == "device" {
+            if ip.isEmpty {
+                ip = fallbackIP
+            }
             if isBridgeDataValid() {
                 bridge = HueBridge(ip: ip, deviceType: deviceType, friendlyName: friendlyName, modelDescription: modelDescription, modelName: modelName, serialNumber: serialNumber, UDN: UDN, icons: icons)
             } else {
@@ -116,6 +121,9 @@ class BridgeResultParser: NSObject, XMLParserDelegate {
     }
 
     public func parserDidEndDocument(_ parser: XMLParser) {
+        if ip.isEmpty {
+            ip = fallbackIP
+        }
         if let successBlock = successBlock, let bridge = bridge {
             successBlock(bridge)
         }

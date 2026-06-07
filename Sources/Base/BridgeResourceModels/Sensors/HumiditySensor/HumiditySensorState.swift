@@ -7,45 +7,37 @@
 //
 
 import Foundation
-import Gloss
 
 public class HumiditySensorState: PartialSensorState {
 
     public let humidity: Int
-    
+
     init?(state: SensorState) {
-        
+
         guard let humidity: Int = state.humidity else {
-            print("Can't create HumiditySensorState, missing required attribute \"humidity\""); return nil
+            print("Can\'t create HumiditySensorState, missing required attribute \"humidity\""); return nil
         }
-        
+
         self.humidity = humidity
-        
+
         super.init(lastUpdated: state.lastUpdated)
     }
-    
-    required public init?(json: JSON) {
-        
-        guard let humidity: Int = "humidity" <~~ json else {
+
+    required public init?(json: [String: Any]) {
+        guard let humidity: Int = json["humidity"] as? Int else {
             print("Can't create HumiditySensorState, missing required attribute \"humidity\" in JSON:\n \(json)"); return nil
         }
-        
+
         self.humidity = humidity
-        
+
         super.init(json: json)
     }
-    
-    public override func toJSON() -> JSON? {
-        
-        if var superJson = super.toJSON() {
-            let json = jsonify([
-                "humidity" ~~> self.humidity
-                ])
-            superJson.unionInPlace(json!)
-            return superJson
-        }
-        
-        return nil
+
+    public override func toJSON() -> [String: Any]? {
+
+        var superJson = super.toJSON() ?? [:]
+        superJson["humidity"] = self.humidity
+        return superJson
     }
 }
 

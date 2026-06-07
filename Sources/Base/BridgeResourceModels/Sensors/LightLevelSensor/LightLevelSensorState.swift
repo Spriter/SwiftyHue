@@ -1,68 +1,64 @@
 //
-//  LightlevelSensorState.swift
+//  LightLevelSensorState.swift
 //  Pods
 //
-//  Created by Jerome Schmitz on 08.11.19.
+//  Created by Jerome Schmitz on 01.05.16.
 //
 //
 
 import Foundation
-import Gloss
 
 public class LightLevelSensorState: PartialSensorState {
 
     public let lightlevel: Int?
     public let dark: Bool?
     public let daylight: Bool?
-    
+
     init?(state: SensorState) {
-        
-        self.lightlevel = state.lightlevel
-        self.dark = state.dark
-        self.daylight = state.daylight
-        
-        super.init(lastUpdated: state.lastUpdated)
-    }
-    
-    required public init?(json: JSON) {
-        
-        guard let lightlevel: Int = "lightlevel" <~~ json else {
-            print("Can't create LightlevelSensorState, missing required attribute \"lightlevel\" in JSON:\n \(json)"); return nil
-        }
-        self.lightlevel = lightlevel
-        
-        guard let dark: Bool = "dark" <~~ json else {
-            print("Can't create LightlevelSensorState, missing required attribute \"dark\" in JSON:\n \(json)"); return nil
-        }
-        self.dark = dark
-        
-        guard let daylight: Bool = "daylight" <~~ json else {
-            print("Can't create LightlevelSensorState, missing required attribute \"daylight\" in JSON:\n \(json)"); return nil
-        }
-        self.daylight = daylight
-        
-        super.init(json: json)
-    }
-    
-    public override func toJSON() -> JSON? {
-        
-        if var superJson = super.toJSON() {
-            let json = jsonify([
-                "lightlevel" ~~> self.lightlevel,
-                "dark" ~~> self.dark,
-                "daylight" ~~> self.daylight
-                ])
-            superJson.unionInPlace(json!)
-            return superJson
+        guard let lightlevel = state.lightlevel,
+              let dark = state.dark,
+              let daylight = state.daylight else {
+            print("Can\'t create LightLevelSensorState, missing required attributes")
+            return nil
         }
 
-        return nil
+        self.lightlevel = lightlevel
+        self.dark = dark
+        self.daylight = daylight
+
+        super.init(lastUpdated: state.lastUpdated)
+    }
+
+    required public init?(json: [String: Any]) {
+        guard let lightlevel = json["lightlevel"] as? Int else {
+            print("Can\'t create LightLevelSensorState, missing required attribute \"lightlevel\" in JSON:\n \(json)"); return nil
+        }
+        guard let dark = json["dark"] as? Bool else {
+            print("Can\'t create LightLevelSensorState, missing required attribute \"dark\" in JSON:\n \(json)"); return nil
+        }
+        guard let daylight = json["daylight"] as? Bool else {
+            print("Can\'t create LightLevelSensorState, missing required attribute \"daylight\" in JSON:\n \(json)"); return nil
+        }
+
+        self.lightlevel = lightlevel
+        self.dark = dark
+        self.daylight = daylight
+
+        super.init(json: json)
+    }
+
+    public override func toJSON() -> [String: Any]? {
+        var superJson = super.toJSON() ?? [:]
+        if let lightlevel { superJson["lightlevel"] = lightlevel }
+        if let dark { superJson["dark"] = dark }
+        if let daylight { superJson["daylight"] = daylight }
+        return superJson
     }
 }
 
 public func ==(lhs: LightLevelSensorState, rhs: LightLevelSensorState) -> Bool {
     return lhs.lastUpdated == rhs.lastUpdated &&
         lhs.lightlevel == rhs.lightlevel &&
-        lhs.dark == lhs.dark &&
-        lhs.daylight == lhs.daylight
+        lhs.dark == rhs.dark &&
+        lhs.daylight == rhs.daylight
 }

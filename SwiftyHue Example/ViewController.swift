@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftyHue
-import Gloss
 
 var swiftyHue: SwiftyHue = SwiftyHue();
 

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Gloss
 
 public class SwitchSensorConfig: PartialSensorConfig {
 
@@ -16,7 +15,7 @@ public class SwitchSensorConfig: PartialSensorConfig {
         super.init(on: sensorConfig.on, reachable: sensorConfig.reachable, battery: sensorConfig.battery, url: sensorConfig.url)
     }
     
-    required public init?(json: JSON) {
+    required public init?(json: [String: Any]) {
         super.init(json: json)
     }
 }

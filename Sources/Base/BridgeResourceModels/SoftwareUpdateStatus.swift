@@ -7,73 +7,62 @@
 //
 
 import Foundation
-import Gloss
 
-public enum UpdateState: Int {
-    
+public enum UpdateState: Int, Codable {
     case noUpdate, downloading, readyForInstall, installed
 }
 
-public struct SoftwareUpdateStatus: JSONDecodable {
-    
+public struct SoftwareUpdateStatus: Codable {
+
     public let updatestate: UpdateState?
-    
+
     /**
      Check for update flag of the bridge
      */
     public let checkforupdate: Bool?
-    
+
     /**
      Details of device type specific updates available
      */
     public let devicetypes: SoftwareUpdateStatusDeviceTypes?
-    
+
     /**
      Release Notes Url
     */
     public let url: String?
-    
+
     /**
      Update Text
     */
     public let text: String?
-    
+
     /**
      Flag that turns to true when update is available. Can only be updated when its state is true and it is being set to false. All other transitions are invalid and will return an error.
      Updating this flag constitutes acceptance by the app of notification of the firmware update
      */
     public let notify: Bool?
-    
-    public init?(json: JSON) {
-        
-        updatestate = "updatestate" <~~ json
-        checkforupdate = "checkforupdate" <~~ json
-        devicetypes = "devicetypes" <~~ json
-        url = "url" <~~ json
-        text = "text" <~~ json
-        notify = "notify" <~~ json
-        
+
+    public init?(json: [String: Any]) {
+        guard let data = try? JSONSerialization.data(withJSONObject: json),
+              let decoded = try? JSONDecoder().decode(SoftwareUpdateStatus.self, from: data) else {
+            return nil
+        }
+        self = decoded
     }
-    
-    public func toJSON() -> JSON? {
-        
-        let json = jsonify([
-            "updatestate" ~~> updatestate,
-            "checkforupdate" ~~> checkforupdate,
-            "devicetypes" ~~> devicetypes,
-            "url" ~~> url,
-            "text" ~~> text,
-            "notify" ~~> notify
-            ])
-        
+
+    public func toJSON() -> [String: Any]? {
+        guard let data = try? JSONEncoder().encode(self),
+              let object = try? JSONSerialization.jsonObject(with: data),
+              let json = object as? [String: Any] else {
+            return nil
+        }
         return json
     }
 }
 
 extension SoftwareUpdateStatus: Hashable {
-    
+
     public func hash(into hasher: inout Hasher) {
-        
         hasher.combine(1)
     }
 }

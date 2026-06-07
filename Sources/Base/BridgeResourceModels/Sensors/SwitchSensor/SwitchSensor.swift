@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Gloss
 
 public class SwitchSensor: PartialSensor {
     
@@ -38,13 +37,14 @@ public class SwitchSensor: PartialSensor {
         super.init(identifier: sensor.identifier, uniqueId: sensor.uniqueId, name: sensor.name, type: sensor.type, modelId: sensor.modelId, manufacturerName: sensor.manufacturerName, swVersion: sensor.swVersion, recycle: sensor.recycle)
     }
     
-    public required init?(json: JSON) {
-        
-        guard let config: SwitchSensorConfig = "config" <~~ json else {
+    public required init?(json: [String: Any]) {
+        guard let configJSON = json["config"] as? [String: Any],
+              let config: SwitchSensorConfig = SwitchSensorConfig(json: configJSON) else {
             return nil
         }
-        
-        guard let state: SwitchSensorState = "state" <~~ json else {
+
+        guard let stateJSON = json["state"] as? [String: Any],
+              let state: SwitchSensorState = SwitchSensorState(json: stateJSON) else {
             return nil
         }
         

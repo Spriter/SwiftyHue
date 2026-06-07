@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Gloss
 
 public enum SHErrorType: Int {
     case unknownError = 0
@@ -24,22 +23,26 @@ public enum SHErrorType: Int {
     case internalError = 901
 }
 
-public class HueError: NSError, JSONDecodable {
+public class HueError: NSError {
     
     public let address: String
     public let errorDescription: String
     public let type: SHErrorType
     
     public required init?(json: JSON) {
-
-        if let _: Any = "success" <~~ json {
+        if json["success"] != nil {
             return nil
         }
 
-        guard let type: Int = "error.type" <~~ json,
-            let address: String = "error.address" <~~ json,
-            let errorDescription: String = "error.description" <~~ json
-            else { print("Can't create Error Object from JSON:\n \(json)"); return nil }
+        guard
+            let errorJSON = json["error"] as? JSON,
+            let type = errorJSON["type"] as? Int,
+            let address = errorJSON["address"] as? String,
+            let errorDescription = errorJSON["description"] as? String
+        else {
+            print("Can't create Error Object from JSON:\n \(json)")
+            return nil
+        }
         
         if let type = SHErrorType(rawValue: type) {
             self.type = type

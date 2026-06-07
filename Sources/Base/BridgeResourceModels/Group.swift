@@ -7,106 +7,75 @@
 //
 
 import Foundation
-import Gloss
 
 public enum GroupType: String {
-    
     case LightGroup, Room, Luminaire, LightSource, Entertainment, Zone
 }
 
 public enum RoomClass: String {
-    
     case LivingRoom = "Living room", Kitchen, Dining, Bedroom, KidsBedroom = "Kids bedroom", Bathroom, Nursery, Recreation, Office, Gym, Hallway, Toilet, FrontDoor = "Front door", Garage, Terrace, Garden, Driveway, Carport, Other, Home, Downstairs, Upstairs, TopFloor = "Top floor", Attic, GuestRoom = "Guest room", Staircase, Lounge, ManCave = "Man cave", Computer, Studio, Music, TV, Reading, Closet, Storage, LaundryRoom = "Laundry room", Balcony, Porch, Barbecue, Pool
 }
 
 public class Group: BridgeResourceDictGenerator, BridgeResource {
-    
-    public typealias AssociatedBridgeResourceType = Group;
 
-    public var resourceType: BridgeResourceType {
-        return .group
-    };
-    
+    public typealias AssociatedBridgeResourceType = Group
+
+    public var resourceType: BridgeResourceType { .group }
+
     public var identifier: String
     public var name: String
-    
-    /**
-        The light state of one of the lamps in the group.
-     */
-    public let action: LightState;
-    
-    /**
-        The IDs of the lights that are in the group.
-     */
-    public let lightIdentifiers: [String]?;
-    
-    /**
-        As of 1.4. If not provided upon creation "LightGroup" is used. Can be "LightGroup", "Room" or either "Luminaire" or "LightSource" if a Multisource Luminaire is present in the system.
-     */
+    public let action: LightState
+    public let lightIdentifiers: [String]?
     public let type: GroupType
-    
-    /**
-        As of 1.4. Uniquely identifies the hardware model of the luminaire. Only present for automatically created Luminaires.
-     */
     public let modelId: String?
-    
-    /**
-        As of 1.9. Unique Id in AA:BB:CC:DD format for Luminaire groups or AA:BB:CC:DD-XX format for Lightsource groups, where XX is the lightsource position.
-     */
     public let uniqueId: String?
-    
-    /**
-        As of 1.11. Category of Room types. Default is: Other.
-     */
     public let roomClass: RoomClass
-    
-    public required init?(json: JSON) {
-        
-        guard let identifier: String = "id" <~~ json,
-            let name: String = "name" <~~ json,
-            let action: LightState = "action" <~~ json,
-            let type: GroupType = "type" <~~ json,
-            let roomClass: RoomClass = RoomClass(rawValue: ("class" <~~ json) ?? "Other")
-        
-            else { print("Can't create Group from JSON:\n \(json)"); return nil }
-        
+
+    public required init?(json: [String: Any]) {
+        guard let identifier = json["id"] as? String,
+              let name = json["name"] as? String,
+              let actionJSON = json["action"] as? [String: Any],
+              let action = LightState(json: actionJSON),
+              let typeRaw = json["type"] as? String,
+              let type = GroupType(rawValue: typeRaw) else {
+            print("Can't create Group from JSON:\n \(json)")
+            return nil
+        }
+
+        let roomClassRaw = (json["class"] as? String) ?? "Other"
+        let roomClass = RoomClass(rawValue: roomClassRaw) ?? .Other
+
         self.identifier = identifier
         self.name = name
         self.action = action
         self.type = type
         self.roomClass = roomClass
-        
-        uniqueId = "uniqueid" <~~ json
-        modelId = "modelid" <~~ json
-        lightIdentifiers = "lights" <~~ json
-    }
-    
-    public func toJSON() -> JSON? {
-   
-        let json = jsonify([
-            "id" ~~> identifier,
-            "name" ~~> name,
-            "action" ~~> action,
-            "lights" ~~> lightIdentifiers,
-            "type" ~~> type,
-            "modelid" ~~> modelId,
-            "uniqueid" ~~> uniqueId,
-            "class" ~~> roomClass.rawValue
-            ])
-        
-        return json
+        self.uniqueId = json["uniqueid"] as? String
+        self.modelId = json["modelid"] as? String
+        self.lightIdentifiers = json["lights"] as? [String]
     }
 
+    public func toJSON() -> [String: Any]? {
+        var json: [String: Any] = [
+            "id": identifier,
+            "name": name,
+            "type": type.rawValue,
+            "class": roomClass.rawValue
+        ]
+        if let actionJson = action.toJSON() { json["action"] = actionJson }
+        if let lightIdentifiers { json["lights"] = lightIdentifiers }
+        if let modelId { json["modelid"] = modelId }
+        if let uniqueId { json["uniqueid"] = uniqueId }
+        return json
+    }
 }
 
 extension Group: Hashable {
-    
     public func hash(into hasher: inout Hasher) {
-     
         hasher.combine(Int(self.identifier)!)
     }
 }
 
 public func ==(lhs: Group, rhs: Group) -> Bool {
-    return lhs.identifier == rhs.identifier
+    lhs.identifier == rhs.identifier
 }
