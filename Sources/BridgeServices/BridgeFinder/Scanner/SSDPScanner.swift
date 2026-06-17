@@ -37,7 +37,7 @@ class SSDPScanner: NSObject, Scanner, GCDAsyncUdpSocketDelegate {
             let receiveTimeout: TimeInterval = 5
             Timer.scheduledTimer(timeInterval: receiveTimeout, target: self, selector: #selector(SSDPScanner.stop), userInfo: self, repeats: false)
 
-        } catch let error as NSError {
+        } catch {
         }
     }
 

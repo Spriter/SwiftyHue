@@ -27,12 +27,12 @@ public class LightLevelSensorConfig: SensorConfig {
 
     required public init?(json: [String: Any]) {
 
-        guard let tholddark = json["tholddark"] as? Int else {
+        guard json["tholddark"] is Int else {
             print("Can't create LightLevelSensorConfig, missing required attribute \"tholddark\" in JSON:\n \(json)")
             return nil
         }
 
-        guard let tholdoffset = json["tholdoffset"] as? Int else {
+        guard json["tholdoffset"] is Int else {
             print("Can't create LightLevelSensorConfig, missing required attribute \"tholdoffset\" in JSON:\n \(json)")
             return nil
         }

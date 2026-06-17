@@ -9,7 +9,7 @@
 import Foundation
 
 /// Protocol for handling BridgeFinder results
-public protocol BridgeFinderDelegate: class {
+public protocol BridgeFinderDelegate: AnyObject {
     /**
      Search for HueBridges finished.
      

@@ -16,7 +16,7 @@ private final class HueLocalTrustURLSessionDelegate: NSObject, URLSessionDelegat
     }
 }
 
-private final class HueLocalTrustManager: ServerTrustManager {
+private final class HueLocalTrustManager: ServerTrustManager, @unchecked Sendable {
     override func serverTrustEvaluator(forHost host: String) throws -> ServerTrustEvaluating? {
         if HueNetwork.isLocalBridgeHost(host) {
             return DisabledTrustEvaluator()

@@ -23,7 +23,7 @@ public enum SHErrorType: Int {
     case internalError = 901
 }
 
-public class HueError: NSError {
+public class HueError: NSError, @unchecked Sendable {
     
     public let address: String
     public let errorDescription: String

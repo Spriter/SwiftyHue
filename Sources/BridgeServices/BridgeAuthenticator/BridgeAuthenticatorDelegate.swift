@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol BridgeAuthenticatorDelegate: class {
+public protocol BridgeAuthenticatorDelegate: AnyObject {
     func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFinishAuthentication username: String)
     func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFailWithError error: NSError)
     // you should now ask the user to press the link button

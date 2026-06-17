@@ -26,9 +26,9 @@ Pod::Spec.new do |s|
 
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '10.0'
-  s.tvos.deployment_target = '10.0'
-  s.osx.deployment_target = '10.12'
+  s.ios.deployment_target = '12.0'
+  s.tvos.deployment_target = '12.0'
+  s.osx.deployment_target = '10.13'
 
   s.pod_target_xcconfig = { 'ENABLE_TESTABILITY[config=Debug]' => 'YES' }
   s.source_files = 'Sources/SwiftyHue.h'
@@ -37,10 +37,10 @@ Pod::Spec.new do |s|
 
   s.subspec 'Base' do |base|
 
-    base.ios.deployment_target = '10.0'
-    base.tvos.deployment_target = '10.0'
-    base.watchos.deployment_target = '3.0'
-    base.osx.deployment_target = '10.12'
+    base.ios.deployment_target = '12.0'
+    base.tvos.deployment_target = '12.0'
+    base.watchos.deployment_target = '4.0'
+    base.osx.deployment_target = '10.13'
 
     base.source_files = 'Sources/Base/**/*.{h,swift}'
     base.dependency 'Alamofire', '~> 5.9'
@@ -49,10 +49,10 @@ Pod::Spec.new do |s|
   s.subspec 'BridgeServices' do |bridgeservices|
     bridgeservices.source_files   = 'Sources/BridgeServices/**/*.{h,swift}'
 
-    bridgeservices.ios.deployment_target = '10.0'
-    bridgeservices.tvos.deployment_target = '10.0'
-    bridgeservices.osx.deployment_target = '10.12'
+    bridgeservices.ios.deployment_target = '12.0'
+    bridgeservices.tvos.deployment_target = '12.0'
 
+    bridgeservices.dependency 'SwiftyHue/Base'
     bridgeservices.dependency 'Alamofire', '~> 5.9'
     bridgeservices.dependency 'CocoaAsyncSocket', '7.6.5'
 

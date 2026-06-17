@@ -56,7 +56,6 @@ public class BridgeFinder: NSObject, ScannerDelegate {
     private func finish() {
         guard !didFinish else { return }
         didFinish = true
-        let ips = foundBridges.map { $0.ip }.joined(separator: ", ")
         DispatchQueue.main.async {
             self.delegate?.bridgeFinder(self, didFinishWithResult: self.foundBridges)
         }
@@ -124,7 +123,7 @@ public class BridgeFinder: NSObject, ScannerDelegate {
 
     func scanner(_ scanner: Scanner, didFinishWithResults ips: [String]) {
         // Discovery IPs from SSDP/NUPNP are already useful to proceed with push-link.
-        // Do not block UI on legacy description.xml validation, which may hang on newer bridges.
+        // Keep scanning so SSDP and NUPNP results are merged before reporting.
         for ip in ips where !foundBridges.contains(where: { $0.ip == ip }) {
             let bridge = HueBridge(ip: ip,
                                    deviceType: "IpBridge",
@@ -137,10 +136,6 @@ public class BridgeFinder: NSObject, ScannerDelegate {
             foundBridges.append(bridge)
         }
 
-        if !foundBridges.isEmpty {
-            finish()
-        } else {
-            validateBridges(ips)
-        }
+        startNextScanner()
     }
 }
